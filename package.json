@@ -192,11 +192,13 @@
     },
     "android": {
       "javaPackageName": "com.performancetracker"
-    },
-    "includesGeneratedCode": true
+    }
   },
   "create-react-native-library": {
-    "type": "module-mixed",
+    "type": [
+      "module-mixed",
+      "view-mixed"
+    ],
     "languages": "kotlin-objc",
     "version": "0.42.2"
   }

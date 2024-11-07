@@ -15,7 +15,7 @@ class PerformanceTrackerModule internal constructor(context: ReactApplicationCon
   // Example method
   // See https://reactnative.dev/docs/native-modules-android
   @ReactMethod
-  override fun multiply(a: Double, b: Double): Double {
+  override fun multiply(a: Double, b: Double, promise: Promise?) {
     Log.d("::: Shubham multiply",  "" + Thread.currentThread())
     return a * b;
   }
