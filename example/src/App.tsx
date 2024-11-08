@@ -12,13 +12,13 @@ import {
 
 export default function App() {
   const [showPTView, setShowPTView] = useState(false);
-  const [res, setRes] = useState(0);
+  const [res, _] = useState(0);
   return (
     <View>
       <Button
         title="Toggle Native View Display "
-        onPress={() => {
-          PerformanceTracker.send("Button_onPress", Date.now());
+        onPress={(e) => {
+          PerformanceTracker.send("Button_onPress", e.nativeEvent.timestamp);
           setShowPTView(!showPTView);
         }}
       />
@@ -27,9 +27,9 @@ export default function App() {
           <PerformanceTracker
             style={{ borderWidth: 1, flex: 1 }}
             tagName={'Parent Tracker'}
-            eventTimeStamp={Date.now().toString()}
+            eventTimeStamp={Date.now()}
             onDrawEnd={(data) => {
-              console.log(`::: Shubham DrawTime: ${data.nativeEvent.drawTime} RenderTime: ${data.nativeEvent.renderTime} TagName: ${data.nativeEvent.tagName}`)
+              console.log(`::: Shubham Parent DrawTime: ${data.nativeEvent.drawTime} RenderTime: ${data.nativeEvent.renderTime} TagName: ${data.nativeEvent.tagName}`)
             }}
           >
             <View
@@ -43,6 +43,13 @@ export default function App() {
               }}
             >
               <Text>First View: {res}</Text>
+              <PerformanceTracker tagName='Child Tracker' eventTimeStamp={Date.now()} onDrawEnd={(data) => {
+                console.log(`::: Shubham Children DrawTime: ${data.nativeEvent.drawTime} RenderTime: ${data.nativeEvent.renderTime} TagName: ${data.nativeEvent.tagName}`)
+              }}>
+                <View>
+                  <Text>Children View</Text>
+                </View>
+              </PerformanceTracker>
             </View>
           </PerformanceTracker>
         </View>

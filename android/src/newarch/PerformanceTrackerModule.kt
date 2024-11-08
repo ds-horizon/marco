@@ -15,6 +15,7 @@ class PerformanceTrackerModule internal constructor(context: ReactApplicationCon
   @ReactMethod
   override fun send(tag: String, time: Double) {
     Log.d("::: Shubham send called",  "$tag $time " + Thread.currentThread());
+    PerformanceTrackerStore.put(tag, time)
   }
 
   companion object {

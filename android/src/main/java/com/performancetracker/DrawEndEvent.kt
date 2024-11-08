@@ -6,7 +6,7 @@ import com.facebook.react.bridge.WritableMap
 import com.facebook.react.uimanager.events.Event
 import com.facebook.react.uimanager.events.RCTEventEmitter
 
-class DrawEndEvent(viewTag: Int, private val timeStamp: String) : Event<DrawEndEvent>(viewTag) {
+class DrawEndEvent(viewTag: Int, private val tagName: String, private  val drawTime: Double, private val renderTime: Double) : Event<DrawEndEvent>(viewTag) {
 
     override fun getEventName(): String {
         return EVENT_NAME
@@ -22,9 +22,9 @@ class DrawEndEvent(viewTag: Int, private val timeStamp: String) : Event<DrawEndE
 
     private fun serializeEventData(): WritableMap {
         val eventData = Arguments.createMap()
-        eventData.putString("tagName", "timeStamp")
-        eventData.putDouble("drawTime", 44.6)
-        eventData.putDouble("renderTime", 44.5)
+        eventData.putString("tagName", tagName)
+        eventData.putDouble("drawTime", drawTime)
+        eventData.putDouble("renderTime", renderTime)
         return eventData
     }
 

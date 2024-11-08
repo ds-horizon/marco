@@ -11,7 +11,7 @@ interface FinishEventType {
 export interface NativeProps extends ViewProps {
   tagName: string;
   isEnabled?: boolean;
-  eventTimeStamp: string;
+  eventTimeStamp: Double;
   onDrawEnd?: DirectEventHandler<FinishEventType>
 }
 

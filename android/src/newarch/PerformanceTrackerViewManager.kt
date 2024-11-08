@@ -21,6 +21,7 @@ class PerformanceTrackerViewManager :
   }
 
   public override fun createViewInstance(context: ThemedReactContext): PerformanceTrackerView {
+    Log.d("::: Shubham ", " createViewInstance")
     return PerformanceTrackerView(context)
   }
 
@@ -31,12 +32,17 @@ class PerformanceTrackerViewManager :
 
   @ReactProp(name = "tagName")
   override fun setTagName(view: PerformanceTrackerView?, value: String?) {
-    view?.contentDescription = value
+    if (value != null) {
+      view?.tagName = value
+    }
   }
 
   @ReactProp(name = "eventTimeStamp")
-  override fun setEventTimeStamp(view: PerformanceTrackerView?, value: String?) {
+  override fun setEventTimeStamp(view: PerformanceTrackerView?, value: Double) {
     Log.d("::: Shubham", " setEventTimeStamp called")
+    if (view != null) {
+      view.eventTimeStamp = value
+    }
   }
 
   override fun getExportedCustomDirectEventTypeConstants(): MutableMap<String, Any>? {
