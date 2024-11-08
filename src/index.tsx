@@ -1,32 +1,46 @@
-import { NativeModules, Platform } from 'react-native';
+import { NativeModules, requireNativeComponent, StyleSheet, type ViewProps } from 'react-native';
+import type { NativeProps } from './PerformanceTrackerViewNativeComponent';
 
-const LINKING_ERROR =
-  `The package 'react-native-performance-tracker' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo Go\n';
-
-// @ts-expect-error
-const isTurboModuleEnabled = global.__turboModuleProxy != null;
+const isFabricEnabled = (global as any)?.nativeFabricUIManager != null
+const isTurboModuleEnabled = (global as any).__turboModuleProxy != null
 
 const PerformanceLoggerModule = isTurboModuleEnabled
   ? require('./NativePerformanceTracker').default
   : NativeModules.PerformanceTracker;
 
-const PerformanceLogger = PerformanceLoggerModule
-  ? PerformanceLoggerModule
-  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+const PerformanceTrackerView = isFabricEnabled
+  ? require('./PerformanceTrackerViewNativeComponent').default
+  : requireNativeComponent('PerformanceTrackerView')
 
-export function multiply(a: number, b: number): Promise<number> {
-  return PerformanceLogger.multiply(a, b);
+type PerformanceTrackerViewProps = NativeProps & ViewProps
+
+interface PerformanceTrackerViewStaticMethods {
+  send: (tag: string, time: number) => void;
 }
 
-export { default as PerformanceTrackerView } from './PerformanceTrackerViewNativeComponent';
-export * from './PerformanceTrackerViewNativeComponent';
+const PerformanceTrackerViewBase = ({
+  children,
+  style,
+  isEnabled = true,
+  ...rest
+}: PerformanceTrackerViewProps) => {
+  return (
+    <PerformanceTrackerView {...rest} isEnabled style={[styles.default, style]} >
+      {children}
+    </PerformanceTrackerView>
+  )
+}
+
+const styles = StyleSheet.create({
+  default: {
+    backgroundColor: 'rgba(255, 0, 0, 0)',
+  },
+});
+
+PerformanceTrackerViewBase.displayName = 'PerformanceTracker'
+
+PerformanceTrackerViewBase.send = (tag: string, time: number) => PerformanceLoggerModule.send(tag, time)
+
+export const PerformanceTracker: React.ComponentType<PerformanceTrackerViewProps> &
+PerformanceTrackerViewStaticMethods = PerformanceTrackerViewBase
+
