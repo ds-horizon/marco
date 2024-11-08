@@ -3,12 +3,15 @@ package com.performancetracker
 import android.graphics.Color
 import android.util.Log
 import com.facebook.react.module.annotations.ReactModule
+import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.annotations.ReactProp
+import com.facebook.react.viewmanagers.PerformanceTrackerViewManagerInterface
 
 @ReactModule(name = PerformanceTrackerViewManager.NAME)
 class PerformanceTrackerViewManager :
-  PerformanceTrackerViewManagerSpec<PerformanceTrackerView>() {
+  SimpleViewManager<PerformanceTrackerView>(),
+  PerformanceTrackerViewManagerInterface<PerformanceTrackerView> {
   override fun getName(): String {
     return NAME
   }
