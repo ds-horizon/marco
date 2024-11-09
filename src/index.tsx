@@ -25,7 +25,7 @@ const PerformanceTrackerViewBase = ({
   ...rest
 }: PerformanceTrackerViewProps) => {
   return (
-    <PerformanceTrackerView {...rest} isEnabled style={[styles.default, style]} >
+    <PerformanceTrackerView {...rest} isEnabled={isEnabled} style={[styles.default, style]} >
       {children}
     </PerformanceTrackerView>
   )

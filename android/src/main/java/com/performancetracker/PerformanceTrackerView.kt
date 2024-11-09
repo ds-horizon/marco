@@ -23,8 +23,9 @@ class PerformanceTrackerView(context: Context) : ReactViewGroup(context) {
       val time = System.currentTimeMillis().toDouble()
       PerformanceTrackerStore.put(tagName, time)
       val renderTime = time - eventTimeStamp
-      Log.d("::: Shubham ", "onDraw called with TagName: $tagName EventTimeStamp $eventTimeStamp currentTimeMillis: ${System.currentTimeMillis()} uptimeMillis: ${SystemClock.uptimeMillis()} currentTimeMillis: ${SystemClock.currentTimeMillis()}")
       UIManagerHelper.getEventDispatcherForReactTag(reactContext, reactTag)?.dispatchEvent(DrawEndEvent(reactTag, tagName, time, renderTime))
+      
+      PerformanceTrackerWriter.writeLogsInFile(tagName, time.toString())
     }
   }
 }

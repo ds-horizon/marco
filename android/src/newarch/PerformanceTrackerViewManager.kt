@@ -27,7 +27,7 @@ class PerformanceTrackerViewManager :
 
   @ReactProp(name = "isEnabled")
   override fun setIsEnabled(view: PerformanceTrackerView?, value: Boolean) {
-    Log.d("::: Shubham", " setIsEnabled called")
+    Log.d("::: Shubham", " setIsEnabled called $value")
     if (view != null) {
       view.enabledFlag = value
     }

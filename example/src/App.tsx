@@ -43,7 +43,7 @@ export default function App() {
               }}
             >
               <Text>First View: {res}</Text>
-              <PerformanceTracker tagName='Child Tracker' eventTimeStamp={Date.now()} onDrawEnd={(data) => {
+              <PerformanceTracker tagName='Child Tracker' eventTimeStamp={Date.now()} isEnabled={false} onDrawEnd={(data) => {
                 console.log(`::: Shubham Children DrawTime: ${data.nativeEvent.drawTime} RenderTime: ${data.nativeEvent.renderTime} TagName: ${data.nativeEvent.tagName}`)
               }}>
                 <View>
