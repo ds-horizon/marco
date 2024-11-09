@@ -16,9 +16,11 @@ class PerformanceTrackerModule internal constructor(context: ReactApplicationCon
   // Example method
   // See https://reactnative.dev/docs/native-modules-android
   @ReactMethod
-  fun multiply(a: Double, b: Double, promise: Promise) {
-    Log.d("::: Shubham multiply",  "" + Thread.currentThread())
-    promise.resolve(a*b);
+  fun send(tag: String, time: Double) {
+    Log.d("::: Shubham send called",  "$tag $time " + Thread.currentThread());
+    PerformanceTrackerStore.put(tag, time)
+
+    PerformanceTrackerWriter.writeLogsInFile(tag, time.toString())
   }
 
   companion object {
