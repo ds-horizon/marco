@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -13,6 +13,17 @@ import {
 export default function App() {
   const [showPTView, setShowPTView] = useState(false);
   const [res, _] = useState(0);
+
+  useEffect(() => {
+    console.log("::: Shubham useEffect mount called ", Date.now().toString());
+    
+  }, [])
+
+  const getLogsFromNative = async () => {
+    const logs = await PerformanceTracker.getLogs();
+
+    console.log("::: Shubham logs", logs)
+  }
   return (
     <View>
       <Button
@@ -22,9 +33,16 @@ export default function App() {
           setShowPTView(!showPTView);
         }}
       />
-      {showPTView && (
+      <Button
+        title="GET ALL EVENTS"
+        onPress={getLogsFromNative}
+      />
+      {showPTView && 
         <View style={styles.container}>
           <PerformanceTracker
+            onLayout={(e) => {
+              console.log("::: Shubham onLayout called ", e.timeStamp)
+            }}
             style={{ borderWidth: 1, flex: 1 }}
             tagName={'Parent Tracker'}
             eventTimeStamp={Date.now()}
@@ -43,17 +61,17 @@ export default function App() {
               }}
             >
               <Text>First View: {res}</Text>
-              <PerformanceTracker tagName='Child Tracker' eventTimeStamp={Date.now()} isEnabled={false} onDrawEnd={(data) => {
+              {/* <PerformanceTracker tagName='Child Tracker' eventTimeStamp={Date.now()} isEnabled={false} onDrawEnd={(data) => {
                 console.log(`::: Shubham Children DrawTime: ${data.nativeEvent.drawTime} RenderTime: ${data.nativeEvent.renderTime} TagName: ${data.nativeEvent.tagName}`)
               }}>
                 <View>
                   <Text>Children View</Text>
                 </View>
-              </PerformanceTracker>
+              </PerformanceTracker> */}
             </View>
           </PerformanceTracker>
         </View>
-      )}
+      }
     </View>
   );
 }

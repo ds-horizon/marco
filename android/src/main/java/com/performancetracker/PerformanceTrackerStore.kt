@@ -1,41 +1,39 @@
 package com.performancetracker
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import org.json.JSONObject
-import java.io.File
-
 object PerformanceTrackerStore {
-    private val dataMap: MutableMap<String, Any> = mutableMapOf()
-    private const val fileName = "PerformanceTrackerData.json"
 
-    fun put(key: String, value: Any) {
-        dataMap[key] = value
+    private val eventSequence: MutableList<Map<String, Any>> = mutableListOf()
+
+    fun addEvent(tagName: String, timestamp: Double) {
+        val eventDetails = mapOf("tagName" to tagName, "timestamp" to timestamp)
+        eventSequence.add(eventDetails)
     }
 
-    fun get(key: String): Any? {
-        return dataMap[key]
+    fun getAll(): MutableList<Map<String, Any>> {
+        return eventSequence
     }
 
-    fun containsKey(key: String): Boolean {
-        return dataMap.containsKey(key)
-    }
-
-    fun remove(key: String): Any? {
-        return dataMap.remove(key)
+    fun getLastEvent(): Map<String, Any>? {
+        return if (eventSequence.isNotEmpty()) eventSequence.last() else null
     }
 
     fun clear() {
-        dataMap.clear()
+        eventSequence.clear()
+    }
+
+    fun removeLastEvent(): Map<String, Any>? {
+        return if (eventSequence.isNotEmpty()) eventSequence.removeAt(eventSequence.size - 1) else null
+    }
+
+    fun containsEvent(tagName: String): Boolean {
+        return eventSequence.any { it["tagName"] == tagName }
     }
 
     override fun toString(): String {
-        return dataMap.entries.joinToString(
-            prefix = "{ ",
-            postfix = " }",
+        return eventSequence.joinToString(
+            prefix = "[ ",
+            postfix = " ]",
             separator = ", "
-        ) { (key, value) -> "$key: $value" }
+        ) { event -> "{ tagName: ${event["tagName"]}, timestamp: ${event["timestamp"]} }" }
     }
-
 }

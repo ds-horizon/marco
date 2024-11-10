@@ -16,6 +16,8 @@ type PerformanceTrackerViewProps = NativeProps & ViewProps
 
 interface PerformanceTrackerViewStaticMethods {
   send: (tag: string, time: number) => void;
+  getLogs(): Promise<Record<string, any>>;
+  resetLogs(): void;
 }
 
 const PerformanceTrackerViewBase = ({
@@ -40,6 +42,8 @@ const styles = StyleSheet.create({
 PerformanceTrackerViewBase.displayName = 'PerformanceTracker'
 
 PerformanceTrackerViewBase.send = (tag: string, time: number) => PerformanceLoggerModule.send(tag, time)
+PerformanceTrackerViewBase.getLogs = () => PerformanceLoggerModule.getLogs()
+PerformanceTrackerViewBase.resetLogs = () => PerformanceLoggerModule.reset()
 
 export const PerformanceTracker: React.ComponentType<PerformanceTrackerViewProps> &
 PerformanceTrackerViewStaticMethods = PerformanceTrackerViewBase
