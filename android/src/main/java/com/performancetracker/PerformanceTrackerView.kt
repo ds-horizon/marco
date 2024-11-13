@@ -7,23 +7,24 @@ import com.facebook.react.uimanager.UIManagerHelper
 import com.facebook.react.views.view.ReactViewGroup
 
 class PerformanceTrackerView(context: Context) : ReactViewGroup(context) {
-  var tagName = ""
-  var eventTimeStamp = 0.0
-  var enabledFlag = true;
+    var tagName: String = ""
+    var eventTimeStamp = 0.0
+    var enabledFlag = true;
 
-  override fun onDraw(canvas: Canvas) {
-    super.onDraw(canvas)
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
 
-    if (enabledFlag) {
-      val reactContext: ReactContext = context as ReactContext
-      val reactTag: Int = id
+        if (enabledFlag) {
+            val reactContext: ReactContext = context as ReactContext
+            val reactTag: Int = id
 
-      val time = System.currentTimeMillis().toDouble()
-      PerformanceTrackerStore.addEvent(tagName, time)
-      val renderTime = time - eventTimeStamp
-      UIManagerHelper.getEventDispatcherForReactTag(reactContext, reactTag)?.dispatchEvent(DrawEndEvent(reactTag, tagName, time, renderTime))
-      
-      PerformanceTrackerWriter.writeLogsInFile(tagName, time.toString())
+            val time = System.currentTimeMillis().toDouble()
+            PerformanceTrackerStore.addEvent(tagName, time)
+            val renderTime = time - eventTimeStamp
+            UIManagerHelper.getEventDispatcherForReactTag(reactContext, reactTag)
+                ?.dispatchEvent(DrawEndEvent(reactTag, tagName, time, renderTime))
+
+            PerformanceTrackerWriter.writeLogsInFile(tagName, time.toString())
+        }
     }
-  }
 }

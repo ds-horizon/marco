@@ -1,52 +1,51 @@
 package com.performancetracker
 
 import com.facebook.react.module.annotations.ReactModule
-import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.ViewGroupManager
 import com.facebook.react.uimanager.annotations.ReactProp
 
-@ReactModule(name = PerformanceTrackerViewManager.NAME)
+@ReactModule(name = PerformanceTrackerViewImpl.NAME)
 class PerformanceTrackerViewManager : ViewGroupManager<PerformanceTrackerView>() {
-  override fun getName(): String {
-    return NAME
-  }
 
-  public override fun createViewInstance(context: ThemedReactContext): PerformanceTrackerView {
-    return PerformanceTrackerView(context)
-  }
+    private val performanceTrackerViewImpl: PerformanceTrackerViewImpl =
+        PerformanceTrackerViewImpl()
 
-  @ReactProp(name = "isEnabled")
-  fun setIsEnabled(view: PerformanceTrackerView?, value: Boolean) {
-    if (view != null) {
-      view.enabledFlag = value
+    override fun getName(): String {
+        return performanceTrackerViewImpl.getName()
     }
-  }
 
-  @ReactProp(name = "tagName")
-  fun setTagName(view: PerformanceTrackerView?, value: String?) {
-    if (value != null) {
-      view?.tagName = value
+    public override fun createViewInstance(context: ThemedReactContext): PerformanceTrackerView {
+        return PerformanceTrackerView(context)
     }
-  }
 
-  @ReactProp(name = "eventTimeStamp")
-  fun setEventTimeStamp(view: PerformanceTrackerView?, value: Double) {
-    if (view != null) {
-      view.eventTimeStamp = value
+    @ReactProp(name = "isEnabled")
+    fun setIsEnabled(view: PerformanceTrackerView, value: Boolean) {
+        performanceTrackerViewImpl.setIsEnabled(view, value)
     }
-  }
 
-  override fun getExportedCustomDirectEventTypeConstants(): MutableMap<String, Any>? {
-    val baseEventTypeConstants: Map<String, Any>? = super.getExportedCustomDirectEventTypeConstants()
-    val eventTypeConstants: MutableMap<String, Any> = baseEventTypeConstants?.toMutableMap()
-      ?: mutableMapOf()
-    eventTypeConstants[DrawEndEvent.EVENT_NAME] = mutableMapOf("registrationName" to "onDrawEnd")
+    @ReactProp(name = "tagName")
+    fun setTagName(view: PerformanceTrackerView, value: String?) {
+        performanceTrackerViewImpl.setTagName(view, value)
+    }
 
-    return eventTypeConstants
-  }
+    @ReactProp(name = "eventTimeStamp")
+    fun setEventTimeStamp(view: PerformanceTrackerView, value: Double) {
+        performanceTrackerViewImpl.setEventTimeStamp(view, value)
+    }
 
-  companion object {
-    const val NAME = "PerformanceTrackerView"
-  }
+    override fun getExportedCustomDirectEventTypeConstants(): MutableMap<String, Any>? {
+        val baseEventTypeConstants: Map<String, Any>? =
+            super.getExportedCustomDirectEventTypeConstants()
+        val eventTypeConstants: MutableMap<String, Any> = baseEventTypeConstants?.toMutableMap()
+            ?: mutableMapOf()
+        eventTypeConstants[DrawEndEvent.EVENT_NAME] =
+            mutableMapOf("registrationName" to "onDrawEnd")
+
+        return eventTypeConstants
+    }
+
+    companion object {
+        const val NAME = "PerformanceTrackerView"
+    }
 }

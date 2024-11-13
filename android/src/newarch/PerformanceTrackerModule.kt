@@ -4,55 +4,36 @@ import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.ReadableMap
-import com.facebook.react.bridge.WritableNativeArray
-import com.facebook.react.bridge.WritableNativeMap
 
 
 class PerformanceTrackerModule internal constructor(context: ReactApplicationContext) :
-  NativePerformanceTrackerSpec(context) {
+    NativePerformanceTrackerSpec(context) {
+    private val performanceTrackerModuleImpl: PerformanceTrackerModuleImpl =
+        PerformanceTrackerModuleImpl()
 
-  override fun getName(): String {
-    return NAME
-  }
-
-  @ReactMethod
-  override fun send(tag: String, time: Double) {
-    PerformanceTrackerStore.addEvent(tag, time)
-
-    PerformanceTrackerWriter.writeLogsInFile(tag, time.toString())
-  }
-
-  @ReactMethod
-  override fun getLogs(promise: Promise?) {
-    if (promise != null) {
-      val writableArray = WritableNativeArray()
-
-      for (event in PerformanceTrackerStore.getAll()) {
-        val writableMap = WritableNativeMap()
-
-        writableMap.putString("tagName", event["tagName"] as String)
-        writableMap.putDouble("timestamp", event["timestamp"] as Double)
-
-        writableArray.pushMap(writableMap)
-      }
-
-      promise.resolve(writableArray)
+    override fun getName(): String {
+        return performanceTrackerModuleImpl.getName()
     }
-  }
 
-  @ReactMethod
-  override fun init(config: ReadableMap?) {
-    val persistToFile = config?.getBoolean("persistToFile") ?: false
-    PerformanceTrackerWriter.persistFile = persistToFile;
+    @ReactMethod
+    override fun send(tag: String, time: Double) {
+        performanceTrackerModuleImpl.send(tag, time)
+    }
 
-  }
+    @ReactMethod
+    override fun getLogs(promise: Promise?) {
+        if (promise != null) {
+            performanceTrackerModuleImpl.getLogs(promise)
+        }
+    }
 
-  @ReactMethod
-  override fun resetLogs() {
-    PerformanceTrackerStore.clear()
-  }
+    @ReactMethod
+    override fun init(config: ReadableMap?) {
+        performanceTrackerModuleImpl.init(config)
+    }
 
-  companion object {
-    const val NAME = "PerformanceTracker"
-  }
+    @ReactMethod
+    override fun resetLogs() {
+        performanceTrackerModuleImpl.resetLogs()
+    }
 }

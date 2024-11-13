@@ -1,0 +1,23 @@
+package com.performancetracker
+
+class PerformanceTrackerViewImpl {
+    fun getName(): String {
+        return NAME
+    }
+
+    fun setIsEnabled(view: PerformanceTrackerView, value: Boolean) {
+        view.enabledFlag = value
+    }
+
+    fun setTagName(view: PerformanceTrackerView, value: String?) {
+        view.tagName = value ?: ""
+    }
+
+    fun setEventTimeStamp(view: PerformanceTrackerView, value: Double) {
+        view.eventTimeStamp = value
+    }
+
+    companion object {
+        const val NAME = "PerformanceTrackerView"
+    }
+}
