@@ -1,5 +1,6 @@
 package com.performancetracker
 
+import android.content.Context
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.bridge.WritableNativeArray
@@ -11,9 +12,9 @@ class PerformanceTrackerModuleImpl {
         return NAME
     }
 
-    fun send(tag: String, time: Double) {
+    fun send(tag: String, time: Double, context: Context) {
         PerformanceTrackerStore.addEvent(tag, time)
-        PerformanceTrackerWriter.writeLogsInFile(tag, time.toString())
+        PerformanceTrackerWriter.writeLogsInFile(tag, time.toString(), context)
     }
 
     fun getLogs(promise: Promise) {
@@ -40,9 +41,8 @@ class PerformanceTrackerModuleImpl {
     }
 
     fun init(config: ReadableMap?) {
-
         val persistToFile = config?.getBoolean("persistToFile") ?: false
-        PerformanceTrackerWriter.persistFile = persistToFile;
+        PerformanceTrackerWriter.persistToFile = persistToFile;
     }
 
     companion object {

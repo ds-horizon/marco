@@ -24,7 +24,7 @@ class PerformanceTrackerView(context: Context) : ReactViewGroup(context) {
             UIManagerHelper.getEventDispatcherForReactTag(reactContext, reactTag)
                 ?.dispatchEvent(DrawEndEvent(reactTag, tagName, time, renderTime))
 
-            PerformanceTrackerWriter.writeLogsInFile(tagName, time.toString())
+            PerformanceTrackerWriter.writeLogsInFile(tagName, time.toString(), context)
         }
     }
 }

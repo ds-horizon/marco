@@ -6,7 +6,7 @@ import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReadableMap
 
-class PerformanceTrackerModule internal constructor(context: ReactApplicationContext) :
+class PerformanceTrackerModule internal constructor(val context: ReactApplicationContext) :
     ReactContextBaseJavaModule(context) {
     private val performanceTrackerModuleImpl: PerformanceTrackerModuleImpl =
         PerformanceTrackerModuleImpl()
@@ -17,7 +17,7 @@ class PerformanceTrackerModule internal constructor(context: ReactApplicationCon
 
     @ReactMethod
     fun send(tag: String, time: Double) {
-        performanceTrackerModuleImpl.send(tag, time)
+        performanceTrackerModuleImpl.send(tag, time, context)
     }
 
     @ReactMethod
