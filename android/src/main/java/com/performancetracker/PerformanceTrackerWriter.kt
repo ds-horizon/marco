@@ -32,7 +32,7 @@ object PerformanceTrackerWriter {
                                 fileName,
                                 Environment.DIRECTORY_DOCUMENTS
                             )
-
+                        Log.d("::: LoggingTracker ", "uri path $uri")
                         if (uri != null) {
                             // File exists, append to it
                             context.contentResolver.openOutputStream(uri, "wa")
@@ -41,7 +41,7 @@ object PerformanceTrackerWriter {
                                     writer.append("$tag,$time")
                                     writer.newLine()
                                     writer.close()
-                                    Log.d("modiji", "Log entry appended: $tag,$time")
+                                    Log.d("::: LoggingTracker", "Log entry appended: $tag,$time")
                                 }
                         } else {
                             // File does not exist, create a new one
@@ -57,7 +57,7 @@ object PerformanceTrackerWriter {
                                 MediaStore.Files.getContentUri("external"),
                                 contentValues
                             )
-
+                            Log.d("::: LoggingTracker ", "New uri path $uri")
                             newUri?.let {
                                 context.contentResolver.openOutputStream(it)?.use { outputStream ->
                                     val writer = BufferedWriter(OutputStreamWriter(outputStream))
@@ -65,13 +65,14 @@ object PerformanceTrackerWriter {
                                     writer.newLine()
                                     writer.close()
                                     Log.d(
-                                        "modiji",
+                                        "::: LoggingTracker",
                                         "New log file created and entry added: $tag,$time"
                                     )
                                 }
-                            } ?: Log.e("modiji", "Failed to create MediaStore entry")
+                            } ?: Log.e("::: LoggingTracker", "Failed to create MediaStore entry")
                         }
-                    } else {
+                    }
+                    else {
                         // For Android 9 and below, direct file access in external storage DOCUMENTS directory
                         val folder = File(
                             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
@@ -85,7 +86,7 @@ object PerformanceTrackerWriter {
                             fileName
                         )
 
-                        Log.d("modiji", logFile.absolutePath + logFile.createNewFile())
+                        Log.d("::: LoggingTracker", logFile.absolutePath + logFile.createNewFile())
                         if (!logFile.exists()) {
                             val created = logFile.createNewFile()
                             if (created) {
@@ -98,7 +99,7 @@ object PerformanceTrackerWriter {
                         buf.append("$tag,$time")
                         buf.newLine()
                         buf.close()
-                        Log.d("modiji", "Log entry added to file: $tag,$time")
+                        Log.d("::: LoggingTracker", "Log entry added to file: $tag,$time")
                     }
                 } catch (e: Exception) {
                     Log.d("modiji", e.toString())

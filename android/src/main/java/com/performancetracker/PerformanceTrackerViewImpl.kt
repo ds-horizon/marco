@@ -6,7 +6,7 @@ class PerformanceTrackerViewImpl {
     }
 
     fun setIsEnabled(view: PerformanceTrackerView, value: Boolean) {
-        view.enabledFlag = value
+        view.isTrackingEnabled = value
     }
 
     fun setTagName(view: PerformanceTrackerView, value: String?) {

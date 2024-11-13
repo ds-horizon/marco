@@ -9,12 +9,12 @@ import com.facebook.react.views.view.ReactViewGroup
 class PerformanceTrackerView(context: Context) : ReactViewGroup(context) {
     var tagName: String = ""
     var eventTimeStamp = 0.0
-    var enabledFlag = true;
+    var isTrackingEnabled = true;
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        if (enabledFlag) {
+        if (isTrackingEnabled) {
             val reactContext: ReactContext = context as ReactContext
             val reactTag: Int = id
 
