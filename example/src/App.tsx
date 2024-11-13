@@ -1,47 +1,35 @@
 import { useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-} from 'react-native';
-import {
-  PerformanceTracker,
-} from 'react-native-performance-tracker';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { PerformanceTracker } from 'react-native-performance-tracker';
 
 PerformanceTracker.init({
-  persistToFile: false
-})
-
+  persistToFile: false,
+});
 
 export default function App() {
   const [showPTView, setShowPTView] = useState(false);
   const [res, _] = useState(0);
 
   const getLogsFromNative = async () => {
-    const logs = await PerformanceTracker.getLogs();
-  }
+    await PerformanceTracker.getLogs();
+  };
   return (
     <View>
       <Button
         title="Toggle Native View Display "
         onPress={(e) => {
-          PerformanceTracker.send("Button_onPress", e.nativeEvent.timestamp);
+          PerformanceTracker.send('Button_onPress', e.nativeEvent.timestamp);
           setShowPTView(!showPTView);
         }}
       />
-      <Button
-        title="GET ALL EVENTS"
-        onPress={getLogsFromNative}
-      />
-      {showPTView && 
+      <Button title="GET ALL EVENTS" onPress={getLogsFromNative} />
+      {showPTView && (
         <View style={styles.container}>
           <PerformanceTracker
             style={{ borderWidth: 1, flex: 1 }}
             tagName={'Parent Tracker'}
             eventTimeStamp={Date.now()}
-            onDrawEnd={() => {
-            }}
+            onDrawEnd={() => {}}
           >
             <View
               style={{
@@ -57,7 +45,7 @@ export default function App() {
             </View>
           </PerformanceTracker>
         </View>
-      }
+      )}
     </View>
   );
 }
@@ -72,5 +60,5 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     marginVertical: 20,
-  }
+  },
 });

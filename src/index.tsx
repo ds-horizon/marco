@@ -1,9 +1,14 @@
-import { NativeModules, requireNativeComponent, StyleSheet, type ViewProps } from 'react-native';
+import {
+  NativeModules,
+  requireNativeComponent,
+  StyleSheet,
+  type ViewProps,
+} from 'react-native';
 import type { NativeProps } from './PerformanceTrackerViewNativeComponent';
 import type { InitConfig } from './NativePerformanceTracker';
 
-const isFabricEnabled = (global as any)?.nativeFabricUIManager != null
-const isTurboModuleEnabled = (global as any).__turboModuleProxy != null
+const isFabricEnabled = (global as any)?.nativeFabricUIManager != null;
+const isTurboModuleEnabled = (global as any).__turboModuleProxy != null;
 
 const PerformanceLoggerModule = isTurboModuleEnabled
   ? require('./NativePerformanceTracker').default
@@ -11,9 +16,9 @@ const PerformanceLoggerModule = isTurboModuleEnabled
 
 const PerformanceTrackerView = isFabricEnabled
   ? require('./PerformanceTrackerViewNativeComponent').default
-  : requireNativeComponent('PerformanceTrackerView')
+  : requireNativeComponent('PerformanceTrackerView');
 
-type PerformanceTrackerViewProps = NativeProps & ViewProps
+type PerformanceTrackerViewProps = NativeProps & ViewProps;
 
 interface PerformanceTrackerViewStaticMethods {
   send: (tag: string, time: number) => void;
@@ -29,11 +34,15 @@ const PerformanceTrackerViewBase = ({
   ...rest
 }: PerformanceTrackerViewProps) => {
   return (
-    <PerformanceTrackerView {...rest} isEnabled={isEnabled} style={[styles.default, style]} >
+    <PerformanceTrackerView
+      {...rest}
+      isEnabled={isEnabled}
+      style={[styles.default, style]}
+    >
       {children}
     </PerformanceTrackerView>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   default: {
@@ -41,13 +50,14 @@ const styles = StyleSheet.create({
   },
 });
 
-PerformanceTrackerViewBase.displayName = 'PerformanceTracker'
+PerformanceTrackerViewBase.displayName = 'PerformanceTracker';
 
-PerformanceTrackerViewBase.send = (tag: string, time: number) => PerformanceLoggerModule.send(tag, time)
-PerformanceTrackerViewBase.getLogs = () => PerformanceLoggerModule.getLogs()
-PerformanceTrackerViewBase.resetLogs = () => PerformanceLoggerModule.reset()
-PerformanceTrackerViewBase.init = (config?: InitConfig) => PerformanceLoggerModule.init(config)
+PerformanceTrackerViewBase.send = (tag: string, time: number) =>
+  PerformanceLoggerModule.send(tag, time);
+PerformanceTrackerViewBase.getLogs = () => PerformanceLoggerModule.getLogs();
+PerformanceTrackerViewBase.resetLogs = () => PerformanceLoggerModule.reset();
+PerformanceTrackerViewBase.init = (config?: InitConfig) =>
+  PerformanceLoggerModule.init(config);
 
 export const PerformanceTracker: React.ComponentType<PerformanceTrackerViewProps> &
-PerformanceTrackerViewStaticMethods = PerformanceTrackerViewBase
-
+  PerformanceTrackerViewStaticMethods = PerformanceTrackerViewBase;

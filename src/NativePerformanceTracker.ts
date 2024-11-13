@@ -2,7 +2,7 @@ import type { TurboModule } from 'react-native';
 import { TurboModuleRegistry } from 'react-native';
 
 export interface InitConfig {
-  persistToFile?: boolean
+  persistToFile?: boolean;
 }
 
 export interface Spec extends TurboModule {
