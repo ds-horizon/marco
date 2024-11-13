@@ -4,6 +4,7 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactContextBaseJavaModule
+import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.bridge.WritableNativeArray
 import com.facebook.react.bridge.WritableNativeMap
 
@@ -48,6 +49,13 @@ class PerformanceTrackerModule internal constructor(context: ReactApplicationCon
   @ReactMethod
   fun resetLogs() {
     PerformanceTrackerStore.clear()
+  }
+
+  @ReactMethod
+  fun init(config: ReadableMap?) {
+    val persistToFile = config?.getBoolean("persistToFile") ?: false
+    PerformanceTrackerWriter.persistFile = persistToFile;
+
   }
 
   companion object {

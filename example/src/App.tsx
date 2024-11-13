@@ -9,6 +9,10 @@ import {
   PerformanceTracker,
 } from 'react-native-performance-tracker';
 
+PerformanceTracker.init({
+  persistToFile: false
+})
+
 
 export default function App() {
   const [showPTView, setShowPTView] = useState(false);
