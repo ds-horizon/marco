@@ -1,10 +1,10 @@
 package com.performancetracker
 
-import android.util.Log
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactContextBaseJavaModule
+import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.bridge.WritableNativeArray
 import com.facebook.react.bridge.WritableNativeMap
 
@@ -19,7 +19,6 @@ class PerformanceTrackerModule internal constructor(val context: ReactApplicatio
   // See https://reactnative.dev/docs/native-modules-android
   @ReactMethod
   fun send(tag: String, time: Double) {
-    Log.d("::: Shubham send called",  "$tag $time " + Thread.currentThread());
     PerformanceTrackerStore.addEvent(tag, time)
 
     PerformanceTrackerWriter.writeLogsInFile(tag, time.toString(), context)
@@ -50,6 +49,13 @@ class PerformanceTrackerModule internal constructor(val context: ReactApplicatio
   @ReactMethod
   fun resetLogs() {
     PerformanceTrackerStore.clear()
+  }
+
+  @ReactMethod
+  fun init(config: ReadableMap?) {
+    val persistToFile = config?.getBoolean("persistToFile") ?: false
+    PerformanceTrackerWriter.persistFile = persistToFile;
+
   }
 
   companion object {

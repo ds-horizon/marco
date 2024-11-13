@@ -18,81 +18,84 @@ import java.io.OutputStreamWriter
 import kotlin.math.log
 
 object PerformanceTrackerWriter {
+    var persistToFile = false
     fun writeLogsInFile(tag: String, time: String, context: Context) {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val folderName = "D11PerformanceProfiler"
-                val fileName = "log.txt"
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    // Query for existing file in the Documents directory
-                    val uri =
-                        getFileUri(context, folderName, fileName, Environment.DIRECTORY_DOCUMENTS)
-
-                    if (uri != null) {
-                        // File exists, append to it
-                        context.contentResolver.openOutputStream(uri, "wa")?.use { outputStream ->
-                            val writer = BufferedWriter(OutputStreamWriter(outputStream))
-                            writer.append("$tag,$time")
-                            writer.newLine()
-                            writer.close()
-                            Log.d("modiji", "Log entry appended: $tag,$time")
-                        }
-                    } else {
-                        // File does not exist, create a new one
-                        val contentValues = ContentValues().apply {
-                            put(MediaStore.MediaColumns.DISPLAY_NAME, fileName)
-                            put(MediaStore.MediaColumns.MIME_TYPE, "text/plain")
-                            put(
-                                MediaStore.MediaColumns.RELATIVE_PATH,
-                                "${Environment.DIRECTORY_DOCUMENTS}/$folderName"
-                            )
-                        }
-                        val newUri = context.contentResolver.insert(
-                            MediaStore.Files.getContentUri("external"),
-                            contentValues
-                        )
-
-                        newUri?.let {
-                            context.contentResolver.openOutputStream(it)?.use { outputStream ->
+        if(persistToFile){
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val folderName = "D11PerformanceProfiler"
+                    val fileName = "log.txt"
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        // Query for existing file in the Documents directory
+                        val uri =
+                            getFileUri(context, folderName, fileName, Environment.DIRECTORY_DOCUMENTS)
+    
+                        if (uri != null) {
+                            // File exists, append to it
+                            context.contentResolver.openOutputStream(uri, "wa")?.use { outputStream ->
                                 val writer = BufferedWriter(OutputStreamWriter(outputStream))
                                 writer.append("$tag,$time")
                                 writer.newLine()
                                 writer.close()
-                                Log.d("modiji", "New log file created and entry added: $tag,$time")
+                                Log.d("modiji", "Log entry appended: $tag,$time")
                             }
-                        } ?: Log.e("modiji", "Failed to create MediaStore entry")
-                    }
-                } else {
-                    // For Android 9 and below, direct file access in external storage DOCUMENTS directory
-                    val folder = File(
-                        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
-                        folderName
-                    )
-                    if (!folder.exists()) {
-                        folder.mkdirs()
-                    }
-                    val logFile = File(
-                        folder,
-                        fileName
-                    )
-
-                    Log.d("modiji", logFile.absolutePath + logFile.createNewFile())
-                    if (!logFile.exists()) {
-                        val created = logFile.createNewFile()
-                        if (created) {
-                            Log.d("modiji", "New log file created: ${logFile.absolutePath}")
                         } else {
-                            Log.e("modiji", "Failed to create new log file")
-                        }                    }
-                    val buf = BufferedWriter(FileWriter(logFile, true))
-                    buf.append("$tag,$time")
-                    buf.newLine()
-                    buf.close()
-                    Log.d("modiji", "Log entry added to file: $tag,$time")
+                            // File does not exist, create a new one
+                            val contentValues = ContentValues().apply {
+                                put(MediaStore.MediaColumns.DISPLAY_NAME, fileName)
+                                put(MediaStore.MediaColumns.MIME_TYPE, "text/plain")
+                                put(
+                                    MediaStore.MediaColumns.RELATIVE_PATH,
+                                    "${Environment.DIRECTORY_DOCUMENTS}/$folderName"
+                                )
+                            }
+                            val newUri = context.contentResolver.insert(
+                                MediaStore.Files.getContentUri("external"),
+                                contentValues
+                            )
+    
+                            newUri?.let {
+                                context.contentResolver.openOutputStream(it)?.use { outputStream ->
+                                    val writer = BufferedWriter(OutputStreamWriter(outputStream))
+                                    writer.append("$tag,$time")
+                                    writer.newLine()
+                                    writer.close()
+                                    Log.d("modiji", "New log file created and entry added: $tag,$time")
+                                }
+                            } ?: Log.e("modiji", "Failed to create MediaStore entry")
+                        }
+                    } else {
+                        // For Android 9 and below, direct file access in external storage DOCUMENTS directory
+                        val folder = File(
+                            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
+                            folderName
+                        )
+                        if (!folder.exists()) {
+                            folder.mkdirs()
+                        }
+                        val logFile = File(
+                            folder,
+                            fileName
+                        )
+    
+                        Log.d("modiji", logFile.absolutePath + logFile.createNewFile())
+                        if (!logFile.exists()) {
+                            val created = logFile.createNewFile()
+                            if (created) {
+                                Log.d("modiji", "New log file created: ${logFile.absolutePath}")
+                            } else {
+                                Log.e("modiji", "Failed to create new log file")
+                            }                    }
+                        val buf = BufferedWriter(FileWriter(logFile, true))
+                        buf.append("$tag,$time")
+                        buf.newLine()
+                        buf.close()
+                        Log.d("modiji", "Log entry added to file: $tag,$time")
+                    }
+                } catch (e: Exception) {
+                    Log.d("modiji", e.toString())
+                    e.printStackTrace()
                 }
-            } catch (e: Exception) {
-                Log.d("modiji", e.toString())
-                e.printStackTrace()
             }
         }
     }
