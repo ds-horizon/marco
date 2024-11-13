@@ -8,7 +8,7 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.WritableNativeArray
 import com.facebook.react.bridge.WritableNativeMap
 
-class PerformanceTrackerModule internal constructor(context: ReactApplicationContext) :
+class PerformanceTrackerModule internal constructor(val context: ReactApplicationContext) :
   ReactContextBaseJavaModule(context) {
 
   override fun getName(): String {
@@ -22,7 +22,7 @@ class PerformanceTrackerModule internal constructor(context: ReactApplicationCon
     Log.d("::: Shubham send called",  "$tag $time " + Thread.currentThread());
     PerformanceTrackerStore.addEvent(tag, time)
 
-    PerformanceTrackerWriter.writeLogsInFile(tag, time.toString())
+    PerformanceTrackerWriter.writeLogsInFile(tag, time.toString(), context)
   }
 
   @ReactMethod

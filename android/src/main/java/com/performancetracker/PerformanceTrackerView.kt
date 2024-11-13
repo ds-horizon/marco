@@ -25,7 +25,7 @@ class PerformanceTrackerView(context: Context) : ReactViewGroup(context) {
       Log.d("::: Shubham ", "onDraw $tagName $time")
       UIManagerHelper.getEventDispatcherForReactTag(reactContext, reactTag)?.dispatchEvent(DrawEndEvent(reactTag, tagName, time, renderTime))
       
-      PerformanceTrackerWriter.writeLogsInFile(tagName, time.toString())
+      PerformanceTrackerWriter.writeLogsInFile( tagName, time.toString(),context)
     }
   }
 }
