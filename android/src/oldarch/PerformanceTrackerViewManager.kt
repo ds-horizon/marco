@@ -1,6 +1,5 @@
 package com.performancetracker
 
-import android.util.Log
 import com.facebook.react.module.annotations.ReactModule
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
@@ -19,7 +18,6 @@ class PerformanceTrackerViewManager : ViewGroupManager<PerformanceTrackerView>()
 
   @ReactProp(name = "isEnabled")
   fun setIsEnabled(view: PerformanceTrackerView?, value: Boolean) {
-    Log.d("::: Shubham", " setIsEnabled called $value")
     if (view != null) {
       view.enabledFlag = value
     }
@@ -34,7 +32,6 @@ class PerformanceTrackerViewManager : ViewGroupManager<PerformanceTrackerView>()
 
   @ReactProp(name = "eventTimeStamp")
   fun setEventTimeStamp(view: PerformanceTrackerView?, value: Double) {
-    Log.d("::: Shubham", " setEventTimeStamp called")
     if (view != null) {
       view.eventTimeStamp = value
     }

@@ -1,6 +1,5 @@
 package com.performancetracker
 
-import android.util.Log
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactMethod
@@ -17,7 +16,6 @@ class PerformanceTrackerModule internal constructor(context: ReactApplicationCon
 
   @ReactMethod
   override fun send(tag: String, time: Double) {
-    Log.d("::: Shubham send called",  "$tag $time " + Thread.currentThread());
     PerformanceTrackerStore.addEvent(tag, time)
 
     PerformanceTrackerWriter.writeLogsInFile(tag, time.toString())
