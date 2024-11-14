@@ -29,6 +29,16 @@ object PerformanceTrackerStore {
         return eventSequence.any { it["tagName"] == tagName }
     }
 
+    fun getEventValue(tagName: String): Any? {
+        for (i in eventSequence.size - 1 downTo 0) {
+            val event = eventSequence[i]
+            if (event["tagName"] == tagName) {
+                return event["timestamp"]
+            }
+        }
+        return null
+    }
+
     override fun toString(): String {
         return eventSequence.joinToString(
             prefix = "[ ",

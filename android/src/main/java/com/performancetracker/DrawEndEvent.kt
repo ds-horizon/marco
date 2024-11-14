@@ -5,7 +5,7 @@ import com.facebook.react.bridge.WritableMap
 import com.facebook.react.uimanager.events.Event
 import com.facebook.react.uimanager.events.RCTEventEmitter
 
-class DrawEndEvent(viewTag: Int, private val tagName: String, private  val drawTime: Double, private val renderTime: Double) : Event<DrawEndEvent>(viewTag) {
+class DrawEndEvent(viewTag: Int, private val tagName: String, private  val drawTime: Double, private val renderTime: Double, private val diffTime: Double?) : Event<DrawEndEvent>(viewTag) {
 
     override fun getEventName(): String {
         return EVENT_NAME
@@ -24,6 +24,11 @@ class DrawEndEvent(viewTag: Int, private val tagName: String, private  val drawT
         eventData.putString("tagName", tagName)
         eventData.putDouble("drawTime", drawTime)
         eventData.putDouble("renderTime", renderTime)
+        if (diffTime != null) {
+            eventData.putDouble("diffTime", diffTime)
+        } else {
+            eventData.putNull("diffTime")  // Explicitly set null if diffTime is null
+        }
         return eventData
     }
 

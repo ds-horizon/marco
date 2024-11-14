@@ -10,6 +10,7 @@ class PerformanceTrackerView(context: Context) : ReactViewGroup(context) {
     var tagName: String = ""
     var eventTimeStamp = 0.0
     var isTrackingEnabled = true;
+    var startMarker = "";
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -18,11 +19,18 @@ class PerformanceTrackerView(context: Context) : ReactViewGroup(context) {
             val reactContext: ReactContext = context as ReactContext
             val reactTag: Int = id
 
+            var diffTime: Double? = null;
             val time = System.currentTimeMillis().toDouble()
+
+            if (startMarker != "") {
+                val startTime = PerformanceTrackerStore.getEventValue(startMarker) as Double
+                diffTime = time - startTime;
+            }
+
             PerformanceTrackerStore.addEvent(tagName, time)
             val renderTime = time - eventTimeStamp
             UIManagerHelper.getEventDispatcherForReactTag(reactContext, reactTag)
-                ?.dispatchEvent(DrawEndEvent(reactTag, tagName, time, renderTime))
+                ?.dispatchEvent(DrawEndEvent(reactTag, tagName, time, renderTime, diffTime))
 
             PerformanceTrackerWriter.writeLogsInFile(tagName, time.toString(), context)
         }
