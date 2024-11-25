@@ -13,20 +13,8 @@ object PerformanceTrackerStore {
         return eventSequence
     }
 
-    fun getLastEvent(): Map<String, Any>? {
-        return if (eventSequence.isNotEmpty()) eventSequence.last() else null
-    }
-
     fun clear() {
         eventSequence.clear()
-    }
-
-    fun removeLastEvent(): Map<String, Any>? {
-        return if (eventSequence.isNotEmpty()) eventSequence.removeAt(eventSequence.size - 1) else null
-    }
-
-    fun containsEvent(tagName: String): Boolean {
-        return eventSequence.any { it["tagName"] == tagName }
     }
 
     fun getEventValue(tagName: String): Any? {

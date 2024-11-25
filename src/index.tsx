@@ -55,7 +55,8 @@ PerformanceTrackerViewBase.displayName = 'PerformanceTracker';
 PerformanceTrackerViewBase.send = (tag: string, time: number) =>
   PerformanceLoggerModule.send(tag, time);
 PerformanceTrackerViewBase.getLogs = () => PerformanceLoggerModule.getLogs();
-PerformanceTrackerViewBase.resetLogs = () => PerformanceLoggerModule.reset();
+PerformanceTrackerViewBase.resetLogs = () =>
+  PerformanceLoggerModule.resetLogs();
 PerformanceTrackerViewBase.init = (config?: InitConfig) =>
   PerformanceLoggerModule.init(config);
 
