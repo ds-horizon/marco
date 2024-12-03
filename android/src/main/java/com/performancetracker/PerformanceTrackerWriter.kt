@@ -21,7 +21,7 @@ object PerformanceTrackerWriter {
         if (persistToFile) {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val folderName = "D11PerformanceProfiler"
+                    val folderName = "PerformanceTracker"
                     val fileName = "log.txt"
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                         // Query for existing file in the Documents directory
@@ -90,9 +90,9 @@ object PerformanceTrackerWriter {
                         if (!logFile.exists()) {
                             val created = logFile.createNewFile()
                             if (created) {
-                                Log.d("modiji", "New log file created: ${logFile.absolutePath}")
+                                Log.d("LoggingTracker", "New log file created: ${logFile.absolutePath}")
                             } else {
-                                Log.e("modiji", "Failed to create new log file")
+                                Log.e("LoggingTracker", "Failed to create new log file")
                             }
                         }
                         val buf = BufferedWriter(FileWriter(logFile, true))
@@ -102,7 +102,7 @@ object PerformanceTrackerWriter {
                         Log.d("::: LoggingTracker", "Log entry added to file: $tag,$time")
                     }
                 } catch (e: Exception) {
-                    Log.d("modiji", e.toString())
+                    Log.d("LoggingTracker", e.toString())
                     e.printStackTrace()
                 }
             }

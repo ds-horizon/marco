@@ -1,7 +1,7 @@
 {
-  "name": "react-native-performance-tracker",
-  "version": "0.1.0",
-  "description": "df",
+  "name": "dream11-react-native-performance-tracker",
+  "version": "0.3.0",
+  "description": "Benchmark React Native View Draw Time",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",

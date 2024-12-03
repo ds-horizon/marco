@@ -14,7 +14,7 @@ class PerformanceTrackerModuleImpl {
 
     fun send(tag: String, time: Double, context: Context) {
         PerformanceTrackerStore.addEvent(tag, time)
-        PerformanceTrackerWriter.writeLogsInFile(tag, time.toString(), context)
+        PerformanceTrackerWriter.writeLogsInFile(tag, time.toLong().toString(), context)
     }
 
     fun getLogs(promise: Promise) {
