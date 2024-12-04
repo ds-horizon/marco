@@ -1,5 +1,5 @@
 {
-  "name": "dream11-react-native-performance-tracker",
+  "name": "react-native-performance-tracker",
   "version": "0.3.0",
   "description": "Benchmark React Native View Draw Time",
   "source": "./src/index.tsx",
