@@ -9,8 +9,6 @@ A powerful React Native library to track and log performance metrics for screens
 - **Logs Management**: Retrieve and reset logs as needed.
 - **Supports New Architecture**: Fully compatible with TurboModules and Fabric.
 
----
-
 
 ## 📦 Installation
 
