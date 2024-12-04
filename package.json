@@ -192,7 +192,8 @@
     },
     "android": {
       "javaPackageName": "com.performancetracker"
-    }
+    },
+    "includesGeneratedCode": true
   },
   "create-react-native-library": {
     "type": [

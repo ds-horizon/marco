@@ -44,7 +44,6 @@
     }
     
     _alreadyLogged = YES;
-    printf("::: \n Shubham iOS Native onDraw called ");
     
     // However, we cannot do it right now: the views were just mounted but pixels
     // were not drawn on the screen yet.
