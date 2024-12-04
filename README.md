@@ -71,6 +71,9 @@ const MyScreen = () => {
       onDrawEnd={(event) => {
         console.log('Draw Time:', event.nativeEvent.drawTime);
         console.log('Render Time:', event.nativeEvent.renderTime);
+        console.log('Diff Time:', event.nativeEvent.diffTime); 
+        // Logs the time difference between the start marker and draw time. 
+        // If no start marker is provided, the value will be null.
       }}
     >
       {/* Your screen content goes here */}
@@ -112,7 +115,7 @@ const MyScreen = () => {
 | `tagName`    | The tag name associated with the event.                      | `string` |
 | `drawTime`   | Time taken to draw the component.                            | `number` |
 | `renderTime` | Time taken to render the component.                          | `number` |
-| `diffTime`   | Optional difference between draw and render times.           | `number` |
+| `diffTime`   | Optional difference between `startMaker` and draw time.           | `number` |
 
 ## 🙌 Contributions
 Contributions are welcome! Feel free to submit a PR or raise issues for any bugs or feature requests.
