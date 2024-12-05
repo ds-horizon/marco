@@ -5,10 +5,7 @@ import {
   type ViewProps,
 } from 'react-native';
 import type { NativeProps } from './PerformanceTrackerViewNativeComponent';
-import type {
-  InitConfig,
-  PerformanceTrackerViewStaticMethods,
-} from './NativePerformanceTracker';
+import type { InitConfig } from './NativePerformanceTracker';
 
 const isFabricEnabled = (global as any)?.nativeFabricUIManager != null;
 const isTurboModuleEnabled = (global as any).__turboModuleProxy != null;
@@ -22,6 +19,13 @@ const PerformanceTrackerView = isFabricEnabled
   : requireNativeComponent('PerformanceTrackerView');
 
 type PerformanceTrackerViewProps = NativeProps & ViewProps;
+
+type PerformanceTrackerViewStaticMethods = {
+  send: (tag: string, time: number) => void;
+  getLogs(): Promise<Record<string, any>>;
+  resetLogs(): void;
+  init(config?: InitConfig): void;
+};
 
 const PerformanceTrackerViewBase = ({
   children,
