@@ -1,7 +1,7 @@
 {
-  "name": "react-native-performance-tracker",
-  "version": "0.3.0",
-  "description": "Benchmark React Native View Draw Time",
+  "name": "@d11/react-native-performance-tracker",
+  "version": "1.0.0",
+  "description": "Benchmark React Native View Paint Time",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",
@@ -52,14 +52,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shubhamguptadream11/react-native-performance-tracker.git"
+    "url": "https://github.com/dream-sports-labs/react-native-performance-tracker.git"
   },
-  "author": "shubhamguptadream11 <shubham.gupta@dream11.com> (https://github.com/shubhamguptadream11)",
-  "license": "MIT",
+  "author": "Dream Sports Labs <dreamsportslabs@dream11.com> (https://github.com/dream-sports-labs)",
+  "license": "(MIT AND Apache-2.0)",
   "bugs": {
-    "url": "https://github.com/shubhamguptadream11/react-native-performance-tracker/issues"
+    "url": "https://github.com/dream-sports-labs/react-native-performance-tracker/issues"
   },
-  "homepage": "https://github.com/shubhamguptadream11/react-native-performance-tracker#readme",
+  "homepage": "https://github.com/dream-sports-labs/react-native-performance-tracker#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

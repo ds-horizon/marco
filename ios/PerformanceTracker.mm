@@ -29,11 +29,9 @@ RCT_EXPORT_METHOD(getLogs:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseReje
 
 #ifdef RCT_NEW_ARCH_ENABLED
 RCT_EXPORT_METHOD(init: (JS::NativePerformanceTracker::InitConfig &)config) {
-    printf("::: Send called init ");
 }
 #else
 RCT_EXPORT_METHOD(init:(NSDictionary *)config) {
-    printf("::: Send called init ");
 }
 #endif
 
