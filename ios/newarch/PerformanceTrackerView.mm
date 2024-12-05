@@ -3,10 +3,10 @@
 #import "../PerformanceTrackerStore.h"
 #import <React/RCTConversions.h>
 
-#import "../generated/build/generated/ios/react/renderer/components/RNPerformanceTrackerSpec/ComponentDescriptors.h"
-#import "../generated/build/generated/ios/react/renderer/components/RNPerformanceTrackerSpec/EventEmitters.h"
-#import "../generated/build/generated/ios/react/renderer/components/RNPerformanceTrackerSpec/Props.h"
-#import "../generated/build/generated/ios/react/renderer/components/RNPerformanceTrackerSpec/RCTComponentViewHelpers.h"
+#import "react/renderer/components/RNPerformanceTrackerSpec/ComponentDescriptors.h"
+#import "react/renderer/components/RNPerformanceTrackerSpec/EventEmitters.h"
+#import "react/renderer/components/RNPerformanceTrackerSpec/Props.h"
+#import "react/renderer/components/RNPerformanceTrackerSpec/RCTComponentViewHelpers.h"
 
 #import "RCTFabricComponentsPlugins.h"
 
