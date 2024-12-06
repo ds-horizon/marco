@@ -30,6 +30,7 @@ type PerformanceTrackerViewStaticMethods = {
 const PerformanceTrackerViewBase = ({
   children,
   style,
+  eventTimeStamp = Date.now(),
   isEnabled = true,
   ...rest
 }: PerformanceTrackerViewProps) => {
@@ -37,6 +38,7 @@ const PerformanceTrackerViewBase = ({
     <PerformanceTrackerView
       {...rest}
       isEnabled={isEnabled}
+      eventTimeStamp={eventTimeStamp}
       style={[styles.default, style]}
     >
       {children}

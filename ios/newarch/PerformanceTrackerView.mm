@@ -2,6 +2,7 @@
 #import "PerformanceTrackerView.h"
 #import "../PerformanceTrackerStore.h"
 #import <React/RCTConversions.h>
+#import "../PerformanceTrackerWriter.h"
 
 #import "react/renderer/components/RNPerformanceTrackerSpec/ComponentDescriptors.h"
 #import "react/renderer/components/RNPerformanceTrackerSpec/EventEmitters.h"
@@ -53,10 +54,6 @@ using namespace facebook::react;
     _alreadyLogged = YES;
     
     if (self.isEnabled) {
-        // However, we cannot do it right now: the views were just mounted but pixels
-        // were not drawn on the screen yet.
-        // They will be drawn for sure before the next tick of the main run loop.
-        // Let's wait for that and then report.
         dispatch_async(dispatch_get_main_queue(), ^{
             double currentTime = [[NSDate date] timeIntervalSince1970] * 1000; // Current time in milliseconds
             double diffTime = 0;
@@ -80,7 +77,7 @@ using namespace facebook::react;
                 .diffTime = diffTime,
                 .tagName = std::string([self.tagName UTF8String])
             });
-            printf("::: PerformanceTrackerView onDrawEnd event fired for tag: %s\n", [self.tagName UTF8String]);
+            [[PerformanceTrackerWriter sharedInstance] writeLogsWithTag: self.tagName time: currentTime];
         });
     }
 }

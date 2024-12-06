@@ -1,5 +1,6 @@
 #import "PerformanceTracker.h"
 #import "PerformanceTrackerStore.h"
+#import "PerformanceTrackerWriter.h"
 
 @implementation PerformanceTracker
 RCT_EXPORT_MODULE()
@@ -13,6 +14,7 @@ RCT_EXPORT_MODULE()
 RCT_EXPORT_METHOD(send:(NSString *)tag time:(double)time)
 {
     [[PerformanceTrackerStore sharedInstance] addEventWithTagName:tag timestamp:time];
+    [[PerformanceTrackerWriter sharedInstance] writeLogsWithTag: tag time: time];
 }
 
 // Reset all logged events
@@ -29,9 +31,19 @@ RCT_EXPORT_METHOD(getLogs:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseReje
 
 #ifdef RCT_NEW_ARCH_ENABLED
 RCT_EXPORT_METHOD(init: (JS::NativePerformanceTracker::InitConfig &)config) {
+    if (config.persistToFile().has_value()) {
+        [[PerformanceTrackerWriter sharedInstance] setPersistToFile: config.persistToFile().value()];
+    } else {
+        [[PerformanceTrackerWriter sharedInstance] setPersistToFile: NO];
+    }
 }
 #else
 RCT_EXPORT_METHOD(init:(NSDictionary *)config) {
+    NSNumber *persistToFileValue = config[@"persistToFile"];
+    
+    BOOL persistToFile = [persistToFileValue boolValue];
+    
+    [[PerformanceTrackerWriter sharedInstance] setPersistToFile:persistToFile];
 }
 #endif
 

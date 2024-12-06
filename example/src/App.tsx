@@ -12,7 +12,7 @@ import {
 import { PerformanceTracker } from '@d11/react-native-performance-tracker';
 
 PerformanceTracker.init({
-  persistToFile: false,
+  persistToFile: true,
 });
 
 interface ItemProps {
@@ -32,7 +32,6 @@ const ItemCard = ({ index }: ItemProps) => {
       isEnabled={isEnabled}
       startMarker="Screen_Mount"
       tagName={`Item-${index}`}
-      eventTimeStamp={Date.now()}
       style={{
         margin: 20,
       }}

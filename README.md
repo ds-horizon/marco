@@ -103,7 +103,7 @@ const MyScreen = () => {
 | `startMarker`   | Name of the initial marker for tracking start time.         | `string`                       | `undefined`| No       |
 | `tagName`       | Unique tag for identifying the tracked component.           | `string`                       | `required` | Yes      |
 | `isEnabled`     | Enables or disables performance tracking.                  | `boolean`                      | `true`     | No       |
-| `eventTimeStamp`| Timestamp when the event is triggered.                     | `number`                       | `required` | Yes      |
+| `eventTimeStamp`| Timestamp when the event is triggered.                     | `number`                       | `Date.now()` | No      |
 | `onDrawEnd`     | Callback when the screen has finished rendering.           | `DirectEventHandler<FinishEventType>` | `undefined` | No       |
 
 ---
