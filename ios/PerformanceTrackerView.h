@@ -1,4 +1,3 @@
-// This guard prevent this file to be compiled in the old architecture.
 #ifdef RCT_NEW_ARCH_ENABLED
 #import <React/RCTViewComponentView.h>
 #import <UIKit/UIKit.h>
@@ -18,5 +17,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#endif /* PerformanceTrackerViewNativeComponent_h */
-#endif /* RCT_NEW_ARCH_ENABLED */
+#endif
+#else
+
+#import <UIKit/UIKit.h>
+
+@interface PerformanceTrackerView : UIView
+
+@property (nonatomic, copy) NSString *tagName;
+@property (nonatomic, copy) NSString *startMarker;
+@property (nonatomic, assign) BOOL isEnabled;
+@property (nonatomic, assign) double eventTimeStamp;
+@property (nonatomic, copy, nullable) void (^onDrawEnd)(NSDictionary *eventData);
+@end
+
+#endif

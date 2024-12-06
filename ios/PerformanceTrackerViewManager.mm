@@ -1,4 +1,3 @@
-#ifdef RCT_NEW_ARCH_ENABLED
 #import <React/RCTViewManager.h>
 #import <React/RCTUIManager.h>
 #import "RCTBridge.h"
@@ -23,4 +22,3 @@ RCT_EXPORT_VIEW_PROPERTY(eventTimeStamp, double)
 RCT_EXPORT_VIEW_PROPERTY(onDrawEnd, RCTDirectEventBlock)
 
 @end
-#endif
