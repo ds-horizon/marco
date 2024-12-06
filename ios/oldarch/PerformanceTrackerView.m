@@ -1,7 +1,7 @@
 #ifndef RCT_NEW_ARCH_ENABLED
 
 #import "PerformanceTrackerView.h"
-#import "../PerformanceTrackerStore.h"
+#import "../shared/PerformanceTrackerStore.h"
 
 @implementation PerformanceTrackerView {
     UIView * _view;

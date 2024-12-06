@@ -1,8 +1,8 @@
 #ifdef RCT_NEW_ARCH_ENABLED
 #import "PerformanceTrackerView.h"
-#import "../PerformanceTrackerStore.h"
+#import "../shared/PerformanceTrackerStore.h"
 #import <React/RCTConversions.h>
-#import "../PerformanceTrackerWriter.h"
+#import "../shared/PerformanceTrackerWriter.h"
 
 #import "react/renderer/components/RNPerformanceTrackerSpec/ComponentDescriptors.h"
 #import "react/renderer/components/RNPerformanceTrackerSpec/EventEmitters.h"
