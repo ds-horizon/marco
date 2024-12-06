@@ -32,9 +32,7 @@ const ItemCard = ({ index }: ItemProps) => {
       isEnabled={isEnabled}
       startMarker="Screen_Mount"
       tagName={`Item-${index}`}
-      style={{
-        margin: 20,
-      }}
+      style={styles.tracker}
       onDrawEnd={({ nativeEvent }) => {
         setEndMarkers({
           drawTime: nativeEvent.drawTime.toString(),
@@ -85,20 +83,10 @@ export default function App() {
   return (
     <SafeAreaView style={styles.main}>
       <StatusBar />
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: 'white',
-        }}
-      >
+      <View style={styles.box}>
         <Button title="Get All Events" onPress={getLogsFromNative} />
         <Button title="Reset" onPress={resetEvents} />
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: '#D3D3D3',
-          }}
-        >
+        <View style={styles.listContainer}>
           <FlatList
             initialNumToRender={10}
             data={DATA}
@@ -113,6 +101,17 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  tracker: {
+    margin: 20,
+  },
+  box: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  listContainer: {
+    flex: 1,
+    backgroundColor: '#D3D3D3',
+  },
   cardWrapper: {
     elevation: 1,
     backgroundColor: 'white',
@@ -128,11 +127,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
   },
   text: {
     fontSize: 18,
