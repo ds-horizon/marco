@@ -43,18 +43,7 @@ const ItemCard = ({ index }: ItemProps) => {
         });
       }}
     >
-      <View
-        style={{
-          elevation: 1,
-          backgroundColor: 'white',
-          padding: 10,
-          height: 150,
-          width: '100%',
-          borderRadius: 20,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
+      <View style={styles.cardWrapper}>
         <Text style={styles.text}>{`Card: ${index}`}</Text>
         {isEnabled && (
           <Text
@@ -94,7 +83,7 @@ export default function App() {
   }, []);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={styles.main}>
       <StatusBar />
       <View
         style={{
@@ -124,6 +113,17 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  cardWrapper: {
+    elevation: 1,
+    backgroundColor: 'white',
+    padding: 10,
+    height: 150,
+    width: '100%',
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  main: { flex: 1 },
   container: {
     flex: 1,
     alignItems: 'center',
