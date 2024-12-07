@@ -43,30 +43,32 @@
     
     _alreadyLogged = YES;
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        double currentTime = [[NSDate date] timeIntervalSince1970] * 1000; // Current time in milliseconds
-        double diffTime = 0;
-        
-        if (self.startMarker.length > 0) {
-            NSNumber *startTime = [[PerformanceTrackerStore sharedInstance] getEventValueWithTagName:self.startMarker];
-            if (startTime) {
-                diffTime = currentTime - startTime.doubleValue;
+    if (_isEnabled) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            double currentTime = [[NSDate date] timeIntervalSince1970] * 1000; // Current time in milliseconds
+            double diffTime = 0;
+            
+            if (self.startMarker.length > 0) {
+                NSNumber *startTime = [[PerformanceTrackerStore sharedInstance] getEventValueWithTagName:self.startMarker];
+                if (startTime) {
+                    diffTime = currentTime - startTime.doubleValue;
+                }
             }
-        }
-        
-        // Log the event in PerformanceTrackerStore
-        [[PerformanceTrackerStore sharedInstance] addEventWithTagName:self.tagName timestamp:currentTime];
-        
-        // Calculate render time
-        double renderTime = currentTime - self.eventTimeStamp;
-        self.onDrawEnd(@{
-            @"drawTime": @(currentTime),
-            @"renderTime": @(renderTime),
-            @"diffTime": @(diffTime),
-            @"tagName": self->_tagName
+            
+            // Log the event in PerformanceTrackerStore
+            [[PerformanceTrackerStore sharedInstance] addEventWithTagName:self.tagName timestamp:currentTime];
+            
+            // Calculate render time
+            double renderTime = currentTime - self.eventTimeStamp;
+            self.onDrawEnd(@{
+                @"drawTime": @(currentTime),
+                @"renderTime": @(renderTime),
+                @"diffTime": @(diffTime),
+                @"tagName": self->_tagName
+            });
+            [[PerformanceTrackerWriter sharedInstance] writeLogsWithTag: self.tagName time: currentTime];
         });
-        [[PerformanceTrackerWriter sharedInstance] writeLogsWithTag: self.tagName time: currentTime];
-    });
+    }
 }
 
 @end
