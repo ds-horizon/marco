@@ -2,6 +2,7 @@
 
 #import "PerformanceTrackerView.h"
 #import "PerformanceTrackerStore.h"
+#import "PerformanceTrackerWriter.h"
 
 @implementation PerformanceTrackerView {
     UIView * _view;
@@ -10,9 +11,6 @@
 
 - (instancetype)init {
     self = [super init];
-    if (self) {
-        //        _storage = [[PerformanceTrackerView alloc] init];
-    }
     return self;
 }
 
@@ -45,10 +43,6 @@
     
     _alreadyLogged = YES;
     
-    // However, we cannot do it right now: the views were just mounted but pixels
-    // were not drawn on the screen yet.
-    // They will be drawn for sure before the next tick of the main run loop.
-    // Let's wait for that and then report.
     dispatch_async(dispatch_get_main_queue(), ^{
         double currentTime = [[NSDate date] timeIntervalSince1970] * 1000; // Current time in milliseconds
         double diffTime = 0;
@@ -71,6 +65,7 @@
             @"diffTime": @(diffTime),
             @"tagName": self->_tagName
         });
+        [[PerformanceTrackerWriter sharedInstance] writeLogsWithTag: self.tagName time: currentTime];
     });
 }
 
