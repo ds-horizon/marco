@@ -60,12 +60,14 @@
             
             // Calculate render time
             double renderTime = currentTime - self.eventTimeStamp;
-            self.onDrawEnd(@{
-                @"drawTime": @(currentTime),
-                @"renderTime": @(renderTime),
-                @"diffTime": @(diffTime),
-                @"tagName": self->_tagName
-            });
+            if (self.onDrawEnd) {
+                self.onDrawEnd(@{
+                    @"drawTime": @(currentTime),
+                    @"renderTime": @(renderTime),
+                    @"diffTime": @(diffTime),
+                    @"tagName": self->_tagName
+                });
+            }
             [[PerformanceTrackerWriter sharedInstance] writeLogsWithTag: self.tagName time: currentTime];
         });
     }
