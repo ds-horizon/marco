@@ -1,6 +1,6 @@
 {
-  "name": "dream11-react-native-performance-tracker",
-  "version": "0.14.0",
+  "name": "@d11/react-native-performance-tracker",
+  "version": "0.1.0",
   "description": "Benchmark React Native View Paint Time",
   "source": "./src/index.tsx",
   "main": "./src/index.tsx",
