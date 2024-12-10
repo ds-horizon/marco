@@ -27,6 +27,6 @@ If applicable, add screenshots to help explain your problem.
 
 - React Native version:
 - React version:
-- React Native Fast Image version:
+- React Native Performance Tracker version:
 
 **Note:** if these are not the latest versions of each I recommend updating as extra effort will not be taken to be backwards compatible, and updating might resolving your issue.
