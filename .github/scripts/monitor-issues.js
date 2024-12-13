@@ -5,7 +5,6 @@ const owner = 'dream-sports-labs'
 const repo = 'react-native-performance-tracker'
 
 const args = process.argv.slice(2)
-console.log(args)
 const [
   GIT_SECRET,
   SLACK_BOT_TOKEN,
@@ -14,9 +13,6 @@ const [
 
 if (!GIT_SECRET || !SLACK_BOT_TOKEN || !SLACK_CHANNEL) {
   console.error('Missing required environment variables.');
-  console.error(GIT_SECRET)
-  console.error(SLACK_BOT_TOKEN)
-  console.error(SLACK_CHANNEL)
   process.exit(1);
 }
 
