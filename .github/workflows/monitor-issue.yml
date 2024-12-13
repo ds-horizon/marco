@@ -1,6 +1,11 @@
 name: Monitor Open Issues
 on:
   workflow_dispatch:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
   schedule:
     - cron: '0 0 * * *'
 jobs:
