@@ -11,6 +11,11 @@ const [
   SLACK_CHANNEL
 ] = args
 
+if (!GIT_SECRET || !SLACK_BOT_TOKEN || !SLACK_CHANNEL) {
+  console.error('Missing required environment variables.');
+  process.exit(1);
+}
+
 const repoName = "react-native"
 const fetchDataFromDaysAgo = 1;
 const filterIssuesWithinHoursAgo = 6;
