@@ -16,7 +16,6 @@ if (!GIT_SECRET || !SLACK_BOT_TOKEN || !SLACK_CHANNEL) {
   process.exit(1);
 }
 
-const repoName = "react-native"
 const fetchDataFromDaysAgo = 1;
 const filterIssuesWithinHoursAgo = 6;
 
@@ -112,7 +111,7 @@ async function sendSlackNotification(issues) {
     return;
   }
 
-  const message = `:warning: *${issues.length} issue(s)* were created in the last *6 hours* in *${repoName}*.`;
+  const message = `:warning: *${issues.length} issue(s)* were created in the last *6 hours* in *${repo}*.`;
   const issueDetails = issues
     .map(
       (issue, index) =>
