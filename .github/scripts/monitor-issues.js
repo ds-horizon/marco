@@ -111,7 +111,7 @@ async function sendSlackNotification(issues) {
     return;
   }
 
-  const message = `:warning: *${issues.length} issue(s)* were created in the last *6 hours* in *${repo}*.`;
+  const message = `:warning: *${issues.length} issue(s)* were reported in the last *6 hours* for the *${repo}* repository.`;
   const issueDetails = issues
     .map(
       (issue, index) =>
