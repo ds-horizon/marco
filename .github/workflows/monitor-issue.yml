@@ -7,7 +7,7 @@ on:
       - synchronize
       - reopened
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 */6 * * *'
 env:
   GIT_SECRET: ${{ secrets.GIT_SECRET }}
   SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
