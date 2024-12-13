@@ -5,6 +5,7 @@ const owner = 'dream-sports-labs'
 const repo = 'react-native-performance-tracker'
 
 const args = process.argv.slice(2)
+console.log(args)
 const [
   GIT_SECRET,
   SLACK_BOT_TOKEN,
