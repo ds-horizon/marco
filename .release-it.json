@@ -25,7 +25,7 @@
       "after:bump": [
         "git add .",
         "git commit -m 'chore: update changelog and bump version to v${version}'",
-        "git push origin HEAD:release-v${version}",
+        "git tag v${version}",
         "echo ${version} > .version"
       ]
     },
