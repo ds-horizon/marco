@@ -1,0 +1,51 @@
+name: Create Release PR
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: yarn install
+
+      # Step 4: Configure Git
+      - name: Configure Git
+        run: |
+          git config --global user.email "shubham.gupta@dream11.com
+          git config --global user.name "shubhamguptadream11"
+
+      # Step 5: Configure NPM authentication
+      - name: Configure NPM
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      # Step 6: Run Release It
+      - name: Run release-it
+        run: yarn release-it --ci --verbose
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_SECRET }}
+
+      # Step 7: Create Pull Request
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GIT_SECRET }}
+          branch: "release-v$(cat .version)"
+          base: main
+          title: "Release v$(cat .version)"
+          body: "This PR includes the version bump and changelog for v$(cat .version)."

@@ -1,38 +1,28 @@
 {
   "npm": {
-    "publish": false,
-    "tag": "latest"
+    "publish": false
   },
   "git": {
     "requireCleanWorkingDir": true,
     "requireBranch": "main",
-    "commitMessage": "Release v${version}",
+    "commitMessage": "chore: release v${version}",
     "tagName": "v${version}",
-    "tagAnnotation": "Release v${version}",
     "push": false
   },
   "github": {
     "release": false
   },
-  "plugins": {
-    "@release-it/conventional-changelog": {
-      "preset": "conventionalcommits",
-       "infile": "CHANGELOG.md"
-    }
-  },
   "hooks": {
-    "before:init": ["yarn lint", "yarn type-check", "yarn test"],
     "after:bump": [
       "git add .",
       "git commit -m 'chore: update changelog and bump version to v${version}'",
-      "git push origin HEAD:release-v${version}",
-      "echo ${version} > .version",
-      "yarn version --new-version ${version}",
-      "git add package.json package-lock.json .version",
-      "git commit -m 'chore: update package.json and .version to ${version}'"
+      "git push origin HEAD:release-v${version}"
     ]
   },
-  "version": {
-    "preRelease": "false"
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": "conventionalcommits",
+      "infile": "CHANGELOG.md"
+    }
   }
 }
