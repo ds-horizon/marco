@@ -27,7 +27,7 @@ jobs:
       # Step 4: Configure Git
       - name: Configure Git
         run: |
-          git config --global user.email "shubham.gupta@dream11.com
+          git config --global user.email "shubham.gupta@dream11.com"
           git config --global user.name "shubhamguptadream11"
 
       # Step 5: Configure NPM authentication
