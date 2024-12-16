@@ -1,0 +1,42 @@
+name: Create release PR, add changelog and bump version
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Common Setup
+        uses: ./.github/actions/setup
+
+      - name: Configure NPM authentication
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      - name: Release to prod
+        run: yarn release --verbose
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_SECRET }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Read Version
+        id: read_version
+        run: echo "VERSION=$(cat .version)" >> $GITHUB_ENV
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GIT_SECRET }}
+          commit-message: "Release v${{ env.VERSION }}"
+          branch: "release-v${{env.VERSION}}"
+          base: main
+          title: "Release v${{env.VERSION}}"
+          body: "This PR includes the version bump and changelog for v${{env.VERSION}}."
+          draft: false
