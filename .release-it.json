@@ -26,7 +26,10 @@
       "git add .",
       "git commit -m 'chore: update changelog and bump version to v${version}'",
       "git push origin HEAD:release-v${version}",
-      "echo ${version} > .version"
+      "echo ${version} > .version",
+      "yarn version --new-version ${version}",
+      "git add package.json package-lock.json .version",
+      "git commit -m 'chore: update package.json and .version to ${version}'"
     ]
   },
   "version": {

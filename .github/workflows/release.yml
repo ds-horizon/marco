@@ -19,6 +19,12 @@ jobs:
       - name: Configure NPM authentication
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+      - name: Update Version and Commit
+        run: |
+          yarn version --new-version ${{ env.VERSION }}
+          git add .version package.json
+          git commit -m "chore: update version to v${{ env.VERSION }}"
+          git push origin release-v${{ env.VERSION }}
 
       - name: Release to prod
         run: yarn release --verbose
@@ -29,6 +35,13 @@ jobs:
       - name: Read Version
         id: read_version
         run: echo "VERSION=$(cat .version)" >> $GITHUB_ENV
+      
+      - name: Create Release Branch
+        run: |
+          git checkout -b release-v${{ env.VERSION }}
+          git add .
+          git commit -m 'chore: create release branch for v${{ env.VERSION }}'
+          git push origin release-v${{ env.VERSION }}
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
