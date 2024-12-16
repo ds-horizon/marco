@@ -25,3 +25,9 @@ runs:
       if: steps.yarn-cache.outputs.cache-hit != 'true'
       run: yarn install --immutable
       shell: bash
+    
+    - name: Set GitHub Config
+      run: |
+         git config --global user.email "shubham.gupta@dream11.com"
+         git config --global user.name "shubhamguptadream11"
+      shell: bash
