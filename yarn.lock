@@ -5237,11 +5237,14 @@ __metadata:
     react-native: 0.76.1
     react-native-builder-bob: ^0.30.3
     release-it: ^17.10.0
+    ts-node: ^10.9.2
     turbo: ^1.10.7
     typescript: ^5.2.2
   peerDependencies:
     react: "*"
     react-native: "*"
+  bin:
+    generate-report: ./src/scripts/generate-report.ts
   languageName: unknown
   linkType: soft
 
@@ -12060,7 +12063,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-node@npm:^10.8.1":
+"ts-node@npm:^10.8.1, ts-node@npm:^10.9.2":
   version: 10.9.2
   resolution: "ts-node@npm:10.9.2"
   dependencies:

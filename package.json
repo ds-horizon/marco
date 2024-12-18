@@ -1,10 +1,13 @@
 {
   "name": "dream11-react-native-performance-tracker",
-  "version": "0.20.0",
+  "version": "0.25.0",
   "description": "Benchmark React Native View Paint Time",
   "source": "./src/index.tsx",
   "main": "./src/index.tsx",
   "module": "./src/index.tsx",
+  "bin": {
+    "generate-report": "./src/scripts/generate-report.js"
+  },
   "files": [
     "src",
     "lib",
@@ -31,7 +34,8 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
     "prepare": "bob build",
-    "release": "release-it"
+    "release": "release-it",
+    "generate:report": "cd src/scripts/ && ts-node generate-report.js"
   },
   "keywords": [
     "react-native",
@@ -71,6 +75,7 @@
     "react-native": "0.76.1",
     "react-native-builder-bob": "^0.30.3",
     "release-it": "^17.10.0",
+    "ts-node": "^10.9.2",
     "turbo": "^1.10.7",
     "typescript": "^5.2.2"
   },
