@@ -5244,7 +5244,7 @@ __metadata:
     react: "*"
     react-native: "*"
   bin:
-    generate-report: ./src/scripts/generate-report.ts
+    generate-report: ./src/scripts/generate-report.js
   languageName: unknown
   linkType: soft
 
