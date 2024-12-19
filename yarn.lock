@@ -8056,8 +8056,8 @@ __metadata:
     react: "*"
     react-native: "*"
   bin:
-    generate-report: ./src/scripts/generate-report.js
-    "serve:dashboard": ./src/scripts/serve-dashboard.js
+    "generate:report": ./src/scripts/generate-report.js
+    "visualize:report": ./src/scripts/serve-dashboard.js
   languageName: unknown
   linkType: soft
 
