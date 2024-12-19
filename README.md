@@ -8,6 +8,7 @@ A powerful React Native library to track and log performance metrics for screens
 - **Custom Markers**: Send custom timestamps for events.
 - **Logs Management**: Retrieve and reset logs as needed.
 - **Supports New Architecture**: Fully compatible with TurboModules and Fabric.
+- **Cross-Platform Support**: Seamlessly works across iOS and Android, ensuring consistent performance tracking on both platforms.
 - **Performance Visualization Dashboard**: Interactive dashboard to visualize logs, analyze performance metrics, and generate detailed reports.
 - **Data Retrieval**: Automated scripts to fetch and structure performance logs based on the selected platform.
 
