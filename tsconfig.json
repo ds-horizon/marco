@@ -9,7 +9,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx",
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM"],
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "noEmit": true,
@@ -24,6 +24,9 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "ESNext",
-    "verbatimModuleSyntax": true
-  }
+    "verbatimModuleSyntax": true,
+    "outDir": "./dist"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

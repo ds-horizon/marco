@@ -81,4 +81,4 @@ lib/
 ios/generated
 android/generated
 
-generated-perf-report/
+generated-perf-reports/
