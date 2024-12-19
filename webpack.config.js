@@ -23,11 +23,6 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html', // Template for the HTML file
-    }),
-  ],
   devServer: {
     static: {
       directory: path.resolve(__dirname, 'dist'),

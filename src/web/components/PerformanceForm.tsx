@@ -18,7 +18,7 @@ const PerformanceForm: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:8083/log.json');
+        const res = await fetch('http://localhost:8080/api/log');
         const data = await res.json();
         setData(data);
       } catch (_) {

@@ -56,7 +56,7 @@ const PerformanceVisualization: React.FC<PerformanceVisualizationProps> = ({
   useEffect(() => {
     // Simulating data fetching based on start and end markers
     const fetchData = async () => {
-      const res = await fetch('http://localhost:8083/log.json');
+      const res = await fetch('http://localhost:8080/api/log');
       const data = await res.json();
       const simulatedData: PerformanceData[] = calculateDifferences(
         data,
