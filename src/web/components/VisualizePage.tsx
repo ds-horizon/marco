@@ -10,14 +10,18 @@ const VisualizePage: React.FC = () => {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-gray-100">
-      <h1 className="text-4xl font-bold mb-8 text-center">Performance Visualization</h1>
+      <h1 className="text-4xl font-bold mb-8 text-center">
+        Performance Visualization
+      </h1>
       <PerformanceVisualization startMarker={start} endMarker={end} />
-      <Link to="/" className="mt-8 text-blue-500 hover:text-blue-700 font-semibold">
+      <Link
+        to="/"
+        className="mt-8 text-blue-500 hover:text-blue-700 font-semibold"
+      >
         Back to Form
       </Link>
     </main>
   );
-}
+};
 
 export default VisualizePage;
-

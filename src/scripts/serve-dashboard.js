@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const { exec } = require('child_process');
 const path = require('path');
-const fs = require("fs");
+const fs = require('fs');
 
 // Define constants for paths and ports
 const appRoot = process.env.INIT_CWD || process.cwd();
@@ -47,13 +47,16 @@ try {
 
   // Log messages when servers are successfully started
   htmlServer.on('spawn', () => {
-    console.log(`[SUCCESS] HTML server is running at http://localhost:${HTML_PORT}`);
+    console.log(
+      `[SUCCESS] HTML server is running at http://localhost:${HTML_PORT}`
+    );
   });
 
   dataServer.on('spawn', () => {
-    console.log(`[SUCCESS] Data server is running at http://localhost:${DATA_PORT}`);
+    console.log(
+      `[SUCCESS] Data server is running at http://localhost:${DATA_PORT}`
+    );
   });
-
 } catch (error) {
   console.error(`[ERROR] Failed to start servers.`);
   console.error(`[ERROR] ${error.message}`);

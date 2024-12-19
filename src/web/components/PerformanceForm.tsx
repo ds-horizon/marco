@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AutocompleteInput from './AutocompleteInput';
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { getAutoSuggestionMarkers } from '../App.utility';
 
 const PerformanceForm: React.FC = () => {
   const [startMarker, setStartMarker] = useState('');
   const [endMarker, setEndMarker] = useState('');
-  const [data, setData] = useState<{
-    tagName: string,
-    timestamp: number
-}[]>([]);
+  const [data, setData] = useState<
+    {
+      tagName: string;
+      timestamp: number;
+    }[]
+  >([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,33 +20,38 @@ const PerformanceForm: React.FC = () => {
       try {
         const res = await fetch('http://localhost:8083/log.json');
         const data = await res.json();
-        setData(data)
+        setData(data);
       } catch (_) {
-        setData([])
+        setData([]);
       }
-    }
+    };
     fetchData();
-  }, [])
+  }, []);
 
   if (!data) {
-    return <></>
+    return <></>;
   }
 
-  const suggestions = getAutoSuggestionMarkers(data)
+  const suggestions = getAutoSuggestionMarkers(data);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (startMarker && endMarker && startMarker !== endMarker) {
-      navigate(`/visualize?start=${encodeURIComponent(startMarker)}&end=${encodeURIComponent(endMarker)}`);
+      navigate(
+        `/visualize?start=${encodeURIComponent(startMarker)}&end=${encodeURIComponent(endMarker)}`
+      );
     }
   };
 
-  const isSubmitDisabled = !startMarker || !endMarker || (startMarker === endMarker);
+  const isSubmitDisabled =
+    !startMarker || !endMarker || startMarker === endMarker;
 
   return (
     <Card className="w-full max-w-md shadow-lg">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold text-center">Performance Tracker</CardTitle>
+        <CardTitle className="text-2xl font-bold text-center">
+          Performance Tracker
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -75,7 +82,6 @@ const PerformanceForm: React.FC = () => {
       </CardContent>
     </Card>
   );
-}
+};
 
 export default PerformanceForm;
-

@@ -1,18 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 
 interface FallbackPageProps {
   startMarker: string;
   endMarker: string;
 }
 
-const FallbackPage: React.FC<FallbackPageProps> = ({ startMarker, endMarker }) => {
+const FallbackPage: React.FC<FallbackPageProps> = ({
+  startMarker,
+  endMarker,
+}) => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center text-red-600">Visualization Not Possible</CardTitle>
+          <CardTitle className="text-2xl font-bold text-center text-red-600">
+            Visualization Not Possible
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-center mb-4">
@@ -23,7 +28,8 @@ const FallbackPage: React.FC<FallbackPageProps> = ({ startMarker, endMarker }) =
             <li>End Marker: {endMarker}</li>
           </ul>
           <p className="text-center mb-4">
-            This combination of markers may not have any associated data or may be in an invalid order.
+            This combination of markers may not have any associated data or may
+            be in an invalid order.
           </p>
           <div className="flex justify-center">
             <Link
@@ -40,4 +46,3 @@ const FallbackPage: React.FC<FallbackPageProps> = ({ startMarker, endMarker }) =
 };
 
 export default FallbackPage;
-

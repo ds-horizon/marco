@@ -7,7 +7,12 @@ interface AutocompleteInputProps {
   suggestions: string[];
 }
 
-const AutocompleteInput: React.FC<AutocompleteInputProps> = ({ label, value, onChange, suggestions }) => {
+const AutocompleteInput: React.FC<AutocompleteInputProps> = ({
+  label,
+  value,
+  onChange,
+  suggestions,
+}) => {
   const [inputValue, setInputValue] = useState(value);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [error, setError] = useState(false);
@@ -15,7 +20,10 @@ const AutocompleteInput: React.FC<AutocompleteInputProps> = ({ label, value, onC
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (inputRef.current && !inputRef.current.contains(event.target as Node)) {
+      if (
+        inputRef.current &&
+        !inputRef.current.contains(event.target as Node)
+      ) {
         setShowSuggestions(false);
         if (!suggestions.includes(inputValue)) {
           setError(true);
@@ -50,7 +58,7 @@ const AutocompleteInput: React.FC<AutocompleteInputProps> = ({ label, value, onC
     if (e.key === 'Enter') {
       e.preventDefault();
       if (filteredSuggestions.length === 1) {
-        handleSuggestionClick(filteredSuggestions[0] ?? "");
+        handleSuggestionClick(filteredSuggestions[0] ?? '');
       } else if (!suggestions.includes(inputValue)) {
         setError(true);
       }
@@ -66,13 +74,15 @@ const AutocompleteInput: React.FC<AutocompleteInputProps> = ({ label, value, onC
       onChange(inputValue);
     }
   };
-  const filteredSuggestions = suggestions.filter(suggestion => {
-    return suggestion.toLowerCase().includes(inputValue.toLowerCase())
-  }
-  );
+  const filteredSuggestions = suggestions.filter((suggestion) => {
+    return suggestion.toLowerCase().includes(inputValue.toLowerCase());
+  });
   return (
     <div className="mb-4 relative" ref={inputRef}>
-      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={label}>
+      <label
+        className="block text-gray-700 text-sm font-bold mb-2"
+        htmlFor={label}
+      >
         {label}
       </label>
       <input
@@ -89,10 +99,12 @@ const AutocompleteInput: React.FC<AutocompleteInputProps> = ({ label, value, onC
         aria-autocomplete="list"
         aria-controls={`${label}-suggestions`}
         aria-expanded={showSuggestions}
-        autoComplete='off'
+        autoComplete="off"
       />
       {error && inputValue !== '' && (
-        <p className="text-red-500 text-xs italic mt-1">Please select a valid option from the suggestions.</p>
+        <p className="text-red-500 text-xs italic mt-1">
+          Please select a valid option from the suggestions.
+        </p>
       )}
       {showSuggestions && filteredSuggestions.length > 0 && (
         <ul
@@ -117,4 +129,3 @@ const AutocompleteInput: React.FC<AutocompleteInputProps> = ({ label, value, onC
 };
 
 export default AutocompleteInput;
-

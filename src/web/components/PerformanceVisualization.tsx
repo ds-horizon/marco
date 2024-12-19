@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import React, { useState, useEffect } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import {
   LineChart,
   Line,
@@ -10,10 +10,10 @@ import {
   Legend,
   ResponsiveContainer,
   ReferenceDot,
-} from "recharts";
-import { calculateDifferences, calculateMetrics } from "../App.utility";
-import { type PerformanceData } from "../App.interface";
-import FallbackPage from "./FallbackPage";
+} from 'recharts';
+import { calculateDifferences, calculateMetrics } from '../App.utility';
+import { type PerformanceData } from '../App.interface';
+import FallbackPage from './FallbackPage';
 
 interface PerformanceStats {
   mean: number;
@@ -56,7 +56,6 @@ const PerformanceVisualization: React.FC<PerformanceVisualizationProps> = ({
   useEffect(() => {
     // Simulating data fetching based on start and end markers
     const fetchData = async () => {
-
       const res = await fetch('http://localhost:8083/log.json');
       const data = await res.json();
       const simulatedData: PerformanceData[] = calculateDifferences(
@@ -71,8 +70,8 @@ const PerformanceVisualization: React.FC<PerformanceVisualizationProps> = ({
       const mean =
         simulatedData.reduce((sum, item) => sum + item.duration, 0) /
         simulatedData.length;
-      
-      const {std, errorRate} = calculateMetrics(simulatedData, mean);
+
+      const { std, errorRate } = calculateMetrics(simulatedData, mean);
 
       setStats({ mean, standardDeviation: std, errorRate });
     };
@@ -148,7 +147,7 @@ const PerformanceVisualization: React.FC<PerformanceVisualizationProps> = ({
                 onClick={handleClick}
               >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="iteration"/>
+                <XAxis dataKey="iteration" />
                 <YAxis />
                 <Tooltip content={<CustomTooltip />} />
                 <Legend />
@@ -175,7 +174,9 @@ const PerformanceVisualization: React.FC<PerformanceVisualizationProps> = ({
 
       <Card>
         <CardHeader>
-        <CardTitle className="text-2xl font-bold">Results for {startMarker} & {endMarker}</CardTitle>
+          <CardTitle className="text-2xl font-bold">
+            Results for {startMarker} & {endMarker}
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">

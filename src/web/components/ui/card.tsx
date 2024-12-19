@@ -17,4 +17,3 @@ export const CardTitle = ({ className, ...props }: CardProps) => (
 export const CardContent: React.FC<CardProps> = ({ className, ...props }) => (
   <div className={`px-6 py-4 ${className}`} {...props} />
 );
-
