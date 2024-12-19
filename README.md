@@ -21,72 +21,7 @@ cd ios && pod install
 
 ## 🚀 Usage Example
 
-### 1. **Enable Performance Log Persistence**
-Enable performance log persistence globally by setting the configuration during the initialization of the PerformanceTracker.
-
-```tsx
-import { PerformanceTracker } from 'react-native-performance-tracker';
-
-PerformanceTracker.init({
-  persistToFile: true, // Logs will persist to a file for debugging purposes.
-});
-```
-
-### 2. **Log File Paths**
-
-When `persistToFile` is enabled, the logs will be saved to a file for later retrieval. The file paths differ between **Android** and **iOS**:
-
-#### Android
-The benchmark logs are saved to the following path on the device:
-
-```bash
-/sdcard/Documents/PerformanceTracker/log.txt
-```
-#### iOS
-
-The benchmark logs are saved to the following path on the iOS device or simulator:
-
-```bash
-Documents/PerformanceTracker/log.txt
-```
-
-To retrieve the file on an iOS simulator, use the following command:
-
-```bash
-xcrun simctl get_app_container booted org.reactjs.native.example.RNBottomTabBenchmarks data
-```
-
-This command provides the path to the app's data container on the simulator. Navigate to the provided path, then locate the file under:
-
-```bash
-Documents/PerformanceTracker/log.txt
-```
-
-
-### 2. **Send Custom Markers**
-
-Send custom performance markers at any point in your app:
-
-```tsx
-PerformanceTracker.send('start_event', Date.now());
-```
-
-### 3. **Retrieve Logs**
-Retrieve performance logs asynchronously:
-
-```tsx
-const logs = await PerformanceTracker.getLogs();
-console.log('Performance Logs:', logs);
-```
-
-### 4. **Reset Logs**
-Clear all performance logs:
-
-```tsx
-PerformanceTracker.resetLogs();
-```
-
-### 5. **Track Screen Rendering with the Component**
+### 1. **Track Screen Rendering with the Component**
 Wrap your screen or component with PerformanceTracker to automatically capture render and draw times:
 
 ```tsx
@@ -111,6 +46,58 @@ const MyScreen = () => {
   );
 };
 
+```
+
+### 2. **Send Custom Markers**
+
+Send custom performance markers at any point in your app:
+
+```tsx
+PerformanceTracker.send('start_event', Date.now());
+```
+
+### 3. **Retrieve Logs**
+Retrieve performance logs asynchronously:
+
+```tsx
+const logs = await PerformanceTracker.getLogs();
+console.log('Performance Logs:', logs);
+```
+
+### 4. **Reset Logs**
+Clear all performance logs:
+
+```tsx
+PerformanceTracker.resetLogs();
+```
+
+### 5. **Enable Performance Log Persistence**
+Enable performance log persistence globally by setting the configuration during the initialization of the PerformanceTracker.
+
+```tsx
+import { PerformanceTracker } from 'react-native-performance-tracker';
+
+PerformanceTracker.init({
+  persistToFile: true, // Logs will persist to a file for debugging purposes.
+});
+```
+
+### 6. **Log File Paths**
+
+When `persistToFile` is enabled, the logs will be saved to a file for later retrieval. The file paths differ between **Android** and **iOS**:
+
+#### Android
+The benchmark logs are saved to the following path on the device:
+
+```bash
+/sdcard/Documents/PerformanceTracker/log.txt
+```
+#### iOS
+
+The benchmark logs are saved to the following path on the iOS device or simulator:
+
+```bash
+Documents/PerformanceTracker/log.txt
 ```
 
 ## How to Retrieve Data?
