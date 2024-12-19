@@ -111,6 +111,60 @@ const MyScreen = () => {
 
 ```
 
+## How to Retrieve Data?
+
+To retrieve performance data from your app, follow these steps:
+
+1. Run the following command:
+
+  ```bash
+  npx generate:report
+  ```
+2. Select the platform:
+
+ Choose **Android** or **iOS** based on your preference.
+For **iOS**, provide the package name when prompted. This is required to access the data folder for the app.
+
+3. The script will create a folder named `generated-perf-reports` at the root of the directory where this script is run. Ensure you execute this command at the project root.
+
+4. Inside the `generated-perf-reports` folder, a `log.json` file will be created containing the performance data.
+
+## 📊 Visualisation
+
+To visualize the retrieved performance data:
+
+1. Run the visualization script:
+
+  ```bash
+  npx visualize:report
+  ```
+2. The script will serve the following:
+
+- **HTML files**: These will be served from the performance tracker package directory.
+- **Performance data**: This will be served from the generated-perf-reports folder.
+
+3. Open the following URLs in your browser to access the servers:
+
+- HTML Server: http://localhost:8082
+- Data Server: http://localhost:8083
+
+## How to Access the Visualization Dashboard?
+
+The visualization dashboard allows you to analyze and interpret performance data effectively. Here's how to use it:
+
+1. Navigate to the HTML server URL: http://localhost:8082.
+
+2. Use the interface to:
+
+- **Select Start and End Markers**: Define the range of data you wish to analyze.
+- Click the **Visualize** button.
+
+3. The dashboard will display:
+
+- Mean, standard deviation, and error rate.
+- A graph visualizing performance trends.
+- A table showing raw data in tabular format for detailed insights.
+
 ## 🛠 API Reference
 
 ### **Native Module Methods**
