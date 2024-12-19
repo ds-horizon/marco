@@ -127,21 +127,16 @@ To visualize the retrieved performance data:
   ```bash
   npx visualize:report
   ```
-2. The script will serve the following:
 
-- **HTML files**: These will be served from the performance tracker package directory.
-- **Performance data**: This will be served from the generated-perf-reports folder.
+2. Open the following URL in your browser to access the server and visualize the data:
 
-3. Open the following URLs in your browser to access the servers:
-
-- HTML Server: http://localhost:8082
-- Data Server: http://localhost:8083
+  - http://localhost:8080
 
 ## How to Access the Visualization Dashboard?
 
 The visualization dashboard allows you to analyze and interpret performance data effectively. Here's how to use it:
 
-1. Navigate to the HTML server URL: http://localhost:8082.
+1. Navigate to the HTML server URL: http://localhost:8080.
 
 2. Use the interface to:
 
