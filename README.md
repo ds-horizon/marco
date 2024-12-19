@@ -167,6 +167,8 @@ The visualization dashboard allows you to analyze and interpret performance data
 - A graph visualizing performance trends.
 - A table showing raw data in tabular format for detailed insights.
 
+!['\n'](./media/dashboard.gif)
+
 ## 🛠 API Reference
 
 ### **Native Module Methods**
