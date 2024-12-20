@@ -17,6 +17,7 @@ import java.io.OutputStreamWriter
 
 object PerformanceTrackerWriter {
     var persistToFile = false
+    var shouldClearFiles = false
     fun writeLogsInFile(tag: String, time: String, context: Context) {
         if (persistToFile) {
             CoroutineScope(Dispatchers.IO).launch {

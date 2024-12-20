@@ -6,7 +6,7 @@ import {
   type ViewProps,
 } from 'react-native';
 import type { NativeProps } from './PerformanceTrackerViewNativeComponent';
-import type { InitConfig } from './NativePerformanceTracker';
+import type { Config, ResetOptions } from './NativePerformanceTracker';
 
 const isFabricEnabled = (global as any)?.nativeFabricUIManager != null;
 const isTurboModuleEnabled = (global as any).__turboModuleProxy != null;
@@ -24,8 +24,8 @@ type PerformanceTrackerViewProps = NativeProps & ViewProps;
 type PerformanceTrackerViewStaticMethods = {
   track: (tag: string, time: number) => void;
   getLogs(): Promise<Record<string, any>>;
-  resetLogs(): void;
-  configure(config?: InitConfig): void;
+  resetLogs(options?: ResetOptions): void;
+  configure(config?: Config): void;
 };
 
 const PerformanceTrackerViewBase = ({
@@ -58,9 +58,9 @@ PerformanceTrackerViewBase.displayName = 'PerformanceTracker';
 PerformanceTrackerViewBase.track = (tag: string, time: number) =>
   PerformanceLoggerModule.track(tag, time);
 PerformanceTrackerViewBase.getLogs = () => PerformanceLoggerModule.getLogs();
-PerformanceTrackerViewBase.resetLogs = () =>
-  PerformanceLoggerModule.resetLogs();
-PerformanceTrackerViewBase.configure = (config?: InitConfig) =>
+PerformanceTrackerViewBase.resetLogs = (options?: ResetOptions) =>
+  PerformanceLoggerModule.resetLogs(options);
+PerformanceTrackerViewBase.configure = (config?: Config) =>
   PerformanceLoggerModule.configure(config);
 
 export const PerformanceTracker: React.ComponentType<PerformanceTrackerViewProps> &

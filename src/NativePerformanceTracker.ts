@@ -1,15 +1,19 @@
 import type { TurboModule } from 'react-native';
 import { TurboModuleRegistry } from 'react-native';
 
-export interface InitConfig {
+export interface Config {
   persistToFile?: boolean;
+}
+
+export interface ResetOptions {
+  clearFiles: boolean;
 }
 
 export interface Spec extends TurboModule {
   track(tag: string, time: number): void;
   getLogs(): Promise<Record<string, any>>;
-  resetLogs(): void;
-  configure(config?: InitConfig): void;
+  resetLogs(options?: ResetOptions): void;
+  configure(config?: Config): void;
 }
 
 export default TurboModuleRegistry.getEnforcing<Spec>('PerformanceTracker');

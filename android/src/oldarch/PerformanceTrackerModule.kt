@@ -28,8 +28,8 @@ class PerformanceTrackerModule internal constructor(val context: ReactApplicatio
     }
 
     @ReactMethod
-    fun resetLogs() {
-        performanceTrackerModuleImpl.resetLogs()
+    fun resetLogs(config: ReadableMap?) {
+        performanceTrackerModuleImpl.resetLogs(config)
     }
 
     @ReactMethod

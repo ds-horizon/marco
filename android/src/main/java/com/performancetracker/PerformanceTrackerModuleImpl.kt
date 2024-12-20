@@ -36,7 +36,10 @@ class PerformanceTrackerModuleImpl {
         promise.resolve(writableArray)
     }
 
-    fun resetLogs() {
+    fun resetLogs(config: ReadableMap?) {
+        val shouldClearFiles = config?.getBoolean("clearFiles") ?: false
+        // TODO Clear file data as well
+        PerformanceTrackerWriter.shouldClearFiles = shouldClearFiles;
         PerformanceTrackerStore.clear()
     }
 

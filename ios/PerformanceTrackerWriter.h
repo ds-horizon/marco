@@ -7,5 +7,6 @@
 + (instancetype)sharedInstance;
 
 @property (nonatomic, assign) BOOL persistToFile;
+@property (nonatomic, assign) BOOL shouldClearFiles;
 
 @end

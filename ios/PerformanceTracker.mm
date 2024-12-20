@@ -18,10 +18,21 @@ RCT_EXPORT_METHOD(track:(NSString *)tag time:(double)time)
 }
 
 // Reset all logged events
-RCT_EXPORT_METHOD(resetLogs)
+#ifdef RCT_NEW_ARCH_ENABLED
+RCT_EXPORT_METHOD(resetLogs: (JS::NativePerformanceTracker::ResetOptions &)options)
 {
+    [[PerformanceTrackerWriter sharedInstance] setShouldClearFiles: options.clearFiles()];
     [[PerformanceTrackerStore sharedInstance] clearEvents];
 }
+#else
+RCT_EXPORT_METHOD(resetLogs:(NSDictionary *)options) {
+    NSNumber *shouldClearFilesValue = options[@"clearFiles"];
+    
+    BOOL shouldClearFiles = [shouldClearFilesValue boolValue];
+    
+    [[PerformanceTrackerWriter sharedInstance] setShouldClearFiles:shouldClearFiles];
+}
+#endif
 
 // Retrieve all logged events
 RCT_EXPORT_METHOD(getLogs:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject) {
@@ -30,7 +41,7 @@ RCT_EXPORT_METHOD(getLogs:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseReje
 }
 
 #ifdef RCT_NEW_ARCH_ENABLED
-RCT_EXPORT_METHOD(configure: (JS::NativePerformanceTracker::InitConfig &)config) {
+RCT_EXPORT_METHOD(configure: (JS::NativePerformanceTracker::Config &)config) {
     if (config.persistToFile().has_value()) {
         [[PerformanceTrackerWriter sharedInstance] setPersistToFile: config.persistToFile().value()];
     } else {
