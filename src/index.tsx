@@ -58,10 +58,21 @@ PerformanceTrackerViewBase.displayName = 'PerformanceTracker';
 PerformanceTrackerViewBase.track = (tag: string, time: number) =>
   PerformanceLoggerModule.track(tag, time);
 PerformanceTrackerViewBase.getLogs = () => PerformanceLoggerModule.getLogs();
-PerformanceTrackerViewBase.resetLogs = (options?: ResetOptions) =>
-  PerformanceLoggerModule.resetLogs(options);
-PerformanceTrackerViewBase.configure = (config?: Config) =>
-  PerformanceLoggerModule.configure(config);
+PerformanceTrackerViewBase.resetLogs = (options?: ResetOptions) => {
+  const defaultValue: ResetOptions = {
+    clearFiles: false,
+  };
+
+  const finalConfig = { ...defaultValue, ...options };
+  return PerformanceLoggerModule.resetLogs(finalConfig);
+};
+PerformanceTrackerViewBase.configure = (config?: Config) => {
+  const defaultValue: Config = {
+    persistToFile: false,
+  };
+  const finalConfig = { ...defaultValue, ...config };
+  return PerformanceLoggerModule.configure(finalConfig);
+};
 
 export const PerformanceTracker: React.ComponentType<PerformanceTrackerViewProps> &
   PerformanceTrackerViewStaticMethods = PerformanceTrackerViewBase;

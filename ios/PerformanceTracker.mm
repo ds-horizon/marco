@@ -23,6 +23,7 @@ RCT_EXPORT_METHOD(resetLogs: (JS::NativePerformanceTracker::ResetOptions &)optio
 {
     [[PerformanceTrackerWriter sharedInstance] setShouldClearFiles: options.clearFiles()];
     [[PerformanceTrackerStore sharedInstance] clearEvents];
+    [[PerformanceTrackerWriter sharedInstance] clearLogs];
 }
 #else
 RCT_EXPORT_METHOD(resetLogs:(NSDictionary *)options) {
