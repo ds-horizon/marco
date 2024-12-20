@@ -65,7 +65,7 @@ export default function App() {
   };
 
   const resetEvents = async () => {
-    PerformanceTracker.resetLogs();
+    PerformanceTracker.resetLogs({ clearFiles: true });
   };
 
   useEffect(() => {
@@ -79,6 +79,12 @@ export default function App() {
       <View style={styles.box}>
         <Button title="Get All Events" onPress={getLogsFromNative} />
         <Button title="Reset" onPress={resetEvents} />
+        <Button
+          title="Add logs"
+          onPress={() => {
+            PerformanceTracker.track(`Random_${Math.random()}`, Date.now());
+          }}
+        />
         <View style={styles.listContainer}>
           <FlatList
             initialNumToRender={10}

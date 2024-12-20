@@ -125,6 +125,51 @@ object PerformanceTrackerWriter {
         }
     }
 
+
+    fun clearLogFile(context: Context) {
+        if (persistToFile && shouldClearFiles) {
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val folderName = "PerformanceTracker"
+                    val fileName = "log.json"
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        val uri = getFileUri(context, folderName, fileName, Environment.DIRECTORY_DOCUMENTS)
+
+                        if (uri != null) {
+                            // Open the file for writing and replace the content with an empty JSON array
+                            context.contentResolver.openOutputStream(uri, "wt")?.use { outputStream ->
+                                OutputStreamWriter(outputStream).apply {
+                                    write("[]") // Clear file by writing an empty JSON array
+                                    flush()
+                                }
+                            }
+                            Log.d("::: LoggingTracker", "Log file cleared successfully")
+                        } else {
+                            Log.e("::: LoggingTracker", "File URI not found for clearing logs")
+                        }
+                    } else {
+                        val folder = File(
+                            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
+                            folderName
+                        )
+                        if (!folder.exists()) folder.mkdirs()
+
+                        val logFile = File(folder, fileName)
+                        if (logFile.exists()) {
+                            logFile.writeText("[]") // Clear file by writing an empty JSON array
+                            Log.d("::: LoggingTracker", "Log file cleared successfully")
+                        } else {
+                            Log.e("::: LoggingTracker", "Log file not found for clearing")
+                        }
+                    }
+                } catch (e: Exception) {
+                    Log.e("::: LoggingTracker", "Error clearing log file", e)
+                }
+            }
+        }
+    }
+
     private fun getFileUri(
         context: Context,
         folderName: String,

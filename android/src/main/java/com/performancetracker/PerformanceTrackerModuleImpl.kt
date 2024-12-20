@@ -1,5 +1,6 @@
 package com.performancetracker
 
+import PerformanceTrackerWriter
 import android.content.Context
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReadableMap
@@ -36,11 +37,11 @@ class PerformanceTrackerModuleImpl {
         promise.resolve(writableArray)
     }
 
-    fun resetLogs(config: ReadableMap?) {
+    fun resetLogs(config: ReadableMap?, context: Context) {
         val shouldClearFiles = config?.getBoolean("clearFiles") ?: false
-        // TODO Clear file data as well
         PerformanceTrackerWriter.shouldClearFiles = shouldClearFiles;
         PerformanceTrackerStore.clear()
+        PerformanceTrackerWriter.clearLogFile(context)
     }
 
     fun configure(config: ReadableMap?) {
