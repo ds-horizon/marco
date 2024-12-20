@@ -30,7 +30,7 @@ RCT_EXPORT_METHOD(getLogs:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseReje
 }
 
 #ifdef RCT_NEW_ARCH_ENABLED
-RCT_EXPORT_METHOD(init: (JS::NativePerformanceTracker::InitConfig &)config) {
+RCT_EXPORT_METHOD(configure: (JS::NativePerformanceTracker::InitConfig &)config) {
     if (config.persistToFile().has_value()) {
         [[PerformanceTrackerWriter sharedInstance] setPersistToFile: config.persistToFile().value()];
     } else {
@@ -38,7 +38,7 @@ RCT_EXPORT_METHOD(init: (JS::NativePerformanceTracker::InitConfig &)config) {
     }
 }
 #else
-RCT_EXPORT_METHOD(init:(NSDictionary *)config) {
+RCT_EXPORT_METHOD(configure:(NSDictionary *)config) {
     NSNumber *persistToFileValue = config[@"persistToFile"];
     
     BOOL persistToFile = [persistToFileValue boolValue];

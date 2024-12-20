@@ -77,7 +77,7 @@ Enable performance log persistence globally by setting the configuration during 
 ```tsx
 import { PerformanceTracker } from 'react-native-performance-tracker';
 
-PerformanceTracker.init({
+PerformanceTracker.configure({
   persistToFile: true, // Logs will persist to a file for debugging purposes.
 });
 ```
@@ -160,7 +160,7 @@ The visualization dashboard allows you to analyze and interpret performance data
 | `track`         | Sends a custom performance marker with a tag and timestamp.  | `tag: string`, `time: number`                          | `void`                       |
 | `getLogs`      | Retrieves all performance logs asynchronously.               | None                                                   | `Promise<Record<string, any>>` |
 | `resetLogs`    | Clears all performance logs.                                  | None                                                   | `void`                       |
-| `init`         | Initializes the tracker with optional configuration.         | `config?: InitConfig`                                  | `void`                       |
+| `configure`         | Initializes the tracker with optional configuration.         | `config?: InitConfig`                                  | `void`                       |
 
 ---
 

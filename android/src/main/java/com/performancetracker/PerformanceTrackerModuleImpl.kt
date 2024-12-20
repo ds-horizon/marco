@@ -40,7 +40,7 @@ class PerformanceTrackerModuleImpl {
         PerformanceTrackerStore.clear()
     }
 
-    fun init(config: ReadableMap?) {
+    fun configure(config: ReadableMap?) {
         val persistToFile = config?.getBoolean("persistToFile") ?: false
         PerformanceTrackerWriter.persistToFile = persistToFile;
     }

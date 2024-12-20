@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { PerformanceTracker } from 'dream11-react-native-performance-tracker';
 
-PerformanceTracker.init({
+PerformanceTracker.configure({
   persistToFile: true,
 });
 

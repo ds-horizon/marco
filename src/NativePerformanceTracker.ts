@@ -9,7 +9,7 @@ export interface Spec extends TurboModule {
   track(tag: string, time: number): void;
   getLogs(): Promise<Record<string, any>>;
   resetLogs(): void;
-  init(config?: InitConfig): void;
+  configure(config?: InitConfig): void;
 }
 
 export default TurboModuleRegistry.getEnforcing<Spec>('PerformanceTracker');

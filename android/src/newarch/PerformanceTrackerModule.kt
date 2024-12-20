@@ -28,8 +28,8 @@ class PerformanceTrackerModule internal constructor(val context: ReactApplicatio
     }
 
     @ReactMethod
-    override fun init(config: ReadableMap?) {
-        performanceTrackerModuleImpl.init(config)
+    override fun configure(config: ReadableMap?) {
+        performanceTrackerModuleImpl.configure(config)
     }
 
     @ReactMethod

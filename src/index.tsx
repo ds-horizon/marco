@@ -25,7 +25,7 @@ type PerformanceTrackerViewStaticMethods = {
   track: (tag: string, time: number) => void;
   getLogs(): Promise<Record<string, any>>;
   resetLogs(): void;
-  init(config?: InitConfig): void;
+  configure(config?: InitConfig): void;
 };
 
 const PerformanceTrackerViewBase = ({
@@ -60,8 +60,8 @@ PerformanceTrackerViewBase.track = (tag: string, time: number) =>
 PerformanceTrackerViewBase.getLogs = () => PerformanceLoggerModule.getLogs();
 PerformanceTrackerViewBase.resetLogs = () =>
   PerformanceLoggerModule.resetLogs();
-PerformanceTrackerViewBase.init = (config?: InitConfig) =>
-  PerformanceLoggerModule.init(config);
+PerformanceTrackerViewBase.configure = (config?: InitConfig) =>
+  PerformanceLoggerModule.configure(config);
 
 export const PerformanceTracker: React.ComponentType<PerformanceTrackerViewProps> &
   PerformanceTrackerViewStaticMethods = PerformanceTrackerViewBase;

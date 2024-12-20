@@ -33,7 +33,7 @@ class PerformanceTrackerModule internal constructor(val context: ReactApplicatio
     }
 
     @ReactMethod
-    fun init(config: ReadableMap?) {
-        performanceTrackerModuleImpl.init(config)
+    fun configure(config: ReadableMap?) {
+        performanceTrackerModuleImpl.configure(config)
     }
 }
