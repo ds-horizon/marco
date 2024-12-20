@@ -6451,7 +6451,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^12.0.0":
+"commander@npm:^12.0.0, commander@npm:^12.1.0":
   version: 12.1.0
   resolution: "commander@npm:12.1.0"
   checksum: 68e9818b00fc1ed9cdab9eb16905551c2b768a317ae69a5e3c43924c2b20ac9bb65b27e1cab36aeda7b6496376d4da908996ba2c0b5d79463e0fb1e77935d514
@@ -8023,6 +8023,7 @@ __metadata:
     "@types/recharts": ^1.8.29
     autoprefixer: ^10.4.20
     babel-loader: ^9.2.1
+    commander: ^12.1.0
     commitlint: ^17.0.2
     conventional-changelog-angular: ^8.0.0
     cra-template-typescript: 1.2.0
@@ -8056,8 +8057,7 @@ __metadata:
     react: "*"
     react-native: "*"
   bin:
-    "generate:report": ./src/scripts/generate-report.js
-    "visualize:report": ./src/scripts/serve-dashboard.js
+    perf-tracker: ./src/scripts/cli.js
   languageName: unknown
   linkType: soft
 

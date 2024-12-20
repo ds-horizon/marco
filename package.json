@@ -1,13 +1,12 @@
 {
   "name": "dream11-react-native-performance-tracker",
-  "version": "0.32.0",
+  "version": "0.35.0",
   "description": "Benchmark React Native View Paint Time",
   "source": "./src/index.tsx",
   "main": "./src/index.tsx",
   "module": "./src/index.tsx",
   "bin": {
-    "generate:report": "./src/scripts/generate-report.js",
-    "visualize:report": "./src/scripts/serve-dashboard.js"
+    "perf-tracker": "./src/scripts/cli.js"
   },
   "files": [
     "src",
@@ -222,5 +221,8 @@
     ],
     "languages": "kotlin-objc",
     "version": "0.42.2"
+  },
+  "dependencies": {
+    "commander": "^12.1.0"
   }
 }

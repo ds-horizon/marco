@@ -1,48 +1,19 @@
 #!/usr/bin/env node
-const readline = require('readline');
 const { execSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-console.log('Select the platform:');
-console.log('1. Android');
-console.log('2. iOS');
-
-rl.question('[INPUT] Enter your choice (1 or 2): ', (choice) => {
-  const platform = choice === '1' ? 'android' : choice === '2' ? 'ios' : null;
-
-  if (!platform) {
-    console.error('[ERROR] Invalid choice. Please select 1 or 2.');
-    rl.close();
-    process.exit(1);
-  }
-
-  if (platform === 'ios') {
-    rl.question('[INPUT] Enter the iOS package name: ', (packageName) => {
-      if (!packageName) {
-        console.error('[ERROR] Package name cannot be empty.');
-        rl.close();
-        process.exit(1);
-      }
-      processPlatformLogic(platform, packageName);
-    });
-  } else {
-    processPlatformLogic(platform);
-  }
-});
-
-function processPlatformLogic(platform, packageName = null) {
+module.exports = function generateReport(
+  platform,
+  iosPackage = null,
+  outputPathDir
+) {
   const appRoot = process.env.INIT_CWD || process.cwd();
-  const outputPath = path.resolve(appRoot, 'generated-perf-reports/');
+  const outputPath = path.resolve(appRoot, outputPathDir);
   const adbFilePath =
     platform === 'android'
       ? '/sdcard/Documents/PerformanceTracker/log.txt'
-      : `xcrun simctl get_app_container booted ${packageName} data`; // Adjust the iOS path based on the package name
+      : `xcrun simctl get_app_container booted ${iosPackage} data`;
 
   getReport(adbFilePath);
   convertTxtToJson(`${outputPath}/log.txt`, `${outputPath}/log.json`);
@@ -59,7 +30,9 @@ function processPlatformLogic(platform, packageName = null) {
       }
 
       if (!fs.existsSync(outputPath)) {
-        fs.mkdirSync(outputPath);
+        fs.mkdirSync(outputPath, {
+          recursive: true,
+        });
         console.log(`[INFO] Created output directory: ${outputPath}`);
       }
 
@@ -109,6 +82,4 @@ function processPlatformLogic(platform, packageName = null) {
       console.error(`[ERROR] Error converting .txt to JSON:`, error.message);
     }
   }
-
-  rl.close();
-}
+};
