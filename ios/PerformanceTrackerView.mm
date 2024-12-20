@@ -56,14 +56,6 @@ using namespace facebook::react;
     if (self.isEnabled) {
         dispatch_async(dispatch_get_main_queue(), ^{
             double currentTime = [[NSDate date] timeIntervalSince1970] * 1000; // Current time in milliseconds
-            double diffTime = 0;
-            
-            if (self.startMarker.length > 0) {
-                NSNumber *startTime = [[PerformanceTrackerStore sharedInstance] getEventValueWithTagName:self.startMarker];
-                if (startTime) {
-                    diffTime = currentTime - startTime.doubleValue;
-                }
-            }
             
             // Log the event in PerformanceTrackerStore
             [[PerformanceTrackerStore sharedInstance] addEventWithTagName:self.tagName timestamp:currentTime];
@@ -74,7 +66,6 @@ using namespace facebook::react;
             std::dynamic_pointer_cast<PerformanceTrackerViewEventEmitter const>(self->_eventEmitter)->onDrawEnd({
                 .drawTime = currentTime,
                 .renderTime = renderTime,
-                .diffTime = diffTime,
                 .tagName = std::string([self.tagName UTF8String])
             });
             [[PerformanceTrackerWriter sharedInstance] writeLogsWithTag: self.tagName time: currentTime];
@@ -96,10 +87,6 @@ using namespace facebook::react;
     
     if (oldViewProps.isEnabled != newViewProps.isEnabled) {
         self.isEnabled = newViewProps.isEnabled;
-    }
-    
-    if (oldViewProps.startMarker != newViewProps.startMarker) {
-        self.startMarker = RCTNSStringFromString(newViewProps.startMarker);
     }
     
     [super updateProps:props oldProps:oldProps];

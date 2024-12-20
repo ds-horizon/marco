@@ -45,13 +45,6 @@ class PerformanceTrackerViewManager :
         }
     }
 
-    @ReactProp(name = "startMarker")
-    override fun setStartMarker(view: PerformanceTrackerView?, value: String?) {
-        if (view != null) {
-            performanceTrackerViewImpl.setStartMarker(view, value)
-        }
-    }
-
     override fun getExportedCustomDirectEventTypeConstants(): MutableMap<String, Any>? {
         val baseEventTypeConstants: Map<String, Any>? =
             super.getExportedCustomDirectEventTypeConstants()

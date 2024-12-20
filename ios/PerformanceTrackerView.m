@@ -22,10 +22,6 @@
     _isEnabled = isEnabled;
 }
 
-- (void)setStartMarker:(NSString *)startMarker {
-    _startMarker = startMarker;
-}
-
 - (void)setEventTimeStamp:(double)eventTimeStamp {
     eventTimeStamp = eventTimeStamp;
 }
@@ -46,14 +42,6 @@
     if (_isEnabled) {
         dispatch_async(dispatch_get_main_queue(), ^{
             double currentTime = [[NSDate date] timeIntervalSince1970] * 1000; // Current time in milliseconds
-            double diffTime = 0;
-            
-            if (self.startMarker.length > 0) {
-                NSNumber *startTime = [[PerformanceTrackerStore sharedInstance] getEventValueWithTagName:self.startMarker];
-                if (startTime) {
-                    diffTime = currentTime - startTime.doubleValue;
-                }
-            }
             
             // Log the event in PerformanceTrackerStore
             [[PerformanceTrackerStore sharedInstance] addEventWithTagName:self.tagName timestamp:currentTime];
@@ -64,7 +52,6 @@
                 self.onDrawEnd(@{
                     @"drawTime": @(currentTime),
                     @"renderTime": @(renderTime),
-                    @"diffTime": @(diffTime),
                     @"tagName": self->_tagName
                 });
             }

@@ -17,10 +17,6 @@ class PerformanceTrackerViewImpl {
         view.eventTimeStamp = value
     }
 
-    fun setStartMarker(view: PerformanceTrackerView, value: String?) {
-        view.startMarker = value ?: ""
-    }
-
     companion object {
         const val NAME = "PerformanceTrackerView"
     }

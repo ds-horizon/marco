@@ -24,21 +24,18 @@ const ItemCard = ({ index }: ItemProps) => {
   const [endMarkers, setEndMarkers] = useState({
     drawTime: '',
     renderTime: '',
-    diffTime: '',
   });
 
   const isEnabled = index === 0 || index === 1;
   return (
     <PerformanceTracker
       isEnabled={isEnabled}
-      startMarker="Screen_Mount"
       tagName={`Item-${index}`}
       style={styles.tracker}
       onDrawEnd={({ nativeEvent }) => {
         setEndMarkers({
           drawTime: nativeEvent.drawTime.toString(),
           renderTime: nativeEvent.renderTime.toString(),
-          diffTime: nativeEvent.diffTime?.toString() ?? '',
         });
       }}
     >
@@ -53,11 +50,6 @@ const ItemCard = ({ index }: ItemProps) => {
           <Text
             style={styles.text}
           >{`Render Time: ${endMarkers.renderTime}ms`}</Text>
-        )}
-        {endMarkers.diffTime && (
-          <Text
-            style={styles.text}
-          >{`(Draw - Mount) Time: ${endMarkers.diffTime}ms`}</Text>
         )}
       </View>
     </PerformanceTracker>

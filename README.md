@@ -31,12 +31,10 @@ const MyScreen = () => {
   return (
     <PerformanceTracker
       tagName="MyScreen"
-      startMarker="screen_load_start"
       isEnabled={true}
       onDrawEnd={(event) => {
         console.log('Draw Time:', event.nativeEvent.drawTime);
         console.log('Render Time:', event.nativeEvent.renderTime);
-        console.log('Diff Time:', event.nativeEvent.diffTime); 
         // Logs the time difference between the start marker and draw time. 
         // If no start marker is provided, the value will be null.
       }}
@@ -168,7 +166,6 @@ The visualization dashboard allows you to analyze and interpret performance data
 
 | Prop            | Description                                                | Type                           | Default    | Required |
 |-----------------|------------------------------------------------------------|--------------------------------|------------|----------|
-| `startMarker`   | Name of the initial marker for tracking start time.         | `string`                       | `undefined`| No       |
 | `tagName`       | Unique tag for identifying the tracked component.           | `string`                       | `required` | Yes      |
 | `isEnabled`     | Enables or disables performance tracking.                  | `boolean`                      | `true`     | No       |
 | `eventTimeStamp`| Timestamp when the event is triggered.                     | `number`                       | `Date.now()` | No      |
@@ -183,7 +180,6 @@ The visualization dashboard allows you to analyze and interpret performance data
 | `tagName`    | The tag name associated with the event.                      | `string` |
 | `drawTime`   | Time taken to draw the component.                            | `number` |
 | `renderTime` | Time taken to render the component.                          | `number` |
-| `diffTime`   | Optional difference between `startMaker` and draw time.           | `number` |
 
 ## 🙌 Contributions
 Contributions are welcome! Feel free to submit a PR or raise issues for any bugs or feature requests.

@@ -9,11 +9,9 @@ interface FinishEventType {
   tagName: string;
   drawTime: Double;
   renderTime: Double;
-  diffTime?: Double;
 }
 
 export interface NativeProps extends ViewProps {
-  startMarker?: string;
   tagName: string;
   isEnabled?: boolean;
   eventTimeStamp?: Double;
