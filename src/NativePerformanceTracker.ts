@@ -6,7 +6,7 @@ export interface InitConfig {
 }
 
 export interface Spec extends TurboModule {
-  send(tag: string, time: number): void;
+  track(tag: string, time: number): void;
   getLogs(): Promise<Record<string, any>>;
   resetLogs(): void;
   init(config?: InitConfig): void;

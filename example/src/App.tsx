@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useState } from 'react';
 import {
   StyleSheet,
@@ -77,7 +78,7 @@ export default function App() {
 
   useEffect(() => {
     // Set Mount as T0 marker
-    PerformanceTracker.send('Screen_Mount', Date.now());
+    PerformanceTracker.track('Screen_Mount', Date.now());
   }, []);
 
   return (

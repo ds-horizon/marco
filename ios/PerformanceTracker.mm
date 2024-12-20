@@ -11,7 +11,7 @@ RCT_EXPORT_MODULE()
     return self;
 }
 
-RCT_EXPORT_METHOD(send:(NSString *)tag time:(double)time)
+RCT_EXPORT_METHOD(track:(NSString *)tag time:(double)time)
 {
     [[PerformanceTrackerStore sharedInstance] addEventWithTagName:tag timestamp:time];
     [[PerformanceTrackerWriter sharedInstance] writeLogsWithTag: tag time: time];

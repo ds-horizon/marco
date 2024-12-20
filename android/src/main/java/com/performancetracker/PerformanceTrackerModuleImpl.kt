@@ -12,7 +12,7 @@ class PerformanceTrackerModuleImpl {
         return NAME
     }
 
-    fun send(tag: String, time: Double, context: Context) {
+    fun track(tag: String, time: Double, context: Context) {
         PerformanceTrackerStore.addEvent(tag, time)
         PerformanceTrackerWriter.writeLogsInFile(tag, time.toLong().toString(), context)
     }

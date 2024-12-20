@@ -16,8 +16,8 @@ class PerformanceTrackerModule internal constructor(val context: ReactApplicatio
     }
 
     @ReactMethod
-    override fun send(tag: String, time: Double) {
-        performanceTrackerModuleImpl.send(tag, time, context)
+    override fun track(tag: String, time: Double) {
+        performanceTrackerModuleImpl.track(tag, time, context)
     }
 
     @ReactMethod

@@ -53,7 +53,7 @@ const MyScreen = () => {
 Send custom performance markers at any point in your app:
 
 ```tsx
-PerformanceTracker.send('start_event', Date.now());
+PerformanceTracker.track('start_event', Date.now());
 ```
 
 ### 3. **Retrieve Logs**
@@ -157,7 +157,7 @@ The visualization dashboard allows you to analyze and interpret performance data
 
 | Method         | Description                                                  | Parameters                                             | Returns                      |
 |----------------|--------------------------------------------------------------|--------------------------------------------------------|------------------------------|
-| `send`         | Sends a custom performance marker with a tag and timestamp.  | `tag: string`, `time: number`                          | `void`                       |
+| `track`         | Sends a custom performance marker with a tag and timestamp.  | `tag: string`, `time: number`                          | `void`                       |
 | `getLogs`      | Retrieves all performance logs asynchronously.               | None                                                   | `Promise<Record<string, any>>` |
 | `resetLogs`    | Clears all performance logs.                                  | None                                                   | `void`                       |
 | `init`         | Initializes the tracker with optional configuration.         | `config?: InitConfig`                                  | `void`                       |
