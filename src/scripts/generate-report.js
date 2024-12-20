@@ -12,11 +12,11 @@ module.exports = function generateReport(
   const outputPath = path.resolve(appRoot, outputPathDir);
   const adbFilePath =
     platform === 'android'
-      ? '/sdcard/Documents/PerformanceTracker/log.txt'
+      ? '/sdcard/Documents/PerformanceTracker/log.json'
       : `xcrun simctl get_app_container booted ${iosPackage} data`;
 
   getReport(adbFilePath);
-  convertTxtToJson(`${outputPath}/log.txt`, `${outputPath}/log.json`);
+  // convertTxtToJson(`${outputPath}/log.txt`, `${outputPath}/log.json`);
 
   function getReport(filePath) {
     try {
