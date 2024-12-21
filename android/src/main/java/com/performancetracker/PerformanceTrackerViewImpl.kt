@@ -1,5 +1,7 @@
 package com.performancetracker
 
+import com.facebook.react.bridge.ReadableMap
+
 class PerformanceTrackerViewImpl {
     fun getName(): String {
         return NAME
@@ -15,6 +17,10 @@ class PerformanceTrackerViewImpl {
 
     fun setEventTimeStamp(view: PerformanceTrackerView, value: Double) {
         view.eventTimeStamp = value
+    }
+
+    fun setMeta(view: PerformanceTrackerView, value: ReadableMap?) {
+        view.meta = value
     }
 
     companion object {

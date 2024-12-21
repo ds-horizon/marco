@@ -22,7 +22,7 @@ const PerformanceTrackerView = isFabricEnabled
 type PerformanceTrackerViewProps = NativeProps & ViewProps;
 
 type PerformanceTrackerViewStaticMethods = {
-  track: (tag: string, time: number) => void;
+  track: (tag: string, time: number, meta?: {}) => void;
   getLogs(): Promise<Record<string, any>>;
   resetLogs(options?: ResetOptions): void;
   configure(config?: Config): void;
@@ -55,8 +55,8 @@ const styles = StyleSheet.create({
 
 PerformanceTrackerViewBase.displayName = 'PerformanceTracker';
 
-PerformanceTrackerViewBase.track = (tag: string, time: number) =>
-  PerformanceLoggerModule.track(tag, time);
+PerformanceTrackerViewBase.track = (tag: string, time: number, meta?: {}) =>
+  PerformanceLoggerModule.track(tag, time, meta);
 PerformanceTrackerViewBase.getLogs = () => PerformanceLoggerModule.getLogs();
 PerformanceTrackerViewBase.resetLogs = (options?: ResetOptions) => {
   const defaultValue: ResetOptions = {

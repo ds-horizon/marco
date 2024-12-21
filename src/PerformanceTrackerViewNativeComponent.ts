@@ -15,6 +15,7 @@ export interface NativeProps extends ViewProps {
   tagName: string;
   isEnabled?: boolean;
   eventTimeStamp?: Double;
+  meta?: {};
   onDrawEnd?: DirectEventHandler<FinishEventType>;
 }
 

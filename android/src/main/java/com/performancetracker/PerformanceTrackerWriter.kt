@@ -5,6 +5,9 @@ import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
+import com.facebook.react.bridge.ReadableType
+import com.facebook.react.bridge.ReadableArray
+import com.facebook.react.bridge.ReadableMap
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,7 +22,7 @@ object PerformanceTrackerWriter {
     var persistToFile = false
     var shouldClearFiles = false
 
-    fun writeLogsInFile(tag: String, timestamp: String, context: Context) {
+    fun writeLogsInFile(tag: String, timestamp: String, meta: ReadableMap?, context: Context) {
         if (persistToFile) {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
@@ -35,7 +38,6 @@ object PerformanceTrackerWriter {
                         )
 
                         val updatedLogs = if (uri != null) {
-                            // File exists, read current contents
                             context.contentResolver.openInputStream(uri)?.use { inputStream ->
                                 val existingLogs =
                                     BufferedReader(InputStreamReader(inputStream)).readText()
@@ -46,7 +48,6 @@ object PerformanceTrackerWriter {
                                 }
                             } ?: JSONArray()
                         } else {
-                            // Create a new file if it doesn't exist
                             val contentValues = ContentValues().apply {
                                 put(MediaStore.MediaColumns.DISPLAY_NAME, fileName)
                                 put(MediaStore.MediaColumns.MIME_TYPE, "application/json")
@@ -61,7 +62,7 @@ object PerformanceTrackerWriter {
                             )?.let {
                                 context.contentResolver.openOutputStream(it)?.use { outputStream ->
                                     OutputStreamWriter(outputStream).apply {
-                                        write("[]") // Initialize with an empty JSON array
+                                        write("[]")
                                         flush()
                                     }
                                 }
@@ -73,6 +74,9 @@ object PerformanceTrackerWriter {
                         updatedLogs.put(JSONObject().apply {
                             put("tagName", tag)
                             put("timestamp", timestamp)
+                            meta?.let {
+                                put("meta", convertReadableMapToJson(it))
+                            }
                         })
 
                         // Write back the updated JSON array
@@ -89,12 +93,11 @@ object PerformanceTrackerWriter {
                                 flush()
                                 Log.d(
                                     "::: LoggingTracker",
-                                    "Updated log file with entry: $tag,$timestamp"
+                                    "Updated log file with entry: $tag, $timestamp, $meta"
                                 )
                             }
                         }
                     } else {
-                        // Handle Android 9 and below (direct file access)
                         val folder = File(
                             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
                             folderName
@@ -112,11 +115,17 @@ object PerformanceTrackerWriter {
                         updatedLogs.put(JSONObject().apply {
                             put("tagName", tag)
                             put("timestamp", timestamp)
+                            meta?.let {
+                                put("meta", convertReadableMapToJson(it))
+                            }
                         })
 
                         // Write back the updated JSON array
                         logFile.writeText(updatedLogs.toString())
-                        Log.d("::: LoggingTracker", "Updated log file with entry: $tag,$timestamp")
+                        Log.d(
+                            "::: LoggingTracker",
+                            "Updated log file with entry: $tag, $timestamp, $meta"
+                        )
                     }
                 } catch (e: Exception) {
                     Log.e("LoggingTracker", "Error writing logs to file", e)
@@ -134,16 +143,22 @@ object PerformanceTrackerWriter {
                     val fileName = "log.json"
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                        val uri = getFileUri(context, folderName, fileName, Environment.DIRECTORY_DOCUMENTS)
+                        val uri = getFileUri(
+                            context,
+                            folderName,
+                            fileName,
+                            Environment.DIRECTORY_DOCUMENTS
+                        )
 
                         if (uri != null) {
                             // Open the file for writing and replace the content with an empty JSON array
-                            context.contentResolver.openOutputStream(uri, "wt")?.use { outputStream ->
-                                OutputStreamWriter(outputStream).apply {
-                                    write("[]") // Clear file by writing an empty JSON array
-                                    flush()
+                            context.contentResolver.openOutputStream(uri, "wt")
+                                ?.use { outputStream ->
+                                    OutputStreamWriter(outputStream).apply {
+                                        write("[]") // Clear file by writing an empty JSON array
+                                        flush()
+                                    }
                                 }
-                            }
                             Log.d("::: LoggingTracker", "Log file cleared successfully")
                         } else {
                             Log.e("::: LoggingTracker", "File URI not found for clearing logs")
@@ -193,4 +208,63 @@ object PerformanceTrackerWriter {
         }
         return null
     }
+
+    private fun convertReadableMapToJson(readableMap: ReadableMap): JSONObject {
+        val jsonObject = JSONObject()
+        val iterator = readableMap.keySetIterator()
+        while (iterator.hasNextKey()) {
+            val key = iterator.nextKey()
+            val value = readableMap.getDynamic(key)
+            when (value.type) {
+                ReadableType.Map -> jsonObject.put(key, convertReadableMapToJson(value.asMap()))
+                ReadableType.Array -> jsonObject.put(
+                    key,
+                    convertReadableArrayToJson(value.asArray())
+                )
+
+                ReadableType.String -> jsonObject.put(key, value.asString())
+                ReadableType.Boolean -> jsonObject.put(key, value.asBoolean())
+                ReadableType.Number -> {
+                    // Check if the number is an integer or double
+                    val number = value.asDouble()
+                    if (number % 1 == 0.0) {
+                        jsonObject.put(key, number.toInt())
+                    } else {
+                        jsonObject.put(key, number)
+                    }
+                }
+
+                ReadableType.Null -> jsonObject.put(key, JSONObject.NULL)
+                else -> throw IllegalArgumentException("Unsupported type: ${value.type}")
+            }
+        }
+        return jsonObject
+    }
+
+    private fun convertReadableArrayToJson(readableArray: ReadableArray): JSONArray {
+        val jsonArray = JSONArray()
+        for (i in 0 until readableArray.size()) {
+            val value = readableArray.getDynamic(i)
+            when (value.type) {
+                ReadableType.Map -> jsonArray.put(convertReadableMapToJson(value.asMap()))
+                ReadableType.Array -> jsonArray.put(convertReadableArrayToJson(value.asArray()))
+                ReadableType.String -> jsonArray.put(value.asString())
+                ReadableType.Boolean -> jsonArray.put(value.asBoolean())
+                ReadableType.Number -> {
+                    val number = value.asDouble()
+                    if (number % 1 == 0.0) {
+                        jsonArray.put(number.toInt())
+                    } else {
+                        jsonArray.put(number)
+                    }
+                }
+
+                ReadableType.Null -> jsonArray.put(JSONObject.NULL)
+                else -> throw IllegalArgumentException("Unsupported type: ${value.type}")
+            }
+        }
+        return jsonArray
+    }
+
+
 }

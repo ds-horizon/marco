@@ -27,8 +27,19 @@ const ItemCard = ({ index }: ItemProps) => {
   });
 
   const isEnabled = index === 0 || index === 1;
+  const meta = {
+    name: `Card ${index}`,
+    screen_name: 'Home',
+    sports: ['cricket', 'football'],
+    user: {
+      name: 'random_name',
+      lastname: 'random',
+      origin: 'dreams',
+    },
+  };
   return (
     <PerformanceTracker
+      meta={meta}
       isEnabled={isEnabled}
       tagName={`Item-${index}`}
       style={styles.tracker}

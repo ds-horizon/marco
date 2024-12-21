@@ -13,9 +13,9 @@ class PerformanceTrackerModuleImpl {
         return NAME
     }
 
-    fun track(tag: String, time: Double, context: Context) {
-        PerformanceTrackerStore.addEvent(tag, time)
-        PerformanceTrackerWriter.writeLogsInFile(tag, time.toLong().toString(), context)
+    fun track(tag: String, time: Double, context: Context, meta: ReadableMap?) {
+        PerformanceTrackerStore.addEvent(tag, time, meta)
+        PerformanceTrackerWriter.writeLogsInFile(tag, time.toLong().toString(), meta, context)
     }
 
     fun getLogs(promise: Promise) {
@@ -28,7 +28,9 @@ class PerformanceTrackerModuleImpl {
             // Adding tagName and timestamp to the map
             writableMap.putString("tagName", event["tagName"] as String)
             writableMap.putDouble("timestamp", event["timestamp"] as Double)
-
+            if (event["meta"] != null) {
+                writableMap.putMap("meta", event["meta"] as ReadableMap?)
+            }
             // Add this map to the writable array
             writableArray.pushMap(writableMap)
         }
