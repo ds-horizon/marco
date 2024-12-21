@@ -1,5 +1,6 @@
 package com.performancetracker
 
+import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.module.annotations.ReactModule
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.ViewGroupManager
@@ -32,6 +33,11 @@ class PerformanceTrackerViewManager : ViewGroupManager<PerformanceTrackerView>()
     @ReactProp(name = "eventTimeStamp")
     fun setEventTimeStamp(view: PerformanceTrackerView, value: Double) {
         performanceTrackerViewImpl.setEventTimeStamp(view, value)
+    }
+
+    @ReactProp(name = "meta")
+    fun setMeta(view: PerformanceTrackerView, value: ReadableMap?) {
+        performanceTrackerViewImpl.setMeta(view, value)
     }
 
     override fun getExportedCustomDirectEventTypeConstants(): MutableMap<String, Any>? {
