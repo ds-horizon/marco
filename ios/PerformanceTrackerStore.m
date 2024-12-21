@@ -18,8 +18,17 @@
     return sharedInstance;
 }
 
-- (void)addEventWithTagName:(NSString *)tagName timestamp:(double)timestamp {
-    NSDictionary *eventDetails = @{ @"tagName": tagName, @"timestamp": @(timestamp) };
+- (void)addEventWithTagName:(NSString *)tagName timestamp:(double)timestamp meta:(NSDictionary*)meta {
+    NSMutableDictionary *eventDetails = [@{
+        @"tagName": tagName,
+        @"timestamp": @(timestamp)
+    } mutableCopy];
+    
+    // Add meta only if it's not nil
+    if (meta) {
+        eventDetails[@"meta"] = meta;
+    }
+    
     [self.eventSequence addObject:eventDetails];
 }
 

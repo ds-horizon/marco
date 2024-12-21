@@ -13,7 +13,7 @@
     return sharedInstance;
 }
 
-- (void)writeLogsWithTag:(NSString *)tag time:(double)time {
+- (void)writeLogsWithTag:(NSString *)tag time:(double)time meta:(NSDictionary *)meta {
     if (!self.persistToFile) {
         return;
     }
@@ -58,11 +58,16 @@
                 }
             }
             
-            // Add new log entry
-            NSDictionary *logEntry = @{
+            // Add new log entry with meta if available
+            NSMutableDictionary *logEntry = [@{
                 @"tagName": tag,
                 @"timestamp": @(time)
-            };
+            } mutableCopy];
+            
+            if (meta) {
+                logEntry[@"meta"] = meta;
+            }
+            
             [logsArray addObject:logEntry];
             
             // Write updated logs back to file
@@ -81,6 +86,7 @@
 
 - (void)clearLogs {
     if (self.persistToFile && self.shouldClearFiles) {
+        printf("::: clearing files");
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             @try {
                 NSString *folderName = @"PerformanceTracker";

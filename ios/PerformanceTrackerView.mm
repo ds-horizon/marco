@@ -39,6 +39,7 @@ using namespace facebook::react;
     return self;
 }
 
+
 - (void)didMoveToWindow {
     [super didMoveToWindow];
     
@@ -58,7 +59,7 @@ using namespace facebook::react;
             double currentTime = [[NSDate date] timeIntervalSince1970] * 1000; // Current time in milliseconds
             
             // Log the event in PerformanceTrackerStore
-            [[PerformanceTrackerStore sharedInstance] addEventWithTagName:self.tagName timestamp:currentTime];
+            [[PerformanceTrackerStore sharedInstance] addEventWithTagName:self.tagName timestamp:currentTime meta:self.meta];
             
             // Calculate render time
             double renderTime = currentTime - self.eventTimeStamp;
@@ -68,7 +69,7 @@ using namespace facebook::react;
                 .renderTime = renderTime,
                 .tagName = std::string([self.tagName UTF8String])
             });
-            [[PerformanceTrackerWriter sharedInstance] writeLogsWithTag: self.tagName time: currentTime];
+            [[PerformanceTrackerWriter sharedInstance] writeLogsWithTag: self.tagName time: currentTime meta:self.meta];
         });
     }
 }

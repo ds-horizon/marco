@@ -18,6 +18,7 @@ RCT_EXPORT_MODULE(PerformanceTrackerView)
 RCT_EXPORT_VIEW_PROPERTY(tagName, NSString)
 RCT_EXPORT_VIEW_PROPERTY(isEnabled, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(eventTimeStamp, double)
+RCT_EXPORT_VIEW_PROPERTY(meta, NSDictionary)
 RCT_EXPORT_VIEW_PROPERTY(onDrawEnd, RCTDirectEventBlock)
 
 @end
