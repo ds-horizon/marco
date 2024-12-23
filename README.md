@@ -70,7 +70,7 @@ console.log('Performance Logs:', logs);
 ```
 
 ### 4. **Enable Performance Log Persistence**
-Enable performance log persistence globally by setting the configuration during the initialization of the PerformanceTracker.
+Enable performance log persistence globally by setting the configuration.
 
 ```tsx
 import { PerformanceTracker } from 'react-native-performance-tracker';
@@ -88,14 +88,14 @@ When `persistToFile` is enabled, the logs will be saved to a file for later retr
 The benchmark logs are saved to the following path on the device:
 
 ```bash
-/sdcard/Documents/PerformanceTracker/log.txt
+/sdcard/Documents/PerformanceTracker/log.json
 ```
 #### iOS
 
 The benchmark logs are saved to the following path on the iOS device or simulator:
 
 ```bash
-Documents/PerformanceTracker/log.txt
+Documents/PerformanceTracker/log.json
 ```
 
 ### 6. **Reset Logs**
@@ -109,29 +109,26 @@ PerformanceTracker.resetLogs();
 PerformanceTracker.resetLogs({ clearFiles: true }); // Default: false
 ```
 
-## Perf-Tracker CLI Tool
+## 🧑🏻‍💻 Perf-Tracker CLI Tool
 The `perf-tracker` CLI tool helps you generate performance reports and visualize the data for your Android and iOS apps. It supports both command-line arguments and configuration through a configuration file `(perf-tracker.config.js)`.
 
 ### Configuration Options
 You can configure the `perf-tracker` CLI tool either through command-line arguments or by using a configuration file. Here's how to set it up:
 
-1. **CLI Arguments**
+1. **CLI Arguments** 🎯
 
- When running the CLI commands, you can pass configuration options directly from the command line. These options will override any corresponding values in the configuration file.
+  When running the CLI commands, you can pass configuration options directly from the command line. These options will override any corresponding values in the configuration file.
 
-  - `--platform <platform>`:
-Specify the platform for which the performance data should be generated.
+  - `--platform <platform>`: Specify the platform for which the performance data should be generated.
 
- Options: `android`, `ios`
+    Options: `android`, `ios`
 
- Example:
- ```bash
- yarn perf-tracker generate --platform android
- ```
+   Example:
+   ```bash
+   yarn perf-tracker generate --platform android
+   ```
 
- - `--ios-package <package>`:
-   
-   Specify the iOS package name (required for the iOS platform). This is needed when generating reports for iOS apps.
+ - `--ios-package <package>`: Specify the iOS package name (required for the iOS platform). This is needed when generating reports for iOS apps.
 
    Example:
    ```bash
@@ -139,7 +136,7 @@ Specify the platform for which the performance data should be generated.
    ```
 
   -  `--outputPath <path>:`
-   Specify the output path where the generated performance reports will be saved. This is optional. By default, reports are saved to ./generated-perf-reports.
+   Specify the output path where the generated performance reports will be saved. This is optional. By default, reports are saved to `./generated-perf-reports`.
    Example:
 
   ```bash
@@ -150,12 +147,12 @@ Specify the platform for which the performance data should be generated.
    Example:
 
    ```bash
-   npx perf-tracker visualize --port 3000
+   yarns perf-tracker visualize --port 3000
   ```
 
-2. **Configuration File `(perf-tracker.config.js)`**
+2. **Configuration File `(perf-tracker.config.js)`**📄
 
- Alternatively, you can create a perf-tracker.config.js file at the root of your project to define default values for the above options. This file allows you to centralize the configuration for the CLI tool and avoid repeatedly specifying options via the command line.
+  Alternatively, you can create a perf-tracker.config.js file at the root of your project to define default values for the above options. This file allows you to centralize the configuration for the CLI tool and avoid repeatedly specifying options via the command line.
 
  Example of a `perf-tracker.config.js`:
 
@@ -171,7 +168,7 @@ module.exports = {
 
  With this configuration file in place, you don’t need to specify these options every time you run a command. However, if you pass any of the options through the CLI, they will override the values in the configuration file.
 
-## How to Use the Perf-Tracker CLI Tool
+## How to Use the Perf-Tracker CLI Tool?
 
 1. **Generate Performance Reports**
 
