@@ -150,7 +150,7 @@ You can configure the `perf-tracker` CLI tool either through command-line argume
    yarns perf-tracker visualize --port 3000
   ```
 
-2. **Configuration File `(perf-tracker.config.js)`**📄
+2. **Configuration File `(perf-tracker.config.js)`** 📄
 
   Alternatively, you can create a perf-tracker.config.js file at the root of your project to define default values for the above options. This file allows you to centralize the configuration for the CLI tool and avoid repeatedly specifying options via the command line.
 
