@@ -32,11 +32,10 @@ const MyScreen = () => {
     <PerformanceTracker
       tagName="MyScreen"
       isEnabled={true}
+      meta={{ data: 'meta_data' }} // Optional metadata (Android only)
       onTrackingEnd={(event) => {
         console.log('Draw Time:', event.nativeEvent.drawTime);
         console.log('Render Time:', event.nativeEvent.renderTime);
-        // Logs the time difference between the start marker and draw time. 
-        // If no start marker is provided, the value will be null.
       }}
     >
       {/* Your screen content goes here */}
@@ -46,13 +45,21 @@ const MyScreen = () => {
 
 ```
 
+  The `meta` parameter must be a `serializable` object
+
 ### 2. **Send Custom Markers**
 
 Send custom performance markers at any point in your app:
 
 ```tsx
+// Without metadata
 PerformanceTracker.track('start_event', Date.now());
+
+// With metadata (Android only)
+PerformanceTracker.track('start_event', Date.now(), { data: 'meta_data' });
 ```
+
+   The `meta` parameter must be a `serializable` object
 
 ### 3. **Retrieve Logs**
 Retrieve performance logs asynchronously:
@@ -62,14 +69,7 @@ const logs = await PerformanceTracker.getLogs();
 console.log('Performance Logs:', logs);
 ```
 
-### 4. **Reset Logs**
-Clear all performance logs:
-
-```tsx
-PerformanceTracker.resetLogs();
-```
-
-### 5. **Enable Performance Log Persistence**
+### 4. **Enable Performance Log Persistence**
 Enable performance log persistence globally by setting the configuration during the initialization of the PerformanceTracker.
 
 ```tsx
@@ -80,7 +80,7 @@ PerformanceTracker.configure({
 });
 ```
 
-### 6. **Log File Paths**
+### 5. **Log File Paths**
 
 When `persistToFile` is enabled, the logs will be saved to a file for later retrieval. The file paths differ between **Android** and **iOS**:
 
@@ -98,37 +98,114 @@ The benchmark logs are saved to the following path on the iOS device or simulato
 Documents/PerformanceTracker/log.txt
 ```
 
-## How to Retrieve Data?
+### 6. **Reset Logs**
+Clear all performance logs:
 
-To retrieve performance data from your app, follow these steps:
+```tsx
+// Basic usage
+PerformanceTracker.resetLogs();
 
-1. Run the following command:
+// Clear logs and files (if persistToFile is true)
+PerformanceTracker.resetLogs({ clearFiles: true }); // Default: false
+```
+
+## Perf-Tracker CLI Tool
+The `perf-tracker` CLI tool helps you generate performance reports and visualize the data for your Android and iOS apps. It supports both command-line arguments and configuration through a configuration file `(perf-tracker.config.js)`.
+
+### Configuration Options
+You can configure the `perf-tracker` CLI tool either through command-line arguments or by using a configuration file. Here's how to set it up:
+
+1. **CLI Arguments**
+
+ When running the CLI commands, you can pass configuration options directly from the command line. These options will override any corresponding values in the configuration file.
+
+  - `--platform <platform>`:
+Specify the platform for which the performance data should be generated.
+
+ Options: `android`, `ios`
+
+ Example:
+ ```bash
+ yarn perf-tracker generate --platform android
+ ```
+
+ - `--ios-package <package>`:
+   
+   Specify the iOS package name (required for the iOS platform). This is needed when generating reports for iOS apps.
+
+   Example:
+   ```bash
+   yarn perf-tracker generate --platform ios --ios-package com.example.app
+   ```
+
+  -  `--outputPath <path>:`
+   Specify the output path where the generated performance reports will be saved. This is optional. By default, reports are saved to ./generated-perf-reports.
+   Example:
 
   ```bash
-  npx generate:report
-  ```
-2. Select the platform:
+    yarn perf-tracker generate --outputPath ./custom-reports
+  ``` 
+  - `--port <port>`:
+  Specify the port for the visualization dashboard (default: 8080). If you want to change the port for serving the dashboard, you can use this option.
+   Example:
 
- Choose **Android** or **iOS** based on your preference.
-For **iOS**, provide the package name when prompted. This is required to access the data folder for the app.
-
-3. The script will create a folder named `generated-perf-reports` at the root of the directory where this script is run. Ensure you execute this command at the project root.
-
-4. Inside the `generated-perf-reports` folder, a `log.json` file will be created containing the performance data.
-
-## 📊 Visualisation
-
-To visualize the retrieved performance data:
-
-1. Run the visualization script:
-
-  ```bash
-  npx visualize:report
+   ```bash
+   npx perf-tracker visualize --port 3000
   ```
 
-2. Open the following URL in your browser to access the server and visualize the data:
+2. **Configuration File `(perf-tracker.config.js)`**
 
-  - http://localhost:8080
+ Alternatively, you can create a perf-tracker.config.js file at the root of your project to define default values for the above options. This file allows you to centralize the configuration for the CLI tool and avoid repeatedly specifying options via the command line.
+
+ Example of a `perf-tracker.config.js`:
+
+ ```js
+// perf-tracker.config.js
+module.exports = {
+  platform: 'android',               // Default platform (android or ios)
+  iosPackage: '',                    // Specify your iOS package name if required
+  outputPath: './generated-perf-reports', // Default path for the generated reports
+  port: 8080,                        // Default port for the visualization dashboard
+};
+ ```
+
+ With this configuration file in place, you don’t need to specify these options every time you run a command. However, if you pass any of the options through the CLI, they will override the values in the configuration file.
+
+## How to Use the Perf-Tracker CLI Tool
+
+1. **Generate Performance Reports**
+
+ To generate performance reports for your app, use the `generate` command. You can specify the platform (Android or iOS), the iOS package name (for iOS), and the output path for the generated reports.
+
+ **Example command to generate a report for Android:**
+
+ ```bash
+ yarn perf-tracker generate --platform android
+ ```
+ **Example command to generate a report for iOS:**
+
+ ```bash
+ yarn perf-tracker generate --platform ios --ios-package com.example.app
+ ```
+
+2. **Visualize the Performance Data**
+
+ After generating the reports, you can `visualize` the performance data using the visualize command. This will start a local server to display the performance data in a dashboard.
+
+ **Example command to start the visualization server:**
+
+ ```bash
+ yarn perf-tracker visualize
+ ```
+
+ By default, the server runs on port 8080, but you can specify a different port using the --port argument:
+
+  **Example command to start the server on a different port:**
+
+ ```bash
+ yarn perf-tracker visualize --port 3000
+ ```
+ Once the server is running, open your browser and go to http://localhost:8080 (or the specified port) to view the performance dashboard.
 
 ## How to Access the Visualization Dashboard?
 
