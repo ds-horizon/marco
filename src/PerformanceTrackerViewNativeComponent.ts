@@ -16,7 +16,7 @@ export interface NativeProps extends ViewProps {
   isEnabled?: boolean;
   eventTimeStamp?: Double;
   meta?: {};
-  onDrawEnd?: DirectEventHandler<FinishEventType>;
+  onTrackingEnd?: DirectEventHandler<FinishEventType>;
 }
 
 export default codegenNativeComponent<NativeProps>('PerformanceTrackerView');

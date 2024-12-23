@@ -43,7 +43,7 @@ const ItemCard = ({ index }: ItemProps) => {
       isEnabled={isEnabled}
       tagName={`Item-${index}`}
       style={styles.tracker}
-      onDrawEnd={({ nativeEvent }) => {
+      onTrackingEnd={({ nativeEvent }) => {
         setEndMarkers({
           drawTime: nativeEvent.drawTime.toString(),
           renderTime: nativeEvent.renderTime.toString(),
@@ -81,7 +81,9 @@ export default function App() {
 
   useEffect(() => {
     // Set Mount as T0 marker
-    PerformanceTracker.track('Screen_Mount', Date.now());
+    PerformanceTracker.track('Screen_Mount', Date.now(), {
+      additonal_data: 45,
+    });
   }, []);
 
   return (

@@ -46,7 +46,7 @@ class PerformanceTrackerViewManager : ViewGroupManager<PerformanceTrackerView>()
         val eventTypeConstants: MutableMap<String, Any> = baseEventTypeConstants?.toMutableMap()
             ?: mutableMapOf()
         eventTypeConstants[DrawEndEvent.EVENT_NAME] =
-            mutableMapOf("registrationName" to "onDrawEnd")
+            mutableMapOf("registrationName" to "onTrackingEnd")
 
         return eventTypeConstants
     }

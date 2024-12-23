@@ -32,7 +32,7 @@ const MyScreen = () => {
     <PerformanceTracker
       tagName="MyScreen"
       isEnabled={true}
-      onDrawEnd={(event) => {
+      onTrackingEnd={(event) => {
         console.log('Draw Time:', event.nativeEvent.drawTime);
         console.log('Render Time:', event.nativeEvent.renderTime);
         // Logs the time difference between the start marker and draw time. 
@@ -169,11 +169,11 @@ The visualization dashboard allows you to analyze and interpret performance data
 | `tagName`       | Unique tag for identifying the tracked component.           | `string`                       | `required` | Yes      |
 | `isEnabled`     | Enables or disables performance tracking.                  | `boolean`                      | `true`     | No       |
 | `eventTimeStamp`| Timestamp when the event is triggered.                     | `number`                       | `Date.now()` | No      |
-| `onDrawEnd`     | Callback when the screen has finished rendering.           | `DirectEventHandler<FinishEventType>` | `undefined` | No       |
+| `onTrackingEnd`     | Callback when the screen has finished rendering.           | `DirectEventHandler<FinishEventType>` | `undefined` | No       |
 
 ---
 
-### **Event Object (`onDrawEnd` Callback)**
+### **Event Object (`onTrackingEnd` Callback)**
 
 | Key          | Description                                                  | Type     |
 |--------------|--------------------------------------------------------------|----------|

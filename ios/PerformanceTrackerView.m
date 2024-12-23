@@ -48,8 +48,8 @@
             
             // Calculate render time
             double renderTime = currentTime - self.eventTimeStamp;
-            if (self.onDrawEnd) {
-                self.onDrawEnd(@{
+            if (self.onTrackingEnd) {
+                self.onTrackingEnd(@{
                     @"drawTime": @(currentTime),
                     @"renderTime": @(renderTime),
                     @"tagName": self->_tagName

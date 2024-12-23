@@ -63,7 +63,7 @@ using namespace facebook::react;
             // Calculate render time
             double renderTime = currentTime - self.eventTimeStamp;
             
-            std::dynamic_pointer_cast<PerformanceTrackerViewEventEmitter const>(self->_eventEmitter)->onDrawEnd({
+            std::dynamic_pointer_cast<PerformanceTrackerViewEventEmitter const>(self->_eventEmitter)->onTrackingEnd({
                 .drawTime = currentTime,
                 .renderTime = renderTime,
                 .tagName = std::string([self.tagName UTF8String])
