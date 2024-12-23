@@ -28,6 +28,6 @@ class DrawEndEvent(viewTag: Int, private val tagName: String, private  val drawT
     }
 
     companion object {
-        const val EVENT_NAME = "onDrawEnd"
+        const val EVENT_NAME = "onTrackingEnd"
     }
 }

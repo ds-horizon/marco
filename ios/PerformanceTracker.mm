@@ -11,11 +11,19 @@ RCT_EXPORT_MODULE()
     return self;
 }
 
-RCT_EXPORT_METHOD(track:(NSString *)tag time:(double)time)
+#ifdef RCT_NEW_ARCH_ENABLED
+RCT_EXPORT_METHOD(track:(NSString *)tag time:(double)time meta:(JS::NativePerformanceTracker::SpecTrackMeta &)meta)
 {
     [[PerformanceTrackerStore sharedInstance] addEventWithTagName:tag timestamp:time];
     [[PerformanceTrackerWriter sharedInstance] writeLogsWithTag: tag time: time];
 }
+#else
+RCT_EXPORT_METHOD(track:(NSString *)tag time:(double)time meta:(NSDictionary *)meta)
+{
+    [[PerformanceTrackerStore sharedInstance] addEventWithTagName:tag timestamp:time];
+    [[PerformanceTrackerWriter sharedInstance] writeLogsWithTag: tag time: time];
+}
+#endif
 
 // Reset all logged events
 #ifdef RCT_NEW_ARCH_ENABLED
@@ -23,6 +31,7 @@ RCT_EXPORT_METHOD(resetLogs: (JS::NativePerformanceTracker::ResetOptions &)optio
 {
     [[PerformanceTrackerWriter sharedInstance] setShouldClearFiles: options.clearFiles()];
     [[PerformanceTrackerStore sharedInstance] clearEvents];
+    [[PerformanceTrackerWriter sharedInstance] clearLogs];
 }
 #else
 RCT_EXPORT_METHOD(resetLogs:(NSDictionary *)options) {
@@ -31,6 +40,8 @@ RCT_EXPORT_METHOD(resetLogs:(NSDictionary *)options) {
     BOOL shouldClearFiles = [shouldClearFilesValue boolValue];
     
     [[PerformanceTrackerWriter sharedInstance] setShouldClearFiles:shouldClearFiles];
+    [[PerformanceTrackerStore sharedInstance] clearEvents];
+    [[PerformanceTrackerWriter sharedInstance] clearLogs];
 }
 #endif
 

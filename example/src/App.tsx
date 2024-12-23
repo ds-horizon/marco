@@ -27,12 +27,23 @@ const ItemCard = ({ index }: ItemProps) => {
   });
 
   const isEnabled = index === 0 || index === 1;
+  const meta = {
+    name: `Card ${index}`,
+    screen_name: 'Home',
+    sports: ['cricket', 'football'],
+    user: {
+      name: 'random_name',
+      lastname: 'random',
+      origin: 'dreams',
+    },
+  };
   return (
     <PerformanceTracker
+      meta={meta}
       isEnabled={isEnabled}
       tagName={`Item-${index}`}
       style={styles.tracker}
-      onDrawEnd={({ nativeEvent }) => {
+      onTrackingEnd={({ nativeEvent }) => {
         setEndMarkers({
           drawTime: nativeEvent.drawTime.toString(),
           renderTime: nativeEvent.renderTime.toString(),
@@ -65,12 +76,14 @@ export default function App() {
   };
 
   const resetEvents = async () => {
-    PerformanceTracker.resetLogs();
+    PerformanceTracker.resetLogs({ clearFiles: true });
   };
 
   useEffect(() => {
     // Set Mount as T0 marker
-    PerformanceTracker.track('Screen_Mount', Date.now());
+    PerformanceTracker.track('Screen_Mount', Date.now(), {
+      additonal_data: 45,
+    });
   }, []);
 
   return (
@@ -79,6 +92,12 @@ export default function App() {
       <View style={styles.box}>
         <Button title="Get All Events" onPress={getLogsFromNative} />
         <Button title="Reset" onPress={resetEvents} />
+        <Button
+          title="Add logs"
+          onPress={() => {
+            PerformanceTracker.track(`Random_${Math.random()}`, Date.now());
+          }}
+        />
         <View style={styles.listContainer}>
           <FlatList
             initialNumToRender={10}

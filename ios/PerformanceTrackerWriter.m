@@ -13,14 +13,14 @@
     return sharedInstance;
 }
 
-- (void)writeLogsWithTag:(NSString *)tag time:(double) time {
+- (void)writeLogsWithTag:(NSString *)tag time:(double)time {
     if (!self.persistToFile) {
         return;
     }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         @try {
             NSString *folderName = @"PerformanceTracker";
-            NSString *fileName = @"log.txt";
+            NSString *fileName = @"log.json";
             
             // Get the Documents directory path
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -28,6 +28,7 @@
             
             // Create folder path
             NSString *folderPath = [documentsDirectory stringByAppendingPathComponent:folderName];
+            
             NSError *folderError = nil;
             
             // Create folder if it doesn't exist
@@ -45,30 +46,72 @@
             // Create file path
             NSString *filePath = [folderPath stringByAppendingPathComponent:fileName];
             
-            // Log entry
-            NSString *logEntry = [NSString stringWithFormat:@"%@,%lf\n", tag, time];
-            
-            // Append to file
-            NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:filePath];
-            if (fileHandle) {
-                [fileHandle seekToEndOfFile];
-                [fileHandle writeData:[logEntry dataUsingEncoding:NSUTF8StringEncoding]];
-                [fileHandle closeFile];
-            } else {
-                // File doesn't exist, create and write
-                NSError *fileError = nil;
-                BOOL success = [logEntry writeToFile:filePath
-                                          atomically:YES
-                                            encoding:NSUTF8StringEncoding
-                                               error:&fileError];
-                if (!success) {
-                    NSLog(@"Error writing log file: %@", fileError.localizedDescription);
+            // Read existing logs
+            NSMutableArray *logsArray = [NSMutableArray array];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+                NSData *data = [NSData dataWithContentsOfFile:filePath];
+                if (data) {
+                    NSArray *existingLogs = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                    if (existingLogs) {
+                        [logsArray addObjectsFromArray:existingLogs];
+                    }
                 }
+            }
+            
+            // Add new log entry
+            NSDictionary *logEntry = @{
+                @"tagName": tag,
+                @"timestamp": @(time)
+            };
+            [logsArray addObject:logEntry];
+            
+            // Write updated logs back to file
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:logsArray options:NSJSONWritingPrettyPrinted error:nil];
+            BOOL success = [jsonData writeToFile:filePath atomically:YES];
+            if (success) {
+                NSLog(@"Log written successfully.");
+            } else {
+                NSLog(@"Failed to write log file.");
             }
         } @catch (NSException *exception) {
             NSLog(@"Exception in logging: %@", exception.reason);
         }
     });
 }
+
+- (void)clearLogs {
+    if (self.persistToFile && self.shouldClearFiles) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            @try {
+                NSString *folderName = @"PerformanceTracker";
+                NSString *fileName = @"log.json";
+                
+                // Get the Documents directory path
+                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                NSString *documentsDirectory = [paths firstObject];
+                
+                // Create folder path
+                NSString *folderPath = [documentsDirectory stringByAppendingPathComponent:folderName];
+                NSString *filePath = [folderPath stringByAppendingPathComponent:fileName];
+                
+                NSLog(@"Clearing logs at: %@", filePath);
+                
+                // Write empty JSON array to the file
+                NSArray *emptyArray = @[];
+                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:emptyArray options:NSJSONWritingPrettyPrinted error:nil];
+                BOOL success = [jsonData writeToFile:filePath atomically:YES];
+                
+                if (success) {
+                    NSLog(@"Log file cleared successfully.");
+                } else {
+                    NSLog(@"Failed to clear log file.");
+                }
+            } @catch (NSException *exception) {
+                NSLog(@"Exception while clearing logs: %@", exception.reason);
+            }
+        });
+    }
+}
+
 
 @end

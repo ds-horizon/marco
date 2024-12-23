@@ -3,6 +3,7 @@
 @interface PerformanceTrackerWriter : NSObject
 
 - (void)writeLogsWithTag:(NSString *)tag time:(double)time;
+- (void)clearLogs;
 
 + (instancetype)sharedInstance;
 

@@ -1,5 +1,6 @@
 package com.performancetracker
 
+import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.module.annotations.ReactModule
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.ViewGroupManager
@@ -34,13 +35,18 @@ class PerformanceTrackerViewManager : ViewGroupManager<PerformanceTrackerView>()
         performanceTrackerViewImpl.setEventTimeStamp(view, value)
     }
 
+    @ReactProp(name = "meta")
+    fun setMeta(view: PerformanceTrackerView, value: ReadableMap?) {
+        performanceTrackerViewImpl.setMeta(view, value)
+    }
+
     override fun getExportedCustomDirectEventTypeConstants(): MutableMap<String, Any>? {
         val baseEventTypeConstants: Map<String, Any>? =
             super.getExportedCustomDirectEventTypeConstants()
         val eventTypeConstants: MutableMap<String, Any> = baseEventTypeConstants?.toMutableMap()
             ?: mutableMapOf()
         eventTypeConstants[DrawEndEvent.EVENT_NAME] =
-            mutableMapOf("registrationName" to "onDrawEnd")
+            mutableMapOf("registrationName" to "onTrackingEnd")
 
         return eventTypeConstants
     }

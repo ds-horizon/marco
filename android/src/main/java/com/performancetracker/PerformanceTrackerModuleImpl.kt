@@ -1,5 +1,6 @@
 package com.performancetracker
 
+import PerformanceTrackerWriter
 import android.content.Context
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReadableMap
@@ -12,9 +13,9 @@ class PerformanceTrackerModuleImpl {
         return NAME
     }
 
-    fun track(tag: String, time: Double, context: Context) {
-        PerformanceTrackerStore.addEvent(tag, time)
-        PerformanceTrackerWriter.writeLogsInFile(tag, time.toLong().toString(), context)
+    fun track(tag: String, time: Double, context: Context, meta: ReadableMap?) {
+        PerformanceTrackerStore.addEvent(tag, time, meta)
+        PerformanceTrackerWriter.writeLogsInFile(tag, time.toLong().toString(), meta, context)
     }
 
     fun getLogs(promise: Promise) {
@@ -27,7 +28,9 @@ class PerformanceTrackerModuleImpl {
             // Adding tagName and timestamp to the map
             writableMap.putString("tagName", event["tagName"] as String)
             writableMap.putDouble("timestamp", event["timestamp"] as Double)
-
+            if (event["meta"] != null) {
+                writableMap.putMap("meta", event["meta"] as ReadableMap?)
+            }
             // Add this map to the writable array
             writableArray.pushMap(writableMap)
         }
@@ -36,11 +39,11 @@ class PerformanceTrackerModuleImpl {
         promise.resolve(writableArray)
     }
 
-    fun resetLogs(config: ReadableMap?) {
+    fun resetLogs(config: ReadableMap?, context: Context) {
         val shouldClearFiles = config?.getBoolean("clearFiles") ?: false
-        // TODO Clear file data as well
         PerformanceTrackerWriter.shouldClearFiles = shouldClearFiles;
         PerformanceTrackerStore.clear()
+        PerformanceTrackerWriter.clearLogFile(context)
     }
 
     fun configure(config: ReadableMap?) {

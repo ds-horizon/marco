@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *tagName;
 @property (nonatomic, assign) BOOL isEnabled;
 @property (nonatomic, assign) double eventTimeStamp;
-@property (nonatomic, copy, nullable) void (^onDrawEnd)(NSDictionary *eventData);
+@property (nonatomic, copy, nullable) void (^onTrackingEnd)(NSDictionary *eventData);
 @end
 
 NS_ASSUME_NONNULL_END
@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_END
 @property (nonatomic, copy) NSString *tagName;
 @property (nonatomic, assign) BOOL isEnabled;
 @property (nonatomic, assign) double eventTimeStamp;
-@property (nonatomic, copy, nullable) void (^onDrawEnd)(NSDictionary *eventData);
+@property (nonatomic, copy, nullable) void (^onTrackingEnd)(NSDictionary *eventData);
 @end
 
 #endif

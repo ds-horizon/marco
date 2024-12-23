@@ -12,11 +12,10 @@ module.exports = function generateReport(
   const outputPath = path.resolve(appRoot, outputPathDir);
   const adbFilePath =
     platform === 'android'
-      ? '/sdcard/Documents/PerformanceTracker/log.txt'
+      ? '/sdcard/Documents/PerformanceTracker/log.json'
       : `xcrun simctl get_app_container booted ${iosPackage} data`;
 
   getReport(adbFilePath);
-  convertTxtToJson(`${outputPath}/log.txt`, `${outputPath}/log.json`);
 
   function getReport(filePath) {
     try {
@@ -41,7 +40,7 @@ module.exports = function generateReport(
         execSync(`adb pull ${filePath} ${outputPath}`, { stdio: 'inherit' });
       } else {
         execSync(
-          `cp ${result.trim()}/Documents/PerformanceTracker/log.txt ${outputPath}`,
+          `cp ${result.trim()}/Documents/PerformanceTracker/log.json ${outputPath}`,
           { stdio: 'inherit' }
         );
       }
@@ -52,34 +51,6 @@ module.exports = function generateReport(
         error.message
       );
       process.exit(1);
-    }
-  }
-
-  function convertTxtToJson(txtFilePath, jsonFilePath) {
-    try {
-      console.log(`[INFO] Converting ${txtFilePath} to JSON...`);
-      const data = fs.readFileSync(txtFilePath, 'utf8');
-
-      const jsonArray = data
-        .trim()
-        .split('\n')
-        .map((line) => {
-          const [tagName, timestamp] = line.split(',');
-          return {
-            tagName,
-            timestamp: Number(timestamp),
-          };
-        });
-
-      fs.writeFileSync(
-        jsonFilePath,
-        JSON.stringify(jsonArray, null, 2),
-        'utf8'
-      );
-      fs.unlinkSync(txtFilePath);
-      console.log(`[SUCCESS] Converted JSON saved at ${jsonFilePath}`);
-    } catch (error) {
-      console.error(`[ERROR] Error converting .txt to JSON:`, error.message);
     }
   }
 };

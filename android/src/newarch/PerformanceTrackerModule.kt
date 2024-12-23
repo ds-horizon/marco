@@ -16,8 +16,8 @@ class PerformanceTrackerModule internal constructor(val context: ReactApplicatio
     }
 
     @ReactMethod
-    override fun track(tag: String, time: Double) {
-        performanceTrackerModuleImpl.track(tag, time, context)
+    override fun track(tag: String, time: Double, meta: ReadableMap?) {
+        performanceTrackerModuleImpl.track(tag, time, context, meta)
     }
 
     @ReactMethod
@@ -34,6 +34,6 @@ class PerformanceTrackerModule internal constructor(val context: ReactApplicatio
 
     @ReactMethod
     override fun resetLogs(config: ReadableMap?) {
-        performanceTrackerModuleImpl.resetLogs(config)
+        performanceTrackerModuleImpl.resetLogs(config, context)
     }
 }
