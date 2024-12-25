@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { EmptyPage } from './EmptyPage';
 import VisualizePage from './VisualizePage';
 import type { IData } from '../App.interface';
-import TimelineSelector from './TimeLineSelector';
+import TimeLineSelector from './TimelineSelector';
 
 const Home: React.FC = () => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -32,7 +32,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200">
-      <TimelineSelector
+      <TimeLineSelector
         data={data}
         selectedTags={selectedTags}
         setSelectedTags={setSelectedTags}

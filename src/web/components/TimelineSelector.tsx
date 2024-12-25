@@ -9,7 +9,7 @@ interface TimelineSelectorProps {
   setSelectedTags: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const TimelineSelector: React.FC<TimelineSelectorProps> = ({
+const TimeLineSelector: React.FC<TimelineSelectorProps> = ({
   data,
   selectedTags,
   setSelectedTags,
@@ -214,4 +214,4 @@ const TimelineSelector: React.FC<TimelineSelectorProps> = ({
   );
 };
 
-export default TimelineSelector;
+export default TimeLineSelector;
