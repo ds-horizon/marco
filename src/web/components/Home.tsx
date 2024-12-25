@@ -1,14 +1,52 @@
-import React from 'react';
-import PerformanceForm from './PerformanceForm';
+import React, { useEffect, useState } from 'react';
+import { EmptyPage } from './EmptyPage';
+import VisualizePage from './VisualizePage';
+import type { IData } from '../App.interface';
+import TimelineSelector from './TimeLineSelector';
 
 const Home: React.FC = () => {
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [data, setData] = useState<IData[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch('http://localhost:8080/api/log');
+        const data = await res.json();
+        // const data = require('../../../generated-perf-reports/log.json');
+        setData(data);
+      } catch (_) {
+        setData([]);
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    console.log(selectedTags);
+  }, [selectedTags]);
+
+  if (data.length === 0) {
+    return <></>;
+  }
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-gray-100">
-      <h1 className="text-4xl font-bold mb-8 text-center">
-        React Native Performance Tracker
-      </h1>
-      <PerformanceForm />
-    </main>
+    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200">
+      <TimelineSelector
+        data={data}
+        selectedTags={selectedTags}
+        setSelectedTags={setSelectedTags}
+      />
+      {selectedTags.length === 2 ? (
+        <VisualizePage
+          data={data ?? []}
+          startMarker={selectedTags[0] ?? ''}
+          endMarker={selectedTags[1] ?? ''}
+        />
+      ) : (
+        <EmptyPage />
+      )}
+    </div>
   );
 };
 

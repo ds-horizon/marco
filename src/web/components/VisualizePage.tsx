@@ -1,25 +1,28 @@
 import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
 import PerformanceVisualization from './PerformanceVisualization';
+import type { IData } from '../App.interface';
 
-const VisualizePage: React.FC = () => {
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const start = searchParams.get('start') || '';
-  const end = searchParams.get('end') || '';
+interface VisualizationPageProps {
+  startMarker: string;
+  endMarker: string;
+  data: IData[];
+}
 
+const VisualizePage: React.FC<VisualizationPageProps> = ({
+  startMarker,
+  endMarker,
+  data,
+}) => {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-gray-100">
       <h1 className="text-4xl font-bold mb-8 text-center">
         Performance Visualization
       </h1>
-      <PerformanceVisualization startMarker={start} endMarker={end} />
-      <Link
-        to="/"
-        className="mt-8 text-blue-500 hover:text-blue-700 font-semibold"
-      >
-        Back to Form
-      </Link>
+      <PerformanceVisualization
+        startMarker={startMarker}
+        endMarker={endMarker}
+        data={data}
+      />
     </main>
   );
 };

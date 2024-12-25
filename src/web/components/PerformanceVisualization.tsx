@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import {
   LineChart,
@@ -11,19 +11,14 @@ import {
   ResponsiveContainer,
   ReferenceDot,
 } from 'recharts';
-import { calculateDifferences, calculateMetrics } from '../App.utility';
-import { type PerformanceData } from '../App.interface';
+import { calculateDifferences, calculateStats } from '../App.utility';
+import { type IData, type PerformanceData } from '../App.interface';
 import FallbackPage from './FallbackPage';
-
-interface PerformanceStats {
-  mean: number;
-  standardDeviation: string;
-  errorRate: string;
-}
 
 interface PerformanceVisualizationProps {
   startMarker: string;
   endMarker: string;
+  data: IData[];
 }
 
 const CustomTooltip: React.FC<any> = ({ active, payload, label }) => {
@@ -44,40 +39,20 @@ const CustomTooltip: React.FC<any> = ({ active, payload, label }) => {
 const PerformanceVisualization: React.FC<PerformanceVisualizationProps> = ({
   startMarker,
   endMarker,
+  data: rawData,
 }) => {
-  const [data, setData] = useState<PerformanceData[]>([]);
-  const [stats, setStats] = useState<PerformanceStats>({
-    mean: 0,
-    standardDeviation: '0',
-    errorRate: '0',
-  });
   const [selectedPoint, setSelectedPoint] = useState<number | null>(null);
 
-  useEffect(() => {
-    // Simulating data fetching based on start and end markers
-    const fetchData = async () => {
-      const res = await fetch('http://localhost:8080/api/log');
-      const data = await res.json();
-      const simulatedData: PerformanceData[] = calculateDifferences(
-        data,
-        startMarker,
-        endMarker
-      );
+  const data: PerformanceData[] = calculateDifferences(
+    rawData,
+    startMarker,
+    endMarker
+  );
 
-      setData(simulatedData);
-
-      // Calculate statistics
-      const mean =
-        simulatedData.reduce((sum, item) => sum + item.duration, 0) /
-        simulatedData.length;
-
-      const { std, errorRate } = calculateMetrics(simulatedData, mean);
-
-      setStats({ mean, standardDeviation: std, errorRate });
-    };
-
-    fetchData();
-  }, [startMarker, endMarker]);
+  const { mean, standardDeviation, errorRate } = useMemo(
+    () => calculateStats(data),
+    [data]
+  );
 
   const handleClick = (point: any) => {
     if (point && point.activePayload && point.activePayload.length > 0) {
@@ -102,7 +77,7 @@ const PerformanceVisualization: React.FC<PerformanceVisualizationProps> = ({
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold text-blue-900">
-              {stats.mean.toFixed(2)} ms
+              {mean.toFixed(2)} ms
             </p>
           </CardContent>
         </Card>
@@ -114,7 +89,7 @@ const PerformanceVisualization: React.FC<PerformanceVisualizationProps> = ({
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold text-green-900">
-              {stats.standardDeviation} ms
+              {standardDeviation} ms
             </p>
           </CardContent>
         </Card>
@@ -125,9 +100,7 @@ const PerformanceVisualization: React.FC<PerformanceVisualizationProps> = ({
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold text-red-900">
-              {stats.errorRate}%
-            </p>
+            <p className="text-2xl font-bold text-red-900">{errorRate}%</p>
           </CardContent>
         </Card>
       </div>

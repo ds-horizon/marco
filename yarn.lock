@@ -8036,6 +8036,7 @@ __metadata:
     express: ^4.21.2
     html-webpack-plugin: ^5.6.3
     jest: ^29.7.0
+    lucide-react: ^0.469.0
     postcss-loader: ^8.1.1
     prettier: ^3.0.3
     react: 19.0.0
@@ -13119,6 +13120,15 @@ __metadata:
   version: 7.18.3
   resolution: "lru-cache@npm:7.18.3"
   checksum: e550d772384709deea3f141af34b6d4fa392e2e418c1498c078de0ee63670f1f46f5eee746e8ef7e69e1c895af0d4224e62ee33e66a543a14763b0f2e74c1356
+  languageName: node
+  linkType: hard
+
+"lucide-react@npm:^0.469.0":
+  version: 0.469.0
+  resolution: "lucide-react@npm:0.469.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 7b43b56abc00f9be929c479e575ef7ae724bd7b861e2d5f0015764c5c4cc284cf2b90e28bc0eddc41008bac7255bb82d4ba36ce17992603dbc18a87da4b157bf
   languageName: node
   linkType: hard
 

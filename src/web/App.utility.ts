@@ -1,11 +1,6 @@
-import { type PerformanceData } from './App.interface';
+import { type IData, type PerformanceData } from './App.interface';
 
-type RawDataType = {
-  tagName: string;
-  timestamp: number;
-}[];
-
-export const getAutoSuggestionMarkers = (rawData: RawDataType): string[] => {
+export const getAutoSuggestionMarkers = (rawData: IData[]): string[] => {
   const uniqueMarkers = new Set<string>();
   rawData.forEach((data) => {
     uniqueMarkers.add(data.tagName);
@@ -46,7 +41,7 @@ export function calculateMetrics(differences: PerformanceData[], mean: number) {
 }
 
 export const calculateDifferences = (
-  data: RawDataType,
+  data: IData[],
   startTag: string,
   endTag: string
 ): PerformanceData[] => {
@@ -86,4 +81,15 @@ export const calculateDifferences = (
     }
   }
   return differences;
+};
+
+export const calculateStats = (simulatedData: PerformanceData[]) => {
+  // Calculate statistics
+  const mean =
+    simulatedData.reduce((sum, item) => sum + item.duration, 0) /
+    simulatedData.length;
+
+  const { std, errorRate } = calculateMetrics(simulatedData, mean);
+
+  return { mean, standardDeviation: std, errorRate };
 };
