@@ -4,3 +4,8 @@ export interface PerformanceData {
   endMarker: string;
   duration: number;
 }
+
+export interface IData {
+  tagName: string;
+  timestamp: number;
+}
