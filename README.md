@@ -32,7 +32,7 @@ const MyScreen = () => {
     <PerformanceTracker
       tagName="MyScreen"
       isEnabled={true}
-      meta={{ data: 'meta_data' }} // Optional metadata (Android only)
+      meta={{ data: 'meta_data' }}
       onTrackingEnd={(event) => {
         console.log('Draw Time:', event.nativeEvent.drawTime);
         console.log('Render Time:', event.nativeEvent.renderTime);
@@ -45,7 +45,7 @@ const MyScreen = () => {
 
 ```
 
-  The `meta` parameter must be a `serializable` object
+  The `meta` parameter must be an object with key-value pairs, where both the `key` and `value` are strings.
 
 ### 2. **Send Custom Markers**
 
@@ -55,11 +55,11 @@ Send custom performance markers at any point in your app:
 // Without metadata
 PerformanceTracker.track('start_event', Date.now());
 
-// With metadata (Android only)
+// With metadata
 PerformanceTracker.track('start_event', Date.now(), { data: 'meta_data' });
 ```
 
-   The `meta` parameter must be a `serializable` object
+  The `meta` parameter must be an object with key-value pairs, where both the `key` and `value` are strings.
 
 ### 3. **Retrieve Logs**
 Retrieve performance logs asynchronously:
@@ -233,6 +233,7 @@ The visualization dashboard allows you to analyze and interpret performance data
 | `getLogs`      | Retrieves all performance logs asynchronously.               | None                                                   | `Promise<Record<string, any>>` |
 | `resetLogs`    | Clears all performance logs.                                  | None                                                   | `void`                       |
 | `configure`         | Initializes the tracker with optional configuration.         | `config?: InitConfig`                                  | `void`                       |
+| `meta`     | Additional data to be passed.           | `{[key: string]: string}` | `undefined` | No       |
 
 ---
 
@@ -244,6 +245,7 @@ The visualization dashboard allows you to analyze and interpret performance data
 | `isEnabled`     | Enables or disables performance tracking.                  | `boolean`                      | `true`     | No       |
 | `eventTimeStamp`| Timestamp when the event is triggered.                     | `number`                       | `Date.now()` | No      |
 | `onTrackingEnd`     | Callback when the screen has finished rendering.           | `DirectEventHandler<FinishEventType>` | `undefined` | No       |
+| `meta`     | Additional data to be passed.           | `{[key: string]: string}` | `undefined` | No       |
 
 ---
 
