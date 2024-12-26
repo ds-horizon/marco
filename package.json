@@ -1,6 +1,6 @@
 {
   "name": "dream11-react-native-performance-tracker",
-  "version": "0.39.0",
+  "version": "0.43.0",
   "description": "Benchmark React Native View Paint Time",
   "source": "./src/index.tsx",
   "main": "./src/index.tsx",
@@ -85,6 +85,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "express": "^4.21.2",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.6.3",
     "jest": "^29.7.0",
     "lucide-react": "^0.469.0",

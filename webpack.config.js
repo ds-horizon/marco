@@ -1,5 +1,4 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.web.tsx', // Entry point for the application
@@ -20,6 +19,14 @@ module.exports = {
       {
         test: /\.css$/, // Match .css files
         use: ['style-loader', 'css-loader', 'postcss-loader'], // Apply loaders
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
       },
     ],
   },

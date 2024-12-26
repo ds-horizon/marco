@@ -1,13 +1,34 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import type { IData } from '../App.interface';
 import { getAutoSuggestionMarkers } from '../App.utility';
+import Logo from '../assets/logo.png';
 
 interface TimelineSelectorProps {
   data: IData[];
   selectedTags: string[];
   setSelectedTags: React.Dispatch<React.SetStateAction<string[]>>;
 }
+
+const Header = () => {
+  return (
+    <div className="container ml-6 pt-2">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center">
+          <img
+            src={Logo}
+            alt="React Native Performance Tracker Icon"
+            className="w-10 h-10 mr-2"
+          />
+          <h1 className="text-xl font-bold text-red-800">
+            React Native{' '}
+            <span className="text-red-800">Performance Tracker</span>
+          </h1>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const TimeLineSelector: React.FC<TimelineSelectorProps> = ({
   data,
@@ -104,6 +125,8 @@ const TimeLineSelector: React.FC<TimelineSelectorProps> = ({
 
   return (
     <div className="sticky top-0 z-50 w-full bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg">
+      <Header />
+
       <div className="max-w-full mx-auto px-4 py-3">
         <div className="flex items-center">
           <button
@@ -111,7 +134,7 @@ const TimeLineSelector: React.FC<TimelineSelectorProps> = ({
             className={`p-2 rounded-full text-white ${canScrollLeft ? 'hover:bg-white hover:bg-opacity-20' : 'opacity-50 cursor-not-allowed'}`}
             disabled={!canScrollLeft}
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft size={36} />
           </button>
           <div className="relative flex-grow overflow-hidden">
             <div
@@ -169,6 +192,15 @@ const TimeLineSelector: React.FC<TimelineSelectorProps> = ({
                         className={`transition-all duration-300 ${disabled ? 'cursor-not-allowed' : 'cursor-pointer hover:r-16'}`}
                         onClick={() => !disabled && handleTagClick(tag)}
                       />
+                      {isSelected && (
+                        <Check
+                          size={16}
+                          x={xPosition - 8}
+                          y={52}
+                          color="white"
+                          className="pointer-events-none"
+                        />
+                      )}
                       <text
                         x={xPosition}
                         y={isEven ? 40 : 90}
@@ -195,7 +227,7 @@ const TimeLineSelector: React.FC<TimelineSelectorProps> = ({
             className={`p-2 rounded-full text-white ${canScrollRight ? 'hover:bg-white hover:bg-opacity-20' : 'opacity-50 cursor-not-allowed'}`}
             disabled={!canScrollRight}
           >
-            <ChevronRight size={24} />
+            <ChevronRight size={36} />
           </button>
           <button
             onClick={() => setSelectedTags([])}

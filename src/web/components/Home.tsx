@@ -46,6 +46,17 @@ const Home: React.FC = () => {
       ) : (
         <EmptyPage />
       )}
+      <div className="fixed bottom-4 right-4 text-sm text-gray-600">
+        Powered by{' '}
+        <a
+          href="https://github.com/dream-sports-labs"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 hover:underline"
+        >
+          DreamSportsLabs
+        </a>
+      </div>
     </div>
   );
 };

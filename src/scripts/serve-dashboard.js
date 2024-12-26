@@ -61,6 +61,25 @@ module.exports = function serveDashboard(port, outputPathDir) {
         res.writeHead(200, { 'Content-Type': 'application/javascript' });
         res.end(data);
       });
+    } else if (req.url.match(/\.(png|jpe?g|gif)$/i)) {
+      const imagePath = path.join(folderPath, req.url);
+      fs.readFile(imagePath, (err, data) => {
+        if (err) {
+          console.error('Error reading image:', err);
+          res.writeHead(404, { 'Content-Type': 'text/plain' });
+          res.end('Not Found');
+          return;
+        }
+        const extname = path.extname(imagePath);
+        let contentType = 'image/jpeg';
+        if (extname === '.png') {
+          contentType = 'image/png';
+        } else if (extname === '.gif') {
+          contentType = 'image/gif';
+        }
+        res.writeHead(200, { 'Content-Type': contentType });
+        res.end(data);
+      });
     } else {
       // Serve 404 for other routes
       res.writeHead(404, { 'Content-Type': 'text/plain' });
