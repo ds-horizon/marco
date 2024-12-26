@@ -1,0 +1,14 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "always",
+    },
+    "editor.codeActions.triggerOnFocusChange": false,
+
+    // Linters enabled
+    "eslint.enable": true,
+    "prettier.enable": true,
+    "prettier.useEditorConfig": true,
+}

@@ -3,12 +3,12 @@ pre-commit:
   commands:
     lint:
       glob: "*.{js,ts,jsx,tsx}"
-      run: npx eslint {staged_files}
+      run: node_modules/.bin/eslint {staged_files}
     types:
-      glob: "*.{js,ts, jsx, tsx}"
-      run: npx tsc
+      glob: "*.{ts,tsx}"
+      run: node_modules/.bin/tsc -p .
 commit-msg:
   parallel: true
   commands:
     commitlint:
-      run: npx commitlint --edit
+      run: node_modules/.bin/commitlint --edit

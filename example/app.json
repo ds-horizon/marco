@@ -1,4 +1,9 @@
 {
-  "name": "PerformanceTrackerExample",
-  "displayName": "PerformanceTrackerExample"
+  "name": "Performance Tracker Example",
+  "android": {
+    "package": "performancetracker.example"
+  },
+  "ios": {
+    "bundleIdentifier": "performancetracker.example"
+  }
 }
