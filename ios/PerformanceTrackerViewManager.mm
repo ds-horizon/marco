@@ -18,6 +18,11 @@ RCT_EXPORT_MODULE(PerformanceTrackerView)
 RCT_EXPORT_VIEW_PROPERTY(tagName, NSString)
 RCT_EXPORT_VIEW_PROPERTY(isEnabled, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(eventTimeStamp, double)
+#ifdef RCT_NEW_ARCH_ENABLED
+RCT_EXPORT_VIEW_PROPERTY(meta, NSArray)
+#else
+RCT_EXPORT_VIEW_PROPERTY(meta, NSDictionary)
+#endif
 RCT_EXPORT_VIEW_PROPERTY(onTrackingEnd, RCTDirectEventBlock)
 
 @end

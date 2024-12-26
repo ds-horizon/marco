@@ -1,6 +1,9 @@
 package com.performancetracker
 
+import com.facebook.react.bridge.Arguments
+import com.facebook.react.bridge.ReadableArray
 import com.facebook.react.bridge.ReadableMap
+import com.facebook.react.bridge.WritableMap
 import com.facebook.react.module.annotations.ReactModule
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.ViewGroupManager
@@ -47,10 +50,31 @@ class PerformanceTrackerViewManager :
     }
 
     @ReactProp(name = "meta")
-    override fun setMeta(view: PerformanceTrackerView?, value: ReadableMap?) {
+    override fun setMeta(view: PerformanceTrackerView?, value: ReadableArray?) {
         if (view != null) {
-            performanceTrackerViewImpl.setMeta(view, value);
+            performanceTrackerViewImpl.setMeta(view, convertReadableArrayToMap(value));
         }
+    }
+
+    private fun convertReadableArrayToMap(readableArray: ReadableArray?): ReadableMap? {
+        if (readableArray == null) {
+            return null // Return null if readableArray is not provided
+        }
+
+        val writableMap: WritableMap = Arguments.createMap()
+
+        for (i in 0 until readableArray.size()) {
+            val item = readableArray.getMap(i) // Each item in the array is a ReadableMap
+            if (item.hasKey("name") && item.hasKey("value")) {
+                val key = item.getString("name")
+                val value = item.getString("value")
+                if (key != null && value != null) {
+                    writableMap.putString(key, value)
+                }
+            }
+        }
+
+        return writableMap
     }
 
     override fun getExportedCustomDirectEventTypeConstants(): MutableMap<String, Any>? {

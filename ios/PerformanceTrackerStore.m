@@ -18,8 +18,16 @@
     return sharedInstance;
 }
 
-- (void)addEventWithTagName:(NSString *)tagName timestamp:(double)timestamp {
-    NSDictionary *eventDetails = @{ @"tagName": tagName, @"timestamp": @(timestamp) };
+- (void)addEventWithTagName:(NSString *)tagName timestamp:(double)timestamp meta:(NSDictionary *)meta {
+    NSMutableDictionary *eventDetails = [@{
+        @"tagName": tagName,
+        @"timestamp": @(timestamp)
+    } mutableCopy];
+
+    // Add meta only if it's not nil
+    if (meta) {
+        eventDetails[@"meta"] = meta;
+    }
     [self.eventSequence addObject:eventDetails];
 }
 
@@ -39,18 +47,6 @@
         }
     }
     return nil;
-}
-
-- (NSString *)description {
-    NSMutableString *descriptionString = [NSMutableString stringWithString:@"[ "];
-    for (NSDictionary *event in self.eventSequence) {
-        [descriptionString appendFormat:@"{ tagName: %@, timestamp: %@ }, ", event[@"tagName"], event[@"timestamp"]];
-    }
-    if (self.eventSequence.count > 0) {
-        [descriptionString deleteCharactersInRange:NSMakeRange(descriptionString.length - 2, 2)];
-    }
-    [descriptionString appendString:@" ]"];
-    return descriptionString;
 }
 
 @end

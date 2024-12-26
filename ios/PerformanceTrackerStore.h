@@ -4,10 +4,9 @@
 
 + (instancetype)sharedInstance;
 
-- (void)addEventWithTagName:(NSString *)tagName timestamp:(double)timestamp;
+- (void)addEventWithTagName:(NSString *)tagName timestamp:(double)timestamp meta: (NSDictionary *)meta;
 - (NSArray<NSDictionary *> *)getAllEvents;
 - (void)clearEvents;
 - (NSNumber *)getEventValueWithTagName:(NSString *)tagName;
-- (NSString *)description;
 
 @end

@@ -22,8 +22,13 @@
     _isEnabled = isEnabled;
 }
 
+- (void)setMeta:(NSDictionary *)meta {
+    NSLog(@"Meta in Component: %@", meta);
+    _meta = meta;
+}
+
 - (void)setEventTimeStamp:(double)eventTimeStamp {
-    eventTimeStamp = eventTimeStamp;
+    _eventTimeStamp = eventTimeStamp;
 }
 
 - (void)didMoveToWindow {
@@ -44,7 +49,7 @@
             double currentTime = [[NSDate date] timeIntervalSince1970] * 1000; // Current time in milliseconds
             
             // Log the event in PerformanceTrackerStore
-            [[PerformanceTrackerStore sharedInstance] addEventWithTagName:self.tagName timestamp:currentTime];
+            [[PerformanceTrackerStore sharedInstance] addEventWithTagName:self.tagName timestamp:currentTime meta:self.meta];
             
             // Calculate render time
             double renderTime = currentTime - self.eventTimeStamp;
@@ -55,7 +60,7 @@
                     @"tagName": self->_tagName
                 });
             }
-            [[PerformanceTrackerWriter sharedInstance] writeLogsWithTag: self.tagName time: currentTime];
+            [[PerformanceTrackerWriter sharedInstance] writeLogsWithTag: self.tagName time: currentTime meta:self.meta];
         });
     }
 }

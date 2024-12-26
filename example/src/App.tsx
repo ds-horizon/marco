@@ -28,14 +28,8 @@ const ItemCard = ({ index }: ItemProps) => {
 
   const isEnabled = index === 0 || index === 1;
   const meta = {
-    name: `Card ${index}`,
+    component_name: `Card ${index}`,
     screen_name: 'Home',
-    sports: ['cricket', 'football'],
-    user: {
-      name: 'random_name',
-      lastname: 'random',
-      origin: 'dreams',
-    },
   };
   return (
     <PerformanceTracker
@@ -82,7 +76,7 @@ export default function App() {
   useEffect(() => {
     // Set Mount as T0 marker
     PerformanceTracker.track('Screen_Mount', Date.now(), {
-      additonal_data: 45,
+      additonal_data: '45',
     });
   }, []);
 
@@ -96,6 +90,14 @@ export default function App() {
           title="Add logs"
           onPress={() => {
             PerformanceTracker.track(`Random_${Math.random()}`, Date.now());
+          }}
+        />
+        <Button
+          title="Add logs with meta data"
+          onPress={() => {
+            PerformanceTracker.track(`Random_${Math.random()}`, Date.now(), {
+              screen: 'Home',
+            });
           }}
         />
         <View style={styles.listContainer}>

@@ -19,10 +19,13 @@ const PerformanceTrackerView = isFabricEnabled
   ? require('./PerformanceTrackerViewNativeComponent').default
   : requireNativeComponent('PerformanceTrackerView');
 
-type PerformanceTrackerViewProps = NativeProps & ViewProps;
+type PerformanceTrackerViewProps = ViewProps &
+  Omit<NativeProps, 'meta'> & {
+    meta?: { [key: string]: string };
+  };
 
 type PerformanceTrackerViewStaticMethods = {
-  track: (tag: string, time: number, meta?: {}) => void;
+  track: (tag: string, time: number, meta?: { [key: string]: string }) => void;
   getLogs(): Promise<Record<string, any>>;
   resetLogs(options?: ResetOptions): void;
   configure(config?: Config): void;
@@ -33,13 +36,26 @@ const PerformanceTrackerViewBase = ({
   style,
   eventTimeStamp = Date.now(),
   isEnabled = true,
+  meta = undefined,
   ...rest
 }: PerformanceTrackerViewProps) => {
+  let resolvedMeta: any;
+  if (meta && isEnabled) {
+    if (isFabricEnabled) {
+      resolvedMeta = [];
+      Object.keys(meta).forEach((key: string) => {
+        resolvedMeta.push({ name: key, value: meta[key] });
+      });
+    } else {
+      resolvedMeta = meta;
+    }
+  }
   return (
     <PerformanceTrackerView
       {...rest}
       isEnabled={isEnabled}
       eventTimeStamp={eventTimeStamp}
+      meta={resolvedMeta}
       style={[styles.default, style]}
     >
       {children}
@@ -55,8 +71,11 @@ const styles = StyleSheet.create({
 
 PerformanceTrackerViewBase.displayName = 'PerformanceTracker';
 
-PerformanceTrackerViewBase.track = (tag: string, time: number, meta?: {}) =>
-  PerformanceLoggerModule.track(tag, time, meta);
+PerformanceTrackerViewBase.track = (
+  tag: string,
+  time: number,
+  meta?: { [key: string]: string }
+) => PerformanceLoggerModule.track(tag, time, meta);
 PerformanceTrackerViewBase.getLogs = () => PerformanceLoggerModule.getLogs();
 PerformanceTrackerViewBase.resetLogs = (options?: ResetOptions) => {
   const defaultValue: ResetOptions = {

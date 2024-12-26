@@ -15,7 +15,7 @@ export interface NativeProps extends ViewProps {
   tagName: string;
   isEnabled?: boolean;
   eventTimeStamp?: Double;
-  meta?: {};
+  meta?: ReadonlyArray<Readonly<{ name: string; value: string }>>;
   onTrackingEnd?: DirectEventHandler<FinishEventType>;
 }
 

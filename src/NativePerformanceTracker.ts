@@ -10,7 +10,7 @@ export interface ResetOptions {
 }
 
 export interface Spec extends TurboModule {
-  track(tag: string, time: number, meta?: {}): void;
+  track(tag: string, time: number, meta?: { [key: string]: string }): void;
   getLogs(): Promise<Record<string, any>>;
   resetLogs(options?: ResetOptions): void;
   configure(config?: Config): void;
