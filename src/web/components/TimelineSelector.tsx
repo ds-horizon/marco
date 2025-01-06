@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import type { IData } from '../App.interface';
 import { getAutoSuggestionMarkers } from '../App.utility';
 import Logo from '../assets/logo.png';
+import './TimelineSelector.css';
 
 interface TimelineSelectorProps {
   data: IData[];
@@ -144,7 +145,7 @@ const TimeLineSelector: React.FC<TimelineSelectorProps> = ({
             />
             <div
               ref={scrollContainerRef}
-              className="overflow-x-auto scrollbar-hide"
+              className="overflow-x-auto scrollbar-hide scroll-container"
             >
               <svg className="h-32" style={{ width: `${svgWidth}px` }}>
                 <defs>
