@@ -99,6 +99,11 @@ let globalOptions = {
       'Specify the port (default: 8080)',
       configFileOptions.port || '8080'
     )
+    .option(
+      '--bundlePath <bundlePath>',
+      'Specify the path to serve html file',
+      'node_modules/dream11-react-native-performance-tracker/dist'
+    )
     .action((options) => {
       const mergedOptions = {
         ...configFileOptions,
@@ -109,7 +114,11 @@ let globalOptions = {
       };
       console.log('Merged Options', mergedOptions);
       console.log(`Serving dashboard on port ${options.port}`);
-      serveDashboard(options.port, mergedOptions.outputPath);
+      serveDashboard(
+        options.port,
+        mergedOptions.outputPath,
+        options.bundlePath
+      );
     });
 
   // Parse arguments
