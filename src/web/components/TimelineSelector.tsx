@@ -239,7 +239,7 @@ const TimeLineSelector: React.FC<TimelineSelectorProps> = ({
                 : 'bg-white bg-opacity-30 text-white cursor-not-allowed'
             }`}
           >
-            Clear All
+            Clear
           </button>
         </div>
       </div>

@@ -14,7 +14,6 @@ const Home: React.FC = () => {
       try {
         const res = await fetch(`${baseURL}/api/log`);
         const data = await res.json();
-        // const data = require('../../../generated-perf-reports/log.json');
         setData(data);
       } catch (_) {
         setData([]);
