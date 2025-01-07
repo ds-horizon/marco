@@ -3,6 +3,7 @@ import { EmptyPage } from './EmptyPage';
 import VisualizePage from './VisualizePage';
 import type { IData } from '../App.interface';
 import TimeLineSelector from './TimelineSelector';
+import { baseURL } from '../App.utility';
 
 const Home: React.FC = () => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -11,7 +12,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:8080/api/log');
+        const res = await fetch(`${baseURL}/api/log`);
         const data = await res.json();
         // const data = require('../../../generated-perf-reports/log.json');
         setData(data);

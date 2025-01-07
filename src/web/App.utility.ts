@@ -1,5 +1,7 @@
 import { type IData, type PerformanceData } from './App.interface';
 
+export const baseURL = window.location.origin;
+
 export const getAutoSuggestionMarkers = (rawData: IData[]): string[] => {
   const uniqueMarkers = new Set<string>();
   rawData.forEach((data) => {
