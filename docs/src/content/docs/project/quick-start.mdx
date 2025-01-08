@@ -1,0 +1,59 @@
+---
+title: "Quick Start"
+sidebar:
+  order: 1
+---
+
+import {
+  CardGrid,
+  Code,
+  Steps,
+  Tabs,
+  TabItem,
+} from "@astrojs/starlight/components";
+
+### Installation
+
+<Steps>
+
+1. Add marco to your project.
+
+    <Tabs syncKey="package-manager">
+      <TabItem label="npm" icon="seti:npm">
+        ```sh frame=none
+        npm install @d11/marco
+        ```
+      </TabItem>
+      <TabItem label="yarn" icon="seti:yarn">
+        ```sh frame=none
+        yarn add @d11/marco
+        ```
+      </TabItem>
+      <TabItem label="pnpm" icon="pnpm">
+        ```sh frame=none
+        pnpm add @d11/marco
+        ```
+      </TabItem>
+    </Tabs>
+
+2. Import marco in your project.
+
+   <Code
+     code="import { PerformanceTracker } from '@d11/marco';"
+     lang="javascript"
+     frame="code"
+   />
+
+3. Wrap Your Screen with PerformanceTracker.
+
+    ```tsx
+    const MyScreen = () => {
+
+    return (
+        <PerformanceTracker tagName="MyScreen">
+        {/* Your screen content */}
+        </PerformanceTracker>
+    );
+    ```
+
+</Steps>

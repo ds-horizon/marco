@@ -1,5 +1,7 @@
 ---
 title: "Tracking Screen Rendering"
+sidebar:
+  order: 0
 ---
 
 To track screen rendering performance, wrap the desired screen or component with `PerformanceTracker`. This will automatically capture render and draw times.
@@ -7,7 +9,7 @@ To track screen rendering performance, wrap the desired screen or component with
 ## Example:
 
 ```tsx
-import { PerformanceTracker } from 'react-native-performance-tracker';
+import { PerformanceTracker } from '@d11/marco';
 
 const MyScreen = () => {
   return (

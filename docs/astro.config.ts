@@ -41,12 +41,12 @@ export default defineConfig({
           },
         },
         {
-          label: "CLI",
-          autogenerate: { directory: "cli" },
-        },
-        {
           label: "API",
           autogenerate: { directory: "api" },
+        },
+        {
+          label: "CLI",
+          autogenerate: { directory: "cli" },
         },
       ],
       customCss: ["./src/tailwind.css", "@fontsource-variable/inter"],
