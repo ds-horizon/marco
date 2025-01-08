@@ -2,7 +2,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "paths": {
-      "dream11-react-native-performance-tracker": ["./src/index"]
+      "marco": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
