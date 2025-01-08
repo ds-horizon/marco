@@ -7,10 +7,7 @@ const path = require('path');
 module.exports = function serveDashboard(port, outputPathDir) {
   const appRoot = process.env.INIT_CWD || process.cwd();
   const outputPath = path.resolve(appRoot, outputPathDir);
-  const folderPath = path.resolve(
-    process.cwd(),
-    'node_modules/dream11-react-native-performance-tracker/dist'
-  );
+  const folderPath = path.resolve(process.cwd(), 'node_modules/marco/dist');
 
   const server = http.createServer((req, res) => {
     if (req.url === '/' || req.url === '/index.html') {

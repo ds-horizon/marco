@@ -1,5 +1,5 @@
 {
-  "name": "dream11-react-native-performance-tracker",
+  "name": "marco",
   "version": "0.48.0",
   "description": "Benchmark React Native View Paint Time",
   "source": "./src/index.tsx",

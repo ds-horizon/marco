@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "bradlc.vscode-tailwindcss",
+    "astro-build.astro-vscode",
+    "heybourn.headwind",
+    "EditorConfig.EditorConfig"
+  ]
+}

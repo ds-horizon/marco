@@ -10,7 +10,7 @@ import {
   StatusBar,
   Platform,
 } from 'react-native';
-import { PerformanceTracker } from 'dream11-react-native-performance-tracker';
+import { PerformanceTracker } from 'marco';
 
 PerformanceTracker.configure({
   persistToFile: true,
