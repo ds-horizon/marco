@@ -41,10 +41,6 @@ export default defineConfig({
           },
         },
         {
-          label: "API",
-          autogenerate: { directory: "api" },
-        },
-        {
           label: "CLI",
           autogenerate: { directory: "cli" },
         },
