@@ -1,5 +1,7 @@
 <img src="docs/public/banner.png" width="100%" alt="Genshi banner" />
 
+# @d11/marco
+
 A powerful React Native library to track and log performance metrics for screens and components. It leverages the new architecture with **TurboModules** and **Fabric** for improved efficiency. The library provides insights into render times, draw times, and helps identify performance bottlenecks in your app.
 
 ## ✨ Features
@@ -222,40 +224,6 @@ The visualization dashboard allows you to analyze and interpret performance data
 - A table showing raw data in tabular format for detailed insights.
 
 !['\n'](./media/dashboard.gif)
-
-## 🛠 API Reference
-
-### **Native Module Methods**
-
-| Method         | Description                                                  | Parameters                                             | Returns                      |
-|----------------|--------------------------------------------------------------|--------------------------------------------------------|------------------------------|
-| `track`         | Sends a custom performance marker with a tag and timestamp.  | `tag: string`, `time: number`                          | `void`                       |
-| `getLogs`      | Retrieves all performance logs asynchronously.               | None                                                   | `Promise<Record<string, any>>` |
-| `resetLogs`    | Clears all performance logs.                                  | None                                                   | `void`                       |
-| `configure`         | Initializes the tracker with optional configuration.         | `config?: InitConfig`                                  | `void`                       |
-| `meta`     | Additional data to be passed.           | `{[key: string]: string}` | `undefined` | No       |
-
----
-
-### **Component Props**
-
-| Prop            | Description                                                | Type                           | Default    | Required |
-|-----------------|------------------------------------------------------------|--------------------------------|------------|----------|
-| `tagName`       | Unique tag for identifying the tracked component.           | `string`                       | `required` | Yes      |
-| `isEnabled`     | Enables or disables performance tracking.                  | `boolean`                      | `true`     | No       |
-| `eventTimeStamp`| Timestamp when the event is triggered.                     | `number`                       | `Date.now()` | No      |
-| `onTrackingEnd`     | Callback when the screen has finished rendering.           | `DirectEventHandler<FinishEventType>` | `undefined` | No       |
-| `meta`     | Additional data to be passed.           | `{[key: string]: string}` | `undefined` | No       |
-
----
-
-### **Event Object (`onTrackingEnd` Callback)**
-
-| Key          | Description                                                  | Type     |
-|--------------|--------------------------------------------------------------|----------|
-| `tagName`    | The tag name associated with the event.                      | `string` |
-| `drawTime`   | Time taken to draw the component.                            | `number` |
-| `renderTime` | Time taken to render the component.                          | `number` |
 
 ## 🙌 Contributions
 Contributions are welcome! Feel free to submit a PR or raise issues for any bugs or feature requests.
