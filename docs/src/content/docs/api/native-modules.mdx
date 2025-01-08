@@ -1,0 +1,13 @@
+---
+title: "Modules"
+---
+
+| Method         | Description                                                  | Parameters                                             | Returns                      |
+|----------------|--------------------------------------------------------------|--------------------------------------------------------|------------------------------|
+| `track`         | Sends a custom performance marker with a tag and timestamp.  | `tag: string`, `time: number`                          | `void`                       |
+| `getLogs`      | Retrieves all performance logs asynchronously.               | None                                                   | `Promise<Record<string, any>>` |
+| `resetLogs`    | Clears all performance logs.                                  | None                                                   | `void`                       |
+| `configure`         | Initializes the tracker with optional configuration.         | `config?: InitConfig`                                  | `void`                       |
+| `meta`     | Additional data to be passed.           | `{[key: string]: string}` | `undefined` | No       |
+
+---

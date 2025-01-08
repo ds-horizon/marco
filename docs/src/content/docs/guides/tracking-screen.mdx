@@ -1,0 +1,32 @@
+---
+title: "Tracking Screen Rendering"
+---
+
+To track screen rendering performance, wrap the desired screen or component with `PerformanceTracker`. This will automatically capture render and draw times.
+
+## Example:
+
+```tsx
+import { PerformanceTracker } from 'react-native-performance-tracker';
+
+const MyScreen = () => {
+  return (
+    <PerformanceTracker
+      tagName="MyScreen"
+      isEnabled={true}
+      onTrackingEnd={(event) => {
+        console.log('Draw Time:', event.nativeEvent.drawTime);
+        console.log('Render Time:', event.nativeEvent.renderTime);
+      }}
+    >
+      {/* Your screen content */}
+    </PerformanceTracker>
+  );
+};
+```
+
+#### Key Parameters:
+
+- `tagName`: A unique identifier for your screen or component.
+- `isEnabled`: Enable or disable performance tracking.
+- `onTrackingEnd`: A callback function that provides draw and render times.

@@ -1,0 +1,24 @@
+---
+title: "Configuration"
+---
+
+You can configure the `perf-tracker` CLI tool either through command-line arguments or using a configuration file.
+
+### CLI Arguments
+
+- `--platform <platform>`: Specify the platform (Android or iOS).
+- `--ios-package <package>`: Provide the iOS package name (required for iOS).
+- `--outputPath <path>`: Define where the generated reports will be saved.
+- `--port <port>`: Specify the port for the visualization dashboard.
+
+### Configuration File
+
+Create a `perf-tracker.config.js` file in the root of your project to set default values for the CLI tool.
+
+```js
+module.exports = {
+  platform: 'android', // Default platform
+  iosPackage: '',      // Specify iOS package name
+  outputPath: './generated-reports', // Default output path
+  port: 8080,          // Default port for dashboard
+};

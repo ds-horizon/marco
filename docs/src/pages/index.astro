@@ -1,0 +1,50 @@
+---
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+
+import { Card, CardGrid } from "@astrojs/starlight/components";
+---
+
+<StarlightPage
+  frontmatter={{
+    title: "React Native Performance Tracker",
+    template: "splash",
+    hero: {
+      title: "Track and optimize your app’s performance with ease.",
+      tagline:
+        "A simple, flexible, and powerful performance tracking library for React Native that helps you analyze and improve your app's performance.",
+      actions: [
+        {
+          text: "Get started",
+          link: "/project/introduction",
+          icon: "right-arrow",
+        },
+      ],
+    },
+  }}
+>
+<CardGrid>
+  <!-- <Card title="Real-time Performance Tracking">
+    Track performance metrics like render time, draw time, and custom markers in real-time to understand how your app performs.
+  </Card> -->
+
+  <Card title="Customizable Events" icon="setting">
+    Easily define custom performance markers to track key moments in your app. Tailor it to your app’s needs.
+  </Card>
+
+  <Card title="Lightweight and Efficient" icon='heart'>
+    Designed to be minimal and non-intrusive. Track performance without slowing down your app or impacting user experience.
+  </Card>
+
+  <Card title="Easy Integration" icon="star">
+    Integrate seamlessly into your React Native app with minimal setup. Start tracking performance data in minutes.
+  </Card>
+
+  <Card title="Detailed Logs" icon="magnifier">
+    View detailed logs of your app's performance and identify bottlenecks. Analyze logs with rich metadata for deeper insights.
+  </Card>
+
+  <Card title="Cross-Platform Support" icon="backstage">
+    Works across iOS and Android, making it easy to track performance for users on different devices.
+  </Card>
+</CardGrid>
+</StarlightPage>

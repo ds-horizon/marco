@@ -1,0 +1,47 @@
+---
+title: "Basic Setup"
+---
+
+To set up `react-native-performance-tracker` in your project, follow these simple steps:
+
+1. **Import the `PerformanceTracker` Component:**
+
+   ```tsx
+   import { PerformanceTracker } from 'react-native-performance-tracker';
+   ```
+2. **Wrap Your Component with PerformanceTracker:**
+
+   Wrap your screens or components with the PerformanceTracker to automatically track render and draw times.
+
+    ```tsx
+    const MyScreen = () => {
+    return (
+        <PerformanceTracker
+        tagName="MyScreen"
+        isEnabled={true}
+        meta={{ data: 'meta_data' }}
+        onTrackingEnd={(event) => {
+            // 'Draw Time:', event.nativeEvent.drawTime
+            // 'Render Time:', event.nativeEvent.renderTime
+        }}
+        >
+        {/* Your screen content */}
+        </PerformanceTracker>
+    );
+    ```
+
+3. **Track Custom Events:**
+
+   You can also send custom performance markers:
+
+    ```tsx
+    PerformanceTracker.track('start_event', Date.now());
+    ```
+
+4. **Configure the Tracker (Optional):**
+
+    You can enable log persistence for debugging:
+
+    ```tsx
+    PerformanceTracker.configure({ persistToFile: true });
+    ```

@@ -1,4 +1,4 @@
-# react-native-performance-tracker 📊
+<img src="docs/public/banner.png" width="100%" alt="Genshi banner" />
 
 A powerful React Native library to track and log performance metrics for screens and components. It leverages the new architecture with **TurboModules** and **Fabric** for improved efficiency. The library provides insights into render times, draw times, and helps identify performance bottlenecks in your app.
 
