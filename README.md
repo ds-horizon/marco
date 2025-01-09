@@ -13,9 +13,7 @@ A powerful React Native library to track and log performance metrics for screens
 All information about marco is available on our [website](https://github.com/dream-sports-labs/react-native-performance-tracker).
 
 - [Installation](https://github.com/dream-sports-labs/react-native-performance-tracker)
-
 - [Guides](https://github.com/dream-sports-labs/react-native-performance-tracker)
-
 - [Tooling](https://github.com/dream-sports-labs/react-native-performance-tracker)
 
 ## Roadmap
