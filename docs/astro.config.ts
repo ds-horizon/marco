@@ -27,7 +27,8 @@ export default defineConfig({
         replacesTitle: true,
       },
       social: {
-        github: "https://github.com/dream-sports-labs/react-native-performance-tracker",
+        github:
+          "https://github.com/dream-sports-labs/react-native-performance-tracker",
       },
       sidebar: [
         {
@@ -35,9 +36,9 @@ export default defineConfig({
           autogenerate: { directory: "project" },
         },
         {
-          label: "Guides",
+          label: "API Reference",
           autogenerate: {
-            directory: "guides",
+            directory: "api",
           },
         },
         {
