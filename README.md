@@ -37,44 +37,6 @@ Join the [DreamSportsLabs Community](https://discord.com/channels/13171720521799
 
 DreamSportsLabs is committed to building open-source tools that empower developers and businesses. Learn more about us at our website.
 
-# <<<<<<< Updated upstream
-
-## 🛠 API Reference
-
-### **Native Module Methods**
-
-| Method      | Description                                                 | Parameters                    | Returns                        |
-| ----------- | ----------------------------------------------------------- | ----------------------------- | ------------------------------ | --- |
-| `track`     | Sends a custom performance marker with a tag and timestamp. | `tag: string`, `time: number` | `void`                         |
-| `getLogs`   | Retrieves all performance logs asynchronously.              | None                          | `Promise<Record<string, any>>` |
-| `resetLogs` | Clears all performance logs.                                | None                          | `void`                         |
-| `configure` | Initializes the tracker with optional configuration.        | `config?: InitConfig`         | `void`                         |
-| `meta`      | Additional data to be passed.                               | `{[key: string]: string}`     | `undefined`                    | No  |
-
----
-
-### **Component Props**
-
-| Prop             | Description                                       | Type                                  | Default      | Required |
-| ---------------- | ------------------------------------------------- | ------------------------------------- | ------------ | -------- |
-| `tagName`        | Unique tag for identifying the tracked component. | `string`                              | `required`   | Yes      |
-| `isEnabled`      | Enables or disables performance tracking.         | `boolean`                             | `true`       | No       |
-| `eventTimeStamp` | Timestamp when the event is triggered.            | `number`                              | `Date.now()` | No       |
-| `onTrackingEnd`  | Callback when the screen has finished rendering.  | `DirectEventHandler<FinishEventType>` | `undefined`  | No       |
-| `meta`           | Additional data to be passed.                     | `{[key: string]: string}`             | `undefined`  | No       |
-
----
-
-### **Event Object (`onTrackingEnd` Callback)**
-
-| Key          | Description                             | Type     |
-| ------------ | --------------------------------------- | -------- |
-| `tagName`    | The tag name associated with the event. | `string` |
-| `drawTime`   | Time taken to draw the component.       | `number` |
-| `renderTime` | Time taken to render the component.     | `number` |
-
-> > > > > > > Stashed changes
-
 ## 🙌 Contributions
 
 Contributions are welcome! Feel free to submit a PR or raise issues for any bugs or feature requests.
