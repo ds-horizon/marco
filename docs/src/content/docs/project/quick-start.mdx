@@ -16,17 +16,17 @@ import {
 
 <Steps>
 
-1. Add marco to your project.
+1. Add `marco` to your project.
 
     <Tabs syncKey="package-manager">
-      <TabItem label="npm" icon="seti:npm">
-        ```sh frame=none
-        npm install @d11/marco
-        ```
-      </TabItem>
       <TabItem label="yarn" icon="seti:yarn">
         ```sh frame=none
         yarn add @d11/marco
+        ```
+      </TabItem>
+      <TabItem label="npm" icon="seti:npm">
+        ```sh frame=none
+        npm install @d11/marco
         ```
       </TabItem>
       <TabItem label="pnpm" icon="pnpm">
@@ -36,24 +36,97 @@ import {
       </TabItem>
     </Tabs>
 
-2. Import marco in your project.
-
-   <Code
-     code="import { PerformanceTracker } from '@d11/marco';"
-     lang="javascript"
-     frame="code"
-   />
-
-3. Wrap Your Screen with PerformanceTracker.
+2. Wrap your screen with `PerformanceTracker` to track the draw time of the screen, and use `track` to send custom markers.
 
     ```tsx
-    const MyScreen = () => {
+      // Import the PerformanceTracker component
+      import { PerformanceTracker } from '@d11/marco';
 
-    return (
-        <PerformanceTracker tagName="MyScreen">
-        {/* Your screen content */}
-        </PerformanceTracker>
-    );
+      // Configure PerformanceTracker to persist data on the device
+      PerformanceTracker.configure({ persistToFile: true });
+
+      const MyScreen = () => {
+        // Custom function to track specific actions
+        const handleOnPress = () => {
+          // Send a custom marker to track the event
+          PerformanceTracker.track('Click', Date.now());
+        };
+
+        return (
+          // Wrap your screen with PerformanceTracker to measure draw time
+          <PerformanceTracker tagName="MyScreen">
+            {/* Your screen content goes here */}
+            <button onClick={handleOnPress}>Click Me</button>
+          </PerformanceTracker>
+        );
+      };
     ```
 
+3. For instrumentation, you can choose [maestro](https://maestro.mobile.dev/platform-support/react-native) or [detox](https://wix.github.io/Detox/), or use any pre-configured instrumentation tool to run the iteration. 
+
+4. Create a perf-tracker.config.js file at the root of your project with the following content.
+
+    <Tabs syncKey="config">
+      <TabItem label="Android" icon="android">
+        ```js
+        // perf-tracker.config.js
+        module.exports = {
+        platform: 'android', 
+        outputPath: '<PATH_TO_STORE_REPORT>',  // Default: ./generated-perf-reports
+        port: '<PORT>',                        // Default: 8080
+        };
+        ```
+      </TabItem>
+      <TabItem label="iOS" icon="apple">
+        ```js
+        // perf-tracker.config.js
+        module.exports = {
+        platform: 'ios', 
+        iosPackage: '<iOSPackageName>',
+        outputPath: '<DATA_SOURCE_PATH>',  // Default: ./generated-perf-reports
+        port: '<PORT>',                    // Default port for the visualization dashboard
+        };
+        ```
+      </TabItem>
+    </Tabs>
+
+5. Run the following command from the CLI to fetch data from the device and save it to the specified path. 
+
+      <Tabs syncKey="package-manager">
+      <TabItem label="yarn" icon="seti:yarn">
+        ```sh frame=none
+        yarn perf-tracker generate
+        ```
+      </TabItem>
+      <TabItem label="npm" icon="seti:npm">
+        ```sh frame=none
+        npm perf-tracker generate
+        ```
+      </TabItem>
+      <TabItem label="pnpm" icon="pnpm">
+        ```sh frame=none
+        pnpm perf-tracker generate
+        ```
+      </TabItem>
+    </Tabs>
+
+6. To visualize the data on a dashboard, run the following command. This will open a dashboard on localhost at the desired port.
+
+      <Tabs syncKey="package-manager">
+      <TabItem label="yarn" icon="seti:yarn">
+        ```sh frame=none
+        yarn perf-tracker visualize
+        ```
+      </TabItem>
+      <TabItem label="npm" icon="seti:npm">
+        ```sh frame=none
+        npm perf-tracker visualize
+        ```
+      </TabItem>
+      <TabItem label="pnpm" icon="pnpm">
+        ```sh frame=none
+        pnpm perf-tracker visualize
+        ```
+      </TabItem>
+    </Tabs>
 </Steps>

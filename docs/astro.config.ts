@@ -21,8 +21,8 @@ export default defineConfig({
       description:
         "Simple, composable, and effective state management for JavaScript.",
       logo: {
-        dark: "./src/assets/logo-dark.png",
-        light: "./src/assets/logo-light.png",
+        dark: "./src/assets/logo-dark.svg",
+        light: "./src/assets/logo-light.svg",
         alt: "Marco Logo",
         replacesTitle: true,
       },
