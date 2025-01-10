@@ -37,13 +37,26 @@ export default defineConfig({
         },
         {
           label: "API Reference",
-          autogenerate: {
-            directory: "api",
-          },
+          items: [
+            "api/tracking-screen",
+            "api/sending-markers",
+            "api/performance-log",
+            "api/resetting-logs",
+            "api/retrieving-logs",
+            "api/log-file-paths",
+            {
+              label: "CLI",
+              items: [
+                "api/cli/overview",
+                "api/cli/generate-report",
+                "api/cli/visualization",
+              ],
+            },
+          ],
         },
         {
-          label: "CLI",
-          autogenerate: { directory: "cli" },
+          label: "Sample usage",
+          link: "/sample-usage",
         },
       ],
       customCss: ["./src/tailwind.css", "@fontsource-variable/inter"],
