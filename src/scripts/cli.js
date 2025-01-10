@@ -7,33 +7,16 @@ const { cosmiconfig } = require('cosmiconfig');
 
 const program = new Command();
 
-// Define global options with defaults
-let globalOptions = {
-  outputPath: './generated-perf-reports', // Default value
-  cliOutputPathSet: false,
-};
-
 // Load configuration using cosmicconfig
 (async () => {
-  const configLoader = cosmiconfig('perf-tracker'); // Namespace for configuration
-  const searchedFor = await configLoader.search(); // Search for configuration
-  const configFileOptions = searchedFor ? searchedFor.config : {};
+  const configLoader = cosmiconfig('marco'); // Namespace for configuration
+  const configFile = await configLoader.search(); // Search for configuration
+  const configFileOptions = configFile ? configFile.config : {};
   console.log('Configuration loaded from file:', configFileOptions);
   program
-    .name('perf-tracker')
+    .name('marco')
     .description('CLI tool for performance tracking and visualization')
-    .version('1.0.0')
-    .option(
-      '-o, --outputPath <path>',
-      'Specify the output path for reports (shared between generate and visualize)',
-      (value) => {
-        console.log('global options', value);
-        globalOptions.outputPath = value; // Store the path globally
-        globalOptions.cliOutputPathSet = true;
-        return value;
-      },
-      './generated-perf-reports' // Default or config file
-    );
+    .version('1.0.0');
 
   // Define the `generate` subcommand
   program
@@ -49,45 +32,34 @@ let globalOptions = {
       'Specify the iOS package name (required for iOS platform)',
       configFileOptions.iosPackage
     )
+    .option(
+      '-o, --outputPath <path>',
+      'Specify the output path for reports',
+      configFileOptions.outputPath || './generated-perf-reports' // Default value
+    )
     .action((options) => {
-      // Merge CLI options with config file
-      const mergedOptions = {
-        ...configFileOptions,
-        ...options,
-        outputPath: globalOptions.cliOutputPathSet
-          ? globalOptions.outputPath // CLI-provided value takes precedence
-          : configFileOptions.outputPath || globalOptions.outputPath, // Ensure outputPath is from CLI or merged
-      };
-
-      console.log('Merged Options ', mergedOptions);
-
       // Validate platform
-      if (!mergedOptions.platform) {
+      if (!options.platform) {
         console.error(
           'Error: Platform is required. Use --platform or -p <platform>.'
         );
         process.exit(1);
       }
 
-      if (!['android', 'ios'].includes(mergedOptions.platform)) {
+      if (!['android', 'ios'].includes(options.platform)) {
         console.error(
           'Error: Invalid platform. Valid values are "android" or "ios".'
         );
         process.exit(1);
       }
 
-      if (mergedOptions.platform === 'ios' && !mergedOptions.iosPackage) {
+      if (options.platform === 'ios' && !options.iosPackage) {
         console.error(
           'Error: iOS package name is required. Use --ios-package <package>.'
         );
         process.exit(1);
       }
-
-      generateReport(
-        mergedOptions.platform,
-        mergedOptions.iosPackage,
-        mergedOptions.outputPath
-      );
+      generateReport(options.platform, options.iosPackage, options.outputPath);
     });
 
   // Define the `visualize` subcommand
@@ -96,20 +68,17 @@ let globalOptions = {
     .description('Serve the performance report dashboard')
     .option(
       '-p, --port <port>',
-      'Specify the port (default: 8080)',
+      'Specify the port',
       configFileOptions.port || '8080'
     )
+    .option(
+      '-d, --dataDir <dataDir>',
+      'Specify the directory path from which to visualize the data',
+      configFileOptions.dataDir || './generated-perf-reports' // Default value
+    )
     .action((options) => {
-      const mergedOptions = {
-        ...configFileOptions,
-        ...options,
-        outputPath: globalOptions.cliOutputPathSet
-          ? globalOptions.outputPath // CLI-provided value takes precedence
-          : configFileOptions.outputPath || globalOptions.outputPath,
-      };
-      console.log('Merged Options', mergedOptions);
       console.log(`Serving dashboard on port ${options.port}`);
-      serveDashboard(options.port, mergedOptions.outputPath);
+      serveDashboard(options.port, options.dataDir);
     });
 
   // Parse arguments

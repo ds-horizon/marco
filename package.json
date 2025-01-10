@@ -1,12 +1,12 @@
 {
-  "name": "marco",
-  "version": "0.48.0",
+  "name": "dream11-marco",
+  "version": "0.1.0",
   "description": "Benchmark React Native View Paint Time",
   "source": "./src/index.tsx",
   "main": "./src/index.tsx",
   "module": "./src/index.tsx",
   "bin": {
-    "perf-tracker": "./src/scripts/cli.js"
+    "marco": "./src/scripts/cli.js"
   },
   "files": [
     "src",
