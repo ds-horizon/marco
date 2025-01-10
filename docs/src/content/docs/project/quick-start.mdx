@@ -46,15 +46,14 @@ import {
       PerformanceTracker.configure({ persistToFile: true });
 
       const MyScreen = () => {
-        // Custom function to track specific actions
-        const handleOnPress = () => {
-          // Send a custom marker to track the event
-          PerformanceTracker.track('Click', Date.now());
-        };
+        // Track specific actions
+        useEffect(() => {
+          PerformanceTracker.track('Screen_Mounted', Date.now());
+        }, [])
 
         return (
           // Wrap your screen with PerformanceTracker to measure draw time
-          <PerformanceTracker tagName="MyScreen">
+          <PerformanceTracker tagName="Screen_Loaded">
             {/* Your screen content goes here */}
             <button onClick={handleOnPress}>Click Me</button>
           </PerformanceTracker>
@@ -64,27 +63,29 @@ import {
 
 3. For instrumentation, you can choose [maestro](https://maestro.mobile.dev/platform-support/react-native) or [detox](https://wix.github.io/Detox/), or use any pre-configured instrumentation tool to run the iteration. 
 
-4. Create a perf-tracker.config.js file at the root of your project with the following content.
+4. Create a `marco.config.js` file at the root of your project with the following content.
 
     <Tabs syncKey="config">
       <TabItem label="Android" icon="android">
         ```js
-        // perf-tracker.config.js
+        // marco.config.js
         module.exports = {
         platform: 'android', 
         outputPath: '<PATH_TO_STORE_REPORT>',  // Default: ./generated-perf-reports
         port: '<PORT>',                        // Default: 8080
+        dataDir: '<DATA_SOURCE_PATH_TO_VISUALIZE>'
         };
         ```
       </TabItem>
       <TabItem label="iOS" icon="apple">
         ```js
-        // perf-tracker.config.js
+        // marco.config.js
         module.exports = {
         platform: 'ios', 
         iosPackage: '<iOSPackageName>',
         outputPath: '<DATA_SOURCE_PATH>',  // Default: ./generated-perf-reports
         port: '<PORT>',                    // Default port for the visualization dashboard
+        dataDir: '<DATA_SOURCE_PATH_TO_VISUALIZE>'
         };
         ```
       </TabItem>
@@ -95,17 +96,17 @@ import {
       <Tabs syncKey="package-manager">
       <TabItem label="yarn" icon="seti:yarn">
         ```sh frame=none
-        yarn perf-tracker generate
+        yarn marco generate
         ```
       </TabItem>
       <TabItem label="npm" icon="seti:npm">
         ```sh frame=none
-        npm perf-tracker generate
+        npm marco generate
         ```
       </TabItem>
       <TabItem label="pnpm" icon="pnpm">
         ```sh frame=none
-        pnpm perf-tracker generate
+        pnpm marco generate
         ```
       </TabItem>
     </Tabs>
@@ -115,17 +116,17 @@ import {
       <Tabs syncKey="package-manager">
       <TabItem label="yarn" icon="seti:yarn">
         ```sh frame=none
-        yarn perf-tracker visualize
+        yarn marco visualize
         ```
       </TabItem>
       <TabItem label="npm" icon="seti:npm">
         ```sh frame=none
-        npm perf-tracker visualize
+        npm marco visualize
         ```
       </TabItem>
       <TabItem label="pnpm" icon="pnpm">
         ```sh frame=none
-        pnpm perf-tracker visualize
+        pnpm marco visualize
         ```
       </TabItem>
     </Tabs>
