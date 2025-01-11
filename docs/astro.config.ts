@@ -52,8 +52,8 @@ export default defineConfig({
           ],
         },
         {
-          label: "Sample usage",
-          link: "/sample-usage",
+          label: "Guide",
+          autogenerate: { directory: "guides" },
         },
       ],
       customCss: ["./src/tailwind.css", "@fontsource-variable/inter"],
