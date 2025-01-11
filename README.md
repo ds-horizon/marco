@@ -14,7 +14,7 @@ All information about marco is available on our [website](https://github.com/dre
 
 - [Installation](https://github.com/dream-sports-labs/react-native-performance-tracker)
 - [Guides](https://github.com/dream-sports-labs/react-native-performance-tracker)
-- [Tooling](https://github.com/dream-sports-labs/react-native-performance-tracker)
+- [API References](https://github.com/dream-sports-labs/react-native-performance-tracker)
 
 ## Roadmap
 
