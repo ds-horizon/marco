@@ -4,16 +4,20 @@ sidebar:
   order: 1
 ---
 
-You can use the `perf-tracker` CLI tool to generate performance reports and visualize data.
+The generate command creates performance reports for your `Android` or `iOS` app.
 
-#### Generate Reports
-
-```bash
-yarn perf-tracker generate --platform android
+```bash frame="none"
+yarn marco generate [options]
 ```
 
-#### Visualize Performance Data
+### Options
+
+- `-p, --platform <platform>`: Specifies the platform to generate reports for (android or ios).
+- `--ios-package <package>`: Required if the platform is iOS. Provide the iOS package name.
+- `-o, --outputPath <path>`: Defines where the generated performance reports will be saved (default: ./generated-perf-reports).
+
+Example:
 
 ```bash
-yarn perf-tracker visualize
+yarn marco generate --platform android --outputPath ./custom-reports
 ```

@@ -1,12 +1,12 @@
 ---
-title: "Tracking Screen Rendering"
+title: "Performance Tracker"
 sidebar:
   order: 0
 ---
 
-To track screen rendering performance, wrap the desired screen or component with `PerformanceTracker`. This will automatically capture render and draw times.
+To track screen rendering and draw times, wrap the desired screen or component with `PerformanceTracker`. This will automatically capture render and draw times.
 
-## Basic Example:
+For example:
 
 ```tsx
 import { PerformanceTracker } from '@d11/marco';
@@ -15,10 +15,9 @@ const MyScreen = () => {
   return (
     <PerformanceTracker
       tagName="MyScreen"
-      isEnabled={true}
       onTrackingEnd={(event) => {
-        console.log('Draw Time:', event.nativeEvent.drawTime);
-        console.log('Render Time:', event.nativeEvent.renderTime);
+        // 'Draw Timestamp:', event.nativeEvent.drawTime
+        // 'Render Timestamp:', event.nativeEvent.renderTime
       }}
     >
       {/* Your screen content */}
@@ -56,13 +55,11 @@ The timestamp for when the event is triggered.
 - **Default**: `Date.now()`
 
 ##### `onTrackingEnd`
-Callback triggered after the screen/component has finished rendering.  
-The callback receives an object with the following properties:  
+Callback triggered after the screen has finished rendering. The callback receives an object with the following properties:  
 - `tagName`: The tag name of the tracked component.  
-- `drawTime`: The time taken to fully draw the component.  
+- `drawTime`: Timestamp when the component is drawn.
 - `renderTime`: The time taken to render the component. 
 
 ##### `meta`
 Additional data to pass to the tracker for customization.  
 - **Type**: `Record<string, string>`  
-- **Default**: `undefined`

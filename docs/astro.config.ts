@@ -36,14 +36,11 @@ export default defineConfig({
           autogenerate: { directory: "project" },
         },
         {
-          label: "API Reference",
+          label: "API reference",
           items: [
+            "api/static-configuration",
             "api/tracking-screen",
-            "api/sending-markers",
-            "api/performance-log",
-            "api/resetting-logs",
-            "api/retrieving-logs",
-            "api/log-file-paths",
+            "api/methods",
             {
               label: "CLI",
               items: [
