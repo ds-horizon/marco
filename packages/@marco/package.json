@@ -1,0 +1,15 @@
+{
+  "name": "@dream-sports-labs/marco",
+  "version": "0.0.1",
+  "description": "A comprehensive UI performance tracking tool for React Native applications",
+  "author": {
+    "name": "Dream Sports Labs",
+    "email": "dreamsportslabs@dream11.com",
+    "url": "https://github.com/dream-sports-labs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dream-sports-labs/react-native-performance-tracker.git",
+    "directory": "packages/marco"
+  }
+}

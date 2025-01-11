@@ -1,0 +1,15 @@
+{
+  "name": "@dream-sports-labs/marco-core",
+  "version": "0.0.0",
+  "description": "Native components for Marco",
+  "author": {
+    "name": "Dream Sports Labs",
+    "email": "dreamsportslabs@dream11.com",
+    "url": "https://github.com/dream-sports-labs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dream-sports-labs/react-native-performance-tracker.git",
+    "directory": "packages/core"
+  }
+}
