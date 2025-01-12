@@ -10,8 +10,6 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "../node_modules/.bin/eslint --cache --ext .js,.jsx,.ts,.tsx .",
-    "format": "../node_modules/.bin/prettier --cache .",
     "typecheck": "tsc -p ."
   },
   "dependencies": {
@@ -35,8 +33,6 @@
     "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
-    "eslint-plugin-astro": "~1.3.1",
-    "prettier-plugin-astro": "~0.14.1",
     "typescript": "~5.7.2"
   },
   "packageManager": "yarn@4.6.0"
