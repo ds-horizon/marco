@@ -13,7 +13,8 @@ const SITE = 'https://github.com/dream-sports-labs/';
 export default defineConfig({
   site: 'https://github.com/dream-sports-labs.github.io',
   base: 'marco',
-  outDir: 'static',
+  output: 'static',
+  outDir: './docs/dist',
   integrations: [
     starlight({
       title: 'Marco',
