@@ -14,7 +14,6 @@ export default defineConfig({
   site: 'https://github.com/dream-sports-labs.github.io',
   base: 'marco',
   output: 'static',
-  outDir: './docs/dist',
   integrations: [
     starlight({
       title: 'Marco',
