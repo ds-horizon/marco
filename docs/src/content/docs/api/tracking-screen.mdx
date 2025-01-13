@@ -1,5 +1,5 @@
 ---
-title: "Performance Tracker"
+title: 'Performance Tracker'
 sidebar:
   order: 0
 ---
@@ -20,7 +20,7 @@ const MyScreen = () => {
         // 'Render Timestamp:', event.nativeEvent.renderTime
       }}
     >
-      {/* Your screen content */}
+      {/* Screen content */}
     </PerformanceTracker>
   );
 };
@@ -28,7 +28,7 @@ const MyScreen = () => {
 
 #### Key Parameters:
 
-- `tagName`: A unique identifier for your screen or component.
+- `tagName`: A unique identifier for screen or component.
 - `isEnabled`: Enable or disable performance tracking.
 - `onTrackingEnd`: A callback function that provides draw and render times.
 
@@ -37,7 +37,9 @@ const MyScreen = () => {
 #### **Required Props**
 
 ##### `tagName`
-A unique identifier for the screen or component being tracked.  
+
+A unique identifier for the screen or component being tracked.
+
 - **Type**: `string`
 
 ---
@@ -45,21 +47,29 @@ A unique identifier for the screen or component being tracked.
 #### **Optional Props**
 
 ##### `isEnabled`
-Enables or disables performance tracking.  
-- **Type**: `boolean`  
+
+Enables or disables performance tracking.
+
+- **Type**: `boolean`
 - **Default**: `true`
 
 ##### `eventTimeStamp`
-The timestamp for when the event is triggered.  
-- **Type**: `number`  
+
+The timestamp for when the event is triggered.
+
+- **Type**: `number`
 - **Default**: `Date.now()`
 
 ##### `onTrackingEnd`
-Callback triggered after the screen has finished rendering. The callback receives an object with the following properties:  
-- `tagName`: The tag name of the tracked component.  
+
+Callback triggered after the screen has finished rendering. The callback receives an object with the following properties:
+
+- `tagName`: The tag name of the tracked component.
 - `drawTime`: Timestamp when the component is drawn.
-- `renderTime`: The time taken to render the component. 
+- `renderTime`: The time taken to render the component.
 
 ##### `meta`
-Additional data to pass to the tracker for customization.  
-- **Type**: `Record<string, string>`  
+
+Additional data to pass to the tracker for customization.
+
+- **Type**: `Record<string, string>`
