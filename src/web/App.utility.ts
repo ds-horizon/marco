@@ -47,41 +47,37 @@ export const calculateDifferences = (
   startTag: string,
   endTag: string
 ): PerformanceData[] => {
-  let differences: PerformanceData[] = [];
-  let count = 1;
-  let isStartTagFound = false;
-  let isEndTagFound = false;
-  for (let i = 0; i < data.length; i++) {
-    if (data[i]?.tagName === endTag) {
-      isEndTagFound = true;
-      if (!isStartTagFound && isEndTagFound) break;
-    }
+  const differences: PerformanceData[] = [];
+  let count = 0;
 
-    if (data[i]?.tagName === startTag) {
-      isStartTagFound = true;
-      // Find the corresponding end tag
-      for (let j = i + 1; j < data.length; j++) {
-        if (data[j]?.tagName === endTag) {
-          differences.push({
-            iteration: count,
-            startMarker: parseInt(
-              data[i]?.timestamp?.toString() ?? '',
-              10
-            ).toString(),
-            endMarker: parseInt(
-              data[j]?.timestamp.toString() ?? '',
-              10
-            ).toString(),
-            duration:
-              parseInt(data[j]?.timestamp.toString() ?? '', 10) -
-              parseInt(data[i]?.timestamp.toString() ?? '', 10),
-          });
-          count++;
-          break;
-        }
+  for (let i = 0; i < data.length; i++) {
+    if (data[i]?.tagName !== startTag) continue;
+
+    // Found a start tag, look for the closest end tag
+    for (let j = i + 1; j < data.length; j++) {
+      if (data[j]?.tagName === startTag) {
+        // If another start tag is encountered, move to this position and restart
+        i = j - 1; // `-1` because outer loop will increment `i`
+        break;
+      }
+
+      if (data[j]?.tagName === endTag) {
+        // Found the corresponding end tag
+        count++;
+        differences.push({
+          iteration: count,
+          startMarker: data[i]?.timestamp.toString() ?? '',
+          endMarker: data[j]?.timestamp.toString() ?? '',
+          duration:
+            parseInt(data[j]?.timestamp?.toString() ?? '0', 10) -
+            parseInt(data[i]?.timestamp?.toString() ?? '0', 10),
+        });
+        i = j; // Skip ahead to the end tag's position
+        break;
       }
     }
   }
+
   return differences;
 };
 
