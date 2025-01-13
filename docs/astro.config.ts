@@ -17,7 +17,6 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Marco',
-      // head: meta(SITE),
       pagination: true,
       titleDelimiter: '/',
       description:
