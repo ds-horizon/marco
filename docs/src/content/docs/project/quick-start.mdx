@@ -16,7 +16,7 @@ import {
 
 <Steps>
 
-1. Add `marco` to your project.
+1. Add `marco` to project.
 
     <Tabs syncKey="package-manager">
       <TabItem label="yarn" icon="seti:yarn">
@@ -31,7 +31,7 @@ import {
       </TabItem>
     </Tabs>
 
-2. Wrap your screen with `PerformanceTracker` to track the draw time of the screen, and use `track` to send custom markers.
+2. Wrap screen with `PerformanceTracker` to track the draw time of the screen, and use `track` to send custom markers.
 
     ```tsx
       // Import the PerformanceTracker component
@@ -47,9 +47,9 @@ import {
         }, [])
 
         return (
-          // Wrap your screen with PerformanceTracker to measure draw time
+          // Wrap screen with PerformanceTracker to measure draw time
           <PerformanceTracker tagName="Screen_Loaded">
-            {/* Your screen content goes here */}
+            {/* Screen content goes here */}
             <button onClick={handleOnPress}>Click Me</button>
           </PerformanceTracker>
         );
@@ -58,7 +58,7 @@ import {
 
 3. For instrumentation, you can choose [maestro](https://maestro.mobile.dev/platform-support/react-native) or [detox](https://wix.github.io/Detox/), or use any pre-configured instrumentation tool to run the iteration. 
 
-4. Create a `marco.config.js` file at the root of your project with the following content.
+4. Create a `marco.config.js` file at the root of project with the following content.
 
     <Tabs syncKey="config">
       <TabItem label="Android" icon="android">
@@ -117,4 +117,4 @@ import {
     </Tabs>
 </Steps>
 
-🎉 Yeah! You are done with your first visualization.
+🎉 Yeah! You are done with first visualization.

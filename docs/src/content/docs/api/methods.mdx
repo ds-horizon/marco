@@ -8,7 +8,7 @@ Marco provides several methods to help you track custom events, reset all logs a
 
 ### **`track`**
 
-Custom performance markers can be sent at any point in your app to measure specific events or actions.
+Custom performance markers can be sent at any point in app to measure specific events or actions.
 
 For example:
 
@@ -18,7 +18,6 @@ PerformanceTracker.track('start_event', Date.now());
 
 // With metadata
 PerformanceTracker.track('start_event', Date.now(), { data: 'meta_data' });
-
 ```
 
 ##### Key Points:
@@ -35,7 +34,7 @@ For example:
 const logs = await PerformanceTracker.getLogs();
 ```
 
-Logs are structured in a JSON format, and you can analyze them based on your needs.
+Logs are structured in a JSON format, and can be analyzed as needed.
 
 ### **`resetLogs`**
 
