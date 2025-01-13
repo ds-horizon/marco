@@ -12,7 +12,6 @@ const SITE = 'https://github.com/dream-sports-labs/';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://github.com/dream-sports-labs.github.io',
-  base: 'marco',
   output: 'static',
   integrations: [
     starlight({

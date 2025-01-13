@@ -31,7 +31,7 @@ Join the [DreamSportsLabs Community](https://discord.com/channels/13171720521799
 
 ## Created by DreamSportsLabs
 
-<img src="media/logo.png" width="40" alt="Genshi banner" />
+<img src="media/logo.png" width="40" alt="Marco banner" />
 
 DreamSportsLabs is committed to building open-source tools that empower developers and businesses. Learn more about us at our website.
 
