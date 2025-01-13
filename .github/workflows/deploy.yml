@@ -20,7 +20,11 @@ jobs:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
 
-      # Ensure the correct Yarn version is used
+      # Enable Corepack
+      - name: Enable Corepack
+        run: corepack enable
+
+      # Set up Yarn 4.6.0
       - name: Set up Yarn 4.6.0
         run: corepack prepare yarn@4.6.0 --activate
 
