@@ -17,14 +17,17 @@ import java.io.BufferedReader
 import java.io.File
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 object PerformanceTrackerWriter {
     var persistToFile = false
     var shouldClearFiles = false
+    private val executor: ExecutorService = Executors.newSingleThreadExecutor()
 
     fun writeLogsInFile(tag: String, timestamp: String, meta: ReadableMap?, context: Context) {
         if (persistToFile) {
-            CoroutineScope(Dispatchers.IO).launch {
+            executor.execute {
                 try {
                     val folderName = "PerformanceTracker"
                     val fileName = "log.json"
@@ -137,7 +140,7 @@ object PerformanceTrackerWriter {
 
     fun clearLogFile(context: Context) {
         if (persistToFile && shouldClearFiles) {
-            CoroutineScope(Dispatchers.IO).launch {
+            executor.execute {
                 try {
                     val folderName = "PerformanceTracker"
                     val fileName = "log.json"

@@ -1,7 +1,9 @@
 #import <Foundation/Foundation.h>
 #import "PerformanceTrackerWriter.h"
 
-@implementation PerformanceTrackerWriter
+@implementation PerformanceTrackerWriter {
+    dispatch_queue_t _logQueue;  // Singleton queue for serial log operations
+}
 
 + (instancetype)sharedInstance {
     static PerformanceTrackerWriter *sharedInstance = nil;
@@ -9,6 +11,7 @@
     dispatch_once(&onceToken, ^{
         sharedInstance = [[PerformanceTrackerWriter alloc] init];
         sharedInstance.persistToFile = NO; // Default value
+        sharedInstance->_logQueue = dispatch_queue_create("com.performanceTracker.writeQueue", DISPATCH_QUEUE_SERIAL);
     });
     return sharedInstance;
 }
@@ -17,7 +20,7 @@
     if (!self.persistToFile) {
         return;
     }
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+    dispatch_async(_logQueue, ^{
         @try {
             NSString *folderName = @"PerformanceTracker";
             NSString *fileName = @"log.json";
@@ -85,7 +88,7 @@
 
 - (void)clearLogs {
     if (self.persistToFile && self.shouldClearFiles) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        dispatch_async(_logQueue, ^{
             @try {
                 NSString *folderName = @"PerformanceTracker";
                 NSString *fileName = @"log.json";
