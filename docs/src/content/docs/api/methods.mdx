@@ -2,11 +2,14 @@
 title: "Methods"
 sidebar:
   order: 1
+tableOfContents:
+  minHeadingLevel: 2
+  maxHeadingLevel: 6
 ---
 
 Marco provides several methods to help you track custom events, reset all logs at any point, and retrieve performance logs for analysis.
 
-### **`track`**
+### track
 
 Custom performance markers can be sent at any point in app to measure specific events or actions.
 
@@ -24,7 +27,7 @@ PerformanceTracker.track('start_event', Date.now(), { data: 'meta_data' });
 - The `track` method accepts a `tag` and `time` as the required parameters.
 - You can also pass an optional `meta` object to include additional data.
 
-### **`getLogs`**
+### getLogs
 
 You can retrieve all performance logs asynchronously using the `getLogs` method. This allows you to analyze performance data after it has been collected.
 
@@ -36,7 +39,7 @@ const logs = await PerformanceTracker.getLogs();
 
 Logs are structured in a JSON format, and can be analyzed as needed.
 
-### **`resetLogs`**
+### resetLogs
 
 You can clear all performance logs at any time. This can be done through the `resetLogs` method.
 

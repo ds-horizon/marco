@@ -1,5 +1,8 @@
 ---
 title: "Sample Usage"
+tableOfContents:
+  minHeadingLevel: 2
+  maxHeadingLevel: 4
 ---
 
 import {
@@ -18,11 +21,11 @@ In this example, we'll track the time it takes to load the **Details** screen fr
 
 Here’s the base implementation of the two screens:
 
-```tsx
-// HomeScreen.tsx
+```tsx collapse={5-12, 17-21}
 
 import { View, Button } from 'react-native';
 
+// Home Screen
 const HomeScreen = ({ navigation }) => {
   return (
     <View>
@@ -33,11 +36,8 @@ const HomeScreen = ({ navigation }) => {
     </View>
   );
 };
-```
 
-```tsx
-// DetailsScreen.tsx
-
+// Details Screen
 const DetailsScreen = () => {
   return (
     <View>

@@ -7,7 +7,7 @@ import vercelStatic from '@astrojs/vercel';
 
 import { defineConfig } from 'astro/config';
 
-const SITE = 'https://github.com/dream-sports-labs/';
+const SITE = 'https://dreamsportslabs.com/marco';
 
 // https://astro.build/config
 export default defineConfig({
@@ -29,6 +29,8 @@ export default defineConfig({
       social: {
         github:
           'https://github.com/dream-sports-labs/react-native-performance-tracker',
+        discord:
+          'https://discord.com/channels/1317172052179943504/1317172052179943507',
       },
       sidebar: [
         {
