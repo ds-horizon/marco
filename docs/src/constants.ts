@@ -1,1 +1,1 @@
-export const SITE = "https://genshi.samrith.dev";
+export const SITE = 'https://marco.dreamsportslabs.com';

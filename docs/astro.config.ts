@@ -6,19 +6,18 @@ import tailwind from '@astrojs/tailwind';
 
 import { defineConfig } from 'astro/config';
 
-const SITE = 'https://dreamsportslabs.com/marco';
+const SITE = 'https://marco.dreamsportslabs.com';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://github.com/dream-sports-labs.github.io',
+  site: SITE,
   output: 'static',
   integrations: [
     starlight({
       title: 'Marco',
       pagination: true,
       titleDelimiter: '/',
-      description:
-        'Simple, composable, and effective state management for JavaScript.',
+      description: 'Track and optimize your app’s performance with ease.',
       logo: {
         dark: './src/assets/logo-dark.svg',
         light: './src/assets/logo-light.svg',
@@ -26,8 +25,7 @@ export default defineConfig({
         replacesTitle: true,
       },
       social: {
-        github:
-          'https://github.com/dream-sports-labs/react-native-performance-tracker',
+        github: 'https://github.com/dream-sports-labs/marco',
         discord:
           'https://discord.com/channels/1317172052179943504/1317172052179943507',
       },
