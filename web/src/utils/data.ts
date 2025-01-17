@@ -1,5 +1,12 @@
+import { randomColor } from './helpers';
+
 type Event = { tagName: string; timestamp: number };
-type PatternResult = { [key: string]: number[] };
+type PatternResult = {
+  [key: string]: {
+    values: number[];
+    color: string;
+  };
+};
 
 /**
  * Finds and returns patterns of sequential tags in the given data.
@@ -15,7 +22,10 @@ type PatternResult = { [key: string]: number[] };
 export function findPatterns(data: Event[], tags: string[]): PatternResult {
   // Initialize result with empty arrays for each tag
   const result = tags.reduce<PatternResult>((acc, value) => {
-    acc[value] = [];
+    acc[value] = {
+      values: [],
+      color: randomColor(),
+    };
     return acc;
   }, {});
 
@@ -28,7 +38,9 @@ export function findPatterns(data: Event[], tags: string[]): PatternResult {
       tagIndex++;
 
       if (tagIndex === tags.length) {
-        currentPattern.forEach((time, idx) => result[tags[idx]].push(time));
+        currentPattern.forEach((time, idx) =>
+          result[tags[idx]].values.push(time)
+        );
 
         // Reset for the next match
         currentPattern = [];

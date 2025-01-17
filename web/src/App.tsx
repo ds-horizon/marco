@@ -38,7 +38,7 @@ export function App() {
   const pattern = findPatterns(data, tags);
   const patternValues = Object.values(pattern);
   const max = patternValues.length
-    ? Math.min(...Object.values(pattern).map((p) => p.length))
+    ? Math.min(...Object.values(pattern).map((p) => p.values.length))
     : 0;
 
   const chartData = Array.from({ length: max || 0 }).map((_, index) => ({
@@ -46,7 +46,7 @@ export function App() {
     ...tags.reduce(
       (acc, tag) => ({
         ...acc,
-        [tag]: pattern[tag][index],
+        [tag]: pattern[tag].values[index],
       }),
       {}
     ),
@@ -86,8 +86,7 @@ export function App() {
                     'cursor-pointer',
                     'hover:border-white',
                     'transition-colors',
-                    tags.includes(tag) && 'border-green-500',
-                    tags.includes(tag) && 'hover:border-green-500'
+                    'border-4'
                   )}
                   onClick={() => {
                     if (tags.includes(tag)) {
@@ -95,6 +94,9 @@ export function App() {
                     } else {
                       setTags([...tags, tag]);
                     }
+                  }}
+                  style={{
+                    borderColor: pattern[tag]?.color,
                   }}
                 >
                   <CardHeader>
@@ -123,7 +125,7 @@ export function App() {
                   <Bar
                     dataKey={tag}
                     stackId={'a'}
-                    fill={`hsl(var(--chart-${index + 1}))`}
+                    fill={pattern[tag].color}
                     radius={
                       !index
                         ? [0, 0, 4, 4]

@@ -11,6 +11,7 @@ let data: PerformanceData = [];
 try {
   data = await import('../../example/mock/log.json').then((s) => s.default);
 } catch (error) {
+  console.error(error);
   throw new Error(
     'Failed to load performance data at path ../../example/mock/log.json'
   );
