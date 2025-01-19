@@ -13,8 +13,8 @@ const Home: React.FC = () => {
     const fetchData = async () => {
       try {
         const res = await fetch(`${baseURL}/api/log`);
-        const data = await res.json();
-        setData(data);
+        const d = await res.json();
+        setData(d);
       } catch (_) {
         setData([]);
       }
