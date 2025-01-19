@@ -1,11 +1,8 @@
 import { randomColor } from './helpers';
 
-type Event = { tagName: string; timestamp: number };
+type Event = { tagName: string; timestamp: number; color: string };
 type PatternResult = {
-  [key: string]: {
-    values: number[];
-    color: string;
-  };
+  [key: string]: number[];
 };
 
 /**
@@ -22,10 +19,7 @@ type PatternResult = {
 export function findPatterns(data: Event[], tags: string[]): PatternResult {
   // Initialize result with empty arrays for each tag
   const result = tags.reduce<PatternResult>((acc, value) => {
-    acc[value] = {
-      values: [],
-      color: randomColor(),
-    };
+    acc[value] = [];
     return acc;
   }, {});
 
@@ -38,9 +32,7 @@ export function findPatterns(data: Event[], tags: string[]): PatternResult {
       tagIndex++;
 
       if (tagIndex === tags.length) {
-        currentPattern.forEach((time, idx) =>
-          result[tags[idx]].values.push(time)
-        );
+        currentPattern.forEach((time, idx) => result[tags[idx]].push(time));
 
         // Reset for the next match
         currentPattern = [];
@@ -52,18 +44,25 @@ export function findPatterns(data: Event[], tags: string[]): PatternResult {
   return result;
 }
 
-export function tagWiseCount(data: Event[]) {
+export function tagWiseCountAndColor(data: Event[]) {
   return data.reduce(
     (acc, { tagName }) => {
       if (acc[tagName]) {
-        acc[tagName]++;
+        acc[tagName].count++;
       } else {
-        acc[tagName] = 1;
+        acc[tagName] = {
+          color:
+            data.find((t) => t.tagName === tagName)?.color || randomColor(),
+          count: 1,
+        };
       }
       return acc;
     },
     {} as {
-      [key: string]: number;
+      [key: string]: {
+        count: number;
+        color: string;
+      };
     }
   );
 }
@@ -84,7 +83,7 @@ const data = [
 ];
 
 const tags = ['MatchCenter', 'ContestCard', 'Rewards'];
-const patterns = findPatterns(data, tags);
+const patterns = findPatterns(data as Event[], tags);
 console.log(patterns);
 
 // Sample output
