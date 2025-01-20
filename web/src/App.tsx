@@ -7,9 +7,8 @@ import {
 import { cn } from '~/utils/cn';
 import { findPatterns, tagWiseCountAndColor } from '~/utils/data';
 
-import { useData } from './data';
-import { Header } from './header';
 import React, { useState } from 'react';
+import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
 import {
   ChartContainer,
   ChartLegend,
@@ -17,7 +16,8 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from './components/ui/chart';
-import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
+import { useData } from './data';
+import { Header } from './header';
 
 const config = {};
 
@@ -33,14 +33,13 @@ export function App() {
     : 0;
 
   const chartData = Array.from({ length: max || 0 }).map((_, index) => ({
-    itr: index + 1,
-    ...tags.reduce(
-      (acc, tag) => ({
+    itr: index,
+    ...tags.reduce((acc, tag, i) => {
+      return {
         ...acc,
-        [tag]: pattern[tag][index],
-      }),
-      {}
-    ),
+        [tag]: i > 0 ? pattern[tag][index] - pattern[tags[i - 1]][index] : 0,
+      };
+    }, {}),
   }));
 
   return (
@@ -123,8 +122,10 @@ export function App() {
             <ChartContainer config={config}>
               <BarChart accessibilityLayer data={chartData}>
                 <CartesianGrid vertical={false} horizontal={false} />
-                <XAxis dataKey="itr" />
-                <ChartTooltip content={<ChartTooltipContent hideLabel />} />
+                <XAxis dataKey="itr" label="Iterations" />
+                {/* <Tooltip /> */}
+                {/* <Legend /> */}
+                <ChartTooltip content={<ChartTooltipContent />} />
                 <ChartLegend content={<ChartLegendContent />} />
                 {tags.map((tag, index) => (
                   <Bar
