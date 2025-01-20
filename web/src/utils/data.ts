@@ -67,6 +67,29 @@ export function tagWiseCountAndColor(data: Event[]) {
   );
 }
 
+export function calculateStdAndErrRate(differences: number[], mean: number) {
+  const n = differences.length;
+
+  // Calculate Standard Deviation (SD)
+  const variance =
+    differences.reduce((sum, value) => sum + Math.pow(value - mean, 2), 0) / n;
+  const standardDeviation = Math.sqrt(variance);
+
+  // Calculate Standard Error (SE)
+  const standardError = standardDeviation / Math.sqrt(n);
+
+  // Calculate 95% Confidence Interval (CI)
+  const marginOfError = 1.96 * standardError; // 1.96 for 95% confidence level
+
+  // Calculate Error Rate as percentage
+  const errorRate = (marginOfError / mean) * 100;
+
+  return {
+    std: standardDeviation.toFixed(2),
+    errorRate: errorRate.toFixed(2),
+  };
+}
+
 // Example usage
 const data = [
   { tagName: 'MatchCenter', timestamp: 1733301898369 },
