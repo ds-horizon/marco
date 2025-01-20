@@ -7,7 +7,7 @@ import {
 import { cn } from '~/utils/cn';
 import { findPatterns, tagWiseCountAndColor } from '~/utils/data';
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
 import {
   ChartContainer,
@@ -18,29 +18,41 @@ import {
 } from './components/ui/chart';
 import { useData } from './data';
 import { Header } from './header';
+import { DataTable } from './components/data-table';
 
 const config = {};
 
 export function App() {
   const data = useData();
-  const uniqueTagsWithCount = tagWiseCountAndColor(data);
+  const uniqueTagsWithCount = useMemo(() => tagWiseCountAndColor(data), [data]);
   const [tags, setTags] = useState<string[]>([]);
 
-  const pattern = findPatterns(data, tags);
-  const patternValues = Object.values(pattern);
-  const max = patternValues.length
-    ? Math.min(...Object.values(pattern).map((p) => p.length))
-    : 0;
+  const formattedData = useMemo(() => {
+    const pattern = findPatterns(data, tags);
+    const patternValues = Object.values(pattern);
+    const max = patternValues.length
+      ? Math.min(...Object.values(pattern).map((p) => p.length))
+      : 0;
 
-  const chartData = Array.from({ length: max || 0 }).map((_, index) => ({
-    itr: index,
-    ...tags.reduce((acc, tag, i) => {
-      return {
-        ...acc,
-        [tag]: i > 0 ? pattern[tag][index] - pattern[tags[i - 1]][index] : 0,
-      };
-    }, {}),
-  }));
+    return Array.from({ length: max || 0 }).map((_, index) => ({
+      itr: index,
+      ...tags.reduce((acc, tag, i) => {
+        return {
+          ...acc,
+          [tag]: i > 0 ? pattern[tag][index] - pattern[tags[i - 1]][index] : 0,
+        };
+      }, {}),
+    }));
+  }, [data, tags]);
+
+  const columns = useMemo(
+    () =>
+      tags.map((tag) => ({
+        accessorKey: tag,
+        header: tag.toUpperCase(),
+      })),
+    [tags]
+  );
 
   return (
     <>
@@ -118,43 +130,42 @@ export function App() {
           )}
         </aside>
         <main className={cn('overflow-x-hidden', 'overflow-y-auto', 'pt-20')}>
-          {tags.length > 1 && (
-            <ChartContainer config={config}>
-              <BarChart accessibilityLayer data={chartData}>
-                <CartesianGrid vertical={false} horizontal={false} />
-                <XAxis dataKey="itr" label="Iterations" />
-                {/* <Tooltip /> */}
-                {/* <Legend /> */}
-                <ChartTooltip content={<ChartTooltipContent />} />
-                <ChartLegend content={<ChartLegendContent />} />
-                {tags.map((tag, index) => (
-                  <Bar
-                    dataKey={tag}
-                    stackId={'a'}
-                    fill={uniqueTagsWithCount[tag].color}
-                    radius={
-                      !index
-                        ? [0, 0, 4, 4]
-                        : index < tags.length - 1
-                          ? [0, 0, 0, 0]
-                          : [4, 4, 0, 0]
-                    }
-                  />
-                ))}
-              </BarChart>
-            </ChartContainer>
+          {tags.length > 1 ? (
+            <>
+              <ChartContainer config={config}>
+                <BarChart accessibilityLayer data={formattedData}>
+                  <CartesianGrid vertical={false} horizontal={false} />
+                  <XAxis dataKey="itr" label="Iterations" />
+                  {/* <Tooltip /> */}
+                  {/* <Legend /> */}
+                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <ChartLegend content={<ChartLegendContent />} />
+                  {tags.map((tag, index) => (
+                    <Bar
+                      dataKey={tag}
+                      stackId={'a'}
+                      fill={uniqueTagsWithCount[tag].color}
+                      radius={
+                        !index
+                          ? [0, 0, 4, 4]
+                          : index < tags.length - 1
+                            ? [0, 0, 0, 0]
+                            : [4, 4, 0, 0]
+                      }
+                    />
+                  ))}
+                </BarChart>
+              </ChartContainer>
+
+              <DataTable columns={columns} data={formattedData} />
+            </>
+          ) : (
+            <div
+              className={cn('bg-card', 'p-4', 'text-center', 'rounded', 'mt-4')}
+            >
+              Select at least two tags to compare.
+            </div>
           )}
-          <code>
-            <pre>
-              {tags.length > 1
-                ? JSON.stringify(
-                    data.filter((o) => tags.includes(o.tagName)),
-                    null,
-                    2
-                  )
-                : 'Select at least TWO tags..'}
-            </pre>
-          </code>
         </main>
       </div>
     </>
