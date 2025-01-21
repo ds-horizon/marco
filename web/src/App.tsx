@@ -34,22 +34,27 @@ export function App() {
       ? Math.min(...Object.values(pattern).map((p) => p.length))
       : 0;
 
-    const formattedData = Array.from({ length: max }).map((_, index) => ({
+    const formattedData = Array.from({ length: max }).map<
+      Record<string, number> & {
+        itr: number;
+      }
+    >((_, index) => ({
       itr: index + 1,
-      ...tags.reduce((acc, tag, i) => {
-        return {
+      ...tags.reduce(
+        (acc, tag, i) => ({
           ...acc,
           [tag]: i > 0 ? pattern[tag][index] - pattern[tags[i - 1]][index] : 0,
-        };
-      }, {}),
+        }),
+        {}
+      ),
     }));
 
-    const { std, errorRate } = Array.from({ length: max }).reduce<{
+    const { std, errorRate } = formattedData.reduce<{
       std: number;
       errorRate: number;
     }>(
-      (acc, _, index) => {
-        const raw = tags.map((tag) => pattern[tag][index]);
+      (acc, i) => {
+        const raw = tags.map((tag) => i[tag]);
         const values = calculateStdAndErrRate(raw, max);
 
         return {
