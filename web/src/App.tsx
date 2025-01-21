@@ -6,25 +6,40 @@ import {
 } from '~/utils/data';
 
 import React, { useEffect, useMemo, useState } from 'react';
-import { Bar, BarChart, CartesianGrid, Legend, XAxis } from 'recharts';
+import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
 import { DataTable } from './components/data-table';
+import { Button } from './components/ui/button';
 import {
+  ChartConfig,
   ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
 } from './components/ui/chart';
 import { Checkbox } from './components/ui/checkbox';
 import { useData } from './data';
 import { Header } from './header';
-import { Button } from './components/ui/button';
-
-const config = {};
 
 export function App() {
   const data = useData();
   const uniqueTagsWithCount = useMemo(() => tagWiseCountAndColor(data), [data]);
   const [tags, setTags] = useState<string[]>(
     new URL(window.location.href).searchParams.get('tags')?.split(',') || []
+  );
+
+  const config = useMemo<ChartConfig>(
+    () =>
+      tags.reduce(
+        (acc, tag) => ({
+          ...acc,
+          [tag]: {
+            label: tag,
+          },
+        }),
+        {}
+      ),
+    [tags]
   );
 
   const { formattedData, std, errorRate } = useMemo(() => {
@@ -216,10 +231,8 @@ export function App() {
                   <BarChart accessibilityLayer data={formattedData}>
                     <CartesianGrid vertical horizontal />
                     <XAxis dataKey="itr" />
-                    {/* <Tooltip /> */}
-                    <Legend />
-                    <ChartTooltip content={<ChartTooltipContent />} />
-                    {/* <ChartLegend content={<ChartLegendContent />} /> */}
+                    <ChartTooltip content={<ChartTooltipContent hideLabel />} />
+                    <ChartLegend content={<ChartLegendContent />} />
                     {tags.map((tag, index) => (
                       <Bar
                         key={tag}
