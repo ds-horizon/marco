@@ -85,8 +85,8 @@ export function calculateStdAndErrRate(differences: number[], mean: number) {
   const errorRate = (marginOfError / mean) * 100;
 
   return {
-    std: standardDeviation.toFixed(2),
-    errorRate: errorRate.toFixed(2),
+    std: standardDeviation,
+    errorRate: errorRate,
   };
 }
 
