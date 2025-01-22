@@ -7,7 +7,7 @@ export function Header() {
       className={cn(
         'p-6',
         'backdrop-blur',
-        'bg-background/50',
+        'bg-background/80',
         'absolute',
         'right-0',
         'top-0',
