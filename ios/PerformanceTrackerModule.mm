@@ -1,8 +1,8 @@
-#import "PerformanceTracker.h"
+#import "PerformanceTrackerModule.h"
 #import "PerformanceTrackerStore.h"
 #import "PerformanceTrackerWriter.h"
 
-@implementation PerformanceTracker
+@implementation PerformanceTrackerModule
 RCT_EXPORT_MODULE()
 
 - (instancetype)init {
@@ -11,18 +11,21 @@ RCT_EXPORT_MODULE()
     return self;
 }
 
+// Passing NO for writeLogToFileEnabled because for modules, we are controlling
+// this behavior using the globalPersistentFlag. The writeLogToFileEnabled parameter
+// is specifically used to control persistence when interacting directly with
+// the iOS native world.
 #ifdef RCT_NEW_ARCH_ENABLED
 RCT_EXPORT_METHOD(track:(NSString *)tag time:(double)time meta:(NSDictionary *)meta)
 {
     [[PerformanceTrackerStore sharedInstance] addEventWithTagName:tag timestamp:time meta: meta];
-    [[PerformanceTrackerWriter sharedInstance] writeLogsWithTag: tag time: time meta: meta];
+    [[PerformanceTrackerWriter sharedInstance] writeLogsWithTag: tag time: time meta: meta writeLogToFileEnabled:NO];
 }
 #else
 RCT_EXPORT_METHOD(track:(NSString *)tag time:(double)time meta:(NSDictionary *)meta)
 {
-    NSLog(@"Shubham Native Module meta: %@", meta);
     [[PerformanceTrackerStore sharedInstance] addEventWithTagName:tag timestamp:time meta: meta];
-    [[PerformanceTrackerWriter sharedInstance] writeLogsWithTag: tag time: time meta: meta];
+    [[PerformanceTrackerWriter sharedInstance] writeLogsWithTag: tag time: time meta: meta writeLogToFileEnabled:NO];
 }
 #endif
 
@@ -55,9 +58,9 @@ RCT_EXPORT_METHOD(getLogs:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseReje
 #ifdef RCT_NEW_ARCH_ENABLED
 RCT_EXPORT_METHOD(configure: (JS::NativePerformanceTracker::Config &)config) {
     if (config.persistToFile().has_value()) {
-        [[PerformanceTrackerWriter sharedInstance] setPersistToFile: config.persistToFile().value()];
+        [[PerformanceTrackerWriter sharedInstance] setGlobalPersistenceEnabled: config.persistToFile().value()];
     } else {
-        [[PerformanceTrackerWriter sharedInstance] setPersistToFile: NO];
+        [[PerformanceTrackerWriter sharedInstance] setGlobalPersistenceEnabled: NO];
     }
 }
 #else
@@ -66,7 +69,7 @@ RCT_EXPORT_METHOD(configure:(NSDictionary *)config) {
     
     BOOL persistToFile = [persistToFileValue boolValue];
     
-    [[PerformanceTrackerWriter sharedInstance] setPersistToFile:persistToFile];
+    [[PerformanceTrackerWriter sharedInstance] setGlobalPersistenceEnabled:persistToFile];
 }
 #endif
 

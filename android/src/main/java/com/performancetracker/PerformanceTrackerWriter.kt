@@ -8,9 +8,6 @@ import android.util.Log
 import com.facebook.react.bridge.ReadableType
 import com.facebook.react.bridge.ReadableArray
 import com.facebook.react.bridge.ReadableMap
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -21,12 +18,12 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 object PerformanceTrackerWriter {
-    var persistToFile = false
+    var globalPersistenceEnabled = false
     var shouldClearFiles = false
     private val executor: ExecutorService = Executors.newSingleThreadExecutor()
 
-    fun writeLogsInFile(tag: String, timestamp: String, meta: ReadableMap?, context: Context) {
-        if (persistToFile) {
+    fun writeLogsInFile(tag: String, timestamp: String, meta: ReadableMap?, context: Context, writeLogToFileEnabled: Boolean = false) {
+        if (globalPersistenceEnabled || writeLogToFileEnabled) {
             executor.execute {
                 try {
                     val folderName = "PerformanceTracker"
@@ -139,7 +136,7 @@ object PerformanceTrackerWriter {
 
 
     fun clearLogFile(context: Context) {
-        if (persistToFile && shouldClearFiles) {
+        if (globalPersistenceEnabled && shouldClearFiles) {
             executor.execute {
                 try {
                     val folderName = "PerformanceTracker"

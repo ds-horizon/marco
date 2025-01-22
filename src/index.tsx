@@ -13,7 +13,7 @@ const isTurboModuleEnabled = (global as any).__turboModuleProxy != null;
 
 const PerformanceLoggerModule = isTurboModuleEnabled
   ? require('./NativePerformanceTracker').default
-  : NativeModules.PerformanceTracker;
+  : NativeModules.PerformanceTrackerModule;
 
 const PerformanceTrackerView = isFabricEnabled
   ? require('./PerformanceTrackerViewNativeComponent').default
