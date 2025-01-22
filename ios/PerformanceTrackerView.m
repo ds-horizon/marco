@@ -46,7 +46,7 @@
     
     if (_isEnabled) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            double currentTime = [[NSDate date] timeIntervalSince1970] * 1000; // Current time in milliseconds
+            double currentTime = (long long) [[NSDate date] timeIntervalSince1970] * 1000; // Current time in milliseconds
             
             // Log the event in PerformanceTrackerStore
             [[PerformanceTrackerStore sharedInstance] addEventWithTagName:self.tagName timestamp:currentTime meta:self.meta];
@@ -60,7 +60,7 @@
                     @"tagName": self->_tagName
                 });
             }
-            [[PerformanceTrackerWriter sharedInstance] writeLogsWithTag: self.tagName time: currentTime meta:self.meta];
+            [[PerformanceTrackerWriter sharedInstance] writeLogsWithTag: self.tagName time: currentTime meta:self.meta writeLogToFileEnabled:NO];
         });
     }
 }

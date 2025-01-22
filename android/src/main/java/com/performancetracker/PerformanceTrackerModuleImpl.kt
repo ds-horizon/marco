@@ -52,6 +52,6 @@ class PerformanceTrackerModuleImpl {
     }
 
     companion object {
-        const val NAME = "PerformanceTracker"
+        const val NAME = "PerformanceTrackerModule"
     }
 }
