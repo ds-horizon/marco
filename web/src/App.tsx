@@ -1,6 +1,6 @@
 import { cn } from '~/utils/cn';
 import {
-  calculateStdAndErrRate,
+  calculateMetrics,
   findPatterns,
   tagWiseCountAndColor,
 } from '~/utils/data';
@@ -20,6 +20,7 @@ import {
 import { Checkbox } from './components/ui/checkbox';
 import { useData } from './data';
 import { Header } from './header';
+import { MetricData, metricColumns } from './utils/helpers';
 
 export function App() {
   const data = useData();
@@ -42,7 +43,7 @@ export function App() {
     [tags]
   );
 
-  const { formattedData, std, errorRate } = useMemo(() => {
+  const { formattedData, metrics } = useMemo(() => {
     const pattern = findPatterns(data, tags);
     const patternValues = Object.values(pattern);
     const max = patternValues.length
@@ -64,29 +65,28 @@ export function App() {
       ),
     }));
 
-    const { std, errorRate } = formattedData.reduce<{
-      std: number;
-      errorRate: number;
-    }>(
-      (acc, i) => {
-        const raw = tags.map((tag) => i[tag]);
-        const values = calculateStdAndErrRate(raw, max);
+    let metrics: MetricData<string>[] = [];
 
-        return {
-          std: acc.std + values.std,
-          errorRate: acc.errorRate + values.errorRate,
-        };
-      },
-      {
-        std: 0,
-        errorRate: 0,
+    tags.forEach((tag, i) => {
+      if (i > 0) {
+        const d = formattedData.reduce((acc, obj) => {
+          acc.push(obj[tag]);
+          return acc;
+        }, []);
+        const { mean, std, errorRate } = calculateMetrics(d);
+        metrics.push({
+          mean: mean.toFixed(1),
+          standard_deviation: std.toFixed(2),
+          error_rate: errorRate.toFixed(2),
+          start_event: tags[i - 1],
+          end_event: tags[i],
+        });
       }
-    );
+    });
 
     return {
       formattedData,
-      std: std / max,
-      errorRate: errorRate / max,
+      metrics,
     };
   }, [data, tags]);
 
@@ -260,42 +260,8 @@ export function App() {
                   'gap-4',
                   'items-center'
                 )}
-              >
-                <div
-                  className={cn(
-                    'bg-card',
-                    'px-4',
-                    'py-2',
-                    'rounded-lg',
-                    'grid',
-                    'grid-flow-row'
-                  )}
-                >
-                  <pre className="m-0 text-sm text-muted-foreground">
-                    Standard deviation:
-                  </pre>
-                  <pre className="m-0 text-orange-500">{std.toFixed(2)}</pre>
-                </div>
-
-                <div
-                  className={cn(
-                    'bg-card',
-                    'px-4',
-                    'py-2',
-                    'rounded-lg',
-                    'grid',
-                    'grid-flow-row'
-                  )}
-                >
-                  <pre className="m-0 text-sm text-muted-foreground">
-                    Error rate:
-                  </pre>
-                  <pre className="m-0 text-orange-500">
-                    {errorRate.toFixed(2)}%
-                  </pre>
-                </div>
-              </div>
-
+              ></div>
+              <DataTable columns={metricColumns} data={metrics} />
               <DataTable columns={columns} data={formattedData} />
             </>
           ) : (

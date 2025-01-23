@@ -67,12 +67,14 @@ export function tagWiseCountAndColor(data: Event[]) {
   );
 }
 
-export function calculateStdAndErrRate(differences: number[], mean: number) {
-  const n = differences.length;
+export function calculateMetrics(data: number[]) {
+  const n = data.length;
+
+  const mean = data.reduce((sum, value) => sum + value, 0) / n;
 
   // Calculate Standard Deviation (SD)
   const variance =
-    differences.reduce((sum, value) => sum + Math.pow(value - mean, 2), 0) / n;
+    data.reduce((sum, value) => sum + Math.pow(value - mean, 2), 0) / n;
   const standardDeviation = Math.sqrt(variance);
 
   // Calculate Standard Error (SE)
@@ -85,6 +87,7 @@ export function calculateStdAndErrRate(differences: number[], mean: number) {
   const errorRate = (marginOfError / mean) * 100;
 
   return {
+    mean: mean,
     std: standardDeviation,
     errorRate: errorRate,
   };

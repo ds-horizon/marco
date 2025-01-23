@@ -28,6 +28,7 @@ try {
     console.log('colors:', colors);
     return s.default.map((entry) => ({
       ...entry,
+      timestamp: Number(entry.timestamp),
       color: colors[entry.tagName],
     }));
   });
