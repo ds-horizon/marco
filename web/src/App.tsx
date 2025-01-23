@@ -301,11 +301,15 @@ export function App() {
           ) : (
             <div
               className={cn(
-                'bg-card',
+                'bg-card/20',
                 'p-4',
                 'text-center',
                 'rounded-lg',
-                'mt-4'
+                'mt-4',
+                'min-h-full',
+                'flex',
+                'items-center',
+                'justify-center'
               )}
             >
               Select at least {tags.length < 1 ? 'two tags' : 'one more tag'} to
