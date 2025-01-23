@@ -6,8 +6,7 @@ import {
 } from '~/utils/data';
 
 import React, { useEffect, useMemo, useState } from 'react';
-import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
-import { DataTable } from './components/data-table';
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 import { Button } from './components/ui/button';
 import {
   ChartConfig,
@@ -52,15 +51,23 @@ export function App() {
     const formattedData = Array.from({ length: max }).map<
       Record<string, number> & {
         itr: number;
+        total: number;
       }
     >((_, index) => ({
       itr: index + 1,
       ...tags.reduce(
-        (acc, tag, i) => ({
-          ...acc,
-          [tag]: i > 0 ? pattern[tag][index] - pattern[tags[i - 1]][index] : 0,
-        }),
-        {}
+        (acc, tag, i) => {
+          const current =
+            i > 0 ? pattern[tag][index] - pattern[tags[i - 1]][index] : 0;
+          return {
+            ...acc,
+            [tag]: current,
+            total: acc.total + current,
+          };
+        },
+        {
+          total: 0,
+        }
       ),
     }));
 
@@ -89,15 +96,6 @@ export function App() {
       errorRate: errorRate / max,
     };
   }, [data, tags]);
-
-  const columns = useMemo(
-    () =>
-      tags.map((tag) => ({
-        accessorKey: tag,
-        header: tag.toUpperCase(),
-      })),
-    [tags]
-  );
 
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -227,9 +225,13 @@ export function App() {
           {tags.length > 1 ? (
             <>
               <div className={cn('p-2', 'rounded-xl', 'bg-card', 'mt-4')}>
-                <ChartContainer config={config} className={cn('min-h-96')}>
+                <ChartContainer
+                  config={config}
+                  className={cn('min-h-[200px]', 'h-[60vh]', 'w-full')}
+                >
                   <BarChart accessibilityLayer data={formattedData}>
                     <CartesianGrid vertical horizontal />
+                    <YAxis dataKey="total" />
                     <XAxis dataKey="itr" />
                     <ChartTooltip content={<ChartTooltipContent hideLabel />} />
                     <ChartLegend content={<ChartLegendContent />} />
@@ -296,7 +298,76 @@ export function App() {
                 </div>
               </div>
 
-              <DataTable columns={columns} data={formattedData} />
+              <h1 className="mt-12 mb-4 text-xl font-bold">
+                <span className="px-2 py-1 rounded-full bg-card">
+                  {formattedData.length}
+                </span>{' '}
+                Total iterations
+              </h1>
+              <div
+                className={cn(
+                  'grid',
+                  'grid-flow-row',
+                  'gap-4',
+                  'grid-cols-1',
+                  'overflow-x-auto',
+                  'py-8',
+                  'bg-card/25',
+                  'rounded-lg'
+                )}
+              >
+                {formattedData.map((d, index) => (
+                  <>
+                    <div
+                      className={cn(
+                        'px-4',
+                        'flex',
+                        'items-center',
+                        'justify-between',
+                        'sticky',
+                        'left-0'
+                      )}
+                    >
+                      <p className="text-sm text-muted-foreground">
+                        Iteration {index + 1}
+                      </p>
+                      <p>Total time: {d.total.toFixed(2)}ms</p>
+                    </div>
+                    <div className="flex items-center px-4 pb-4 border-b flex-nowrap">
+                      {Object.entries(d)
+                        .filter(([key]) => !['itr', 'total'].includes(key))
+                        .map(([key, value], index) => (
+                          <>
+                            {index > 0 && (
+                              <span
+                                className={cn(
+                                  'text-sm',
+                                  'text-muted-foreground',
+                                  'px-4',
+                                  'border-b',
+                                  'border-b-muted',
+                                  'h-max'
+                                )}
+                              >
+                                {value.toFixed(2)}ms
+                              </span>
+                            )}
+                            <span
+                              className={cn(
+                                'bg-card',
+                                'rounded-lg',
+                                'p-4',
+                                'justify-self-center'
+                              )}
+                            >
+                              {key}
+                            </span>
+                          </>
+                        ))}
+                    </div>
+                  </>
+                ))}
+              </div>
             </>
           ) : (
             <div
@@ -309,7 +380,8 @@ export function App() {
                 'min-h-full',
                 'flex',
                 'items-center',
-                'justify-center'
+                'justify-center',
+                'text-2xl'
               )}
             >
               Select at least {tags.length < 1 ? 'two tags' : 'one more tag'} to
