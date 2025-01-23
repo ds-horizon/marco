@@ -21,6 +21,7 @@ import { useData } from './data';
 import { Header } from './header';
 import { MetricData, metricColumns } from './utils/helpers';
 import { DataTable } from './components/data-table';
+import { CheckedState } from '@radix-ui/react-checkbox';
 
 export function App() {
   const data = useData();
@@ -28,6 +29,8 @@ export function App() {
   const [tags, setTags] = useState<string[]>(
     new URL(window.location.href).searchParams.get('tags')?.split(',') || []
   );
+
+  const [allSelected, setAllSelected] = useState<CheckedState>(true);
 
   const config = useMemo<ChartConfig>(
     () =>
@@ -73,11 +76,11 @@ export function App() {
       ),
     }));
 
-    let metrics: MetricData<string>[] = [];
+    const metrics: MetricData<string>[] = [];
 
     tags.forEach((tag, i) => {
       if (i > 0) {
-        const d = formattedData.reduce((acc, obj) => {
+        const d = formattedData.reduce<number[]>((acc, obj) => {
           acc.push(obj[tag]);
           return acc;
         }, []);
@@ -110,6 +113,14 @@ export function App() {
     }
   }, [tags]);
 
+  useEffect(() => {
+    if (allSelected) {
+      setTags(Object.keys(uniqueTagsWithCount));
+    } else {
+      setTags([]);
+    }
+  }, [allSelected, uniqueTagsWithCount]);
+
   return (
     <>
       <Header />
@@ -139,7 +150,7 @@ export function App() {
           <div
             className={cn(
               'mb-4',
-              'p-4',
+              'p-3',
               'bg-background/80',
               'backdrop-blur',
               'sticky',
@@ -151,18 +162,36 @@ export function App() {
               'flex',
               'items-center',
               'justify-between',
-              'gap-2'
+              'gap-2',
+              'z-40'
             )}
           >
             <h1 className={cn('font-bold', 'text-lg')}>Events</h1>
-            <Button
-              disabled={!tags.length}
-              onClick={() => setTags([])}
-              variant="secondary"
-              size="sm"
+            <div
+              className={cn(
+                'grid',
+                'grid-flow-col',
+                'gap-2',
+                'items-center',
+                'shrink-0'
+              )}
             >
-              Clear
-            </Button>
+              <Button
+                disabled={!tags.length}
+                onClick={() => setTags([])}
+                variant="secondary"
+                size="sm"
+              >
+                Clear
+              </Button>
+
+              <Button asChild size="sm" variant="secondary">
+                <Checkbox
+                  checked={allSelected}
+                  onCheckedChange={setAllSelected}
+                />
+              </Button>
+            </div>
           </div>
           {Object.entries(uniqueTagsWithCount).map(
             ([tag, { count, color }], index, arr) => {
@@ -239,7 +268,9 @@ export function App() {
                     <YAxis dataKey="total" />
                     <XAxis dataKey="itr" />
                     <ChartTooltip content={<ChartTooltipContent hideLabel />} />
-                    <ChartLegend content={<ChartLegendContent />} />
+                    <ChartLegend
+                      content={<ChartLegendContent className="flex-wrap" />}
+                    />
                     {tags.map((tag, index) => (
                       <Bar
                         key={tag}
@@ -276,18 +307,18 @@ export function App() {
                   'overflow-x-auto',
                   'items-center',
                   'py-8',
-                  'bg-card/25',
+                  'bg-card',
                   'rounded-lg'
                 )}
               >
                 {formattedData.map((d, index) => (
-                  <>
+                  <React.Fragment key={`iteration-${index}`}>
                     <div
                       className={cn(
                         'bg-gradient-to-r',
-                        'from-background',
-                        'via-background',
-                        'via-60%',
+                        'from-card',
+                        'via-card',
+                        'via-70%',
                         'to-transparent',
                         'flex',
                         'items-center',
@@ -298,7 +329,7 @@ export function App() {
                         'pl-4'
                       )}
                     >
-                      <span className="p-4 rounded-lg bg-card justify-self-center">
+                      <span className="p-4 rounded-lg bg-background/25 justify-self-center">
                         {index + 1}
                       </span>
                       <div
@@ -313,11 +344,11 @@ export function App() {
                         <span>{d.total.toFixed(2)}ms</span>
                       </div>
                     </div>
-                    <div className="flex items-center flex-nowrap">
+                    <div className="flex items-center pr-4 flex-nowrap">
                       {Object.entries(d)
                         .filter(([key]) => !['itr', 'total'].includes(key))
                         .map(([key, value], index) => (
-                          <>
+                          <React.Fragment key={`event-itr-${index}`}>
                             {index > 0 && (
                               <span
                                 className={cn(
@@ -334,7 +365,7 @@ export function App() {
                             )}
                             <span
                               className={cn(
-                                'bg-card',
+                                'bg-background/25',
                                 'rounded-lg',
                                 'p-4',
                                 'justify-self-center'
@@ -342,10 +373,10 @@ export function App() {
                             >
                               {key}
                             </span>
-                          </>
+                          </React.Fragment>
                         ))}
                     </div>
-                  </>
+                  </React.Fragment>
                 ))}
               </div>
             </>
