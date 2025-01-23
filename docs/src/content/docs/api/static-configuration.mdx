@@ -1,5 +1,5 @@
 ---
-title: "Static Configuration"
+title: 'Static Configuration'
 tableOfContents:
   minHeadingLevel: 2
   maxHeadingLevel: 4
@@ -14,7 +14,7 @@ Static configuration is done using `configure` function.
 The `configure` functions accepts a single argument an object with the following property:
 
 - `persistToFile`: Enable this option to save performance logs to a file on the device or simulator.
-  
+
   - For **android** logs are saved at `/sdcard/Documents/PerformanceTracker/log.json`.
 
   - For **iOS** logs are saved at `Documents/PerformanceTracker/log.json`.
@@ -28,3 +28,7 @@ PerformanceTracker.configure({
   persistToFile: true, // Logs will persist to a file.
 });
 ```
+
+:::note
+Enable `persistToFile` to save logs for better visualization in our [web panel](../api/cli/visualization).
+:::

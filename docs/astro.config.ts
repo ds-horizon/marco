@@ -40,6 +40,7 @@ export default defineConfig({
             'api/static-configuration',
             'api/tracking-screen',
             'api/methods',
+            'api/native-event',
             {
               label: 'CLI',
               items: [
