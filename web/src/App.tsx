@@ -165,8 +165,10 @@ export function App() {
             </Button>
           </div>
           {Object.entries(uniqueTagsWithCount).map(
-            ([tag, { count, color }]) => {
+            ([tag, { count, color }], index, arr) => {
               const selected = tags.includes(tag);
+              const isBefore =
+                arr.findIndex((t) => t[0] === tags.at(-1)) > index;
 
               return (
                 <React.Fragment key={tag}>
@@ -181,10 +183,12 @@ export function App() {
                       'gap-3',
                       'border-l-8',
                       'border-b',
-                      'transition-colors',
+                      'transition-all',
                       !selected && 'hover:bg-card/50',
                       selected && 'bg-card',
-                      selected && 'hover:bg-card/75'
+                      selected && 'hover:bg-card/75',
+                      !selected && isBefore && 'opacity-20',
+                      !selected && isBefore && 'pointer-events-none'
                     )}
                     title={tag}
                     onClick={() => {
@@ -268,8 +272,9 @@ export function App() {
                   'grid',
                   'grid-flow-row',
                   'gap-4',
-                  'grid-cols-1',
+                  'grid-cols-[max-content,1fr]',
                   'overflow-x-auto',
+                  'items-center',
                   'py-8',
                   'bg-card/25',
                   'rounded-lg'
@@ -279,20 +284,36 @@ export function App() {
                   <>
                     <div
                       className={cn(
-                        'px-4',
+                        'bg-gradient-to-r',
+                        'from-background',
+                        'via-background',
+                        'via-60%',
+                        'to-transparent',
                         'flex',
                         'items-center',
-                        'justify-between',
+                        'gap-2',
+                        'pr-8',
                         'sticky',
-                        'left-0'
+                        'left-0',
+                        'pl-4'
                       )}
                     >
-                      <p className="text-sm text-muted-foreground">
-                        Iteration {index + 1}
-                      </p>
-                      <p>Total time: {d.total.toFixed(2)}ms</p>
+                      <span className="p-4 rounded-lg bg-card justify-self-center">
+                        {index + 1}
+                      </span>
+                      <div
+                        className={cn(
+                          'grid',
+                          'grid-flow-row',
+                          'gap-1',
+                          'text-xs'
+                        )}
+                      >
+                        <span className="text-muted-foreground">Total:</span>
+                        <span>{d.total.toFixed(2)}ms</span>
+                      </div>
                     </div>
-                    <div className="flex items-center px-4 pb-4 border-b flex-nowrap">
+                    <div className="flex items-center flex-nowrap">
                       {Object.entries(d)
                         .filter(([key]) => !['itr', 'total'].includes(key))
                         .map(([key, value], index) => (
