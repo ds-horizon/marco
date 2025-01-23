@@ -1,5 +1,6 @@
 import { Logo } from '~/components/logo';
 import { cn } from '~/utils/cn';
+import { PoweredBy } from './components/powered-by';
 
 export function Header() {
   return (
@@ -20,8 +21,9 @@ export function Header() {
         'items-center'
       )}
     >
-      <nav className="container">
+      <nav className={cn('w-full', 'flex', 'items-center', 'justify-between')}>
         <Logo />
+        <PoweredBy repo="marco" />
       </nav>
     </header>
   );
