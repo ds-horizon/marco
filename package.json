@@ -1,6 +1,6 @@
 {
   "name": "dream11-marco",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Benchmark React Native View Paint Time",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
@@ -208,6 +208,7 @@
   },
   "dependencies": {
     "commander": "^12.1.0",
-    "cosmiconfig": "^9.0.0"
+    "cosmiconfig": "^9.0.0",
+    "serve": "14.2.4"
   }
 }

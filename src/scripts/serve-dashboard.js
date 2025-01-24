@@ -8,7 +8,7 @@ module.exports = function serveDashboard(port, outputPathDir) {
 
   const logFilePath = path.resolve(appRoot, outputPathDir);
 
-  const marcoPath = 'node_modules/marco';
+  const marcoPath = 'node_modules/dream11-marco';
   const webFolderPath = path.resolve(process.cwd(), `${marcoPath}/web/dist`);
   const assetsFolder = path.join(webFolderPath, 'assets');
 
