@@ -11,33 +11,38 @@ export type PerformanceDataEntry = {
 
 let data: PerformanceData = [];
 
-try {
-  data = await import('../../example/mock/log.json').then((s) => {
-    const colors = s.default.reduce(
-      (acc, { tagName }) => {
-        if (!acc[tagName]) {
-          acc[tagName] = randomColor();
-        }
+const basePath =
+  process.env.NODE_ENV === 'development'
+    ? '/mock/log.json' // Dev mode (served by dev server)
+    : 'assets/log.json'; // Prod mode (bundled into `dist`)
 
-        return acc;
-      },
-      {} as {
-        [key: string]: string;
-      }
-    );
-    console.log('colors:', colors);
-    return s.default.map((entry) => ({
-      ...entry,
-      timestamp: Number(entry.timestamp),
-      color: colors[entry.tagName],
-    }));
-  });
+try {
+  data = await fetch(basePath)
+    .then((res) => res.json())
+    .then((s) => {
+      const colors = s.reduce(
+        (acc: any, { tagName }: { tagName: any }) => {
+          if (!acc[tagName]) {
+            acc[tagName] = randomColor();
+          }
+
+          return acc;
+        },
+        {} as {
+          [key: string]: string;
+        }
+      );
+      console.log('colors:', colors);
+      return s.map((entry: any) => ({
+        ...entry,
+        timestamp: Number(entry.timestamp),
+        color: colors[entry.tagName],
+      }));
+    });
   console.log('data:', data);
 } catch (error) {
   console.error(error);
-  throw new Error(
-    'Failed to load performance data at path ../../example/mock/log.json'
-  );
+  throw new Error('Failed to load performance data at path assets/log.json');
 }
 
 export function useData(): PerformanceData {

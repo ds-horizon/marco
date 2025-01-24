@@ -78,7 +78,7 @@ export function App() {
     tags.forEach((tag, i) => {
       if (i > 0) {
         const d = formattedData.reduce((acc, obj) => {
-          acc.push(obj[tag]);
+          acc.push(obj[tag] as never);
           return acc;
         }, []);
         const { mean, std, errorRate } = calculateMetrics(d);

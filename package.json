@@ -1,10 +1,10 @@
 {
   "name": "dream11-marco",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Benchmark React Native View Paint Time",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
-  "module": "./src/module/index.js",
+  "module": "./lib/module/index.js",
   "types": "./lib/typescript/commonjs/src/index.d.ts",
   "bin": {
     "marco": "./src/scripts/cli.js"
@@ -12,11 +12,12 @@
   "files": [
     "src",
     "lib",
-    "dist",
     "public",
     "android",
     "ios",
     "cpp",
+    "web/dist",
+    "!web/dist/mock",
     "*.podspec",
     "react-native.config.json",
     "!ios/build",

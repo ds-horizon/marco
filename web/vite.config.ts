@@ -6,6 +6,10 @@ import react from '@vitejs/plugin-react-swc';
 // https://vite.dev/config/
 export default defineConfig({
   root: '.',
+  build: {
+    minify: false,
+    target: 'esnext',
+  },
   plugins: [react()],
   resolve: {
     alias: {
