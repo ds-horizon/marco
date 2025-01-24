@@ -1,0 +1,48 @@
+---
+title: 'Overview'
+sidebar:
+  order: 0
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+The `marco` CLI tool facilitates the generation of performance reports and visualization of performance data for `Android` and `iOS` applications. It provides both command-line options and a configuration file, offering flexibility in managing and analyzing application performance.
+
+---
+
+## **Configuration File**
+
+To configure default values for the CLI tool, create a `marco.config.js` file in the root directory of project:
+
+    <Tabs syncKey="config">
+      <TabItem label="Android" icon="android">
+        ```js
+        // marco.config.js
+        module.exports = {
+        platform: 'android',
+        outputPath: '<PATH_TO_STORE_REPORT>',  // Default: ./generated-perf-reports
+        port: '<PORT>',                        // Default: 8080
+        dataDir: '<DATA_SOURCE_PATH_TO_VISUALIZE>'
+        };
+        ```
+      </TabItem>
+      <TabItem label="iOS" icon="apple">
+        ```js
+        // marco.config.js
+        module.exports = {
+        platform: 'ios',
+        iosPackage: '<iOSPackageName>',
+        outputPath: '<DATA_SOURCE_PATH>',  // Default: ./generated-perf-reports
+        port: '<PORT>',                    // Default port for the visualization dashboard
+        dataDir: '<DATA_SOURCE_PATH_TO_VISUALIZE>'
+        };
+        ```
+      </TabItem>
+    </Tabs>
+
+## **CLI Commands**
+
+The marco CLI tool provides two main commands:
+
+- [generate](../generate-report): To create performance reports.
+- [visualize](../visualization): To view and analyze the performance data through the dashboard.

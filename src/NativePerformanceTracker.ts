@@ -16,4 +16,6 @@ export interface Spec extends TurboModule {
   configure(config?: Config): void;
 }
 
-export default TurboModuleRegistry.getEnforcing<Spec>('PerformanceTracker');
+export default TurboModuleRegistry.getEnforcing<Spec>(
+  'PerformanceTrackerModule'
+);

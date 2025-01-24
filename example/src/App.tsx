@@ -87,9 +87,11 @@ export default function App() {
         <Button title="Get All Events" onPress={getLogsFromNative} />
         <Button title="Reset" onPress={resetEvents} />
         <Button
-          title="Add logs"
+          title="Add multiple logs"
           onPress={() => {
-            PerformanceTracker.track(`Random_${Math.random()}`, Date.now());
+            for (let i = 0; i < 10; i++) {
+              PerformanceTracker.track(`Random_${i}`, Date.now());
+            }
           }}
         />
         <Button

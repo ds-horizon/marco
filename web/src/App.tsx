@@ -30,7 +30,7 @@ export function App() {
     new URL(window.location.href).searchParams.get('tags')?.split(',') || []
   );
 
-  const [allSelected, setAllSelected] = useState<CheckedState>(true);
+  const [allSelected, setAllSelected] = useState<CheckedState>(false);
 
   const config = useMemo<ChartConfig>(
     () =>
