@@ -4,6 +4,7 @@
 
 # XDE
 .expo/
+dist
 
 # Xcode
 #
@@ -78,3 +79,6 @@ ios/generated
 android/generated
 
 generated-perf-reports/
+
+.parcel-cache
+.yarn
