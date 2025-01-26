@@ -1,23 +1,21 @@
 {
   "name": "dream11-marco",
-  "version": "0.3.0",
+  "version": "0.1.0",
   "description": "Benchmark React Native View Paint Time",
   "source": "./src/index.tsx",
-  "main": "./lib/commonjs/index.js",
-  "module": "./lib/module/index.js",
-  "types": "./lib/typescript/commonjs/src/index.d.ts",
+  "main": "./src/index.tsx",
+  "module": "./src/index.tsx",
   "bin": {
     "marco": "./src/scripts/cli.js"
   },
   "files": [
     "src",
     "lib",
+    "dist",
     "public",
     "android",
     "ios",
     "cpp",
-    "web/dist",
-    "!web/dist/mock",
     "*.podspec",
     "react-native.config.json",
     "!ios/build",
@@ -40,6 +38,7 @@
     "prepare": "bob build",
     "release": "release-it",
     "generate:report": "cd src/scripts/ && ts-node generate-report.js",
+    "build:web": "webpack --mode production",
     "visualize:report": "node src/scripts/serve-dashboard.js"
   },
   "keywords": [
@@ -71,24 +70,43 @@
     "@react-native/eslint-config": "^0.73.1",
     "@release-it/conventional-changelog": "^9.0.3",
     "@types/jest": "^29.5.5",
-    "@types/node": "^22.10.5",
     "@types/react": "^18.2.44",
+    "@types/react-dom": "19.0.0",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/recharts": "^1.8.29",
+    "autoprefixer": "^10.4.20",
+    "babel-loader": "^9.2.1",
     "commitlint": "^17.0.2",
     "conventional-changelog-angular": "^8.0.0",
+    "cra-template-typescript": "1.2.0",
+    "css-loader": "^7.1.2",
     "del-cli": "^5.1.0",
     "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "express": "^4.21.2",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.6.3",
     "jest": "^29.7.0",
+    "lucide-react": "^0.469.0",
+    "postcss-loader": "^8.1.1",
     "prettier": "^3.0.3",
-    "react": "^19.0.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "react-native": "0.76.1",
     "react-native-builder-bob": "^0.30.3",
+    "react-router-dom": "^6.28.0",
+    "react-scripts": "5.0.1",
+    "recharts": "^2.15.0",
     "release-it": "^17.10.0",
+    "style-loader": "^4.0.0",
+    "tailwindcss": "^3.4.17",
+    "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
     "turbo": "^1.10.7",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4"
   },
   "resolutions": {
     "@types/react": "^18.2.44"
@@ -100,7 +118,7 @@
   "workspaces": [
     "example"
   ],
-  "packageManager": "yarn@4.6.0",
+  "packageManager": "yarn@3.6.1",
   "jest": {
     "preset": "react-native",
     "modulePathIgnorePatterns": [
@@ -208,7 +226,6 @@
   },
   "dependencies": {
     "commander": "^12.1.0",
-    "cosmiconfig": "^9.0.0",
-    "serve": "14.2.4"
+    "cosmiconfig": "^9.0.0"
   }
 }

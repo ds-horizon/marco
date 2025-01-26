@@ -1,48 +1,90 @@
 #!/usr/bin/env node
+
+const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const { exec } = require('child_process');
 
 module.exports = function serveDashboard(port, outputPathDir) {
   const appRoot = process.env.INIT_CWD || process.cwd();
+  const outputPath = path.resolve(appRoot, outputPathDir);
+  const folderPath = path.resolve(process.cwd(), 'node_modules/marco/dist');
 
-  const logFilePath = path.resolve(appRoot, outputPathDir);
+  const server = http.createServer((req, res) => {
+    if (req.url === '/' || req.url === '/index.html') {
+      // Serve index.html
+      const indexPath = path.join(folderPath, 'index.html');
+      fs.readFile(indexPath, 'utf8', (err, data) => {
+        if (err) {
+          console.error('Error reading index.html:', err);
+          res.writeHead(500, { 'Content-Type': 'text/plain' });
+          res.end('Internal Server Error');
+          return;
+        }
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(data);
+      });
+    } else if (req.url.startsWith('/api/log')) {
+      const logPath = path.join(outputPath, 'log.json');
 
-  const marcoPath = 'node_modules/dream11-marco';
-  const webFolderPath = path.resolve(process.cwd(), `${marcoPath}/web/dist`);
-  const assetsFolder = path.join(webFolderPath, 'assets');
+      // Check if logPath exists and is a file
+      if (!fs.existsSync(logPath)) {
+        console.error('log.json does not exist:', logPath);
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('log.json not found');
+        return;
+      }
 
-  // Ensure the `assets` folder exists
-  if (!fs.existsSync(assetsFolder)) {
-    fs.mkdirSync(assetsFolder, { recursive: true });
-  }
-
-  // Copy `log.json` to `web/dist/assets`
-  const destinationPath = path.join(assetsFolder, 'log.json');
-  if (fs.existsSync(logFilePath)) {
-    fs.copyFileSync(logFilePath, destinationPath);
-  } else {
-    console.error(`Error: log.json not found at ${logFilePath}`);
-    return;
-  }
-
-  const serveCommand = `npx serve -s "${webFolderPath}" -p ${port}`;
-
-  console.log(`Server runnign at: http://localhost:${port}`);
-
-  const serveProcess = exec(serveCommand);
-
-  // serveProcess.stdout.on('data', (data) => {
-  //   console.log(data.toString());
-  // });
-
-  serveProcess.stderr.on('data', (data) => {
-    console.error(data.toString());
+      // Serve log.json
+      fs.readFile(logPath, 'utf8', (err, data) => {
+        if (err) {
+          console.error('Error reading log.json:', err);
+          res.writeHead(404, { 'Content-Type': 'text/plain' });
+          res.end('Not Found');
+          return;
+        }
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(data);
+      });
+    } else if (req.url === '/bundle.js') {
+      // Serve bundle.js
+      const bundlePath = path.join(folderPath, 'bundle.js');
+      fs.readFile(bundlePath, (err, data) => {
+        if (err) {
+          console.error('Error reading bundle.js:', err);
+          res.writeHead(404, { 'Content-Type': 'text/plain' });
+          res.end('Not Found');
+          return;
+        }
+        res.writeHead(200, { 'Content-Type': 'application/javascript' });
+        res.end(data);
+      });
+    } else if (req.url.match(/\.(png|jpe?g|gif)$/i)) {
+      const imagePath = path.join(folderPath, req.url);
+      fs.readFile(imagePath, (err, data) => {
+        if (err) {
+          console.error('Error reading image:', err);
+          res.writeHead(404, { 'Content-Type': 'text/plain' });
+          res.end('Not Found');
+          return;
+        }
+        const extname = path.extname(imagePath);
+        let contentType = 'image/jpeg';
+        if (extname === '.png') {
+          contentType = 'image/png';
+        } else if (extname === '.gif') {
+          contentType = 'image/gif';
+        }
+        res.writeHead(200, { 'Content-Type': contentType });
+        res.end(data);
+      });
+    } else {
+      // Serve 404 for other routes
+      res.writeHead(404, { 'Content-Type': 'text/plain' });
+      res.end('Not Found');
+    }
   });
 
-  serveProcess.on('close', (code) => {
-    if (code !== 0) {
-      console.error(`Serve process exited with code ${code}`);
-    }
+  server.listen(port, () => {
+    console.log(`Server is running at http://localhost:${port}`);
   });
 };
