@@ -48,10 +48,10 @@ class PerformanceTrackerModuleImpl {
 
     fun configure(config: ReadableMap?) {
         val persistToFile = config?.getBoolean("persistToFile") ?: false
-        PerformanceTrackerWriter.globalPersistenceEnabled = persistToFile;
+        PerformanceTrackerWriter.persistToFile = persistToFile;
     }
 
     companion object {
-        const val NAME = "PerformanceTrackerModule"
+        const val NAME = "PerformanceTracker"
     }
 }
