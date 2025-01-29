@@ -2,7 +2,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "paths": {
-      "dream11-marco": ["./src/index"]
+      "@d11/marco": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

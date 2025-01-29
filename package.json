@@ -1,14 +1,12 @@
 {
-  "name": "dream11-marco",
+  "name": "@d11/marco",
   "version": "0.3.0",
   "description": "Benchmark React Native View Paint Time",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",
   "types": "./lib/typescript/commonjs/src/index.d.ts",
-  "bin": {
-    "marco": "./src/scripts/cli.js"
-  },
+  "bin": "./src/scripts/cli.js",
   "files": [
     "src",
     "lib",

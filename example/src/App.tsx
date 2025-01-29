@@ -5,7 +5,7 @@
  * @format
  */
 
-import { PerformanceTracker } from 'dream11-marco';
+import { PerformanceTracker } from '@d11/marco';
 import React, { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
