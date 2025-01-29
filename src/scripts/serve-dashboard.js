@@ -32,10 +32,6 @@ module.exports = function serveDashboard(port, outputPathDir) {
 
   const serveProcess = exec(serveCommand);
 
-  // serveProcess.stdout.on('data', (data) => {
-  //   console.log(data.toString());
-  // });
-
   serveProcess.stderr.on('data', (data) => {
     console.error(data.toString());
   });

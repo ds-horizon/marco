@@ -32,14 +32,13 @@ try {
           [key: string]: string;
         }
       );
-      console.log('colors:', colors);
+
       return s.map((entry: any) => ({
         ...entry,
         timestamp: Number(entry.timestamp),
         color: colors[entry.tagName],
       }));
     });
-  console.log('data:', data);
 } catch (error) {
   console.error(error);
   throw new Error('Failed to load performance data at path assets/log.json');
