@@ -1,274 +1,722 @@
 [
   {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738092872366"
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738132356620"
   },
   {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738092872430"
+      "tagName": "Application_onCreate",
+      "timestamp": "1738132356675"
   },
   {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738092872903"
+      "tagName": "ActivityCreated",
+      "timestamp": "1738132356747"
   },
   {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738092872939"
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738132357249"
   },
   {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738092882511"
+      "tagName": "LoadingState",
+      "timestamp": "1738132357314"
   },
   {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738092882576"
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738132357998"
   },
   {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738092883055"
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738132359651"
   },
   {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738092883089"
+      "tagName": "Application_onCreate",
+      "timestamp": "1738132359669"
   },
   {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738092885772"
+      "tagName": "ActivityCreated",
+      "timestamp": "1738132359738"
   },
   {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738092885837"
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738132360260"
   },
   {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738092886317"
+      "tagName": "LoadingState",
+      "timestamp": "1738132360315"
   },
   {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738092886357"
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738132361013"
   },
   {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738092889226"
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738132362804"
   },
   {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738092889287"
+      "tagName": "Application_onCreate",
+      "timestamp": "1738132362822"
   },
   {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738092889752"
+      "tagName": "ActivityCreated",
+      "timestamp": "1738132362881"
   },
   {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738092889790"
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738132363365"
   },
   {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738092896121"
+      "tagName": "LoadingState",
+      "timestamp": "1738132363416"
   },
   {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738092896187"
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738132364112"
   },
   {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738092896651"
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738132365948"
   },
   {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738092896688"
+      "tagName": "Application_onCreate",
+      "timestamp": "1738132365966"
   },
   {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738092899872"
+      "tagName": "ActivityCreated",
+      "timestamp": "1738132366027"
   },
   {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738092899934"
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738132366518"
   },
   {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738092900405"
+      "tagName": "LoadingState",
+      "timestamp": "1738132366566"
   },
   {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738092900440"
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738132367263"
   },
   {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738092903313"
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738132369089"
   },
   {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738092903375"
+      "tagName": "Application_onCreate",
+      "timestamp": "1738132369107"
   },
   {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738092903842"
+      "tagName": "ActivityCreated",
+      "timestamp": "1738132369167"
   },
   {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738092903882"
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738132369688"
   },
   {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738092906762"
+      "tagName": "LoadingState",
+      "timestamp": "1738132369733"
   },
   {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738092906823"
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738132370432"
   },
   {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738092907287"
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738132372234"
   },
   {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738092907324"
+      "tagName": "Application_onCreate",
+      "timestamp": "1738132372253"
   },
   {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738092911454"
+      "tagName": "ActivityCreated",
+      "timestamp": "1738132372310"
   },
   {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738092911517"
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738132372823"
   },
   {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738092912005"
+      "tagName": "LoadingState",
+      "timestamp": "1738132372881"
   },
   {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738092912050"
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738132373579"
   },
   {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738092915014"
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738132375359"
   },
   {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738092915075"
+      "tagName": "Application_onCreate",
+      "timestamp": "1738132375380"
   },
   {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738092915533"
+      "tagName": "ActivityCreated",
+      "timestamp": "1738132375443"
   },
   {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738092915570"
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738132375918"
   },
   {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738092918571"
+      "tagName": "LoadingState",
+      "timestamp": "1738132375964"
   },
   {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738092918631"
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738132376662"
   },
   {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738092919104"
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738132378489"
   },
   {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738092919139"
+      "tagName": "Application_onCreate",
+      "timestamp": "1738132378508"
   },
   {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738092922251"
+      "tagName": "ActivityCreated",
+      "timestamp": "1738132378573"
   },
   {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738092922312"
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738132379052"
   },
   {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738092922778"
+      "tagName": "LoadingState",
+      "timestamp": "1738132379097"
   },
   {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738092922816"
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738132379798"
   },
   {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738092925857"
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738132381657"
   },
   {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738092925920"
+      "tagName": "Application_onCreate",
+      "timestamp": "1738132381677"
   },
   {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738092926394"
+      "tagName": "ActivityCreated",
+      "timestamp": "1738132381742"
   },
   {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738092926432"
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738132382264"
   },
   {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738092929305"
+      "tagName": "LoadingState",
+      "timestamp": "1738132382305"
   },
   {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738092929366"
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738132383030"
   },
   {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738092929831"
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738132384804"
   },
   {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738092929866"
+      "tagName": "Application_onCreate",
+      "timestamp": "1738132384826"
   },
   {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738092933984"
+      "tagName": "ActivityCreated",
+      "timestamp": "1738132384886"
   },
   {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738092934047"
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738132385372"
   },
   {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738092934529"
+      "tagName": "LoadingState",
+      "timestamp": "1738132385415"
   },
   {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738092934566"
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738132386130"
   },
   {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738092937753"
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738132387951"
   },
   {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738092937814"
+      "tagName": "Application_onCreate",
+      "timestamp": "1738132387973"
   },
   {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738092938287"
+      "tagName": "ActivityCreated",
+      "timestamp": "1738132388037"
   },
   {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738092938322"
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738132388521"
   },
   {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738092941006"
+      "tagName": "LoadingState",
+      "timestamp": "1738132388565"
   },
   {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738092941069"
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738132389279"
   },
   {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738092941549"
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738132391158"
   },
   {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738092941590"
+      "tagName": "Application_onCreate",
+      "timestamp": "1738132391178"
+  },
+  {
+      "tagName": "ActivityCreated",
+      "timestamp": "1738132391246"
+  },
+  {
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738132391757"
+  },
+  {
+      "tagName": "LoadingState",
+      "timestamp": "1738132391815"
+  },
+  {
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738132392503"
+  },
+  {
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738132394322"
+  },
+  {
+      "tagName": "Application_onCreate",
+      "timestamp": "1738132394341"
+  },
+  {
+      "tagName": "ActivityCreated",
+      "timestamp": "1738132394401"
+  },
+  {
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738132394899"
+  },
+  {
+      "tagName": "LoadingState",
+      "timestamp": "1738132394943"
+  },
+  {
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738132395666"
+  },
+  {
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738132397499"
+  },
+  {
+      "tagName": "Application_onCreate",
+      "timestamp": "1738132397517"
+  },
+  {
+      "tagName": "ActivityCreated",
+      "timestamp": "1738132397580"
+  },
+  {
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738132398071"
+  },
+  {
+      "tagName": "LoadingState",
+      "timestamp": "1738132398118"
+  },
+  {
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738132398830"
+  },
+  {
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738132400678"
+  },
+  {
+      "tagName": "Application_onCreate",
+      "timestamp": "1738132400697"
+  },
+  {
+      "tagName": "ActivityCreated",
+      "timestamp": "1738132400760"
+  },
+  {
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738132401250"
+  },
+  {
+      "tagName": "LoadingState",
+      "timestamp": "1738132401298"
+  },
+  {
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738132401999"
+  },
+  {
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738132403820"
+  },
+  {
+      "tagName": "Application_onCreate",
+      "timestamp": "1738132403842"
+  },
+  {
+      "tagName": "ActivityCreated",
+      "timestamp": "1738132403902"
+  },
+  {
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738132404384"
+  },
+  {
+      "tagName": "LoadingState",
+      "timestamp": "1738132404427"
+  },
+  {
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738132405146"
+  },
+  {
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738132406951"
+  },
+  {
+      "tagName": "Application_onCreate",
+      "timestamp": "1738132406970"
+  },
+  {
+      "tagName": "ActivityCreated",
+      "timestamp": "1738132407032"
+  },
+  {
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738132407526"
+  },
+  {
+      "tagName": "LoadingState",
+      "timestamp": "1738132407566"
+  },
+  {
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738132408279"
+  },
+  {
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738132410119"
+  },
+  {
+      "tagName": "Application_onCreate",
+      "timestamp": "1738132410137"
+  },
+  {
+      "tagName": "ActivityCreated",
+      "timestamp": "1738132410204"
+  },
+  {
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738132410682"
+  },
+  {
+      "tagName": "LoadingState",
+      "timestamp": "1738132410722"
+  },
+  {
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738132411447"
+  },
+  {
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738132413269"
+  },
+  {
+      "tagName": "Application_onCreate",
+      "timestamp": "1738132413287"
+  },
+  {
+      "tagName": "ActivityCreated",
+      "timestamp": "1738132413348"
+  },
+  {
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738132413855"
+  },
+  {
+      "tagName": "LoadingState",
+      "timestamp": "1738132413914"
+  },
+  {
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738132414613"
+  },
+  {
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738133369440"
+  },
+  {
+      "tagName": "Application_onCreate",
+      "timestamp": "1738133369462"
+  },
+  {
+      "tagName": "ActivityCreated",
+      "timestamp": "1738133369529"
+  },
+  {
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738133370076"
+  },
+  {
+      "tagName": "LoadingState",
+      "timestamp": "1738133370131"
+  },
+  {
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738133370834"
+  },
+  {
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738133372558"
+  },
+  {
+      "tagName": "Application_onCreate",
+      "timestamp": "1738133372583"
+  },
+  {
+      "tagName": "ActivityCreated",
+      "timestamp": "1738133372648"
+  },
+  {
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738133373142"
+  },
+  {
+      "tagName": "LoadingState",
+      "timestamp": "1738133373198"
+  },
+  {
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738133373896"
+  },
+  {
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738133375721"
+  },
+  {
+      "tagName": "Application_onCreate",
+      "timestamp": "1738133375740"
+  },
+  {
+      "tagName": "ActivityCreated",
+      "timestamp": "1738133375805"
+  },
+  {
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738133376296"
+  },
+  {
+      "tagName": "LoadingState",
+      "timestamp": "1738133376338"
+  },
+  {
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738133377048"
+  },
+  {
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738133378838"
+  },
+  {
+      "tagName": "Application_onCreate",
+      "timestamp": "1738133378856"
+  },
+  {
+      "tagName": "ActivityCreated",
+      "timestamp": "1738133378921"
+  },
+  {
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738133379420"
+  },
+  {
+      "tagName": "LoadingState",
+      "timestamp": "1738133379466"
+  },
+  {
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738133380168"
+  },
+  {
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738133381992"
+  },
+  {
+      "tagName": "Application_onCreate",
+      "timestamp": "1738133382012"
+  },
+  {
+      "tagName": "ActivityCreated",
+      "timestamp": "1738133382069"
+  },
+  {
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738133382558"
+  },
+  {
+      "tagName": "LoadingState",
+      "timestamp": "1738133382598"
+  },
+  {
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738133383295"
+  },
+  {
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738133385150"
+  },
+  {
+      "tagName": "Application_onCreate",
+      "timestamp": "1738133385167"
+  },
+  {
+      "tagName": "ActivityCreated",
+      "timestamp": "1738133385230"
+  },
+  {
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738133385689"
+  },
+  {
+      "tagName": "LoadingState",
+      "timestamp": "1738133385731"
+  },
+  {
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738133386445"
+  },
+  {
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738133388315"
+  },
+  {
+      "tagName": "Application_onCreate",
+      "timestamp": "1738133388333"
+  },
+  {
+      "tagName": "ActivityCreated",
+      "timestamp": "1738133388393"
+  },
+  {
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738133388880"
+  },
+  {
+      "tagName": "LoadingState",
+      "timestamp": "1738133388931"
+  },
+  {
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738133389633"
+  },
+  {
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738133391504"
+  },
+  {
+      "tagName": "Application_onCreate",
+      "timestamp": "1738133391523"
+  },
+  {
+      "tagName": "ActivityCreated",
+      "timestamp": "1738133391586"
+  },
+  {
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738133392056"
+  },
+  {
+      "tagName": "LoadingState",
+      "timestamp": "1738133392103"
+  },
+  {
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738133392813"
+  },
+  {
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738133394655"
+  },
+  {
+      "tagName": "Application_onCreate",
+      "timestamp": "1738133394678"
+  },
+  {
+      "tagName": "ActivityCreated",
+      "timestamp": "1738133394736"
+  },
+  {
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738133395213"
+  },
+  {
+      "tagName": "LoadingState",
+      "timestamp": "1738133395265"
+  },
+  {
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738133395981"
+  },
+  {
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738133397890"
+  },
+  {
+      "tagName": "Application_onCreate",
+      "timestamp": "1738133397909"
+  },
+  {
+      "tagName": "ActivityCreated",
+      "timestamp": "1738133397972"
+  },
+  {
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738133398435"
+  },
+  {
+      "tagName": "LoadingState",
+      "timestamp": "1738133398483"
+  },
+  {
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738133399183"
+  },
+  {
+      "tagName": "AppLaunchStart",
+      "timestamp": "1738133401031"
+  },
+  {
+      "tagName": "Application_onCreate",
+      "timestamp": "1738133401050"
+  },
+  {
+      "tagName": "ActivityCreated",
+      "timestamp": "1738133401113"
+  },
+  {
+      "tagName": "HomeScreen_Mounted",
+      "timestamp": "1738133401589"
+  },
+  {
+      "tagName": "LoadingState",
+      "timestamp": "1738133401630"
+  },
+  {
+      "tagName": "HomeScreen_Loaded",
+      "timestamp": "1738133402350"
   }
 ]
