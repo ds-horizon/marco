@@ -74,7 +74,7 @@ const program = new Command();
     .option(
       '-d, --dataDir <dataDir>',
       'Specify the directory path from which to visualize the data',
-      configFileOptions.dataDir || './generated-perf-reports' // Default value
+      configFileOptions.dataDir || './generated-perf-reports/log.json' // Default value
     )
     .action((options) => {
       console.log(`Serving dashboard on port ${options.port}`);

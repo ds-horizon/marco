@@ -20,8 +20,8 @@ To configure default values for the CLI tool, create a `marco.config.js` file in
         // marco.config.js
         module.exports = {
         platform: 'android',
-        outputPath: '<PATH_TO_STORE_REPORT>',  // Default: ./generated-perf-reports
-        port: '<PORT>',                        // Default: 8080
+        outputPath: '<PATH_TO_STORE_REPORT>',  
+        port: '<PORT>',                        
         dataDir: '<DATA_SOURCE_PATH_TO_VISUALIZE>'
         };
         ```
@@ -32,17 +32,22 @@ To configure default values for the CLI tool, create a `marco.config.js` file in
         module.exports = {
         platform: 'ios',
         iosPackage: '<iOSPackageName>',
-        outputPath: '<DATA_SOURCE_PATH>',  // Default: ./generated-perf-reports
-        port: '<PORT>',                    // Default port for the visualization dashboard
+        outputPath: '<DATA_SOURCE_PATH>',  
+        port: '<PORT>',                  
         dataDir: '<DATA_SOURCE_PATH_TO_VISUALIZE>'
         };
         ```
       </TabItem>
     </Tabs>
 
+:::note
+- By default, output path is set to `./generated-perf-reports` and file path is set to `./generated-perf-reports/log.json`.
+- By default, data source path is set to `./generated-perf-reports/log.json` but if need to visualize some other report, data source path can be changed.
+:::
+
 ## **CLI Commands**
 
 The marco CLI tool provides two main commands:
 
-- [generate](../generate-report): To create performance reports.
-- [visualize](../visualization): To view and analyze the performance data through the dashboard.
+- [generate](../cli/generate-report): To create performance reports.
+- [visualize](../cli/visualization): To view and analyze the performance data through the dashboard.

@@ -23,9 +23,9 @@ PerformanceTracker.track('start_event', Date.now());
 PerformanceTracker.track('start_event', Date.now(), { data: 'meta_data' });
 ```
 
-##### Key Points
-- The `track` method accepts a `tag` and `time` as the required parameters.
-- You can also pass an optional `meta` object to include additional data.
+:::tip
+In order to track native events, use [Native Event Logging](../api/native-event) methods.
+:::
 
 ### getLogs
 
@@ -39,6 +39,10 @@ const logs = await PerformanceTracker.getLogs();
 
 Logs are structured in a JSON format, and can be analyzed as needed.
 
+:::note
+This will give in memory logs. To get logs from device use [generate](../api/cli/generate-report) command.
+:::
+
 ### resetLogs
 
 You can clear all performance logs at any time. This can be done through the `resetLogs` method.
@@ -46,11 +50,16 @@ You can clear all performance logs at any time. This can be done through the `re
 For example:
 
 ```tsx
-// Basic usage
+// This will clear in memory logs.
 PerformanceTracker.resetLogs();
 
-// Clear logs and files (if persistToFile is true)
+// This will clear in memory logs and also clear the persisted log files if `persistToFile` is true.
 PerformanceTracker.resetLogs({ clearFiles: true });
 ```
 
 This will reset the logs and optionally clear the persisted log files.
+
+:::danger
+- `clearFiles` will clear all the logs from the device. Be sure to save the logs before clearing using [generate](../api/cli/generate-report) command.
+- This will clear all the logs from the device, including native events.
+:::

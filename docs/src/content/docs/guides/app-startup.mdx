@@ -13,7 +13,7 @@ Additionally, we can fetch data using Marco's `generate` command, and `visualize
 
 <Aside type="note" title="Prerequisites">
   Ensure Marco is integrated into your Android and iOS apps. Refer to [Marco
-  Quick Start](../project/quick-start.md) for setup instructions.
+  Quick Start](../../project/quick-start) for setup instructions.
 </Aside>
 
 #### Tracking App Startup Performance
@@ -23,7 +23,7 @@ Additionally, we can fetch data using Marco's `generate` command, and `visualize
 For App Startup, we will add a start marker at the beginning of the app's lifecycle.
 
 - **For Android**, add a marker to track the start of the app in the `onCreate` method of `MainApplication` class. This is the first method that is called when the app is launched.
-- For iOS, add a marker to track the start of the app in the `application` method of AppDelegate.m.
+- **For iOS**, add a marker to track the start of the app in the `application` method of AppDelegate.m.
 
     <Tabs syncKey="package-manager">
   <TabItem label="MainApplication.kt" icon="seti:kotlin">
@@ -65,24 +65,42 @@ For App Startup, we will add a start marker at the beginning of the app's lifecy
 
 ##### Step 2: Add End Marker
 
-For end marker, add a marker when the screen is fully drawn. This gives a sense of how long it takes for the app to be ready to interact with the user.
-For this just wrap the screen or any component with `PerformanceTracker` and provide a tag name.
+Firstly let's add a sample screen to track the end marker. Here we will simulate a real world scenarios using `setTimeout` to delay the screen loading(Assuming this is a network call or some heavy operation).
 
-```tsx collapse={19-36}
+```tsx collapse={38-55, 29-31, 20-22, 11-15}
 import { PerformanceTracker } from '@d11/marco';
 
+// enable logging to file
 PerformanceTracker.configure({
   persistToFile: true,
 });
 
 function HomeScreen(): React.JSX.Element {
+    const [isLoading, setIsLoading] = useState(true);
+    // Simulating Async operation
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
+    }, []);
 
+    if (isLoading) {
+        return (
+            <PerformanceTracker tagName="LoadingState"  style={styles.outerContainer}>
+                <View style={styles.container}>
+                    <ActivityIndicator size="large" color="#0000ff" />
+                </View>
+            </PerformanceTracker>
+        );
+    }
   return (
-    <PerformanceTracker tagName="HomeScreen_Loaded"  style={styles.outerContainer}>
-      <View style={styles.container}>
-        <Text testID="home_screen_text" style={styles.text}>Home Screen</Text>
-      </View>
-    </PerformanceTracker>
+    <SafeAreaView style={styles.outerContainer}>
+        <PerformanceTracker tagName="HomeScreen_Loaded"  style={styles.outerContainer}>
+            <View style={styles.container}>
+                <Text testID="home_screen_text" style={styles.text}>Home Screen</Text>
+            </View>
+        </PerformanceTracker>
+    </SafeAreaView>
   );
 }
 
@@ -108,14 +126,21 @@ const styles = StyleSheet.create({
 });
 ```
 
+- For end marker, add a marker when the screen is fully drawn. This gives a sense of how long it takes for the app to be ready to interact with the user.
+For this just wrap the screen or any component with `PerformanceTracker` and provide a tag name.
+
 This will track the time it took to draw the PerformanceTracker component entirely.
+:::tip
+ We can also wrap Loading screen with  `PerformanceTracker` but it will not give us the exact time it took to draw the usable screen.
+:::
+
     :::note
     - Make sure to pass `persistToFile: true` to the `Performance.configure` method to save the data to a file. This will help in visualizing the data.
     :::
 
 ##### Step 3: Instrumentation
 
-Use any instrumentation tool to run the iteration. For example, [maestro](https://maestro.mobile.dev/platform-support/react-native).
+Use any instrumentation tool to run the iteration. For example: [maestro](https://maestro.mobile.dev/platform-support/react-native).
 After running the iteration, it will save the data in device itself.
 
 ##### Step 4: Create a `marco.config.js`
@@ -130,7 +155,7 @@ Create a `marco.config.js` file at the root of project with the following conten
         platform: 'android', 
         outputPath: './app-startup-reports',
         port: 8080,
-        dataDir: './app-startup-reports'
+        dataDir: './app-startup-reports/log.json'
         };
         ```
       </TabItem>
@@ -142,7 +167,7 @@ Create a `marco.config.js` file at the root of project with the following conten
         iosPackage: 'com.example',
         outputPath: './app-startup-reports',
         port: 8080,
-        dataDir: './app-startup-reports'
+        dataDir: './app-startup-reports/log.json'
         };
         ```
       </TabItem>
@@ -246,3 +271,9 @@ yarn marco visualize
 ![App Startup Iteration](../../../assets/app-startup-timeline.png)
 
 ![App Startup Timeline](../../../assets/app-startup-raw.png)
+
+👉 Code reference: [Example](https://github.com/dream11/marco/tree/main/example)
+
+:::note
+If we need to track events at more granular level and investigate the breakdown. Checkout [Multiple Event Logging](../multiple-events)
+:::

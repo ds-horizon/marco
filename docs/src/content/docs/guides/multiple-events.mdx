@@ -8,60 +8,105 @@ tableOfContents:
 import { Tabs, TabItem, Steps } from '@astrojs/starlight/components';
 import { Aside } from '@astrojs/starlight/components';
 
-This guide is created to track multiple events in a single iteration and how to visualize the data. For this example, we will extend the app startup example to track multiple events.
-Checkout the [App Startup](/guides/app-startup) guide for more details.
+This guide is created to track multiple events and how to visualize the data. For this example, we will extend the app startup example to track multiple events.
+Checkout the [App Startup](/guides/app-startup) guide for more context.
 
-Let's say we tracked startup time of the app and now we want to go a bit deeper to understand the breakdown of the startup time.
+Let's breakdown the **Startup Time** of the app.
 
 #### Tracking Multiple Events
 
-We already have one start marker(T1: AppLaunchStart) and one end marker(T4: HomeScreen_Loaded). Lets add few more markers
-- T2: Marker when Activity is created
-- T3: Marker when HomeScreen is mounted
+We already have one start marker **AppLaunchStart** (say `T1`) and one end marker **HomeScreen_Loaded** (say `T`). Lets add few more markers
 
-##### Add Activity OnCreate Marker
+##### T2: Add Main Application OnCreate Marker
 
-- **For Android**, add a marker to track the start of the activity in the `onCreate` method of `MainActivity` class. This is the first method that is called when the activity is going to be created.
+```kotlin collapse={3-9}
+// MainApplication.kt
 
-    ```kotlin frame="none"
+    override fun onCreate() {
+        // App Launch Start
+        PerformanceTracker.track(
+            "AppLaunchStart",
+            System.currentTimeMillis(),
+            null,
+            true,
+            applicationContext
+        )
+        super.onCreate()
+
+        // Application OnCreate code
+
+        PerformanceTracker.track(
+            "Application_onCreate",
+            System.currentTimeMillis(),
+            null,
+            true,
+            applicationContext
+        )
+    }
+```
+
+##### T3: Add Activity OnCreate Marker
+
+Add a marker to track the start of the activity in the `onCreate` method of `MainActivity` class. This is the first method that is called when the activity is going to be created.
+
+```kotlin 
+// MainActivity.kt
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         PerformanceTracker.track(
-            "ActivityCreated", 
-            System.currentTimeMillis(), 
+            "ActivityCreated",
+            System.currentTimeMillis(),
             null,
-            true, // writeLogInFile is true to save the data to a file
-            applicationContext // applicationContext is the context of the app to write the data to a file
-             )
-        // other code
+            true,
+            applicationContext
+        )
     }
-        ```
+```
 :::note
     - Make sure to pass `writeLogInFile: true` to the `track` method to save the data to a file. This will help in visualizing the data.
 :::
 
-##### Add HomeScreen Mounted Marker
+##### T4: Add a marker at the mount of HomeScreen
 
-```tsx collapse={23-40, 14-18, 3-5}
+```tsx collapse={15-37, 41-58}
 import { PerformanceTracker } from '@d11/marco';
 
+// enable logging to file
 PerformanceTracker.configure({
   persistToFile: true,
 });
 
 function HomeScreen(): React.JSX.Element {
+    const [isLoading, setIsLoading] = useState(true);
 
- useEffect(() => {
-    PerformanceTracker.track("HomeScreen_Mounted", Date.now());
- }, []);
+    useEffect(() => {
+        PerformanceTracker.track("HomeScreen_Mounted", Date.now());
+    }, []);
 
+    // Simulating Async operation
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
+    }, []);
+
+    if (isLoading) {
+        return (
+                <View style={styles.container}>
+                    <ActivityIndicator size="large" color="#0000ff" />
+                </View>
+        );
+    }
   return (
-    <PerformanceTracker tagName="HomeScreen_Loaded"  style={styles.outerContainer}>
-      <View style={styles.container}>
-        <Text testID="home_screen_text" style={styles.text}>Home Screen</Text>
-      </View>
-    </PerformanceTracker>
+    <SafeAreaView style={styles.outerContainer}>
+        <PerformanceTracker tagName="HomeScreen_Loaded"  style={styles.outerContainer}>
+            <View style={styles.container}>
+                <Text testID="home_screen_text" style={styles.text}>Home Screen</Text>
+            </View>
+        </PerformanceTracker>
+    </SafeAreaView>
   );
 }
 
@@ -87,6 +132,74 @@ const styles = StyleSheet.create({
 });
 ```
 
+##### T5: Add a marker on display of LoadingState
+
+```tsx collapse={4-6, 9-20, 32-38, 43-60}
+import { PerformanceTracker } from '@d11/marco';
+
+// enable logging to file
+PerformanceTracker.configure({
+  persistToFile: true,
+});
+
+function HomeScreen(): React.JSX.Element {
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        PerformanceTracker.track("HomeScreen_Mounted", Date.now());
+    }, []);
+
+    // Simulating Async operation
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
+    }, []);
+
+    if (isLoading) {
+        return (
+            <PerformanceTracker tagName="LoadingState">
+                <View style={styles.container}>
+                    <ActivityIndicator size="large" color="#0000ff" />
+                </View>
+            </PerformanceTracker>
+        );
+    }
+  return (
+    <SafeAreaView style={styles.outerContainer}>
+        <PerformanceTracker tagName="HomeScreen_Loaded"  style={styles.outerContainer}>
+            <View style={styles.container}>
+                <Text testID="home_screen_text" style={styles.text}>Home Screen</Text>
+            </View>
+        </PerformanceTracker>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f0f0f0',
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 10,
+    padding: 10,
+  },
+  text: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  outerContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+```
+
+
+
 ##### Instrumentation
 
 Again perform the same steps as in [App Startup](/guides/app-startup) guide to run the iteration.
@@ -111,7 +224,7 @@ yarn marco visualize
 
 - Below I had attached the screenshot of the dashboard .
   - At left side, we can see all the markers with there occurrence.
-  - bar chart shows that majority of the time is spent in `ActivityCreated` to `HomeScreen_Mounted`.
+  - Bar chart shows that between which 2 events most of the time is spent.
   - Correctness of the data is predicted using mean, standard deviation, error rate.
   - And at last we can see the difference between any 2 events iteration wise.
 
@@ -121,4 +234,4 @@ yarn marco visualize
 
 ![Multiple Events Raw](../../../assets/multiple-events-raw.png)
 
-We can break it down further if needed and visualize it in this way.
+👉 Code reference: [Example](https://github.com/dream11/marco/tree/main/example)

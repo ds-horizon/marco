@@ -69,8 +69,8 @@ import {
         // marco.config.js
         module.exports = {
         platform: 'android', 
-        outputPath: '<PATH_TO_STORE_REPORT>',  // Default: ./generated-perf-reports
-        port: '<PORT>',                        // Default: 8080
+        outputPath: '<PATH_TO_STORE_REPORT>',  
+        port: '<PORT>',                        
         dataDir: '<DATA_SOURCE_PATH_TO_VISUALIZE>'
         };
         ```
@@ -81,15 +81,19 @@ import {
         module.exports = {
         platform: 'ios', 
         iosPackage: '<iOSPackageName>',
-        outputPath: '<DATA_SOURCE_PATH>',  // Default: ./generated-perf-reports
-        port: '<PORT>',                    // Default port for the visualization dashboard
+        outputPath: '<DATA_SOURCE_PATH>',  
+        port: '<PORT>',                    
         dataDir: '<DATA_SOURCE_PATH_TO_VISUALIZE>'
         };
         ```
       </TabItem>
     </Tabs>
 
-5. Run the following command from the CLI to fetch data from the device and save it to the specified path. 
+    :::note
+    By default, the log file will be stored in `./generated-perf-reports/log.json` & dataDir source will be `./generated-perf-reports/log.json`.
+    :::
+
+5. Run the following command from the CLI to fetch data from the device.
 
       <Tabs syncKey="package-manager">
       <TabItem label="yarn" icon="seti:yarn">
@@ -120,4 +124,4 @@ import {
     </Tabs>
 </Steps>
 
-🎉 Yeah! You are done with first visualization.
+🎉 Yeah! First marker is tracked. Now leverage the marco panel to track the performance of your app.
