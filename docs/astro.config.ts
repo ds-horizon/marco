@@ -52,7 +52,7 @@ export default defineConfig({
           ],
         },
         {
-          label: 'Guide',
+          label: 'Guides',
           autogenerate: { directory: 'guides' },
         },
       ],
