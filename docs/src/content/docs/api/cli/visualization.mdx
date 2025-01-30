@@ -13,7 +13,7 @@ yarn marco visualize [options]
 ### Options
 
 - `-p, --port <port>`: Specify the port for the dashboard (default: 8080).
-- `-d, --dataDir <dataDir>`: Specify the directory containing the performance reports (default: ./generated-perf-reports).
+- `-d, --dataDir <dataDir>`: Specify the directory containing the performance reports (default: ./marco-reports/log.json).
 
 Example:
 
@@ -21,6 +21,19 @@ Example:
 yarn marco visualize --port 3000
 ```
 
+With data source path:
+
+```bash frame="none"
+yarn marco visualize --dataDir ./path/to/log.json
+```
+
+### Marco Dashboard
+
+![Marco Dashboard](../../../../assets/dashboard.gif)
+
 Features of the Visualization Dashboard:
-- **Performance Trends**: View performance data over time.
-- **Raw Data**: Access detailed performance logs in tabular format.
+- In **Side bar**, we can see all the markers with there occurrence.
+- **Iteration** wise data is shown in bar chart.
+- **Raw data** are processed and shown in timeline for better understanding.
+- Also have access to other metrics like mean, standard deviation, error rate to predict the correctness of the data.
+- We can play arounnd with mutliple events to see how they perform together.

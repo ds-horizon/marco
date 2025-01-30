@@ -1,9 +1,11 @@
 package performancetracker.example
 
+import android.os.Bundle
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
 import com.facebook.react.defaults.DefaultReactActivityDelegate
+import com.performancetracker.PerformanceTracker
 
 class MainActivity : ReactActivity() {
 
@@ -12,6 +14,18 @@ class MainActivity : ReactActivity() {
    * rendering of the component.
    */
   override fun getMainComponentName(): String = "PerformanceTrackerExample"
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+
+    PerformanceTracker.track(
+      "ActivityCreated",
+      System.currentTimeMillis(),
+      null,
+      true,
+      applicationContext
+    )
+  }
 
   /**
    * Returns the instance of the [ReactActivityDelegate]. We use [DefaultReactActivityDelegate]

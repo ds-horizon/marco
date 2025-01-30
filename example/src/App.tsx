@@ -1,150 +1,71 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ */
+
+import { PerformanceTracker } from '@d11/marco';
+import React, { useEffect, useState } from 'react';
 import {
+  ActivityIndicator,
+  SafeAreaView,
   StyleSheet,
   Text,
-  View,
-  Button,
-  FlatList,
-  SafeAreaView,
-  StatusBar,
-  Platform,
 } from 'react-native';
-import { PerformanceTracker } from 'dream11-marco';
 
 PerformanceTracker.configure({
   persistToFile: true,
 });
 
-interface ItemProps {
-  index: number;
-}
-
-const ItemCard = ({ index }: ItemProps) => {
-  const [endMarkers, setEndMarkers] = useState({
-    drawTime: '',
-    renderTime: '',
-  });
-
-  const isEnabled = index === 0 || index === 1;
-  const meta = {
-    component_name: `Card ${index}`,
-    screen_name: 'Home',
-  };
-  return (
-    <PerformanceTracker
-      meta={meta}
-      isEnabled={isEnabled}
-      tagName={`Item-${index}`}
-      style={styles.tracker}
-      onTrackingEnd={({ nativeEvent }) => {
-        setEndMarkers({
-          drawTime: nativeEvent.drawTime.toString(),
-          renderTime: nativeEvent.renderTime.toString(),
-        });
-      }}
-    >
-      <View style={styles.cardWrapper}>
-        <Text style={styles.text}>{`Card: ${index}`}</Text>
-        {isEnabled && (
-          <Text
-            style={styles.text}
-          >{`onDraw Timestamp: ${endMarkers.drawTime}`}</Text>
-        )}
-        {isEnabled && (
-          <Text
-            style={styles.text}
-          >{`Render Time: ${endMarkers.renderTime}ms`}</Text>
-        )}
-      </View>
-    </PerformanceTracker>
-  );
-};
-
-const DATA = new Array(100).fill(null);
-
-export default function App() {
-  const getLogsFromNative = async () => {
-    const data = await PerformanceTracker.getLogs();
-    console.log(`Platform: ${Platform.OS} All events ${JSON.stringify(data)}`);
-  };
-
-  const resetEvents = async () => {
-    PerformanceTracker.resetLogs({ clearFiles: true });
-  };
+function App(): React.JSX.Element {
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Set Mount as T0 marker
-    PerformanceTracker.track('Screen_Mount', Date.now(), {
-      additonal_data: '45',
-    });
+    PerformanceTracker.track('HomeScreen_Mounted', Date.now());
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 700);
   }, []);
 
+  if (isLoading) {
+    return (
+      <PerformanceTracker tagName="LoadingState" style={styles.outerContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </PerformanceTracker>
+    );
+  }
   return (
-    <SafeAreaView style={styles.main}>
-      <StatusBar />
-      <View style={styles.box}>
-        <Button title="Get All Events" onPress={getLogsFromNative} />
-        <Button title="Reset" onPress={resetEvents} />
-        <Button
-          title="Add multiple logs"
-          onPress={() => {
-            for (let i = 0; i < 10; i++) {
-              PerformanceTracker.track(`Random_${i}`, Date.now());
-            }
-          }}
-        />
-        <Button
-          title="Add logs with meta data"
-          onPress={() => {
-            PerformanceTracker.track(`Random_${Math.random()}`, Date.now(), {
-              screen: 'Home',
-            });
-          }}
-        />
-        <View style={styles.listContainer}>
-          <FlatList
-            initialNumToRender={10}
-            data={DATA}
-            renderItem={({ index }) => {
-              return <ItemCard index={index} />;
-            }}
-          />
-        </View>
-      </View>
+    <SafeAreaView style={styles.container}>
+      <PerformanceTracker tagName="HomeScreen_Loaded" isEnabled>
+        <Text testID="home_screen_text" style={styles.text}>
+          Home Screen
+        </Text>
+      </PerformanceTracker>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  tracker: {
-    margin: 20,
-  },
-  box: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  listContainer: {
-    flex: 1,
-    backgroundColor: '#D3D3D3',
-  },
-  cardWrapper: {
-    elevation: 1,
-    backgroundColor: 'white',
-    padding: 10,
-    height: 150,
-    width: '100%',
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  main: { flex: 1 },
   container: {
-    flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f0f0f0',
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 10,
+    padding: 10,
   },
   text: {
-    fontSize: 18,
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  outerContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
+
+export default App;

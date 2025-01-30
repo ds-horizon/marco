@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![mit licence](https://img.shields.io/dub/l/vibe-d.svg?style=for-the-badge)](https://github.com/dream-sports-labs/react-native-performance-tracker/blob/main/LICENSE)
+[![mit licence](https://img.shields.io/dub/l/vibe-d.svg?style=for-the-badge)](https://github.com/dream-sports-labs/marco/blob/main/LICENSE)
 
 </div>
 
@@ -10,20 +10,26 @@ A powerful React Native library to track and log performance metrics for screens
 
 ## Documentation
 
-All information about marco is available on our [website](https://github.com/dream-sports-labs/react-native-performance-tracker).
+All information about marco is available on our [website](https://marco.dreamsportslabs.com/).
 
-- [Installation](https://github.com/dream-sports-labs/react-native-performance-tracker)
-- [Guides](https://github.com/dream-sports-labs/react-native-performance-tracker)
-- [API References](https://github.com/dream-sports-labs/react-native-performance-tracker)
+- [Installation](https://marco.dreamsportslabs.com/project/quick-start/)
+- [Guides](https://marco.dreamsportslabs.com/guides/app-startup/)
+- [API References](https://marco.dreamsportslabs.com/api/methods/)
 
 ## Roadmap
 
-**marco** is under active development! Expect a lot of new features to appear soon🔥
+**Marco** is under active development! Expect a lot of new features to appear soon🔥
 
 - Expo support
 - Realtime monitoring of events
-- Support for multiple events selection in dashbaord
-- Native event logging mechanism
+- Navigation tracking support
+- App Start time tracking ✅
+- Support for multiple events selection in dashbaord ✅
+- Native Event logging mechanism ✅
+- Native view wrapper for brownfield apps
+- Support for Traces and Spans
+- [OTEL](https://opentelemetry.io/) support
+- Multiple input sources support in dashboard
 
 ## Community Discord
 

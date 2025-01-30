@@ -14,22 +14,19 @@ This capability enables you to capture native event data, including timestamps a
 
 #### Android
 
-    <Tabs syncKey="config">
-      <TabItem label="kotlin" icon="seti:kotlin">
-        ```kotlin
+        ```kotlin frame="none"
         import com.performancetracker.PerformanceTracker
 
+        // Basic usage: This will track the event with the name "EVENT_NAME" and the current timestamp.
         PerformanceTracker.track("EVENT_NAME", System.currentTimeMillis())
-        ```
-      </TabItem>
-      <TabItem label="java" icon="seti:java">
-        ```java
-        import com.performancetracker.PerformanceTracker
 
-        PerformanceTracker.track("EVENT_NAME", System.currentTimeMillis())
+        // With metadata: This will track the event with the name "EVENT_NAME" and the current timestamp and metadata.
+        PerformanceTracker.track("EVENT_NAME", System.currentTimeMillis(), meta)
+
+        // With writeLogInFile: This will track the event with the name "EVENT_NAME" and the current timestamp and write the log to a file.
+        // To write logs to a file, application context is required.
+        PerformanceTracker.track("EVENT_NAME", System.currentTimeMillis(), meta, true, applicationContext)
         ```
-      </TabItem>
-    </Tabs>
 
 **Arguments**
 
@@ -39,34 +36,20 @@ This capability enables you to capture native event data, including timestamps a
 - `writeLogInFile` (Optional): A boolean flag to determine if the log should be written to a file (true by default).
 - `context` (Optional): The Android context used when writing logs to a file.
 
-:::note
-Enable `writeLogInFile` to save logs for better visualization in our [web panel](../api/cli/visualization).
+:::tip
+Enable `writeLogInFile` to save logs for better visualization in our [web panel](../../api/cli/visualization).
 :::
 
 #### iOS
 
-    <Tabs syncKey="config">
-      <TabItem label="Objective-C" icon="seti:cpp">
         ```cpp
         #import "PerformanceTracker.h"
 
         [[PerformanceTracker sharedInstance] track:@"App_Startup"
-                                        timestamp:(long long) [[NSDate date] timeIntervalSince1970] * 1000
-                                                meta:@{@"key1": @"value1", @"key2": @"value2"}
+                                    timestamp:(long long) [[NSDate date] timeIntervalSince1970] * 1000
+                                    meta:@{@"key1": @"value1", @"key2": @"value2"}
                                     writeLogInFile:YES];
         ```
-      </TabItem>
-      <TabItem label="Swift" icon="seti:swift">
-        ```swift
-        #import "PerformanceTracker.h"
-
-        [[PerformanceTracker sharedInstance] track:@"App_Startup"
-                                        timestamp:(long long) [[NSDate date] timeIntervalSince1970] * 1000
-                                                meta:@{@"key1": @"value1", @"key2": @"value2"}
-                                    writeLogInFile:YES];
-        ```
-      </TabItem>
-    </Tabs>
 
 **Arguments**
 
@@ -75,6 +58,6 @@ Enable `writeLogInFile` to save logs for better visualization in our [web panel]
 - `meta` (Optional): Additional metadata related to the event in NSDictionary format.
 - `writeLogInFile` (Optional): A boolean flag to determine if the log should be written to a file (YES by default).
 
-:::note
-Enable `writeLogInFile` to save logs for better visualization in our [web panel](../api/cli/visualization).
+:::tip
+Enable `writeLogInFile` to save logs for better visualization in our [web panel](../../api/cli/visualization).
 :::

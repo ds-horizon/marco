@@ -12,7 +12,6 @@ const program = new Command();
   const configLoader = cosmiconfig('marco'); // Namespace for configuration
   const configFile = await configLoader.search(); // Search for configuration
   const configFileOptions = configFile ? configFile.config : {};
-  console.log('Configuration loaded from file:', configFileOptions);
   program
     .name('marco')
     .description('CLI tool for performance tracking and visualization')
@@ -35,7 +34,7 @@ const program = new Command();
     .option(
       '-o, --outputPath <path>',
       'Specify the output path for reports',
-      configFileOptions.outputPath || './generated-perf-reports' // Default value
+      configFileOptions.outputPath || './marco-reports' // Default value
     )
     .action((options) => {
       // Validate platform
@@ -74,10 +73,9 @@ const program = new Command();
     .option(
       '-d, --dataDir <dataDir>',
       'Specify the directory path from which to visualize the data',
-      configFileOptions.dataDir || './generated-perf-reports' // Default value
+      configFileOptions.dataDir || './marco-reports/log.json' // Default value
     )
     .action((options) => {
-      console.log(`Serving dashboard on port ${options.port}`);
       serveDashboard(options.port, options.dataDir);
     });
 

@@ -1,13 +1,7 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Trigger the workflow every time you push to the `feat/doc-migration` branch
   push:
-    branches:
-      - 'main'
-    paths:
-      - 'docs/**'
-  pull_request:
     branches:
       - 'main'
     paths:

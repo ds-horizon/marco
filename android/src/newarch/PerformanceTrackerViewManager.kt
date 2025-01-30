@@ -65,7 +65,7 @@ class PerformanceTrackerViewManager :
 
         for (i in 0 until readableArray.size()) {
             val item = readableArray.getMap(i) // Each item in the array is a ReadableMap
-            if (item.hasKey("name") && item.hasKey("value")) {
+            if (item != null && item.hasKey("name") && item.hasKey("value")) {
                 val key = item.getString("name")
                 val value = item.getString("value")
                 if (key != null && value != null) {

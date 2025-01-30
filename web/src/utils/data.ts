@@ -92,39 +92,3 @@ export function calculateMetrics(data: number[]) {
     errorRate: errorRate,
   };
 }
-
-// Example usage
-const data = [
-  { tagName: 'MatchCenter', timestamp: 1733301898369 },
-  { tagName: 'ContestCard', timestamp: 1733301898878 },
-  { tagName: 'MatchCenter', timestamp: 1733301904456 },
-  { tagName: 'Rewards', timestamp: 1733301905063 },
-  { tagName: 'RewardsCardClicked', timestamp: 1733301911827 },
-  { tagName: 'MatchCenter', timestamp: 1733301912185 },
-  { tagName: 'ContestCard', timestamp: 1733301898369 },
-  { tagName: 'Rewards', timestamp: 1733301898878 },
-  { tagName: 'MatchCenter', timestamp: 1733301904456 },
-  { tagName: 'Leaderboard', timestamp: 1733301905063 },
-  { tagName: 'TeamPreview', timestamp: 1733301911827 },
-];
-
-const tags = ['MatchCenter', 'ContestCard', 'Rewards'];
-const patterns = findPatterns(data as Event[], tags);
-console.log(patterns);
-
-// Sample output
-
-// const output = {
-//   "MatchCenter": [
-//     1733301898369,
-//     1733301912185
-//   ],
-//   "ContestCard": [
-//     1733301898878,
-//     1733301898369
-//   ],
-//   "Rewards": [
-//     1733301905063,
-//     1733301898878
-//   ]
-// }

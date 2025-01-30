@@ -78,7 +78,7 @@ lib/
 ios/generated
 android/generated
 
-generated-perf-reports/
+marco-reports/
 
 .parcel-cache
 .yarn
