@@ -82,3 +82,5 @@ marco-reports/
 
 .parcel-cache
 .yarn
+
+.env

@@ -1,6 +1,6 @@
 {
   "name": "@d11/marco",
-  "version": "0.3.0",
+  "version": "0.0.1",
   "description": "Benchmark React Native View Paint Time",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
@@ -35,10 +35,10 @@
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
-    "prepare": "bob build",
     "release": "release-it",
     "generate:report": "cd src/scripts/ && ts-node generate-report.js",
-    "visualize:report": "node src/scripts/serve-dashboard.js"
+    "visualize:report": "node src/scripts/serve-dashboard.js",
+    "publish": "vite-node scripts/publish.ts"
   },
   "keywords": [
     "react-native",
@@ -47,14 +47,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dream-sports-labs/react-native-performance-tracker.git"
+    "url": "git+https://github.com/dream-sports-labs/marco.git"
   },
   "author": "Dream Sports Labs <dreamsportslabs@dream11.com> (https://github.com/dream-sports-labs)",
   "license": "(MIT AND Apache-2.0)",
   "bugs": {
-    "url": "https://github.com/dream-sports-labs/react-native-performance-tracker/issues"
+    "url": "https://github.com/dream-sports-labs/marco/issues"
   },
-  "homepage": "https://github.com/dream-sports-labs/react-native-performance-tracker#readme",
+  "homepage": "https://marco.dreamsportslabs.com",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -68,7 +68,9 @@
     "@react-native-community/cli": "15.0.0",
     "@react-native/eslint-config": "^0.73.1",
     "@release-it/conventional-changelog": "^9.0.3",
+    "@types/fs-extra": "^11",
     "@types/jest": "^29.5.5",
+    "@types/minimist": "~1",
     "@types/node": "^22.10.5",
     "@types/react": "^18.2.44",
     "commitlint": "^17.0.2",
@@ -78,6 +80,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "express": "^4.21.2",
+    "fs-extra": "^11.3.0",
     "jest": "^29.7.0",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
@@ -86,10 +89,8 @@
     "release-it": "^17.10.0",
     "ts-node": "^10.9.2",
     "turbo": "^1.10.7",
-    "typescript": "^5.7.2"
-  },
-  "resolutions": {
-    "@types/react": "^18.2.44"
+    "typescript": "^5.7.2",
+    "vite-node": "^3.0.4"
   },
   "peerDependencies": {
     "react": "*",
