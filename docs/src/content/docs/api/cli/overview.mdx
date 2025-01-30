@@ -5,6 +5,7 @@ sidebar:
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { Aside } from '@astrojs/starlight/components';
 
 The `marco` CLI tool facilitates the generation of performance reports and visualization of performance data for `Android` and `iOS` applications. It provides both command-line options and a configuration file, offering flexibility in managing and analyzing application performance.
 
@@ -14,40 +15,78 @@ The `marco` CLI tool facilitates the generation of performance reports and visua
 
 To configure default values for the CLI tool, create a `marco.config.js` file in the root directory of project:
 
-    <Tabs syncKey="config">
-      <TabItem label="Android" icon="android">
-        ```js
-        // marco.config.js
-        module.exports = {
-        platform: 'android',
-        outputPath: '<PATH_TO_STORE_REPORT>',  
-        port: '<PORT>',                        
-        dataDir: '<DATA_SOURCE_PATH_TO_VISUALIZE>'
-        };
+    ```js
+    // marco.config.js
+    module.exports = {
+      android: {
+        packageName: 'com.example.app',
+        outputPath: './marco-reports/android',
+        dataDir: './marco-reports/android/log.json',
+        port: '8080',
+      },
+      ios: {
+        packageName: 'com.example.app',
+        outputPath: './marco-reports/ios',
+        dataDir: './marco-reports/ios/log.json',
+        port: '8080',
+      },
+    };
+    ```
+
+    <Aside type="tip" title="Defaults">
+      - `outputPath` is `./marco-reports`
+      - `dataDir` is `./marco-reports/log.json`
+    </Aside>
+
+    After creating the config file, one can run below commands to generate and visualize the performance data.
+
+    Generate report:
+
+      <Tabs syncKey="package-manager">
+      <TabItem label="yarn" icon="seti:yarn">
+        ```sh frame=none
+        yarn marco generate --platform android
+
+        // ios
+        yarn marco generate --platform ios  
         ```
       </TabItem>
-      <TabItem label="iOS" icon="apple">
-        ```js
-        // marco.config.js
-        module.exports = {
-        platform: 'ios',
-        iosPackage: '<iOSPackageName>',
-        outputPath: '<DATA_SOURCE_PATH>',  
-        port: '<PORT>',                  
-        dataDir: '<DATA_SOURCE_PATH_TO_VISUALIZE>'
-        };
+      <TabItem label="npm" icon="seti:npm">
+        ```sh frame=none
+        npm marco generate --platform android
+
+        // ios
+        npm marco generate --platform ios  
         ```
       </TabItem>
     </Tabs>
 
+    Visualize report:
+
+      <Tabs syncKey="package-manager">
+      <TabItem label="yarn" icon="seti:yarn">
+        ```sh frame=none
+        yarn marco visualize --platform android
+
+        // ios
+        yarn marco visualize --platform ios  
+        ```
+      </TabItem>
+      <TabItem label="npm" icon="seti:npm">
+        ```sh frame=none
+          npm marco visualize --platform android
+
+        // ios
+        npm marco visualize --platform ios  
+        ```
+      </TabItem>
+    </Tabs>
+
+    We can even run visualize with some other report file, without specifying the platform.
+
+    ```sh frame=none
+    yarn marco visualize --dataDir ./my-report/log.json
+    ```
 :::note
-- By default, output path is set to `./marco-reports` and file path is set to `./marco-reports/log.json`.
-- By default, data source path is set to `./marco-reports/log.json` but if need to visualize some other report, data source path can be changed.
+   To know more about the commands, to override the values in the config file, refer to [generate-report](../../cli/generate-report) and [visualize-report](../../cli/visualize-report).
 :::
-
-## **CLI Commands**
-
-The marco CLI tool provides two main commands:
-
-- [generate](../../cli/generate-report): To create performance reports.
-- [visualize](../../cli/visualization): To view and analyze the performance data through the dashboard.

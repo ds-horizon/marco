@@ -14,6 +14,7 @@ import {
   Tabs,
   TabItem,
 } from "@astrojs/starlight/components";
+import { Aside } from '@astrojs/starlight/components';
 
 ### Installation
 
@@ -61,49 +62,42 @@ import {
 
 3. For instrumentation, you can choose [maestro](https://maestro.mobile.dev/platform-support/react-native) or [detox](https://wix.github.io/Detox/), or use any pre-configured instrumentation tool to run the iteration. 
 
-4. Create a `marco.config.js` file at the root of project with the following content.
+4. Create a `marco.config.js` file at the root of project with the following sample config.
 
-    <Tabs syncKey="config">
-      <TabItem label="Android" icon="android">
-        ```js
-        // marco.config.js
-        module.exports = {
-        platform: 'android', 
-        outputPath: '<PATH_TO_STORE_REPORT>',  
-        port: '<PORT>',                        
-        dataDir: '<DATA_SOURCE_PATH_TO_VISUALIZE>'
-        };
-        ```
-      </TabItem>
-      <TabItem label="iOS" icon="apple">
-        ```js
-        // marco.config.js
-        module.exports = {
-        platform: 'ios', 
-        iosPackage: '<iOSPackageName>',
-        outputPath: '<DATA_SOURCE_PATH>',  
-        port: '<PORT>',                    
-        dataDir: '<DATA_SOURCE_PATH_TO_VISUALIZE>'
-        };
-        ```
-      </TabItem>
-    </Tabs>
+    ```js collapse={4-7, 10-13}
+    // marco.config.js
+    module.exports = {
+      android: {
+        packageName: 'com.example.app',
+        outputPath: './marco-reports/android',
+        dataDir: './marco-reports/android/log.json',
+        port: '8080',
+      },
+      ios: {
+        packageName: 'com.example.app',
+        outputPath: './marco-reports/ios',
+        dataDir: './marco-reports/ios/log.json',
+        port: '8080',
+      },
+    };
+    ```
 
-    :::note
-    By default, the log file will be stored in `./marco-reports/log.json` & dataDir source will be `./marco-reports/log.json`.
-    :::
+    <Aside type="note" title="Defaults">
+      - `outputPath` is `./marco-reports`
+      - `dataDir` is `./marco-reports/log.json`
+    </Aside>
 
 5. Run the following command from the CLI to fetch data from the device.
 
       <Tabs syncKey="package-manager">
       <TabItem label="yarn" icon="seti:yarn">
         ```sh frame=none
-        yarn marco generate
+        yarn marco generate --platform android
         ```
       </TabItem>
       <TabItem label="npm" icon="seti:npm">
         ```sh frame=none
-        npm marco generate
+        npm marco generate --platform android
         ```
       </TabItem>
     </Tabs>
@@ -113,12 +107,12 @@ import {
       <Tabs syncKey="package-manager">
       <TabItem label="yarn" icon="seti:yarn">
         ```sh frame=none
-        yarn marco visualize
+        yarn marco visualize --platform android
         ```
       </TabItem>
       <TabItem label="npm" icon="seti:npm">
         ```sh frame=none
-        npm marco visualize
+        npm marco visualize --platform android
         ```
       </TabItem>
     </Tabs>

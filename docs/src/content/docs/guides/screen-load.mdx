@@ -123,35 +123,31 @@ To configure the `marco` CLI, create a `marco.config.js` file at the root of pro
 
 Here`s an sample configuration:
 
-    <Tabs syncKey="config">
-      <TabItem label="Android" icon="android">
-        ```js
-        // marco.config.js
+    ```js
+    // marco.config.js
         module.exports = {
-        platform: 'android', 
-        outputPath: './navigation-reports'
+          android: {
+            packageName: 'com.example.app',
+            outputPath: './navigation-reports/android',
+            dataDir: './navigation-reports/android/log.json',
+            port: '8080',
+          },
+          ios: {
+            packageName: 'com.example.app',
+            outputPath: './navigation-reports/ios',
+            dataDir: './navigation-reports/ios/log.json',
+            port: '8080',
+          },
         };
         ```
-      </TabItem>
-      <TabItem label="iOS" icon="apple">
-        ```js
-        // marco.config.js
-        module.exports = {
-        platform: 'ios', 
-        iosPackage: 'com.example',
-        outputPath: './navigation-reports',
-        };
-        ```
-      </TabItem>
-    </Tabs>
 
 #### Step 5: Fetch the Report
 
 ```sh frame="none"
- yarn marco generate
+ yarn marco generate --platform android
 ```
 
-The command collects data saved in device to a JSON file at specified path(`./navigation-reports/log.json`) at the root of project.
+The command collects data saved in device to a JSON file at specified path(`./navigation-reports/android/log.json`) at the root of project.
 
 **Sample Report:**
 
@@ -180,33 +176,11 @@ The command collects data saved in device to a JSON file at specified path(`./na
 
 To visualize the fetched performance data, you can use the marco visualization dashboard. This step helps you analyze the data in a more user-friendly and interactive way.
 
-Update `marco.config.js`
-
-    <Tabs syncKey="config">
-      <TabItem label="Android" icon="android">
-        ```js
-        // marco.config.js
-        module.exports = {
-        // other configs
-        dataDir: "./navigation-reports"
-        };
-        ```
-      </TabItem>
-      <TabItem label="iOS" icon="apple">
-        ```js
-        // marco.config.js
-        module.exports = {
-        // other configs
-        dataDir: "./navigation-reports"
-        };
-        ```
-      </TabItem>
-    </Tabs>
 
 **Run the Visualization Command**
 
 ```sh frame="none"
-yarn marco visualize
+yarn marco visualize --platform android
 ```
 
 This command starts a local server and opens the visualization dashboard in browser at http://localhost:8080 (or the custom port specified in `marco.config.js`).

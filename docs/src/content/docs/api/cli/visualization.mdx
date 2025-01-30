@@ -4,25 +4,39 @@ sidebar:
   order: 2
 ---
 
-The visualize command allows you to view the performance data through a dashboard.
+This command is needed when we want to use CLI to visualize performance reports for `Android` or `iOS` applications, or to override the values in the config file.
 
 ```bash frame="none"
-yarn marco visualize [options]
+yarn marco visualize --help
+```
+
+```bash frame="none"
+Usage: marco visualize [options]
+
+Serve the performance report dashboard
+
+Options:
+  -p, --port <port>        Specify the port (default: "8080")
+  -d, --dataDir <dataDir>  Specify the data directory path
+  --platform <platform>    Specify platform: android or ios
+  -h, --help               display help for command
 ```
 
 ### Options
 
+- `--platform <platform>`: Specify platform: android or ios. If want to read values from the config file, specify the platform.
 - `-p, --port <port>`: Specify the port for the dashboard (default: 8080).
 - `-d, --dataDir <dataDir>`: Specify the directory containing the performance reports (default: ./marco-reports/log.json).
 
 Example:
 
 ```bash frame="none"
-yarn marco visualize --port 3000
+yarn marco visualize --platform android --port 3000
 ```
 
 With data source path:
 
+This is useful when we want to visualize the data from a different directory.
 ```bash frame="none"
 yarn marco visualize --dataDir ./path/to/log.json
 ```
