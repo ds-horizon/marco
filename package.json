@@ -36,8 +36,6 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
     "release": "release-it",
-    "generate:report": "cd src/scripts/ && ts-node generate-report.js",
-    "visualize:report": "node src/scripts/serve-dashboard.js",
     "publish": "vite-node scripts/publish.ts"
   },
   "keywords": [
