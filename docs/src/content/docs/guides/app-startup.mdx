@@ -147,40 +147,32 @@ After running the iteration, it will save the data in device itself.
 
 Create a `marco.config.js` file at the root of project with the following content.
 
-    <Tabs syncKey="config">
-      <TabItem label="Android" icon="android">
-        ```js
-        // marco.config.js
-        module.exports = {
-        platform: 'android', 
-        outputPath: './app-startup-reports',
-        port: 8080,
-        dataDir: './app-startup-reports/log.json'
-        };
-        ```
-      </TabItem>
-      <TabItem label="iOS" icon="apple">
-        ```js
-        // marco.config.js
-        module.exports = {
-        platform: 'ios', 
-        iosPackage: 'com.example',
-        outputPath: './app-startup-reports',
-        port: 8080,
-        dataDir: './app-startup-reports/log.json'
-        };
-        ```
-      </TabItem>
-    </Tabs>
+    ```js
+    // marco.config.js
+    module.exports = {
+      android: {
+        packageName: 'com.example.app',
+        outputPath: './app-startup-reports/android',
+        dataDir: './app-startup-reports/android/log.json',
+        port: '8080',
+      },
+      ios: {
+        packageName: 'com.example.app',
+        outputPath: './app-startup-reports/ios',
+        dataDir: './app-startup-reports/ios/log.json',
+        port: '8080',
+      },
+    };
+    ```
 
 ##### Step 5: Generate Data
 
 Use `generate` command to generate the data.
 
 ```sh frame="none"
-yarn marco generate
+yarn marco generate --platform android
 ```
-- It will save the data in specified path (./app-startup-reports/log.json).
+- It will save the data in specified path (./app-startup-reports/android/log.json).
 
 Here is the sample report generated:
 
@@ -258,7 +250,7 @@ Here is the sample report generated:
 Use `visualize` command to visualize the data.
 
 ```sh frame="none"
-yarn marco visualize
+yarn marco visualize --platform android
 ```
 
 - It will open the dashboard in the browser.

@@ -26,8 +26,7 @@ export default defineConfig({
       },
       social: {
         github: 'https://github.com/dream-sports-labs/marco',
-        discord:
-          'https://discord.com/channels/1317172052179943504/1317172052179943507',
+        discord: 'https://discord.gg/RBDPaN2V',
       },
       sidebar: [
         {
