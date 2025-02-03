@@ -17,11 +17,12 @@ import {
   ChartTooltipContent,
 } from './components/ui/chart';
 import { Checkbox } from './components/ui/checkbox';
-import { useData } from './data';
+import { useData, visualiseMultipleReports } from './data';
 import { Header } from './header';
 import { MetricData, metricColumns } from './utils/helpers';
 import { DataTable } from './components/data-table';
 import { CheckedState } from '@radix-ui/react-checkbox';
+import { BarChartMultiple } from './components/bar-chart-multiple';
 
 export function App() {
   const data = useData();
@@ -29,6 +30,10 @@ export function App() {
   const [tags, setTags] = useState<string[]>(
     new URL(window.location.href).searchParams.get('tags')?.split(',') || []
   );
+
+  useEffect(() => {
+    visualiseMultipleReports()
+  }, [])
 
   const [allSelected, setAllSelected] = useState<CheckedState>(false);
 
@@ -48,6 +53,7 @@ export function App() {
 
   const { formattedData, metrics } = useMemo(() => {
     const pattern = findPatterns(data, tags);
+    console.log('Pattern', pattern)
     const patternValues = Object.values(pattern);
     const max = patternValues.length
       ? Math.min(...Object.values(pattern).map((p) => p.length))
@@ -291,6 +297,7 @@ export function App() {
               </div>
 
               <DataTable columns={metricColumns} data={metrics} />
+              <BarChartMultiple />
 
               <h1 className="mt-12 mb-4 text-xl font-bold">
                 <span className="px-2 py-1 rounded-full bg-card">

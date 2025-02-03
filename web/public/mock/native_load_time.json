@@ -1,0 +1,802 @@
+[
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733301898369
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733301898878
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733301904456
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733301905063
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733301911827
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733301912185
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733301915489
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733301915972
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733301922994
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733301923326
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733301926940
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733301927405
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733301934720
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733301935064
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733301939194
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733301939663
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733301948255
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733301948610
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733301953391
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733301953906
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733301962131
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733301962495
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733301966620
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733301967087
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733301974489
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733301974813
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733301979632
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733301980108
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733301987879
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733301988240
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733301994416
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733301994861
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302003046
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302003388
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302007485
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302007914
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302014760
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302015099
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302019180
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302019674
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302027601
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302027954
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302032316
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302032745
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302040444
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302040786
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302045106
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302045560
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302052055
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302052325
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302056221
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302056645
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302064357
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302064746
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302069077
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302069494
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302076152
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302076456
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302080534
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302080831
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302087908
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302088222
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302092360
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302092737
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302099334
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302099642
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302104097
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302104501
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302110834
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302111095
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302115014
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302115439
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302123572
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302123840
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302127351
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302127732
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302134062
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302134404
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302138302
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302138731
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302145730
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302146008
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302149999
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302150339
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302157086
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302157406
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302161129
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302161508
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302168876
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302169207
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302172701
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302173099
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302179767
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302180071
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302183839
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302184244
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302191479
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302191776
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302195147
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302195482
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302203137
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302203406
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302207018
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302207383
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302214564
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302214867
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302218186
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302218575
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302224818
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302225056
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302227844
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302228172
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302233741
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302233993
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302236818
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302237142
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302244100
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302244402
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302248938
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302249290
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302255152
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302255439
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302259489
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302259833
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302266514
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302266792
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302271590
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302271947
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302280778
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302281069
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302284542
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302284869
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302291762
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302292067
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302295487
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302295851
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302301960
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302302259
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302306185
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302306598
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302312730
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302312964
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302315501
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302315736
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302322008
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302322256
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302325050
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302325295
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302331033
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302331295
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302335459
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302335838
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302342754
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302343036
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302346556
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302346911
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302353581
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302353825
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302357795
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302358166
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302364262
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302364539
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302368477
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302368762
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302376107
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302376389
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302379941
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302380194
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302387259
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302387566
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302390707
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302390999
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302397554
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302397815
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302401377
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302401712
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302408674
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302408919
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302412884
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302413216
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302420315
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302420603
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302424223
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302424570
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302431303
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302431576
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302435355
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302435687
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302443072
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302443362
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302446712
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302447024
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302453948
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302454223
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302458588
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302458949
+    },
+    {
+        "tagName": "native_tabs_open_benchmark",
+        "timestamp": 1733302465827
+    },
+    {
+        "tagName": "native_tabs_load_time",
+        "timestamp": 1733302466091
+    },
+    {
+        "tagName": "native_albums_tab_click",
+        "timestamp": 1733302469370
+    },
+    {
+        "tagName": "native_albums_tab_load",
+        "timestamp": 1733302469694
+    }
+]
