@@ -17,7 +17,7 @@ import {
   ChartTooltipContent,
 } from './components/ui/chart';
 import { Checkbox } from './components/ui/checkbox';
-import { useData, visualiseMultipleReports } from './data';
+import { createMultipleBarChartData, useData, visualiseMultipleReports } from './data';
 import { Header } from './header';
 import { MetricData, metricColumns } from './utils/helpers';
 import { DataTable } from './components/data-table';
@@ -32,7 +32,7 @@ export function App() {
   );
 
   useEffect(() => {
-    visualiseMultipleReports()
+    createMultipleBarChartData()
   }, [])
 
   const [allSelected, setAllSelected] = useState<CheckedState>(false);

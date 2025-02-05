@@ -1,4 +1,4 @@
-import { report } from 'process';
+
 import { findPatterns } from './utils/data';
 import { randomColor } from './utils/helpers';
 
@@ -76,21 +76,22 @@ export const fetchDataFromSource = async (path: string) => {
   }
 }
 
+const reports = [
+  {
+    name: 'Native Bottom Tab Load Time',
+    tags: ['native_tabs_open_benchmark', 'native_tabs_load_time'],
+    source: 'mock/native_load_time.json',
+    color: randomColor()
+  },
+  {
+    name: 'JS Bottom Tab Load Time',
+    tags: ['js_tabs_open_benchmark', 'js_tabs_load_time'],
+    source: 'mock/js_load_time.json',
+    color: randomColor()
+  }
+]
+
 export const visualiseMultipleReports = async () => {
-  const reports = [
-    {
-      name: 'Native Bottom Tab Load Time',
-      tags: ['native_tabs_open_benchmark', 'native_tabs_load_time'],
-      source: 'mock/native_load_time.json',
-      color: randomColor()
-    },
-    {
-      name: 'JS Bottom Tab Load Time',
-      tags: ['js_tabs_open_benchmark', 'js_tabs_load_time'],
-      source: 'mock/js_load_time.json',
-      color: randomColor()
-    }
-  ]
 
   const multipleBarChartConfig: {
     [key: string]: {
@@ -104,6 +105,8 @@ export const visualiseMultipleReports = async () => {
     const report = reports[i];
     const data = await fetchDataFromSource(report.source)
     const pattern = findPatterns(data, report.tags)
+    report['data'] = data;
+    report['pattern'] = pattern;
     
     const key = report.name.split(" ").join("_")
     multipleBarChartConfig[key] = {
@@ -118,22 +121,25 @@ export const visualiseMultipleReports = async () => {
   }
 
   console.log('Multiple Bar Chart Config', multipleBarChartConfig, maxIterationPossible)
-  return {
-    multipleBarChartConfig,
-    maxIterationPossible
-  }
-}
 
-const createMultipleBarChartData = () => {
   const finalData : Record<string, string>[] = [];
-  const {multipleBarChartConfig, maxIterationPossible} = visualiseMultipleReports()
-  for (let i=0; i< maxIterationPossible; i++) {
-    finalData.push({
-      itr: i+1,
+  for (let i=1; i< maxIterationPossible; i++) {
 
+    const markers={};
+    Object.keys(multipleBarChartConfig).forEach((label, index) => {
+      const report = reports[index];
+      markers[label] =  report['pattern'][report['tags'][1]][i] - report['pattern'][report['tags'][0]][i-1]
+    })
+    finalData.push({
+      itr: i,
+      ...markers,
     })
   }
-  return finalData;
+  console.log('final data', finalData)
+  return {
+    multipleBarChartConfig,
+    multipleBarData: finalData
+  }
 }
 
 export function useData(): PerformanceData {
