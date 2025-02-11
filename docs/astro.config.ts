@@ -7,6 +7,7 @@ import tailwind from '@astrojs/tailwind';
 import { defineConfig } from 'astro/config';
 
 const SITE = 'https://marco.dreamsportslabs.com';
+const googleAnalyticsId = process.env.GOOGLE_ANALYTICS_TOKEN;
 
 // https://astro.build/config
 export default defineConfig({
@@ -59,6 +60,24 @@ export default defineConfig({
       components: {
         Head: './src/overrides/head.astro',
       },
+      head: [
+        {
+          tag: 'script',
+          attrs: {
+            src: `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`,
+          },
+        },
+        {
+          tag: 'script',
+          content: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', '${googleAnalyticsId}');
+          `,
+        },
+      ],
     }),
     tailwind({ applyBaseStyles: false }),
     react(),

@@ -28,7 +28,7 @@ module.exports = function serveDashboard(port, outputPathDir) {
 
   const serveCommand = `npx serve -s "${webFolderPath}" -p ${port}`;
 
-  console.log(`Server runnign at: http://localhost:${port}`);
+  console.log(`Server running at: http://localhost:${port}`);
 
   const serveProcess = exec(serveCommand);
 

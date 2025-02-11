@@ -1,6 +1,6 @@
 {
   "name": "@d11/marco",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Benchmark React Native View Paint Time",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
