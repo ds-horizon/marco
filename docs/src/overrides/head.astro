@@ -53,5 +53,13 @@ if (!id) {
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={DESCRIPTION} />
 <meta name="twitter:image" content={META_IMAGE} />
-
+    <!-- Google tag (gtag.js) -->
+<script async src=`https://www.googletagmanager.com/gtag/js?id=G-P61N0RKY4H`></script>
+<script type="text">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+  
+      gtag('config', 'G-P61N0RKY4H');
+</script>
 <slot />
