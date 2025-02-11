@@ -12,6 +12,12 @@ const DESCRIPTION =
   "Track and optimize your app’s performance with ease.";
 const META_IMAGE = `${SITE}/banner.png`
 
+const googleAnalyticsId = process.env.GOOGLE_ANALYTICS_TOKEN;
+
+if (!googleAnalyticsId) {
+  console.log('❌ GA Token is missing!');
+}
+
 let title = data.title;
 
 if (!id) {
@@ -53,5 +59,18 @@ if (!id) {
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={DESCRIPTION} />
 <meta name="twitter:image" content={META_IMAGE} />
+    <!-- Google tag (gtag.js) -->
+<script
+  async
+  src=`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`
+></script>
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
 
+  gtag("config", "G-P61N0RKY4H");
+</script>
 <slot />
