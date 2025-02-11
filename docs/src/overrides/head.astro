@@ -16,11 +16,6 @@ const googleAnalyticsId = process.env.GOOGLE_ANALYTICS_TOKEN;
 
 if (!googleAnalyticsId) {
   console.log('❌ GA Token is missing!');
-} else {
-  console.log(
-    '✅ GA Token Loaded:',
-    googleAnalyticsId.substring(0, 4) + '****'
-  );
 }
 
 let title = data.title;
@@ -76,6 +71,6 @@ if (!id) {
   }
   gtag("js", new Date());
 
-  gtag("config", "${googleAnalyticsId}");
+  gtag("config", "G-P61N0RKY4H");
 </script>
 <slot />
