@@ -12,6 +12,17 @@ const DESCRIPTION =
   "Track and optimize your app’s performance with ease.";
 const META_IMAGE = `${SITE}/banner.png`
 
+const googleAnalyticsId = process.env.GOOGLE_ANALYTICS_TOKEN;
+
+if (!googleAnalyticsId) {
+  console.log('❌ GA Token is missing!');
+} else {
+  console.log(
+    '✅ GA Token Loaded:',
+    googleAnalyticsId.substring(0, 4) + '****'
+  );
+}
+
 let title = data.title;
 
 if (!id) {
@@ -56,7 +67,7 @@ if (!id) {
     <!-- Google tag (gtag.js) -->
 <script
   async
-  src="https://www.googletagmanager.com/gtag/js?id=G-P61N0RKY4H"
+  src=`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`
 ></script>
 <script is:inline>
   window.dataLayer = window.dataLayer || [];
@@ -65,6 +76,6 @@ if (!id) {
   }
   gtag("js", new Date());
 
-  gtag("config", "G-P61N0RKY4H");
+  gtag("config", googleAnalyticsId);
 </script>
 <slot />

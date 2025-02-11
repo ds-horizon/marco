@@ -7,16 +7,6 @@ import tailwind from '@astrojs/tailwind';
 import { defineConfig } from 'astro/config';
 
 const SITE = 'https://marco.dreamsportslabs.com';
-const googleAnalyticsId = process.env.GOOGLE_ANALYTICS_TOKEN;
-
-if (!googleAnalyticsId) {
-  console.log('❌ GA Token is missing!');
-} else {
-  console.log(
-    '✅ GA Token Loaded:',
-    googleAnalyticsId.substring(0, 4) + '****'
-  );
-}
 
 // https://astro.build/config
 export default defineConfig({
