@@ -1,802 +1,482 @@
 [
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302475916
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286223927"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302476244
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286223978"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302480246
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286226210"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302480555
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286226238"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302487145
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286230710"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302487451
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286230745"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302490601
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286232978"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302490985
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286233012"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302496448
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286237794"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302496735
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286237828"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302500657
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286240045"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302500906
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286240082"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302506960
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286244860"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302507254
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286244895"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302510954
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286247227"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302511285
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286247255"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302517424
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286251678"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302517664
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286251712"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302520753
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286253910"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302521095
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286253942"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302526989
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286258629"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302527250
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286258661"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302530367
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286261310"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302530672
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286261340"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302536451
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286265744"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302536708
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286265778"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302540305
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286267977"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302540628
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286268014"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302546505
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286272745"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302546752
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286272794"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302549904
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286275061"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302550246
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286275089"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302556036
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286279794"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302556271
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286279828"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302559504
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286282161"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302559830
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286282199"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302566007
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286286628"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302566294
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286286662"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302569455
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286288777"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302569859
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286288817"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302575370
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286293427"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302575636
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286293478"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302579559
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286295777"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302579932
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286295804"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302585345
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286301210"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302585614
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286301261"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302589587
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286303445"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302589912
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286303471"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302595479
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286308327"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302595745
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286308361"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302599418
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286310644"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302599745
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286310670"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302605569
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286315144"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302605830
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286315178"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302609674
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286317394"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302610061
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286317423"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302616150
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286322144"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302616395
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286322194"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302619699
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286324378"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302620089
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286324409"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302626002
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286328827"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302626308
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286328863"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302629909
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286331129"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302630276
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286331170"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302635227
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286335777"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302635452
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286335811"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302639711
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286338012"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302640070
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286338052"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302645639
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286342544"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302645905
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286342595"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302649103
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286344844"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302649334
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286344875"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302655710
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286349661"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302655977
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286349694"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302659295
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286351894"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302659626
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286351929"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302665097
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286356444"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302665398
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286356478"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302668728
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286358794"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302669077
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286358832"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302675333
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286363844"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302675563
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286363878"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302679352
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286366077"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302679751
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286366105"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302686087
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286370577"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302686377
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286370612"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302689446
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286372928"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302689764
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286372959"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302695661
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286377727"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302695872
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286377794"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302699446
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286379944"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302699803
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286379969"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302705717
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286384711"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302705981
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286384744"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302709957
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286387044"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302710299
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286387074"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302716042
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286391660"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302716304
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286391694"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302720351
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286393944"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302720714
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286393970"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302726639
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286398744"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302726881
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286398777"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302730542
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286401061"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302730892
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286401087"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302736137
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286405644"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302736390
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286405695"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302739855
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286408027"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302740201
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286408075"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302746969
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286412544"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302747257
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286412595"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302750790
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286414962"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302751010
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286415000"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302756366
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286419510"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302756584
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286419544"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302759950
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286422078"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302760242
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286422103"
     },
     {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302765964
+        "tagName": "JS_Tab_Load_Start",
+        "timestamp": "1739286426810"
     },
     {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302766238
+        "tagName": "JS_Tab_Load_End",
+        "timestamp": "1739286426861"
     },
     {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302769905
+        "tagName": "JS_Tab_Pressed",
+        "timestamp": "1739286429144"
     },
     {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302770188
-    },
-    {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302776206
-    },
-    {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302776463
-    },
-    {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302779569
-    },
-    {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302779889
-    },
-    {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302785653
-    },
-    {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302785927
-    },
-    {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302789136
-    },
-    {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302789348
-    },
-    {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302795709
-    },
-    {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302795943
-    },
-    {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302799122
-    },
-    {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302799354
-    },
-    {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302805156
-    },
-    {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302805403
-    },
-    {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302809518
-    },
-    {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302809835
-    },
-    {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302816908
-    },
-    {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302817194
-    },
-    {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302820822
-    },
-    {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302821165
-    },
-    {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302826752
-    },
-    {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302826984
-    },
-    {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302830655
-    },
-    {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302831007
-    },
-    {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302836283
-    },
-    {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302836541
-    },
-    {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302839580
-    },
-    {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302839945
-    },
-    {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302845410
-    },
-    {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302845675
-    },
-    {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302849379
-    },
-    {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302849718
-    },
-    {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302855061
-    },
-    {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302855283
-    },
-    {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302858575
-    },
-    {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302858835
-    },
-    {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302865115
-    },
-    {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302865365
-    },
-    {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302868665
-    },
-    {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302869004
-    },
-    {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302874848
-    },
-    {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302875081
-    },
-    {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302878345
-    },
-    {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302878573
-    },
-    {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302884178
-    },
-    {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302884401
-    },
-    {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302888080
-    },
-    {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302888372
-    },
-    {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302894674
-    },
-    {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302894915
-    },
-    {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302898507
-    },
-    {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302898837
-    },
-    {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302904290
-    },
-    {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302904534
-    },
-    {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302907570
-    },
-    {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302907925
-    },
-    {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302913296
-    },
-    {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302913526
-    },
-    {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302917334
-    },
-    {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302917704
-    },
-    {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302922878
-    },
-    {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302923136
-    },
-    {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302926295
-    },
-    {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302926666
-    },
-    {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302931987
-    },
-    {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302932265
-    },
-    {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302935572
-    },
-    {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302935907
-    },
-    {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302941771
-    },
-    {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302942014
-    },
-    {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302945675
-    },
-    {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302946017
-    },
-    {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302951709
-    },
-    {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302951944
-    },
-    {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302955161
-    },
-    {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302955395
-    },
-    {
-        "tagName": "js_tabs_open_benchmark",
-        "timestamp": 1733302960972
-    },
-    {
-        "tagName": "js_tabs_load_time",
-        "timestamp": 1733302961219
-    },
-    {
-        "tagName": "js_albums_tab_click",
-        "timestamp": 1733302964686
-    },
-    {
-        "tagName": "js_albums_tab_load",
-        "timestamp": 1733302965085
+        "tagName": "JS_Tab_Loaded",
+        "timestamp": "1739286429181"
     }
 ]

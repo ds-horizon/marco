@@ -1,4 +1,3 @@
-
 import { findPatterns } from './utils/data';
 import { randomColor } from './utils/helpers';
 
@@ -13,13 +12,13 @@ export type PerformanceDataEntry = {
 
 let data: PerformanceData = [];
 
-const basePath =
+const basePath1 =
   process.env.NODE_ENV === 'development'
     ? '/mock/log.json' // Dev mode (served by dev server)
     : 'assets/log.json'; // Prod mode (bundled into `dist`)
 
 try {
-  data = await fetch(basePath)
+  data = await fetch(basePath1)
     .then((res) => res.json())
     .then((s) => {
       const colors = s.reduce(
@@ -56,7 +55,7 @@ export const fetchDataFromSource = async (path: string) => {
             if (!acc[tagName]) {
               acc[tagName] = randomColor();
             }
-  
+
             return acc;
           },
           {} as {
@@ -74,73 +73,90 @@ export const fetchDataFromSource = async (path: string) => {
     console.error(error);
     throw new Error('Failed to load performance data at path assets/log.json');
   }
-}
+};
 
 const reports = [
   {
     name: 'Native Bottom Tab Load Time',
-    tags: ['native_tabs_open_benchmark', 'native_tabs_load_time'],
+    tags: ['Native_Tab_Load_Start', 'Native_Tab_Load_End'],
     source: 'mock/native_load_time.json',
-    color: randomColor()
+    color: randomColor(),
   },
   {
     name: 'JS Bottom Tab Load Time',
-    tags: ['js_tabs_open_benchmark', 'js_tabs_load_time'],
+    tags: ['JS_Tab_Load_Start', 'JS_Tab_Load_End'],
     source: 'mock/js_load_time.json',
-    color: randomColor()
-  }
-]
+    color: randomColor(),
+  },
+];
 
 export const visualiseMultipleReports = async () => {
-
   const multipleBarChartConfig: {
     [key: string]: {
-      label: string
-      color: string
-    }
+      label: string;
+      color: string;
+    };
   } = {};
   let maxIterationPossible = 0;
-
-  for (let i=0; i< reports.length; i++) {
+  const reportWithDataAndPattern: any[] = [];
+  for (let i = 0; i < reports.length; i++) {
     const report = reports[i];
-    const data = await fetchDataFromSource(report.source)
-    const pattern = findPatterns(data, report.tags)
-    report['data'] = data;
-    report['pattern'] = pattern;
-    
-    const key = report.name.split(" ").join("_")
+    const data = await fetchDataFromSource(report.source);
+    const pattern = findPatterns(data, report.tags);
+    const newReport = {
+      ...report,
+      data: data,
+      pattern: pattern,
+    };
+    reportWithDataAndPattern.push(newReport);
+    const key = newReport.name.split(' ').join('_');
     multipleBarChartConfig[key] = {
-      label: report.name,
-      color: report.color
-    }
+      label: newReport.name,
+      color: newReport.color,
+    };
     const patternValues = Object.values(pattern);
     const max = patternValues.length
       ? Math.min(...Object.values(pattern).map((p) => p.length))
       : 0;
-    maxIterationPossible = Math.max(maxIterationPossible, max)
+    maxIterationPossible = Math.max(maxIterationPossible, max);
   }
 
-  console.log('Multiple Bar Chart Config', multipleBarChartConfig, maxIterationPossible)
+  console.log(
+    '::: Modified Report with Patter and Data',
+    reportWithDataAndPattern
+  );
 
-  const finalData : Record<string, string>[] = [];
-  for (let i=1; i< maxIterationPossible; i++) {
-
-    const markers={};
-    Object.keys(multipleBarChartConfig).forEach((label, index) => {
-      const report = reports[index];
-      markers[label] =  report['pattern'][report['tags'][1]][i] - report['pattern'][report['tags'][0]][i-1]
-    })
-    finalData.push({
-      itr: i,
-      ...markers,
-    })
-  }
-  console.log('final data', finalData)
-  return {
+  console.log(
+    'Multiple Bar Chart Config',
     multipleBarChartConfig,
-    multipleBarData: finalData
+    maxIterationPossible
+  );
+
+  const finalData: Record<string, string>[] = [];
+  for (let i = 0; i < maxIterationPossible; i++) {
+    const markers: Record<string, string> = {};
+    Object.keys(multipleBarChartConfig).forEach((label, index) => {
+      // console.log('label in progress', label);
+      const report = reportWithDataAndPattern.find(
+        (value) => value.name === multipleBarChartConfig[label].label
+      );
+      // console.log('label found ', report.name);
+      const diff =
+        report['pattern'][report['tags'][1]][i] -
+        report['pattern'][report['tags'][0]][i];
+      markers[label] = diff.toString();
+    });
+    finalData.push({
+      itr: (i + 1).toString(),
+      ...markers,
+    });
   }
-}
+  console.log('final data', finalData);
+  return {
+    chartConfig: multipleBarChartConfig,
+    multipleData: finalData,
+  };
+};
 
 export function useData(): PerformanceData {
   return data;
