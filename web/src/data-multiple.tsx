@@ -10,43 +10,17 @@ export type PerformanceDataEntry = {
   meta?: Record<string, string>;
 };
 
-let data: PerformanceData = [];
+let data: Record<string, PerformanceData> = {};
 const dataDirs = ['mock/native_load_time.json', 'mock/js_load_time.json'];
 
-const basePath1 =
+const basePath =
   process.env.NODE_ENV === 'development'
-    ? '/mock/log.json' // Dev mode (served by dev server)
+    ? dataDirs // Dev mode (served by dev server)
     : 'assets/log.json'; // Prod mode (bundled into `dist`)
 
-try {
-  data = await fetch(basePath1)
-    .then((res) => res.json())
-    .then((s) => {
-      const colors = s.reduce(
-        (acc: any, { tagName }: { tagName: any }) => {
-          if (!acc[tagName]) {
-            acc[tagName] = randomColor();
-          }
-
-          return acc;
-        },
-        {} as {
-          [key: string]: string;
-        }
-      );
-
-      return s.map((entry: any) => ({
-        ...entry,
-        timestamp: Number(entry.timestamp),
-        color: colors[entry.tagName],
-      }));
-    });
-} catch (error) {
-  console.error(error);
-  throw new Error('Failed to load performance data at path assets/log.json');
-}
-
-export const fetchDataFromSource = async (path: string) => {
+export const fetchDataFromSource = async (
+  path: string
+): Promise<PerformanceData> => {
   try {
     const d = await fetch(path)
       .then((res) => res.json())
@@ -75,6 +49,23 @@ export const fetchDataFromSource = async (path: string) => {
     throw new Error('Failed to load performance data at path assets/log.json');
   }
 };
+
+try {
+  if (Array.isArray(basePath)) {
+    for (let i = 0; i < basePath.length; i++) {
+      const d = await fetchDataFromSource(basePath[i]);
+      const key = `Report_${basePath[i]}`;
+      data[key] = d;
+    }
+  } else if (typeof basePath === 'string') {
+    const d = await fetchDataFromSource(basePath);
+    const key = `Report_${basePath}`;
+    data[key] = d;
+  }
+} catch (error) {
+  console.error(error);
+  throw new Error('Failed to load performance data at path assets/log.json');
+}
 
 const reports = [
   {
@@ -159,7 +150,7 @@ export const visualiseMultipleReports = async () => {
   };
 };
 
-export function useData(): PerformanceData {
+export function useData(): Record<string, PerformanceData> {
   return data;
 }
 
