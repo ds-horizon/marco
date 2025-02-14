@@ -6,15 +6,6 @@ import {
 } from '~/utils/data';
 
 import React, { useEffect, useMemo, useState } from 'react';
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
-  ChartTooltip,
-  ChartTooltipContent,
-} from './components/ui/chart';
 import { useData, visualiseMultipleReports } from './data';
 import { Header } from './header';
 import { MetricData, metricColumns } from './utils/helpers';
@@ -22,6 +13,21 @@ import { DataTable } from './components/data-table';
 import { CheckedState } from '@radix-ui/react-checkbox';
 import { BarChartMultiple } from './components/bar-chart-multiple';
 import { SideBar } from './components/sidebar';
+import { StackedBarChart } from './components/stacked-bar-chart';
+import { ChartConfig } from './components/ui/chart';
+import { TimelineViewData } from './components/timeline-row';
+import { EmptyPage } from './components/empty-page';
+
+const TotalItrCountCard = ({count}: {count: number}) => {
+  return (
+    <h1 className="mt-12 mb-4 text-xl font-bold">
+    <span className="px-2 py-1 rounded-full bg-card">
+      {count}
+    </span>{' '}
+    Total iterations
+  </h1>
+  )
+}
 
 export function App() {
   const data = useData();
@@ -159,39 +165,15 @@ export function App() {
         >
           {tags.length > 1 ? (
             <>
-              <div className={cn('p-2', 'rounded-xl', 'bg-card', 'mt-4')}>
-                <ChartContainer
-                  config={config}
-                  className={cn('min-h-[200px]', 'h-[60vh]', 'w-full')}
-                >
-                  <BarChart accessibilityLayer data={formattedData}>
-                    <CartesianGrid vertical horizontal />
-                    <YAxis dataKey="total" />
-                    <XAxis dataKey="itr" />
-                    <ChartTooltip content={<ChartTooltipContent hideLabel />} />
-                    <ChartLegend
-                      content={<ChartLegendContent className="flex-wrap" />}
-                    />
-                    {tags.map((tag, index) => (
-                      <Bar
-                        key={tag}
-                        dataKey={tag}
-                        stackId={'a'}
-                        fill={uniqueTagsWithCount[tag].color}
-                        radius={
-                          !index
-                            ? [0, 0, 4, 4]
-                            : index < tags.length - 1
-                              ? [0, 0, 0, 0]
-                              : [4, 4, 0, 0]
-                        }
-                      />
-                    ))}
-                  </BarChart>
-                </ChartContainer>
+            {/* Stacked Bar Chart */}
+              <div className={cn('p-2', 'rounded-xl', 'bg-card', 'mt-4', 'w-500')}>
+                <StackedBarChart config={config} formattedData={formattedData} uniqueTagsWithCount={uniqueTagsWithCount} tags={tags} />
               </div>
 
+              {/** Data Table showing statistical data */}
               <DataTable columns={metricColumns} data={metrics} />
+
+              {/** Bar Chart for comparing multiple reports */}
               {multipleData ? (
                 <BarChartMultiple
                   chartData={multipleData}
@@ -199,112 +181,15 @@ export function App() {
                 />
               ) : null}
 
-              <h1 className="mt-12 mb-4 text-xl font-bold">
-                <span className="px-2 py-1 rounded-full bg-card">
-                  {formattedData.length}
-                </span>{' '}
-                Total iterations
-              </h1>
-              <div
-                className={cn(
-                  'grid',
-                  'grid-flow-row',
-                  'gap-4',
-                  'grid-cols-[max-content,1fr]',
-                  'overflow-x-auto',
-                  'items-center',
-                  'py-8',
-                  'bg-card',
-                  'rounded-lg'
-                )}
-              >
-                {formattedData.map((d, index) => (
-                  <React.Fragment key={`iteration-${index}`}>
-                    <div
-                      className={cn(
-                        'bg-gradient-to-r',
-                        'from-card',
-                        'via-card',
-                        'via-70%',
-                        'to-transparent',
-                        'flex',
-                        'items-center',
-                        'gap-2',
-                        'pr-8',
-                        'sticky',
-                        'left-0',
-                        'pl-4'
-                      )}
-                    >
-                      <span className="p-4 rounded-lg bg-background/25 justify-self-center">
-                        {index + 1}
-                      </span>
-                      <div
-                        className={cn(
-                          'grid',
-                          'grid-flow-row',
-                          'gap-1',
-                          'text-xs'
-                        )}
-                      >
-                        <span className="text-muted-foreground">Total:</span>
-                        <span>{d.total.toFixed(2)}ms</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center pr-4 flex-nowrap">
-                      {Object.entries(d)
-                        .filter(([key]) => !['itr', 'total'].includes(key))
-                        .map(([key, value], index) => (
-                          <React.Fragment key={`event-itr-${index}`}>
-                            {index > 0 && (
-                              <span
-                                className={cn(
-                                  'text-sm',
-                                  'text-muted-foreground',
-                                  'px-4',
-                                  'border-b',
-                                  'border-b-muted',
-                                  'h-max'
-                                )}
-                              >
-                                {value.toFixed(2)}ms
-                              </span>
-                            )}
-                            <span
-                              className={cn(
-                                'bg-background/25',
-                                'rounded-lg',
-                                'p-4',
-                                'justify-self-center'
-                              )}
-                            >
-                              {key}
-                            </span>
-                          </React.Fragment>
-                        ))}
-                    </div>
-                  </React.Fragment>
-                ))}
-              </div>
+              {/** Total Iteration Count */}
+              <TotalItrCountCard count={formattedData.length} />
+
+              {/** Timeline View */}
+              <TimelineViewData formattedData={formattedData}/>
             </>
           ) : (
-            <div
-              className={cn(
-                'bg-card/20',
-                'p-4',
-                'text-center',
-                'rounded-lg',
-                'mt-4',
-                'min-h-full',
-                'flex',
-                'items-center',
-                'justify-center',
-                'text-2xl'
-              )}
-            >
-              Select at least {tags.length < 1 ? 'two tags' : 'one more tag'} to
-              compare.
-            </div>
+            // Emoty Page
+            <EmptyPage tags={tags}/>
           )}
         </main>
       </div>
