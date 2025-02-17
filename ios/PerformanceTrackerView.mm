@@ -55,14 +55,15 @@ using namespace facebook::react;
     
     if (self.isEnabled) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            double currentTime = (long long) [[NSDate date] timeIntervalSince1970] * 1000; // Current time in milliseconds
+            double currentTimeInDouble = [[NSDate date] timeIntervalSince1970] * 1000; // Current time in milliseconds
+            long long currentTime = (long long) currentTimeInDouble;
             [[PerformanceTrackerStore sharedInstance] addEventWithTagName:self.tagName timestamp:currentTime meta: self.meta];
             
             // Calculate render time
             double renderTime = currentTime - self.eventTimeStamp;
             
             std::dynamic_pointer_cast<PerformanceTrackerViewEventEmitter const>(self->_eventEmitter)->onTrackingEnd({
-                .drawTime = currentTime,
+                .drawTime = static_cast<double>(currentTime),
                 .renderTime = renderTime,
                 .tagName = std::string([self.tagName UTF8String])
             });

@@ -46,7 +46,8 @@
     
     if (_isEnabled) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            double currentTime = (long long) [[NSDate date] timeIntervalSince1970] * 1000; // Current time in milliseconds
+            double currentTimeInDouble = [[NSDate date] timeIntervalSince1970] * 1000; // Current time in milliseconds
+            long long currentTime = (long long) currentTimeInDouble;
             
             // Log the event in PerformanceTrackerStore
             [[PerformanceTrackerStore sharedInstance] addEventWithTagName:self.tagName timestamp:currentTime meta:self.meta];
