@@ -10,7 +10,9 @@ export type PerformanceDataEntry = {
   meta?: Record<string, string>;
 };
 
-let data: Record<string, PerformanceData> = {};
+export type MultipleReportData = {reportName: string, reportPath: string, reportKey: string, data: PerformanceData}
+
+const data: MultipleReportData[] = [];
 const dataDirs = ['mock/native_load_time.json', 'mock/js_load_time.json'];
 
 const basePath =
@@ -19,7 +21,7 @@ const basePath =
     : 'assets/log.json'; // Prod mode (bundled into `dist`)
 
 export const fetchDataFromSource = async (
-  path: string
+  path: string,
 ): Promise<PerformanceData> => {
   try {
     const d = await fetch(path)
@@ -54,13 +56,21 @@ try {
   if (Array.isArray(basePath)) {
     for (let i = 0; i < basePath.length; i++) {
       const d = await fetchDataFromSource(basePath[i]);
-      const key = `Report_${basePath[i]}`;
-      data[key] = d;
+      data.push({
+        reportName: `Report ${i + 1}`,
+        reportKey: `report-${i+1}`,
+        reportPath: basePath[i],
+        data: d
+      }) 
     }
   } else if (typeof basePath === 'string') {
     const d = await fetchDataFromSource(basePath);
-    const key = `Report_${basePath}`;
-    data[key] = d;
+    data.push({
+      reportName: `Report ${1}`,
+      reportKey: `report-${1}`,
+      reportPath: basePath,
+      data: d
+    }) 
   }
 } catch (error) {
   console.error(error);
@@ -150,7 +160,7 @@ export const visualiseMultipleReports = async () => {
   };
 };
 
-export function useData(): Record<string, PerformanceData> {
+export function useMultipleReportData(): MultipleReportData[] {
   return data;
 }
 

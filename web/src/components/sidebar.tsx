@@ -25,20 +25,7 @@ export const SideBar = ({
   uniqueTagsWithCount,
 }: SideBarProps) => {
   return (
-    <aside
-      className={cn(
-        'w-64',
-        'h-full',
-        'overflow-x-hidden',
-        'overflow-y-auto',
-        'sticky',
-        'top-0',
-        'left-0',
-        'z-40',
-        'py-24',
-        'border-r'
-      )}
-    >
+      <React.Fragment>
       <div
         className={cn(
           'mb-4',
@@ -132,6 +119,6 @@ export const SideBar = ({
           );
         }
       )}
-    </aside>
+      </React.Fragment>
   );
 };

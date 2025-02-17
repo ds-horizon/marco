@@ -17,20 +17,25 @@ import { StackedBarChart } from './components/stacked-bar-chart';
 import { ChartConfig } from './components/ui/chart';
 import { TimelineViewData } from './components/timeline-row';
 import { EmptyPage } from './components/empty-page';
+import { useMultipleReportData } from './data-multiple';
 
-const TotalItrCountCard = ({count}: {count: number}) => {
+const TotalItrCountCard = ({ count }: { count: number }) => {
   return (
     <h1 className="mt-12 mb-4 text-xl font-bold">
-    <span className="px-2 py-1 rounded-full bg-card">
-      {count}
-    </span>{' '}
-    Total iterations
-  </h1>
-  )
-}
+      <span className="px-2 py-1 rounded-full bg-card">{count}</span> Total
+      iterations
+    </h1>
+  );
+};
 
 export function App() {
+  const multipleEventData = useMultipleReportData();
+  console.log('Multiple Event Data ', multipleEventData);
   const data = useData();
+  const uniqueTagsWithCountForMultipleReport = useMemo(
+    () => multipleEventData.map((report) => tagWiseCountAndColor(report.data)),
+    [multipleEventData]
+  );
   const uniqueTagsWithCount = useMemo(() => tagWiseCountAndColor(data), [data]);
   const [tags, setTags] = useState<string[]>(
     new URL(window.location.href).searchParams.get('tags')?.split(',') || []
@@ -148,13 +153,35 @@ export function App() {
           'h-full'
         )}
       >
-        <SideBar
-          tags={tags}
-          setAllSelected={setAllSelected}
-          setTags={setTags}
-          allSelected={allSelected}
-          uniqueTagsWithCount={uniqueTagsWithCount}
-        />
+        <aside
+          className={cn(
+            'w-64',
+            'h-full',
+            'overflow-x-hidden',
+            'overflow-y-auto',
+            'sticky',
+            'top-0',
+            'left-0',
+            'z-40',
+            'py-24',
+            'border-r'
+          )}
+        >
+          {
+            uniqueTagsWithCountForMultipleReport.map((uniqueTags) => {
+              return           <SideBar
+              tags={tags}
+              setAllSelected={setAllSelected}
+              setTags={setTags}
+              allSelected={allSelected}
+              uniqueTagsWithCountForMultipleReport={
+                uniqueTagsWithCountForMultipleReport
+              }
+              uniqueTagsWithCount={uniqueTags}
+            />
+            })
+          }
+        </aside>
         <main
           className={cn(
             'overflow-x-hidden',
@@ -165,9 +192,16 @@ export function App() {
         >
           {tags.length > 1 ? (
             <>
-            {/* Stacked Bar Chart */}
-              <div className={cn('p-2', 'rounded-xl', 'bg-card', 'mt-4', 'w-500')}>
-                <StackedBarChart config={config} formattedData={formattedData} uniqueTagsWithCount={uniqueTagsWithCount} tags={tags} />
+              {/* Stacked Bar Chart */}
+              <div
+                className={cn('p-2', 'rounded-xl', 'bg-card', 'mt-4', 'w-500')}
+              >
+                <StackedBarChart
+                  config={config}
+                  formattedData={formattedData}
+                  uniqueTagsWithCount={uniqueTagsWithCount}
+                  tags={tags}
+                />
               </div>
 
               {/** Data Table showing statistical data */}
@@ -185,11 +219,11 @@ export function App() {
               <TotalItrCountCard count={formattedData.length} />
 
               {/** Timeline View */}
-              <TimelineViewData formattedData={formattedData}/>
+              <TimelineViewData formattedData={formattedData} />
             </>
           ) : (
             // Emoty Page
-            <EmptyPage tags={tags}/>
+            <EmptyPage tags={tags} />
           )}
         </main>
       </div>
