@@ -3,6 +3,8 @@
 <div align="center">
 
 [![mit licence](https://img.shields.io/dub/l/vibe-d.svg?style=for-the-badge)](https://github.com/dream-sports-labs/marco/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@d11/marco?style=for-the-badge)](https://www.npmjs.org/package/@d11/marco)
+[![npm downloads](https://img.shields.io/npm/dt/@d11/marco.svg?style=for-the-badge)](https://www.npmjs.org/package/@d11/marco)
 
 </div>
 
