@@ -6,7 +6,7 @@ import {
 } from '~/utils/data';
 
 import React, { useEffect, useMemo, useState } from 'react';
-import { useData, visualiseMultipleReports } from './data';
+import { visualiseMultipleReports } from './data';
 import { Header } from './header';
 import { MetricData, metricColumns } from './utils/helpers';
 import { DataTable } from './components/data-table';
@@ -17,7 +17,7 @@ import { StackedBarChart } from './components/stacked-bar-chart';
 import { ChartConfig } from './components/ui/chart';
 import { TimelineViewData } from './components/timeline-row';
 import { EmptyPage } from './components/empty-page';
-import { useMultipleReportData } from './data-multiple';
+import { ReportType, useMultipleReportData } from './data-multiple';
 
 const TotalItrCountCard = ({ count }: { count: number }) => {
   return (
@@ -29,17 +29,22 @@ const TotalItrCountCard = ({ count }: { count: number }) => {
 };
 
 export function App() {
+
   const multipleEventData = useMultipleReportData();
-  console.log('Multiple Event Data ', multipleEventData);
-  const data = useData();
+
   const uniqueTagsWithCountForMultipleReport = useMemo(
     () => multipleEventData.map((report) => tagWiseCountAndColor(report.data)),
     [multipleEventData]
   );
-  const uniqueTagsWithCount = useMemo(() => tagWiseCountAndColor(data), [data]);
-  const [tags, setTags] = useState<string[]>(
-    new URL(window.location.href).searchParams.get('tags')?.split(',') || []
-  );
+  const reports: ReportType[] = useMemo(() => multipleEventData.map((report) => ({
+    reportKey: report.reportKey,
+    reportName: report.reportName,
+    reportPath: report.reportPath
+  })), [multipleEventData])
+
+  const [currentReportId, setCurrentReportId] = useState<number>(0);
+  const [tagsPerReport, setTagsPerReport] = useState<string[][]>(new Array(multipleEventData.length).fill([]));
+
   const [multipleData, setMultipleData] = useState(null);
   const [chartConfig, setChartConfig] = useState(null);
 
@@ -50,11 +55,9 @@ export function App() {
     });
   }, []);
 
-  const [allSelected, setAllSelected] = useState<CheckedState>(false);
-
   const config = useMemo<ChartConfig>(
     () =>
-      tags.reduce(
+      tagsPerReport[currentReportId].reduce(
         (acc, tag) => ({
           ...acc,
           [tag]: {
@@ -63,11 +66,11 @@ export function App() {
         }),
         {}
       ),
-    [tags]
+    [currentReportId, tagsPerReport]
   );
 
   const { formattedData, metrics } = useMemo(() => {
-    const pattern = findPatterns(data, tags);
+    const pattern = findPatterns(multipleEventData[currentReportId].data, tagsPerReport[currentReportId]);
     const patternValues = Object.values(pattern);
     const max = patternValues.length
       ? Math.min(...Object.values(pattern).map((p) => p.length))
@@ -80,10 +83,10 @@ export function App() {
       }
     >((_, index) => ({
       itr: index + 1,
-      ...tags.reduce(
+      ...tagsPerReport[currentReportId].reduce(
         (acc, tag, i) => {
           const current =
-            i > 0 ? pattern[tag][index] - pattern[tags[i - 1]][index] : 0;
+            i > 0 ? pattern[tag][index] - pattern[tagsPerReport[currentReportId][i - 1]][index] : 0;
           return {
             ...acc,
             [tag]: current,
@@ -98,7 +101,7 @@ export function App() {
 
     const metrics: MetricData<string>[] = [];
 
-    tags.forEach((tag, i) => {
+    tagsPerReport[currentReportId].forEach((tag, i) => {
       if (i > 0) {
         const d = formattedData.reduce<number[]>((acc, obj) => {
           acc.push(obj[tag]);
@@ -109,8 +112,8 @@ export function App() {
           mean: mean.toFixed(1),
           standard_deviation: std.toFixed(2),
           error_rate: errorRate.toFixed(2),
-          start_event: tags[i - 1],
-          end_event: tags[i],
+          start_event: tagsPerReport[currentReportId][i - 1],
+          end_event: tagsPerReport[currentReportId][i],
         });
       }
     });
@@ -119,27 +122,19 @@ export function App() {
       formattedData,
       metrics,
     };
-  }, [data, tags]);
+  }, [currentReportId, multipleEventData, tagsPerReport]);
 
   useEffect(() => {
-    const url = new URL(window.location.href);
+    // const url = new URL(window.location.href);
 
-    if (tags.length) {
-      url.searchParams.set('tags', tags.join(','));
-      window.history.pushState({}, '', url);
-    } else {
-      url.searchParams.delete('tags');
-      window.history.pushState({}, '', url);
-    }
-  }, [tags]);
-
-  useEffect(() => {
-    if (allSelected) {
-      setTags(Object.keys(uniqueTagsWithCount));
-    } else {
-      setTags([]);
-    }
-  }, [allSelected, uniqueTagsWithCount]);
+    // if (tagsPerReport[currentReportId].length) {
+    //   url.searchParams.set('tags', tagsPerReport[currentReportId].join(','));
+    //   window.history.pushState({}, '', url);
+    // } else {
+    //   url.searchParams.delete('tags');
+    //   window.history.pushState({}, '', url);
+    // }
+  }, [currentReportId, tagsPerReport]);
 
   return (
     <>
@@ -153,35 +148,16 @@ export function App() {
           'h-full'
         )}
       >
-        <aside
-          className={cn(
-            'w-64',
-            'h-full',
-            'overflow-x-hidden',
-            'overflow-y-auto',
-            'sticky',
-            'top-0',
-            'left-0',
-            'z-40',
-            'py-24',
-            'border-r'
-          )}
-        >
-          {
-            uniqueTagsWithCountForMultipleReport.map((uniqueTags) => {
-              return           <SideBar
-              tags={tags}
-              setAllSelected={setAllSelected}
-              setTags={setTags}
-              allSelected={allSelected}
-              uniqueTagsWithCountForMultipleReport={
-                uniqueTagsWithCountForMultipleReport
-              }
-              uniqueTagsWithCount={uniqueTags}
-            />
-            })
+        <SideBar
+          reports={reports}
+          currentReportId={currentReportId}
+          setCurrentReportId={setCurrentReportId}
+          tagsPerReport={tagsPerReport}
+          setTagsPerReport={setTagsPerReport}
+          uniqueTagsWithCountForMultipleReport={
+            uniqueTagsWithCountForMultipleReport
           }
-        </aside>
+        />
         <main
           className={cn(
             'overflow-x-hidden',
@@ -190,7 +166,7 @@ export function App() {
             'px-8'
           )}
         >
-          {tags.length > 1 ? (
+          {tagsPerReport[currentReportId].length > 1 ? (
             <>
               {/* Stacked Bar Chart */}
               <div
@@ -199,8 +175,8 @@ export function App() {
                 <StackedBarChart
                   config={config}
                   formattedData={formattedData}
-                  uniqueTagsWithCount={uniqueTagsWithCount}
-                  tags={tags}
+                  uniqueTagsWithCount={uniqueTagsWithCountForMultipleReport[currentReportId]}
+                  tags={tagsPerReport[currentReportId]}
                 />
               </div>
 
@@ -222,8 +198,8 @@ export function App() {
               <TimelineViewData formattedData={formattedData} />
             </>
           ) : (
-            // Emoty Page
-            <EmptyPage tags={tags} />
+            // Empty Page
+            <EmptyPage tags={tagsPerReport[currentReportId]} />
           )}
         </main>
       </div>

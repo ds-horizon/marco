@@ -1,31 +1,95 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { cn } from '~/utils/cn';
 import { Button } from './ui/button';
 import { CheckedState } from '@radix-ui/react-checkbox';
 import { Checkbox } from './ui/checkbox';
+import { SelectReport } from './select-report';
+import { ReportType } from '~/data-multiple';
 
 interface SideBarProps {
-  tags: string[];
-  setTags: React.Dispatch<React.SetStateAction<string[]>>;
-  allSelected: CheckedState;
-  setAllSelected: React.Dispatch<React.SetStateAction<CheckedState>>;
-  uniqueTagsWithCount: {
+  reports: ReportType[];
+  currentReportId: number;
+  setCurrentReportId: React.Dispatch<React.SetStateAction<number>>;
+  setTagsPerReport: React.Dispatch<React.SetStateAction<string[][]>>;
+  tagsPerReport: string[][];
+  uniqueTagsWithCountForMultipleReport: {
     [key: string]: {
       count: number;
       color: string;
     };
-  };
+  }[];
 }
 
 export const SideBar = ({
-  tags,
-  setTags,
-  allSelected,
-  setAllSelected,
-  uniqueTagsWithCount,
+  reports,
+  uniqueTagsWithCountForMultipleReport,
+  currentReportId,
+  setCurrentReportId,
+  tagsPerReport,
+  setTagsPerReport,
 }: SideBarProps) => {
+  const [allSelectedPerReports, setAllSelectedPerReports] = useState<
+    CheckedState[]
+  >(new Array(reports.length).fill(false));
+
+  const handleClear = () => {
+    setTagsPerReport((prev) => {
+      return prev.map((tags, index) => (index === currentReportId ? [] : tags));
+    });
+  };
+
+  const handleCheckedChange = () => {
+    const allSelectedStatus = allSelectedPerReports[currentReportId];
+    setAllSelectedPerReports((prev) =>
+      prev.map((value, index) => (index === currentReportId ? !value : value))
+    );
+    setTagsPerReport((prev) => {
+      return prev.map((tags, index) => {
+        if (index === currentReportId) {
+          if (allSelectedStatus) {
+            return [];
+          } else {
+            return Object.keys(
+              uniqueTagsWithCountForMultipleReport[currentReportId]
+            );
+          }
+        } else {
+          return tags;
+        }
+      });
+    });
+  };
+
+  const handleEventClick = (tag: string) => {
+    if (tagsPerReport[currentReportId].includes(tag)) {
+      setTagsPerReport((prev) => {
+        return prev.map((tags, index) =>
+          index === currentReportId ? tags.filter((t) => t !== tag) : tags
+        );
+      });
+    } else {
+      setTagsPerReport((prev) => {
+        return prev.map((tags, index) =>
+          index === currentReportId ? [...tags, tag] : tags
+        );
+      });
+    }
+  };
   return (
-      <React.Fragment>
+    <aside
+      className={cn(
+        'w-64',
+        'h-full',
+        'overflow-x-hidden',
+        'overflow-y-auto',
+        'sticky',
+        'top-0',
+        'left-0',
+        'z-40',
+        'py-24',
+        'border-r'
+      )}
+    >
       <div
         className={cn(
           'mb-4',
@@ -39,86 +103,100 @@ export const SideBar = ({
           '-top-4',
           'mb-12',
           'flex',
+          'flex-col',
           'items-center',
           'justify-between',
           'gap-2',
           'z-40'
         )}
       >
-        <h1 className={cn('font-bold', 'text-lg')}>Events</h1>
+        <div>
+          <SelectReport
+            items={reports}
+            currentReportId={currentReportId}
+            setCurrentReport={setCurrentReportId}
+          />
+        </div>
         <div
           className={cn(
-            'grid',
-            'grid-flow-col',
-            'gap-2',
+            'flex',
             'items-center',
-            'shrink-0'
+            'justify-between',
+            'w-full',
+            'p-3'
           )}
         >
-          <Button
-            disabled={!tags.length}
-            onClick={() => setTags([])}
-            variant="secondary"
-            size="sm"
+          <h1 className={cn('font-bold', 'text-lg')}>Events</h1>
+          <div
+            className={cn(
+              'flex', 'items-center', 'gap-2'
+            )}
           >
-            Clear
-          </Button>
+            <Button
+              disabled={!tagsPerReport[currentReportId].length}
+              onClick={handleClear}
+              variant="secondary"
+              size="sm"
+            >
+              Clear
+            </Button>
 
-          <Button asChild size="sm" variant="secondary">
-            <Checkbox checked={allSelected} onCheckedChange={setAllSelected} />
-          </Button>
+            <Button asChild size="sm" variant="secondary">
+              <Checkbox
+                checked={allSelectedPerReports[currentReportId]}
+                onCheckedChange={handleCheckedChange}
+              />
+            </Button>
+          </div>
         </div>
       </div>
-      {Object.entries(uniqueTagsWithCount).map(
-        ([tag, { count, color }], index, arr) => {
-          const selected = tags.includes(tag);
-          const isBefore = arr.findIndex((t) => t[0] === tags.at(-1)) > index;
-
-          return (
-            <React.Fragment key={tag}>
-              <div
-                className={cn(
-                  'px-3',
-                  'py-2',
-                  'flex',
-                  'items-center',
-                  'w-full',
-                  'cursor-pointer',
-                  'gap-3',
-                  'border-l-8',
-                  'border-b',
-                  'transition-all',
-                  !selected && 'hover:bg-card/50',
-                  selected && 'bg-card',
-                  selected && 'hover:bg-card/75',
-                  !selected && isBefore && 'opacity-20',
-                  !selected && isBefore && 'pointer-events-none'
-                )}
-                title={tag}
-                onClick={() => {
-                  if (tags.includes(tag)) {
-                    setTags(tags.filter((t) => t !== tag));
-                  } else {
-                    setTags([...tags, tag]);
-                  }
-                }}
-                style={{
-                  borderLeftColor: color,
-                }}
-              >
-                <div className={cn('w-full', 'min-w-0')}>
-                  <p className="block w-full mb-1 truncate">{tag}</p>
-                  <p className={cn('text-sm', 'text-muted-foreground')}>
-                    Occurrences: {count}
-                  </p>
-                </div>
-
-                <Checkbox checked={tags.includes(tag)} className="shrink-0" />
+      {Object.entries(
+        uniqueTagsWithCountForMultipleReport[currentReportId]
+      ).map(([tag, { count, color }], index, arr) => {
+        const selected = tagsPerReport[currentReportId].includes(tag);
+        const isBefore =
+          arr.findIndex((t) => t[0] === tagsPerReport[currentReportId].at(-1)) >
+          index;
+        return (
+          <React.Fragment key={tag}>
+            <div
+              className={cn(
+                'px-3',
+                'py-2',
+                'flex',
+                'items-center',
+                'w-full',
+                'cursor-pointer',
+                'gap-3',
+                'border-l-8',
+                'border-b',
+                'transition-all',
+                !selected && 'hover:bg-card/50',
+                selected && 'bg-card',
+                selected && 'hover:bg-card/75',
+                !selected && isBefore && 'opacity-20',
+                !selected && isBefore && 'pointer-events-none'
+              )}
+              title={tag}
+              onClick={() => handleEventClick(tag)}
+              style={{
+                borderLeftColor: color,
+              }}
+            >
+              <div className={cn('w-full', 'min-w-0')}>
+                <p className="block w-full mb-1 truncate">{tag}</p>
+                <p className={cn('text-sm', 'text-muted-foreground')}>
+                  Occurrences: {count}
+                </p>
               </div>
-            </React.Fragment>
-          );
-        }
-      )}
-      </React.Fragment>
+              <Checkbox
+                checked={tagsPerReport[currentReportId].includes(tag)}
+                className="shrink-0"
+              />
+            </div>
+          </React.Fragment>
+        );
+      })}
+    </aside>
   );
 };

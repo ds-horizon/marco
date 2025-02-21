@@ -10,7 +10,11 @@ export type PerformanceDataEntry = {
   meta?: Record<string, string>;
 };
 
-export type MultipleReportData = {reportName: string, reportPath: string, reportKey: string, data: PerformanceData}
+export type ReportType = {
+  reportName: string, reportPath: string, reportKey: string
+}
+
+export type MultipleReportData = ReportType & { data: PerformanceData}
 
 const data: MultipleReportData[] = [];
 const dataDirs = ['mock/native_load_time.json', 'mock/js_load_time.json'];
