@@ -16,6 +16,7 @@ import { metricColumns, MetricData } from '~/utils/helpers';
 import { DataTable } from './data-table';
 import { TimelineViewData } from './timeline-row';
 import { StackedBarChart } from './stacked-bar-chart';
+import { RawDataAccordion } from './raw-data-accordian';
 
 interface StackedBarChartProps {
   data: PerformanceData;
@@ -128,11 +129,7 @@ export const DataContainer = ({
       </CardContent>
 
       <CardContent>
-        {/** Total Iteration Count */}
-        <TotalItrCountCard count={formattedData.length} />
-
-        {/** Timeline View */}
-        <TimelineViewData formattedData={formattedData} />
+        <RawDataAccordion formattedData={formattedData}/>
       </CardContent>
     </Card>
   );
