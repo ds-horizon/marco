@@ -23,3 +23,14 @@ export const metricColumns = Object.entries(metricKeys).map(([key, label]) => ({
   accessorKey: key,
   header: label,
 }));
+
+export const showEmptyPage = (tagsPerReport: string[][]) => {
+  let shouldShowEmptyPage = true;
+  tagsPerReport.forEach((tags) => {
+    if (tags.length >= 2) {
+      shouldShowEmptyPage = false;
+    }
+  });
+  console.log(' shouldShowEmptyPage ', shouldShowEmptyPage);
+  return shouldShowEmptyPage;
+};
