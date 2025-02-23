@@ -103,7 +103,7 @@ export function App() {
             </>
           ) : (
             // Empty Page
-            <EmptyPage tags={tagsPerReport[currentReportId]} />
+            <EmptyPage />
           )}
         </main>
       </div>

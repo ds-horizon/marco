@@ -14,7 +14,6 @@ import { PerformanceData, ReportType } from '~/data-multiple';
 import { calculateMetrics, findPatterns } from '~/utils/data';
 import { metricColumns, MetricData } from '~/utils/helpers';
 import { DataTable } from './data-table';
-import { TimelineViewData } from './timeline-row';
 import { StackedBarChart } from './stacked-bar-chart';
 import { RawDataAccordion } from './raw-data-accordian';
 
@@ -29,15 +28,6 @@ interface StackedBarChartProps {
   tags: string[];
   reportInfo: ReportType;
 }
-
-const TotalItrCountCard = ({ count }: { count: number }) => {
-  return (
-    <h1 className="mt-12 mb-4 text-xl font-bold">
-      <span className="px-2 py-1 rounded-full bg-card">{count}</span> Total
-      iterations
-    </h1>
-  );
-};
 
 export const DataContainer = ({
   data,

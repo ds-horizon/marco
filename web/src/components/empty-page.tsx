@@ -1,6 +1,6 @@
 import { cn } from "~/utils/cn"
 
-export const EmptyPage = ({tags}: {tags: string[]}) => {
+export const EmptyPage = () => {
     return (
         <div
         className={cn(
@@ -16,7 +16,7 @@ export const EmptyPage = ({tags}: {tags: string[]}) => {
           'text-2xl'
         )}
       >
-        Select at least {tags.length < 1 ? 'two tags' : 'one more tag'} to
+        Select at least two tags to
         compare.
       </div>
     )
