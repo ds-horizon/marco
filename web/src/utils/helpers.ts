@@ -31,6 +31,23 @@ export const showEmptyPage = (tagsPerReport: string[][]) => {
       shouldShowEmptyPage = false;
     }
   });
-  console.log(' shouldShowEmptyPage ', shouldShowEmptyPage);
   return shouldShowEmptyPage;
 };
+
+const comparisonMetricKeys = {
+  report: 'Report',
+  ...metricKeys,
+} as const;
+
+type ComaprisonMetricKey = keyof typeof comparisonMetricKeys;
+
+export type ComaprisonMetricData<T = any> = {
+  [key in ComaprisonMetricKey]: T;
+};
+
+export const comaprisonMetricColumns = Object.entries(comparisonMetricKeys).map(
+  ([key, label]) => ({
+    accessorKey: key,
+    header: label,
+  })
+);

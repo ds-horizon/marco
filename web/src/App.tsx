@@ -40,15 +40,28 @@ export function App() {
   );
   const [orderOfReport, setOrderOfReport] = useState<number[]>([]);
 
-  const [multipleData, setMultipleData] = useState<IComparisonBarChartData>([]);
+  const [multipleData, setMultipleData] = useState<{
+    data: IComparisonBarChartData
+    metrics: Record<string, {
+      diff: number[],
+      tags: string[]
+    }>
+  } | null>(null);
   const [chartConfig, setChartConfig] = useState<IComparisonBarCharConfig>({});
 
   const handleReportComparison = () => {
-    const { chartConfig, multipleData } =
+    const { chartConfig, multipleData, metrics } =
       visualiseMultipleReports(tagsPerReport);
     setChartConfig(chartConfig);
-    setMultipleData(multipleData);
+    setMultipleData({
+      data: multipleData,
+      metrics: metrics
+    });
   };
+
+  const hideComparisonPanel = () => {
+    setMultipleData(null)
+  }
 
   return (
     <>
@@ -86,10 +99,12 @@ export function App() {
           {!showEmptyPage(tagsPerReport) ? (
             <AnimatePresence>
               {/** Bar Chart for comparing multiple reports */}
-              {multipleData.length > 0 ? (
+              {multipleData ? (
                 <BarChartMultiple
-                  chartData={multipleData}
+                  chartData={multipleData.data}
                   chartConfig={chartConfig}
+                  metrics={multipleData.metrics}
+                  hideComparisonPanel={hideComparisonPanel}
                 />
               ) : null}
               {orderOfReport.map((order) => {

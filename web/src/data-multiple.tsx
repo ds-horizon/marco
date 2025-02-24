@@ -87,7 +87,8 @@ export type IComparisonBarCharConfig = {
     label: string;
     color: string;
   };
-} 
+}
+
 
 export const visualiseMultipleReports = (tagsPerReport: string[][]) => {
   const multipleBarChartConfig: IComparisonBarCharConfig = {};
@@ -118,40 +119,40 @@ export const visualiseMultipleReports = (tagsPerReport: string[][]) => {
     maxIterationPossible = Math.max(maxIterationPossible, max);
   }
 
-  console.log(
-    '::: Modified Report with Patter and Data',
-    reportWithDataAndPattern
-  );
-
-  console.log(
-    'Multiple Bar Chart Config',
-    multipleBarChartConfig,
-    maxIterationPossible
-  );
 
   const finalData: IComparisonBarChartData = [];
+  const metrics: Record<string, {
+    diff: number[],
+    tags: string[]
+  }> = {};
   for (let i = 0; i < maxIterationPossible; i++) {
     const markers: Record<string, string> = {};
     Object.keys(multipleBarChartConfig).forEach((label, index) => {
-      // console.log('label in progress', label);
       const report = reportWithDataAndPattern.find(
         (value) => value.name === multipleBarChartConfig[label].label
       );
-      // console.log('label found ', report.name);
       const diff =
         report['pattern'][report['tags'][1]][i] -
         report['pattern'][report['tags'][0]][i];
       markers[label] = diff.toString();
+      if (metrics[label]) {
+        metrics[label].diff.push(diff)
+      } else {
+          metrics[label] = {
+            diff: [Number(diff)],
+            tags: report['tags']
+        }
+    }
     });
     finalData.push({
       itr: (i + 1).toString(),
       ...markers,
     });
   }
-  console.log('final data', finalData);
   return {
     chartConfig: multipleBarChartConfig,
     multipleData: finalData,
+    metrics
   };
 };
 
