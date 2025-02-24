@@ -18,7 +18,9 @@ interface SideBarProps {
       color: string;
     };
   }[];
-  setOrderOfReport: React.Dispatch<React.SetStateAction<number[]>>
+  setOrderOfReport: React.Dispatch<React.SetStateAction<number[]>>;
+  disableComparisonCTA: boolean
+  handleCompare: () => void
 }
 
 export const SideBar = ({
@@ -28,7 +30,9 @@ export const SideBar = ({
   setCurrentReportId,
   tagsPerReport,
   setTagsPerReport,
-  setOrderOfReport
+  setOrderOfReport,
+  disableComparisonCTA,
+  handleCompare
 }: SideBarProps) => {
   const [allSelectedPerReports, setAllSelectedPerReports] = useState<
     CheckedState[]
@@ -66,16 +70,17 @@ export const SideBar = ({
     setOrderOfReport((prev) => {
       const filtered = prev.filter((id) => id !== currentReportId);
       if (allSelectedStatus) {
-          return filtered;
+        return filtered;
       } else {
-        if (Object.keys(
-          uniqueTagsWithCountForMultipleReport[currentReportId]
-        ).length >= 2) {
-          return [currentReportId, ...filtered]
-        } 
-        return filtered
+        if (
+          Object.keys(uniqueTagsWithCountForMultipleReport[currentReportId])
+            .length >= 2
+        ) {
+          return [currentReportId, ...filtered];
+        }
+        return filtered;
       }
-  });
+    });
   };
 
   const handleEventClick = (tag: string) => {
@@ -89,11 +94,11 @@ export const SideBar = ({
       const numOfTags = tagsPerReport[currentReportId].length - 1;
 
       setOrderOfReport((prev) => {
-          const filtered = prev.filter((id) => id !== currentReportId);
-          if (numOfTags >= 2) {
-              return [currentReportId, ...filtered];
-          }
-          return filtered;
+        const filtered = prev.filter((id) => id !== currentReportId);
+        if (numOfTags >= 2) {
+          return [currentReportId, ...filtered];
+        }
+        return filtered;
       });
     } else {
       setTagsPerReport((prev) => {
@@ -102,14 +107,16 @@ export const SideBar = ({
         );
       });
 
-
       setOrderOfReport((prev) => {
-        if (prev[0] === currentReportId || tagsPerReport[currentReportId].length < 1) {
+        if (
+          prev[0] === currentReportId ||
+          tagsPerReport[currentReportId].length < 1
+        ) {
           return prev;
         }
         const filtered = prev.filter((id) => id !== currentReportId);
         return [currentReportId, ...filtered];
-    });
+      });
     }
   };
   return (
@@ -164,11 +171,7 @@ export const SideBar = ({
           )}
         >
           <h1 className={cn('font-bold', 'text-lg')}>Events</h1>
-          <div
-            className={cn(
-              'flex', 'items-center', 'gap-2'
-            )}
-          >
+          <div className={cn('flex', 'items-center', 'gap-2')}>
             <Button
               disabled={!tagsPerReport[currentReportId].length}
               onClick={handleClear}
@@ -234,6 +237,19 @@ export const SideBar = ({
           </React.Fragment>
         );
       })}
+      {reports.length > 1 ? (
+        <div className={cn('flex', 'items-center', 'justify-center', 'mt-12')}>
+          <Button
+            disabled={disableComparisonCTA}
+            onClick={handleCompare}
+            size="lg"
+            variant={'outline'}
+            className={cn('border-primary')}
+          >
+            Compare Reports
+          </Button>
+        </div>
+      ) : null}
     </aside>
   );
 };

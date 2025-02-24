@@ -91,7 +91,7 @@ const reports = [
   },
 ];
 
-export const visualiseMultipleReports = async () => {
+export const visualiseMultipleReports = async (tagsPerReport: string[][]) => {
   const multipleBarChartConfig: {
     [key: string]: {
       label: string;

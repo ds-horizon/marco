@@ -81,41 +81,32 @@ try {
   throw new Error('Failed to load performance data at path assets/log.json');
 }
 
-const reports = [
-  {
-    name: 'Native Bottom Tab Load Time',
-    tags: ['Native_Tab_Load_Start', 'Native_Tab_Load_End'],
-    source: 'mock/native_load_time.json',
-    color: randomColor(),
-  },
-  {
-    name: 'JS Bottom Tab Load Time',
-    tags: ['JS_Tab_Load_Start', 'JS_Tab_Load_End'],
-    source: 'mock/js_load_time.json',
-    color: randomColor(),
-  },
-];
+export type IComparisonBarChartData = Record<string, string>[]
+export type IComparisonBarCharConfig = {
+  [key: string]: {
+    label: string;
+    color: string;
+  };
+} 
 
-export const visualiseMultipleReports = async () => {
-  const multipleBarChartConfig: {
-    [key: string]: {
-      label: string;
-      color: string;
-    };
-  } = {};
+export const visualiseMultipleReports = (tagsPerReport: string[][]) => {
+  const multipleBarChartConfig: IComparisonBarCharConfig = {};
   let maxIterationPossible = 0;
   const reportWithDataAndPattern: any[] = [];
-  for (let i = 0; i < reports.length; i++) {
-    const report = reports[i];
-    const data = await fetchDataFromSource(report.source);
-    const pattern = findPatterns(data, report.tags);
+  for (let i = 0; i < data.length; i++) {
+    const reportInfo = data[i];
+    const numberOfTags = tagsPerReport[i].length
+    const tags = [tagsPerReport[i][0], tagsPerReport[i][numberOfTags - 1]];
+    const pattern = findPatterns(reportInfo.data, tags);
     const newReport = {
-      ...report,
+      name: reportInfo.reportName,
       data: data,
       pattern: pattern,
+      tags: tags,
+      color: randomColor()
     };
     reportWithDataAndPattern.push(newReport);
-    const key = newReport.name.split(' ').join('_');
+    const key = reportInfo.reportName;
     multipleBarChartConfig[key] = {
       label: newReport.name,
       color: newReport.color,
@@ -138,7 +129,7 @@ export const visualiseMultipleReports = async () => {
     maxIterationPossible
   );
 
-  const finalData: Record<string, string>[] = [];
+  const finalData: IComparisonBarChartData = [];
   for (let i = 0; i < maxIterationPossible; i++) {
     const markers: Record<string, string> = {};
     Object.keys(multipleBarChartConfig).forEach((label, index) => {
@@ -166,8 +157,4 @@ export const visualiseMultipleReports = async () => {
 
 export function useMultipleReportData(): MultipleReportData[] {
   return data;
-}
-
-export function useDataEntry(index: number): PerformanceDataEntry | undefined {
-  return data[index];
 }
