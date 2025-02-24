@@ -11,6 +11,7 @@ import { SideBar } from './components/sidebar';
 import { EmptyPage } from './components/empty-page';
 import { ReportType, useMultipleReportData } from './data-multiple';
 import { DataContainer } from './components/data-container';
+import { motion, AnimatePresence } from "framer-motion";
 
 export function App() {
 
@@ -72,18 +73,29 @@ export function App() {
           )}
         >
           {!showEmptyPage(tagsPerReport) ? (
-            <>
+            <AnimatePresence>
               {
                 orderOfReport.map((order) => {
                     return (
-                      <div className={cn('p-2', 'rounded-xl', 'bg-card', 'mt-4', 'w-200', 'max-w-100')}>
+                      <motion.div 
+                      key={order}
+                      layout
+                      layoutId={`card-${order}`}
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }} // Quick fade-out
+                      transition={{
+                        layout: { duration: 0.4, ease: "easeInOut" }, // Faster repositioning
+                        opacity: { duration: 0.2 }, // Quick fade-out
+                      }}
+                      className={cn('p-2', 'rounded-xl', 'bg-card', 'mt-4', 'w-200', 'max-w-100')}>
                         <DataContainer
                           reportInfo={reports[order]}
                           data={multipleEventData[order].data}
                           uniqueTagsWithCount={uniqueTagsWithCountForMultipleReport[order]}
                           tags={tagsPerReport[order]}
                         />
-                    </div>
+                    </motion.div>
                     )
                 })
               }
@@ -95,7 +107,7 @@ export function App() {
                   chartConfig={chartConfig}
                 />
               ) : null} */}
-            </>
+            </AnimatePresence>
           ) : (
             // Empty Page
             <EmptyPage />
