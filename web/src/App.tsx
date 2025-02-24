@@ -16,6 +16,7 @@ import {
 import { DataContainer } from './components/data-container';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BarChartMultiple } from './components/bar-chart-multiple';
+import { TooltipProvider } from './components/ui/tooltip';
 
 export function App() {
   const multipleEventData = useMultipleReportData();
@@ -63,6 +64,16 @@ export function App() {
     setMultipleData(null)
   }
 
+  const tooltipText = () => {
+    let text = ''
+    if (orderOfReport.length < 1) {
+      text = 'Select events from at least 2 reports to compare.'
+    } else if (orderOfReport.length === 1) {
+      text = 'Select events from 1 more report to compare.'
+    }
+    return text;
+  }
+
   return (
     <>
       <Header />
@@ -75,6 +86,7 @@ export function App() {
           'h-full'
         )}
       >
+        <TooltipProvider>
         <SideBar
           reports={reports}
           currentReportId={currentReportId}
@@ -85,7 +97,7 @@ export function App() {
             uniqueTagsWithCountForMultipleReport
           }
           setOrderOfReport={setOrderOfReport}
-          disableComparisonCTA={orderOfReport.length < 2}
+          tooltipText={tooltipText()}
           handleCompare={handleReportComparison}
         />
         <main
@@ -146,6 +158,7 @@ export function App() {
             <EmptyPage />
           )}
         </main>
+        </TooltipProvider>
       </div>
     </>
   );

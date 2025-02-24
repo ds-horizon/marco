@@ -5,6 +5,7 @@ import { CheckedState } from '@radix-ui/react-checkbox';
 import { Checkbox } from './ui/checkbox';
 import { SelectReport } from './select-report';
 import { ReportType } from '~/data-multiple';
+import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
 
 interface SideBarProps {
   reports: ReportType[];
@@ -19,8 +20,8 @@ interface SideBarProps {
     };
   }[];
   setOrderOfReport: React.Dispatch<React.SetStateAction<number[]>>;
-  disableComparisonCTA: boolean
-  handleCompare: () => void
+  tooltipText: string;
+  handleCompare: () => void;
 }
 
 export const SideBar = ({
@@ -31,8 +32,8 @@ export const SideBar = ({
   tagsPerReport,
   setTagsPerReport,
   setOrderOfReport,
-  disableComparisonCTA,
-  handleCompare
+  tooltipText,
+  handleCompare,
 }: SideBarProps) => {
   const [allSelectedPerReports, setAllSelectedPerReports] = useState<
     CheckedState[]
@@ -238,17 +239,26 @@ export const SideBar = ({
         );
       })}
       {reports.length > 1 ? (
-        <div className={cn('flex', 'items-center', 'justify-center', 'mt-12')}>
-          <Button
-            disabled={disableComparisonCTA}
-            onClick={handleCompare}
-            size="lg"
-            variant={'outline'}
-            className={cn('border-primary')}
+        <Tooltip>
+          <div
+            className={cn('flex', 'items-center', 'justify-center', 'mt-12')}
           >
-            Compare Reports
-          </Button>
-        </div>
+            <TooltipTrigger>
+              <Button
+                disabled={tooltipText !== ''}
+                onClick={handleCompare}
+                size="lg"
+                variant={'outline'}
+                className={cn('border-primary')}
+              >
+                Compare Reports
+              </Button>
+              <TooltipContent hidden={tooltipText === ''}>
+                <p>{tooltipText}</p>
+              </TooltipContent>
+            </TooltipTrigger>
+          </div>
+        </Tooltip>
       ) : null}
     </aside>
   );
