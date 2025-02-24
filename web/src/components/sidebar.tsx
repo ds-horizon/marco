@@ -18,6 +18,7 @@ interface SideBarProps {
       color: string;
     };
   }[];
+  setOrderOfReport: React.Dispatch<React.SetStateAction<number[]>>
 }
 
 export const SideBar = ({
@@ -27,6 +28,7 @@ export const SideBar = ({
   setCurrentReportId,
   tagsPerReport,
   setTagsPerReport,
+  setOrderOfReport
 }: SideBarProps) => {
   const [allSelectedPerReports, setAllSelectedPerReports] = useState<
     CheckedState[]
@@ -36,6 +38,8 @@ export const SideBar = ({
     setTagsPerReport((prev) => {
       return prev.map((tags, index) => (index === currentReportId ? [] : tags));
     });
+
+    setOrderOfReport((prev) => prev.filter((id) => id !== currentReportId));
   };
 
   const handleCheckedChange = () => {
@@ -58,6 +62,20 @@ export const SideBar = ({
         }
       });
     });
+
+    setOrderOfReport((prev) => {
+      const filtered = prev.filter((id) => id !== currentReportId);
+      if (allSelectedStatus) {
+          return filtered;
+      } else {
+        if (Object.keys(
+          uniqueTagsWithCountForMultipleReport[currentReportId]
+        ).length >= 2) {
+          return [currentReportId, ...filtered]
+        } 
+        return filtered
+      }
+  });
   };
 
   const handleEventClick = (tag: string) => {
@@ -67,12 +85,31 @@ export const SideBar = ({
           index === currentReportId ? tags.filter((t) => t !== tag) : tags
         );
       });
+
+      const numOfTags = tagsPerReport[currentReportId].length - 1;
+
+      setOrderOfReport((prev) => {
+          const filtered = prev.filter((id) => id !== currentReportId);
+          if (numOfTags >= 2) {
+              return [currentReportId, ...filtered];
+          }
+          return filtered;
+      });
     } else {
       setTagsPerReport((prev) => {
         return prev.map((tags, index) =>
           index === currentReportId ? [...tags, tag] : tags
         );
       });
+
+
+      setOrderOfReport((prev) => {
+        if (prev[0] === currentReportId || tagsPerReport[currentReportId].length < 1) {
+          return prev;
+        }
+        const filtered = prev.filter((id) => id !== currentReportId);
+        return [currentReportId, ...filtered];
+    });
     }
   };
   return (

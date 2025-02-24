@@ -28,6 +28,7 @@ export function App() {
 
   const [currentReportId, setCurrentReportId] = useState<number>(0);
   const [tagsPerReport, setTagsPerReport] = useState<string[][]>(new Array(multipleEventData.length).fill([]));
+  const [orderOfReport, setOrderOfReport] = useState<number[]>([]);
 
   const [multipleData, setMultipleData] = useState(null);
   const [chartConfig, setChartConfig] = useState(null);
@@ -38,10 +39,6 @@ export function App() {
       setMultipleData(d.multipleData);
     });
   }, []);
-
-  useEffect(() => {
-    console.log("TagsPer report", tagsPerReport)
-  }, [tagsPerReport])
 
   return (
     <>
@@ -64,6 +61,7 @@ export function App() {
           uniqueTagsWithCountForMultipleReport={
             uniqueTagsWithCountForMultipleReport
           }
+          setOrderOfReport={setOrderOfReport}
         />
         <main
           className={cn(
@@ -76,20 +74,17 @@ export function App() {
           {!showEmptyPage(tagsPerReport) ? (
             <>
               {
-                tagsPerReport.map((tags, index) => {
-                  if (tags.length >= 2) {
+                orderOfReport.map((order) => {
                     return (
                       <div className={cn('p-2', 'rounded-xl', 'bg-card', 'mt-4', 'w-200', 'max-w-100')}>
                         <DataContainer
-                          reportInfo={reports[index]}
-                          data={multipleEventData[index].data}
-                          uniqueTagsWithCount={uniqueTagsWithCountForMultipleReport[index]}
-                          tags={tags}
+                          reportInfo={reports[order]}
+                          data={multipleEventData[order].data}
+                          uniqueTagsWithCount={uniqueTagsWithCountForMultipleReport[order]}
+                          tags={tagsPerReport[order]}
                         />
                     </div>
                     )
-                  }
-
                 })
               }
 
