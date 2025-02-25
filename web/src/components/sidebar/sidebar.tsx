@@ -9,8 +9,6 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 
 interface SideBarProps {
   reports: ReportType[];
-  currentReportId: number;
-  setCurrentReportId: React.Dispatch<React.SetStateAction<number>>;
   setTagsPerReport: React.Dispatch<React.SetStateAction<string[][]>>;
   tagsPerReport: string[][];
   uniqueTagsWithCountForMultipleReport: {
@@ -27,14 +25,13 @@ interface SideBarProps {
 export const SideBar = ({
   reports,
   uniqueTagsWithCountForMultipleReport,
-  currentReportId,
-  setCurrentReportId,
   tagsPerReport,
   setTagsPerReport,
   setOrderOfReport,
   tooltipText,
   handleCompare,
 }: SideBarProps) => {
+  const [currentReportId, setCurrentReportId] = useState<number>(0);
   const [allSelectedPerReports, setAllSelectedPerReports] = useState<
     CheckedState[]
   >(new Array(reports.length).fill(false));

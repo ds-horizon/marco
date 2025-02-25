@@ -5,7 +5,7 @@ export function randomColor() {
   return `hsl(${h}deg, ${s}%, ${l}%)`;
 }
 
-const metricKeys = {
+const segmentedChartLabels = {
   start_event: 'Start Event',
   end_event: 'End Event',
   mean: 'Mean (ms)',
@@ -13,16 +13,18 @@ const metricKeys = {
   error_rate: 'Error Rate (%)',
 } as const;
 
-type MetricKey = keyof typeof metricKeys;
+type SegmentedChartKeys = keyof typeof segmentedChartLabels;
 
 export type MetricData<T = string> = {
-  [key in MetricKey]: T;
+  [key in SegmentedChartKeys]: T;
 };
 
-export const metricColumns = Object.entries(metricKeys).map(([key, label]) => ({
-  accessorKey: key,
-  header: label,
-}));
+export const metricColumns = Object.entries(segmentedChartLabels).map(
+  ([key, label]) => ({
+    accessorKey: key,
+    header: label,
+  })
+);
 
 export const showEmptyPage = (tagsPerReport: string[][]) => {
   let shouldShowEmptyPage = true;
@@ -34,20 +36,20 @@ export const showEmptyPage = (tagsPerReport: string[][]) => {
   return shouldShowEmptyPage;
 };
 
-const comparisonMetricKeys = {
+const comparisonChartLabels = {
   report: 'Report',
-  ...metricKeys,
+  ...segmentedChartLabels,
 } as const;
 
-type ComaprisonMetricKey = keyof typeof comparisonMetricKeys;
+type ComaprisonChartKeys = keyof typeof comparisonChartLabels;
 
 export type ComaprisonMetricData<T = string> = {
-  [key in ComaprisonMetricKey]: T;
+  [key in ComaprisonChartKeys]: T;
 };
 
-export const comaprisonMetricColumns = Object.entries(comparisonMetricKeys).map(
-  ([key, label]) => ({
-    accessorKey: key,
-    header: label,
-  })
-);
+export const comaprisonMetricColumns = Object.entries(
+  comparisonChartLabels
+).map(([key, label]) => ({
+  accessorKey: key,
+  header: label,
+}));

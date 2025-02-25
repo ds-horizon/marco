@@ -1,7 +1,7 @@
 import { cn } from '~/utils/cn';
 import { tagWiseCountAndColor } from '~/utils/data';
 
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { Header } from './header';
 import { showEmptyPage } from './utils/helpers';
 import { SideBar } from './components/sidebar/sidebar';
@@ -19,29 +19,30 @@ import { ComparisonBarChart } from './components/charts/comparison-bar-chart';
 import { TooltipProvider } from './components/ui/tooltip';
 
 export function App() {
-  const multipleEventData = useReportEntries();
+  const reportEntries = useReportEntries();
 
-  const uniqueTagsWithCountForMultipleReport = useMemo(
-    () => multipleEventData.map((report) => tagWiseCountAndColor(report.data)),
-    [multipleEventData]
+  const tagCountByReport = useMemo(
+    () => reportEntries.map((report) => tagWiseCountAndColor(report.data)),
+    [reportEntries]
   );
-  const reports: ReportType[] = useMemo(
+  const reportList: ReportType[] = useMemo(
     () =>
-      multipleEventData.map((report) => ({
+      reportEntries.map((report) => ({
         reportKey: report.reportKey,
         reportName: report.reportName,
         reportPath: report.reportPath,
       })),
-    [multipleEventData]
+    [reportEntries]
   );
 
-  const [currentReportId, setCurrentReportId] = useState<number>(0);
   const [tagsPerReport, setTagsPerReport] = useState<string[][]>(
-    new Array(multipleEventData.length).fill([])
+    new Array(reportEntries.length).fill([])
   );
-  const [orderOfReport, setOrderOfReport] = useState<number[]>([]);
+  const [selectedReportsOrder, setSelectedReportsOrder] = useState<number[]>(
+    []
+  );
 
-  const [multipleData, setMultipleData] = useState<{
+  const [comparisonData, setComparisonData] = useState<{
     data: IComparisonBarChartData;
     metrics: Record<
       string,
@@ -53,29 +54,31 @@ export function App() {
   } | null>(null);
   const [chartConfig, setChartConfig] = useState<IComparisonBarCharConfig>({});
 
-  const handleReportComparison = () => {
+  const generateComparisonData = useCallback(() => {
     const { chartConfig, multipleData, metrics } =
       visualiseMultipleReports(tagsPerReport);
     setChartConfig(chartConfig);
-    setMultipleData({
+    setComparisonData({
       data: multipleData,
       metrics: metrics,
     });
-  };
+  }, [tagsPerReport]);
 
-  const hideComparisonPanel = () => {
-    setMultipleData(null);
-  };
+  const clearComparisonData = useCallback(() => {
+    setComparisonData(null);
+  }, []);
 
-  const tooltipText = () => {
+  const getTooltipMessage = useCallback(() => {
     let text = '';
-    if (orderOfReport.length < 1) {
+    if (selectedReportsOrder.length < 1) {
       text = 'Select events from at least 2 reports to compare.';
-    } else if (orderOfReport.length === 1) {
+    } else if (selectedReportsOrder.length === 1) {
       text = 'Select events from 1 more report to compare.';
     }
     return text;
-  };
+  }, [selectedReportsOrder.length]);
+
+  const tooltipText = useMemo(() => getTooltipMessage(), [getTooltipMessage]);
 
   return (
     <>
@@ -91,17 +94,13 @@ export function App() {
       >
         <TooltipProvider>
           <SideBar
-            reports={reports}
-            currentReportId={currentReportId}
-            setCurrentReportId={setCurrentReportId}
+            reports={reportList}
             tagsPerReport={tagsPerReport}
             setTagsPerReport={setTagsPerReport}
-            uniqueTagsWithCountForMultipleReport={
-              uniqueTagsWithCountForMultipleReport
-            }
-            setOrderOfReport={setOrderOfReport}
-            tooltipText={tooltipText()}
-            handleCompare={handleReportComparison}
+            uniqueTagsWithCountForMultipleReport={tagCountByReport}
+            setOrderOfReport={setSelectedReportsOrder}
+            tooltipText={tooltipText}
+            handleCompare={generateComparisonData}
           />
           <main
             className={cn(
@@ -114,15 +113,15 @@ export function App() {
             {!showEmptyPage(tagsPerReport) ? (
               <AnimatePresence>
                 {/** Bar Chart for comparing multiple reports */}
-                {multipleData ? (
+                {comparisonData ? (
                   <ComparisonBarChart
-                    chartData={multipleData.data}
+                    chartData={comparisonData.data}
                     chartConfig={chartConfig}
-                    metrics={multipleData.metrics}
-                    hideComparisonPanel={hideComparisonPanel}
+                    metrics={comparisonData.metrics}
+                    hideComparisonPanel={clearComparisonData}
                   />
                 ) : null}
-                {orderOfReport.map((order) => {
+                {selectedReportsOrder.map((order) => {
                   return (
                     <motion.div
                       key={order}
@@ -145,11 +144,9 @@ export function App() {
                       )}
                     >
                       <ReportInsightsCard
-                        reportInfo={reports[order]}
-                        data={multipleEventData[order].data}
-                        uniqueTagsWithCount={
-                          uniqueTagsWithCountForMultipleReport[order]
-                        }
+                        reportInfo={reportList[order]}
+                        data={reportEntries[order].data}
+                        uniqueTagsWithCount={tagCountByReport[order]}
                         tags={tagsPerReport[order]}
                       />
                     </motion.div>

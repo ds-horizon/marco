@@ -10,10 +10,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from '../ui/chart';
-import {
-  IComparisonBarCharConfig,
-  IComparisonBarChartData,
-} from '~/data';
+import { IComparisonBarCharConfig, IComparisonBarChartData } from '~/data';
 import { cn } from '~/utils/cn';
 import { X } from 'lucide-react';
 import { Button } from '../ui/button';
