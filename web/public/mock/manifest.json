@@ -1,0 +1,16 @@
+{
+    "reports": [
+        {
+            "path": "mock/log1.json",
+            "reportName": "Report 1"
+        },
+        {
+            "path": "mock/log2.json",
+            "reportName": "Report 2"
+        }
+    ],
+    "metadata": {
+        "totalReports": 2,
+        "generatedAt": "2025-02-25T08:47:31.484Z"
+    }
+}

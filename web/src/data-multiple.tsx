@@ -17,12 +17,11 @@ export type ReportType = {
 export type MultipleReportData = ReportType & { data: PerformanceData}
 
 const data: MultipleReportData[] = [];
-const dataDirs = ['mock/native_load_time.json', 'mock/js_load_time.json'];
 
-const basePath =
+const manifestPath =
   process.env.NODE_ENV === 'development'
-    ? dataDirs // Dev mode (served by dev server)
-    : 'assets/log.json'; // Prod mode (bundled into `dist`)
+    ? '/mock/manifest.json' // Dev mode (served by dev server)
+    : '/assets/manifest.json'; // Prod mode (bundled into `dist`)
 
 export const fetchDataFromSource = async (
   path: string,
@@ -57,25 +56,22 @@ export const fetchDataFromSource = async (
 };
 
 try {
-  if (Array.isArray(basePath)) {
-    for (let i = 0; i < basePath.length; i++) {
-      const d = await fetchDataFromSource(basePath[i]);
+    // Fetch manifest.json first
+    const manifestResponse = await fetch(manifestPath);
+    if (!manifestResponse.ok) throw new Error('Failed to load manifest.json');
+    
+    const manifest = await manifestResponse.json();
+    const basePaths: string[] = manifest.reports.map((report: { path: string; }) => report.path); // Extract paths from manifest
+    
+    for (let i = 0; i < basePaths.length; i++) {
+      const d = await fetchDataFromSource(basePaths[i]);
       data.push({
-        reportName: `Report ${i + 1}`,
+        reportName: manifest.reports[i]?.reportName || `Report ${i + 1}`,
         reportKey: `report-${i+1}`,
-        reportPath: basePath[i],
+        reportPath: basePaths[i],
         data: d
       }) 
     }
-  } else if (typeof basePath === 'string') {
-    const d = await fetchDataFromSource(basePath);
-    data.push({
-      reportName: `Report ${1}`,
-      reportKey: `report-${1}`,
-      reportPath: basePath,
-      data: d
-    }) 
-  }
 } catch (error) {
   console.error(error);
   throw new Error('Failed to load performance data at path assets/log.json');

@@ -77,28 +77,43 @@ const program = new Command();
     .command('visualize')
     .description('Serve the performance report dashboard')
     .option('-p, --port <port>', 'Specify the port', '8080')
-    .option('-d, --dataDir <dataDir>', 'Specify the data directory path')
+    .option('-d, --dataDir <dataDir...>', 'Specify the data directory path')
     .option('--platform <platform>', 'Specify platform: android or ios')
     .action((options) => {
       const { platform, port } = options;
-      console.log(options);
-      let dataDir = options.dataDir; // Use CLI input first
+      let dataDirs = options.dataDir || []; // Use CLI input first
+
+      // If a single string is provided, convert it to an array
+      if (typeof dataDirs === 'string') {
+        dataDirs = [dataDirs];
+      }
 
       // Use platform-specific config if valid platform is provided
-      if (!dataDir && platform) {
-        // Validate platform input
-        if (platform && !['android', 'ios'].includes(platform)) {
-          console.error('Error: Invalid platform. Use "android" or "ios".');
-          process.exit(1);
+      if (platform && !['android', 'ios'].includes(platform)) {
+        console.error('Error: Invalid platform. Use "android" or "ios".');
+        process.exit(1);
+      }
+
+      if (dataDirs.length === 0 && platform) {
+        let defaultPlatformDataDir =
+          platform === 'android' ? androidConfig?.dataDir : iosConfig?.dataDir;
+
+        if (defaultPlatformDataDir) {
+          // Ensure it's always an array and flatten it
+          defaultPlatformDataDir = Array.isArray(defaultPlatformDataDir)
+            ? defaultPlatformDataDir
+            : [defaultPlatformDataDir];
+
+          dataDirs.push(...defaultPlatformDataDir);
         }
-        dataDir =
-          (platform === 'android'
-            ? androidConfig?.dataDir
-            : iosConfig.dataDir) || defaultDataDir;
+      }
+
+      if (dataDirs.length === 0) {
+        dataDirs.push(defaultDataDir);
       }
 
       // Use provided port or default
-      serveDashboard(port || '8080', dataDir);
+      serveDashboard(port || '8080', dataDirs);
     });
 
   // Parse arguments
