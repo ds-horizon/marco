@@ -5,7 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from './ui/accordion';
-import { ScrollArea } from './ui/scroll-area';
+import { ScrollArea, ScrollBar } from './ui/scroll-area';
 
 export function RawDataAccordion({
   formattedData,
@@ -24,6 +24,7 @@ export function RawDataAccordion({
         <AccordionContent>
           <ScrollArea className="h-72 w-full rounded-md border">
             <TimelineViewData formattedData={formattedData} />
+            <ScrollBar orientation='horizontal'/>
           </ScrollArea>
         </AccordionContent>
       </AccordionItem>
