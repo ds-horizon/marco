@@ -1,14 +1,14 @@
 import React from 'react';
 import { cn } from '~/utils/cn';
 
-interface TimelineViewProps {
+interface EventTimelineProps {
   formattedData: (Record<string, number> & {
     itr: number;
     total: number;
   })[];
 }
 
-export const TimelineViewData = ({ formattedData }: TimelineViewProps) => {
+export const EventTimeline = ({ formattedData }: EventTimelineProps) => {
   return (
     <div
       className={cn(

@@ -1,13 +1,13 @@
-import { ReportType } from '~/data-multiple';
+import { ReportType } from '~/data';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from './ui/select';
+} from '../ui/select';
 
-export const SelectReport = ({
+export const ReportPicker = ({
   items,
   currentReportId,
   setCurrentReport,

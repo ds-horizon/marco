@@ -4,22 +4,22 @@ import { tagWiseCountAndColor } from '~/utils/data';
 import React, { useMemo, useState } from 'react';
 import { Header } from './header';
 import { showEmptyPage } from './utils/helpers';
-import { SideBar } from './components/sidebar';
+import { SideBar } from './components/sidebar/sidebar';
 import { EmptyPage } from './components/empty-page';
 import {
   IComparisonBarCharConfig,
   IComparisonBarChartData,
   ReportType,
-  useMultipleReportData,
+  useReportEntries,
   visualiseMultipleReports,
-} from './data-multiple';
-import { DataContainer } from './components/data-container';
+} from './data';
+import { ReportInsightsCard } from './components/analytics-card/report-insights-cards';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BarChartMultiple } from './components/bar-chart-multiple';
+import { ComparisonBarChart } from './components/charts/comparison-bar-chart';
 import { TooltipProvider } from './components/ui/tooltip';
 
 export function App() {
-  const multipleEventData = useMultipleReportData();
+  const multipleEventData = useReportEntries();
 
   const uniqueTagsWithCountForMultipleReport = useMemo(
     () => multipleEventData.map((report) => tagWiseCountAndColor(report.data)),
@@ -115,7 +115,7 @@ export function App() {
               <AnimatePresence>
                 {/** Bar Chart for comparing multiple reports */}
                 {multipleData ? (
-                  <BarChartMultiple
+                  <ComparisonBarChart
                     chartData={multipleData.data}
                     chartConfig={chartConfig}
                     metrics={multipleData.metrics}
@@ -144,7 +144,7 @@ export function App() {
                         'max-w-100'
                       )}
                     >
-                      <DataContainer
+                      <ReportInsightsCard
                         reportInfo={reports[order]}
                         data={multipleEventData[order].data}
                         uniqueTagsWithCount={

@@ -1,4 +1,4 @@
-import { ChartConfig } from './ui/chart';
+import { ChartConfig } from '../ui/chart';
 import { cn } from '~/utils/cn';
 import {
   Card,
@@ -6,16 +6,16 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from './ui/card';
+} from '../ui/card';
 import { useMemo } from 'react';
-import { PerformanceData, ReportType } from '~/data-multiple';
+import { PerformanceData, ReportType } from '~/data';
 import { calculateMetrics, findPatterns } from '~/utils/data';
 import { metricColumns, MetricData } from '~/utils/helpers';
 import { DataTable } from './data-table';
-import { StackedBarChart } from './stacked-bar-chart';
-import { RawDataAccordion } from './raw-data-accordian';
+import { SegmentedBarChart } from '../charts/segmented-bar-chart';
+import { EventTimelineAccordion } from './event-timeline-accordian';
 
-interface StackedBarChartProps {
+interface ReportInsightsCardProps {
   data: PerformanceData;
   uniqueTagsWithCount: {
     [key: string]: {
@@ -27,12 +27,12 @@ interface StackedBarChartProps {
   reportInfo: ReportType;
 }
 
-export const DataContainer = ({
+export const ReportInsightsCard = ({
   data,
   tags,
   uniqueTagsWithCount,
   reportInfo,
-}: StackedBarChartProps) => {
+}: ReportInsightsCardProps) => {
   const config = useMemo<ChartConfig>(
     () =>
       tags.reduce(
@@ -109,7 +109,7 @@ export const DataContainer = ({
         <CardDescription>{''}</CardDescription>
       </CardHeader>
       <CardContent>
-        <StackedBarChart
+        <SegmentedBarChart
           formattedData={formattedData}
           tags={tags}
           uniqueTagsWithCount={uniqueTagsWithCount}
@@ -122,7 +122,7 @@ export const DataContainer = ({
       </CardContent>
 
       <CardContent>
-        <RawDataAccordion formattedData={formattedData} />
+        <EventTimelineAccordion formattedData={formattedData} />
       </CardContent>
     </Card>
   );

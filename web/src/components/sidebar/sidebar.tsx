@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { cn } from '~/utils/cn';
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 import { CheckedState } from '@radix-ui/react-checkbox';
-import { Checkbox } from './ui/checkbox';
-import { SelectReport } from './select-report';
-import { ReportType } from '~/data-multiple';
-import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
+import { Checkbox } from '../ui/checkbox';
+import { ReportPicker } from './report-picker';
+import { ReportType } from '~/data';
+import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 
 interface SideBarProps {
   reports: ReportType[];
@@ -157,7 +157,7 @@ export const SideBar = ({
       >
         {reports.length > 1 ? (
           <div>
-            <SelectReport
+            <ReportPicker
               items={reports}
               currentReportId={currentReportId}
               setCurrentReport={setCurrentReportId}

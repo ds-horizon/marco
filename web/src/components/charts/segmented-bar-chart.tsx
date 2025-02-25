@@ -6,10 +6,10 @@ import {
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
-} from './ui/chart';
+} from '../ui/chart';
 import { cn } from '~/utils/cn';
 
-interface StackedBarChartProps {
+interface SegmentedBarChartProps {
   config: ChartConfig;
   formattedData: (Record<string, number> & {
     itr: number;
@@ -24,12 +24,12 @@ interface StackedBarChartProps {
   tags: string[];
 }
 
-export const StackedBarChart = ({
+export const SegmentedBarChart = ({
   formattedData,
   tags,
   uniqueTagsWithCount,
   config,
-}: StackedBarChartProps) => {
+}: SegmentedBarChartProps) => {
   return (
     <ChartContainer
       config={config}

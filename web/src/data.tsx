@@ -172,6 +172,6 @@ export const visualiseMultipleReports = (tagsPerReport: string[][]) => {
   };
 };
 
-export function useMultipleReportData(): MultipleReportData[] {
+export function useReportEntries(): MultipleReportData[] {
   return data;
 }

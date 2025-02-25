@@ -1,13 +1,13 @@
-import { TimelineViewData } from './timeline-row';
+import { EventTimeline } from './event-timeline';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from './ui/accordion';
-import { ScrollArea, ScrollBar } from './ui/scroll-area';
+} from '../ui/accordion';
+import { ScrollArea, ScrollBar } from '../ui/scroll-area';
 
-export function RawDataAccordion({
+export function EventTimelineAccordion({
   formattedData,
 }: {
   formattedData: (Record<string, number> & {
@@ -23,7 +23,7 @@ export function RawDataAccordion({
         </AccordionTrigger>
         <AccordionContent>
           <ScrollArea className="h-72 w-full rounded-md border">
-            <TimelineViewData formattedData={formattedData} />
+            <EventTimeline formattedData={formattedData} />
             <ScrollBar orientation="horizontal" />
           </ScrollArea>
         </AccordionContent>

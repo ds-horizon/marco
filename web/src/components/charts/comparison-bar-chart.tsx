@@ -2,26 +2,26 @@
 
 import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
 
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import {
   ChartContainer,
   ChartLegend,
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
-} from './ui/chart';
+} from '../ui/chart';
 import {
   IComparisonBarCharConfig,
   IComparisonBarChartData,
-} from '~/data-multiple';
+} from '~/data';
 import { cn } from '~/utils/cn';
 import { X } from 'lucide-react';
-import { Button } from './ui/button';
-import { DataTable } from './data-table';
+import { Button } from '../ui/button';
+import { DataTable } from '../analytics-card/data-table';
 import { comaprisonMetricColumns, ComaprisonMetricData } from '~/utils/helpers';
 import { calculateMetrics } from '~/utils/data';
 
-export function BarChartMultiple({
+export function ComparisonBarChart({
   chartConfig,
   chartData,
   hideComparisonPanel,
