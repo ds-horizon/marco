@@ -15,7 +15,7 @@ const metricKeys = {
 
 type MetricKey = keyof typeof metricKeys;
 
-export type MetricData<T = any> = {
+export type MetricData<T = string> = {
   [key in MetricKey]: T;
 };
 
@@ -41,7 +41,7 @@ const comparisonMetricKeys = {
 
 type ComaprisonMetricKey = keyof typeof comparisonMetricKeys;
 
-export type ComaprisonMetricData<T = any> = {
+export type ComaprisonMetricData<T = string> = {
   [key in ComaprisonMetricKey]: T;
 };
 
