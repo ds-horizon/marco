@@ -1,6 +1,4 @@
-import {
-  ChartConfig,
-} from './ui/chart';
+import { ChartConfig } from './ui/chart';
 import { cn } from '~/utils/cn';
 import {
   Card,
@@ -111,7 +109,12 @@ export const DataContainer = ({
         <CardDescription>{''}</CardDescription>
       </CardHeader>
       <CardContent>
-        <StackedBarChart formattedData={formattedData} tags={tags} uniqueTagsWithCount={uniqueTagsWithCount} config={config}/>
+        <StackedBarChart
+          formattedData={formattedData}
+          tags={tags}
+          uniqueTagsWithCount={uniqueTagsWithCount}
+          config={config}
+        />
       </CardContent>
 
       <CardContent>
@@ -119,7 +122,7 @@ export const DataContainer = ({
       </CardContent>
 
       <CardContent>
-        <RawDataAccordion formattedData={formattedData}/>
+        <RawDataAccordion formattedData={formattedData} />
       </CardContent>
     </Card>
   );

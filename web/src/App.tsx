@@ -42,11 +42,14 @@ export function App() {
   const [orderOfReport, setOrderOfReport] = useState<number[]>([]);
 
   const [multipleData, setMultipleData] = useState<{
-    data: IComparisonBarChartData
-    metrics: Record<string, {
-      diff: number[],
-      tags: string[]
-    }>
+    data: IComparisonBarChartData;
+    metrics: Record<
+      string,
+      {
+        diff: number[];
+        tags: string[];
+      }
+    >;
   } | null>(null);
   const [chartConfig, setChartConfig] = useState<IComparisonBarCharConfig>({});
 
@@ -56,23 +59,23 @@ export function App() {
     setChartConfig(chartConfig);
     setMultipleData({
       data: multipleData,
-      metrics: metrics
+      metrics: metrics,
     });
   };
 
   const hideComparisonPanel = () => {
-    setMultipleData(null)
-  }
+    setMultipleData(null);
+  };
 
   const tooltipText = () => {
-    let text = ''
+    let text = '';
     if (orderOfReport.length < 1) {
-      text = 'Select events from at least 2 reports to compare.'
+      text = 'Select events from at least 2 reports to compare.';
     } else if (orderOfReport.length === 1) {
-      text = 'Select events from 1 more report to compare.'
+      text = 'Select events from 1 more report to compare.';
     }
     return text;
-  }
+  };
 
   return (
     <>
@@ -87,77 +90,77 @@ export function App() {
         )}
       >
         <TooltipProvider>
-        <SideBar
-          reports={reports}
-          currentReportId={currentReportId}
-          setCurrentReportId={setCurrentReportId}
-          tagsPerReport={tagsPerReport}
-          setTagsPerReport={setTagsPerReport}
-          uniqueTagsWithCountForMultipleReport={
-            uniqueTagsWithCountForMultipleReport
-          }
-          setOrderOfReport={setOrderOfReport}
-          tooltipText={tooltipText()}
-          handleCompare={handleReportComparison}
-        />
-        <main
-          className={cn(
-            'overflow-x-hidden',
-            'overflow-y-auto',
-            'py-24',
-            'px-8'
-          )}
-        >
-          {!showEmptyPage(tagsPerReport) ? (
-            <AnimatePresence>
-              {/** Bar Chart for comparing multiple reports */}
-              {multipleData ? (
-                <BarChartMultiple
-                  chartData={multipleData.data}
-                  chartConfig={chartConfig}
-                  metrics={multipleData.metrics}
-                  hideComparisonPanel={hideComparisonPanel}
-                />
-              ) : null}
-              {orderOfReport.map((order) => {
-                return (
-                  <motion.div
-                    key={order}
-                    layout
-                    layoutId={`card-${order}`}
-                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.95 }} // Quick fade-out
-                    transition={{
-                      layout: { duration: 0.4, ease: 'easeInOut' }, // Faster repositioning
-                      opacity: { duration: 0.2 }, // Quick fade-out
-                    }}
-                    className={cn(
-                      'p-2',
-                      'rounded-xl',
-                      'bg-card',
-                      'mt-4',
-                      'w-200',
-                      'max-w-100'
-                    )}
-                  >
-                    <DataContainer
-                      reportInfo={reports[order]}
-                      data={multipleEventData[order].data}
-                      uniqueTagsWithCount={
-                        uniqueTagsWithCountForMultipleReport[order]
-                      }
-                      tags={tagsPerReport[order]}
-                    />
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          ) : (
-            // Empty Page
-            <EmptyPage />
-          )}
-        </main>
+          <SideBar
+            reports={reports}
+            currentReportId={currentReportId}
+            setCurrentReportId={setCurrentReportId}
+            tagsPerReport={tagsPerReport}
+            setTagsPerReport={setTagsPerReport}
+            uniqueTagsWithCountForMultipleReport={
+              uniqueTagsWithCountForMultipleReport
+            }
+            setOrderOfReport={setOrderOfReport}
+            tooltipText={tooltipText()}
+            handleCompare={handleReportComparison}
+          />
+          <main
+            className={cn(
+              'overflow-x-hidden',
+              'overflow-y-auto',
+              'py-24',
+              'px-8'
+            )}
+          >
+            {!showEmptyPage(tagsPerReport) ? (
+              <AnimatePresence>
+                {/** Bar Chart for comparing multiple reports */}
+                {multipleData ? (
+                  <BarChartMultiple
+                    chartData={multipleData.data}
+                    chartConfig={chartConfig}
+                    metrics={multipleData.metrics}
+                    hideComparisonPanel={hideComparisonPanel}
+                  />
+                ) : null}
+                {orderOfReport.map((order) => {
+                  return (
+                    <motion.div
+                      key={order}
+                      layout
+                      layoutId={`card-${order}`}
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }} // Quick fade-out
+                      transition={{
+                        layout: { duration: 0.4, ease: 'easeInOut' }, // Faster repositioning
+                        opacity: { duration: 0.2 }, // Quick fade-out
+                      }}
+                      className={cn(
+                        'p-2',
+                        'rounded-xl',
+                        'bg-card',
+                        'mt-4',
+                        'w-200',
+                        'max-w-100'
+                      )}
+                    >
+                      <DataContainer
+                        reportInfo={reports[order]}
+                        data={multipleEventData[order].data}
+                        uniqueTagsWithCount={
+                          uniqueTagsWithCountForMultipleReport[order]
+                        }
+                        tags={tagsPerReport[order]}
+                      />
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
+            ) : (
+              // Empty Page
+              <EmptyPage />
+            )}
+          </main>
         </TooltipProvider>
       </div>
     </>

@@ -7,15 +7,23 @@ import {
   SelectValue,
 } from './ui/select';
 
-export const SelectReport = ({ items, currentReportId, setCurrentReport }: { items: ReportType[], currentReportId: number, setCurrentReport:  React.Dispatch<React.SetStateAction<number>>}) => {
-    if (items.length < 1 ){
-        return 
-    }
+export const SelectReport = ({
+  items,
+  currentReportId,
+  setCurrentReport,
+}: {
+  items: ReportType[];
+  currentReportId: number;
+  setCurrentReport: React.Dispatch<React.SetStateAction<number>>;
+}) => {
+  if (items.length < 1) {
+    return;
+  }
 
-    return (
+  return (
     <Select
       onValueChange={(v) => {
-        setCurrentReport(Number(v))
+        setCurrentReport(Number(v));
       }}
     >
       <SelectTrigger className="w-[180px]">
@@ -23,7 +31,9 @@ export const SelectReport = ({ items, currentReportId, setCurrentReport }: { ite
       </SelectTrigger>
       <SelectContent>
         {items.map((item, index) => {
-          return <SelectItem value={index.toString()}>{item.reportName}</SelectItem>;
+          return (
+            <SelectItem value={index.toString()}>{item.reportName}</SelectItem>
+          );
         })}
       </SelectContent>
     </Select>

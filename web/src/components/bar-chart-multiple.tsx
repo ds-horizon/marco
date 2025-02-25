@@ -2,12 +2,7 @@
 
 import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from './ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import {
   ChartContainer,
   ChartLegend,
@@ -15,7 +10,10 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from './ui/chart';
-import { IComparisonBarCharConfig, IComparisonBarChartData } from '~/data-multiple';
+import {
+  IComparisonBarCharConfig,
+  IComparisonBarChartData,
+} from '~/data-multiple';
 import { cn } from '~/utils/cn';
 import { X } from 'lucide-react';
 import { Button } from './ui/button';
@@ -27,15 +25,18 @@ export function BarChartMultiple({
   chartConfig,
   chartData,
   hideComparisonPanel,
-  metrics
+  metrics,
 }: {
   chartConfig: IComparisonBarCharConfig;
   chartData: IComparisonBarChartData;
-  hideComparisonPanel: () => void
-  metrics: Record<string, {
-    diff: number[];
-    tags: string[];
-}>
+  hideComparisonPanel: () => void;
+  metrics: Record<
+    string,
+    {
+      diff: number[];
+      tags: string[];
+    }
+  >;
 }) {
   let description = '';
   const numberOfComparison = Object.keys(chartConfig).length;
@@ -49,29 +50,31 @@ export function BarChartMultiple({
 
   const stats: ComaprisonMetricData<string>[] = [];
   Object.keys(metrics).forEach((key) => {
+    const { mean, std, errorRate } = calculateMetrics(metrics[key].diff);
 
-      const {mean, std, errorRate} = calculateMetrics(metrics[key].diff)
-
-      stats.push({
-        mean: mean.toFixed(1),
-        standard_deviation: std.toFixed(2),
-        error_rate: errorRate.toFixed(2),
-        start_event: metrics[key].tags.length > 1 ?  metrics[key].tags[0] :  "",
-        end_event: metrics[key].tags.length > 1 ?  metrics[key].tags[1] :  "",
-        report: key
-      })
-  })
+    stats.push({
+      mean: mean.toFixed(1),
+      standard_deviation: std.toFixed(2),
+      error_rate: errorRate.toFixed(2),
+      start_event: metrics[key].tags.length > 1 ? metrics[key].tags[0] : '',
+      end_event: metrics[key].tags.length > 1 ? metrics[key].tags[1] : '',
+      report: key,
+    });
+  });
 
   return (
     <Card>
       <CardHeader className={cn('flex-row', 'justify-between', 'items-center')}>
         <CardTitle>{description}</CardTitle>
         <Button onClick={hideComparisonPanel} variant={'ghost'}>
-          <X  strokeWidth={2}/>
+          <X strokeWidth={2} />
         </Button>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig} className={cn('min-h-[200px]', 'h-[60vh]', 'w-full')}>
+        <ChartContainer
+          config={chartConfig}
+          className={cn('min-h-[200px]', 'h-[60vh]', 'w-full')}
+        >
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis

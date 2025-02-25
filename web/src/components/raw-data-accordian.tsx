@@ -24,7 +24,7 @@ export function RawDataAccordion({
         <AccordionContent>
           <ScrollArea className="h-72 w-full rounded-md border">
             <TimelineViewData formattedData={formattedData} />
-            <ScrollBar orientation='horizontal'/>
+            <ScrollBar orientation="horizontal" />
           </ScrollArea>
         </AccordionContent>
       </AccordionItem>

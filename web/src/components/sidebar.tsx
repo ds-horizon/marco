@@ -155,15 +155,15 @@ export const SideBar = ({
           'z-40'
         )}
       >
-        {reports.length > 1 ?
+        {reports.length > 1 ? (
           <div>
-          <SelectReport
-            items={reports}
-            currentReportId={currentReportId}
-            setCurrentReport={setCurrentReportId}
-          />
-        </div> : null
-        }
+            <SelectReport
+              items={reports}
+              currentReportId={currentReportId}
+              setCurrentReport={setCurrentReportId}
+            />
+          </div>
+        ) : null}
         <div
           className={cn(
             'flex',
