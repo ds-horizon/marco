@@ -1,7 +1,7 @@
 import { cn } from '~/utils/cn';
 import { tagWiseCountAndColor } from '~/utils/data';
 
-import React, { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { Header } from './header';
 import { showEmptyPage } from './utils/helpers';
 import { SideBar } from './components/sidebar/sidebar';
@@ -55,14 +55,16 @@ export function App() {
   const [chartConfig, setChartConfig] = useState<IComparisonBarCharConfig>({});
 
   const generateComparisonData = useCallback(() => {
-    const { chartConfig, multipleData, metrics } =
-      visualiseMultipleReports(tagsPerReport);
+    const { chartConfig, multipleData, metrics } = visualiseMultipleReports(
+      tagsPerReport,
+      selectedReportsOrder
+    );
     setChartConfig(chartConfig);
     setComparisonData({
       data: multipleData,
       metrics: metrics,
     });
-  }, [tagsPerReport]);
+  }, [selectedReportsOrder, tagsPerReport]);
 
   const clearComparisonData = useCallback(() => {
     setComparisonData(null);

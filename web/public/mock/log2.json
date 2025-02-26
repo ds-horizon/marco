@@ -1,482 +1,202 @@
 [
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286223927"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286223978"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286226210"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286226238"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286230710"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286230745"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286232978"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286233012"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286237794"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286237828"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286240045"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286240082"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286244860"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286244895"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286247227"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286247255"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286251678"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286251712"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286253910"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286253942"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286258629"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286258661"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286261310"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286261340"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286265744"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286265778"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286267977"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286268014"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286272745"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286272794"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286275061"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286275089"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286279794"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286279828"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286282161"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286282199"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286286628"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286286662"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286288777"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286288817"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286293427"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286293478"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286295777"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286295804"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286301210"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286301261"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286303445"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286303471"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286308327"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286308361"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286310644"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286310670"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286315144"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286315178"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286317394"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286317423"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286322144"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286322194"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286324378"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286324409"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286328827"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286328863"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286331129"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286331170"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286335777"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286335811"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286338012"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286338052"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286342544"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286342595"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286344844"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286344875"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286349661"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286349694"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286351894"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286351929"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286356444"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286356478"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286358794"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286358832"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286363844"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286363878"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286366077"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286366105"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286370577"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286370612"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286372928"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286372959"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286377727"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286377794"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286379944"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286379969"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286384711"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286384744"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286387044"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286387074"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286391660"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286391694"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286393944"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286393970"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286398744"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286398777"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286401061"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286401087"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286405644"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286405695"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286408027"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286408075"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286412544"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286412595"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286414962"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286415000"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286419510"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286419544"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286422078"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286422103"
-  },
-  {
-    "tagName": "JS_Tab_Load_Start",
-    "timestamp": "1739286426810"
-  },
-  {
-    "tagName": "JS_Tab_Load_End",
-    "timestamp": "1739286426861"
-  },
-  {
-    "tagName": "JS_Tab_Pressed",
-    "timestamp": "1739286429144"
-  },
-  {
-    "tagName": "JS_Tab_Loaded",
-    "timestamp": "1739286429181"
-  }
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740316688445" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740316688607" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740316732565" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740316732688" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740316744168" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740316744305" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740316747186" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740316747294" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740316762264" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740316762348" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740316775115" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740316775208" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740316802524" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740316802628" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740316818020" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740316818120" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740316860404" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740316860573" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740316864774" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740316864921" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740316888219" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740316888322" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740316892545" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740316892663" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740316906650" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740316906753" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740316913263" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740316913372" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740316919404" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740316919555" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740316924596" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740316924704" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740316940531" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740316940634" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740316944161" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740316944238" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740316960885" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740316961006" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740316967397" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740316967489" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740316998514" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740316998616" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317002347" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317002487" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317016321" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317016441" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317028817" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317028925" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317062616" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317062766" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317075583" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317075710" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317082767" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317082888" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317085787" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317085879" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317101589" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317101709" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317104459" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317104586" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317149295" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317149449" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317165114" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317165223" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317183598" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317183737" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317186856" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317186945" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317195709" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317195863" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317201865" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317201958" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317213707" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317213826" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317220420" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317220518" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317227843" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317227962" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317231792" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317231934" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317241864" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317242031" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317256112" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317256205" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317275983" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317276086" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317289343" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317289441" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317296562" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317296682" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317311135" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317311219" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317318489" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317318591" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317321492" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317321599" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317370100" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317370204" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317376144" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317376298" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317401636" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317401756" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317405280" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317405388" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317417656" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317417759" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317421706" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317421780" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317437369" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317437473" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317440576" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317440701" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317462699" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317462785" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317465433" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317465527" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317487978" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317488080" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317493882" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317494024" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317516736" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317516857" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317524311" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317524471" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317555854" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317555989" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317569178" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317569306" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317581234" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317581309" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317585351" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317585459" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317613417" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317613583" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317626600" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317626727" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317641560" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317641663" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317651528" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317651611" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317661749" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317661819" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317670979" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317671067" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317687559" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317687663" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317701816" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317701895" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317718600" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317718736" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317731219" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317731328" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317747440" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317747527" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317751203" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317751346" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317757967" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317758071" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317766322" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317766445" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317782291" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317782427" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317791634" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317791715" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317803290" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317803412" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317822805" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317822881" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317834693" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317834799" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317841712" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317841838" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317856063" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317856184" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317859895" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317859987" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317889794" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317889948" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317893594" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317893733" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317906304" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317906425" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317909410" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317909500" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317918280" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317918417" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317921737" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317921830" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317940423" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317940544" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317945735" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317945795" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317964672" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317964774" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317975955" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317976021" },
+  { "tagName": "JS_Tab_Load_Start", "timestamp": "1740317982159" },
+  { "tagName": "JS_Tab_Load_End", "timestamp": "1740317982261" },
+  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1740317984975" },
+  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1740317985067" }
 ]

@@ -2,15 +2,23 @@
   "reports": [
     {
       "path": "mock/log1.json",
-      "reportName": "Report 1"
+      "reportName": "Native OnePlus(HighEnd)"
     },
     {
       "path": "mock/log2.json",
-      "reportName": "Report 2"
+      "reportName": "JS OnePlus(HighEnd)"
+    },
+    {
+      "path": "mock/log3.json",
+      "reportName": "Native Vivo(LowEnd)"
+    },
+    {
+      "path": "mock/log4.json",
+      "reportName": "JS Vivo(LowEnd)"
     }
   ],
   "metadata": {
-    "totalReports": 2,
-    "generatedAt": "2025-02-25T08:47:31.484Z"
+    "totalReports": 4,
+    "generatedAt": "2025-02-26T06:20:45.973Z"
   }
 }

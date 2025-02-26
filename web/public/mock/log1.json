@@ -1,722 +1,202 @@
 [
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738132356620"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738132356675"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738132356747"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738132357249"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738132357314"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738132357998"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738132359651"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738132359669"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738132359738"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738132360260"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738132360315"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738132361013"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738132362804"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738132362822"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738132362881"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738132363365"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738132363416"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738132364112"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738132365948"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738132365966"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738132366027"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738132366518"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738132366566"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738132367263"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738132369089"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738132369107"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738132369167"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738132369688"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738132369733"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738132370432"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738132372234"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738132372253"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738132372310"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738132372823"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738132372881"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738132373579"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738132375359"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738132375380"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738132375443"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738132375918"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738132375964"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738132376662"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738132378489"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738132378508"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738132378573"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738132379052"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738132379097"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738132379798"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738132381657"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738132381677"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738132381742"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738132382264"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738132382305"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738132383030"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738132384804"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738132384826"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738132384886"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738132385372"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738132385415"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738132386130"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738132387951"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738132387973"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738132388037"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738132388521"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738132388565"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738132389279"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738132391158"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738132391178"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738132391246"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738132391757"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738132391815"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738132392503"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738132394322"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738132394341"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738132394401"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738132394899"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738132394943"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738132395666"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738132397499"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738132397517"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738132397580"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738132398071"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738132398118"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738132398830"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738132400678"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738132400697"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738132400760"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738132401250"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738132401298"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738132401999"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738132403820"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738132403842"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738132403902"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738132404384"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738132404427"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738132405146"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738132406951"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738132406970"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738132407032"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738132407526"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738132407566"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738132408279"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738132410119"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738132410137"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738132410204"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738132410682"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738132410722"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738132411447"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738132413269"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738132413287"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738132413348"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738132413855"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738132413914"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738132414613"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738133369440"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738133369462"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738133369529"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738133370076"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738133370131"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738133370834"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738133372558"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738133372583"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738133372648"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738133373142"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738133373198"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738133373896"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738133375721"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738133375740"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738133375805"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738133376296"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738133376338"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738133377048"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738133378838"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738133378856"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738133378921"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738133379420"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738133379466"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738133380168"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738133381992"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738133382012"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738133382069"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738133382558"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738133382598"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738133383295"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738133385150"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738133385167"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738133385230"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738133385689"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738133385731"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738133386445"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738133388315"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738133388333"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738133388393"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738133388880"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738133388931"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738133389633"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738133391504"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738133391523"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738133391586"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738133392056"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738133392103"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738133392813"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738133394655"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738133394678"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738133394736"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738133395213"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738133395265"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738133395981"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738133397890"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738133397909"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738133397972"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738133398435"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738133398483"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738133399183"
-  },
-  {
-    "tagName": "AppLaunchStart",
-    "timestamp": "1738133401031"
-  },
-  {
-    "tagName": "Application_onCreate",
-    "timestamp": "1738133401050"
-  },
-  {
-    "tagName": "ActivityCreated",
-    "timestamp": "1738133401113"
-  },
-  {
-    "tagName": "HomeScreen_Mounted",
-    "timestamp": "1738133401589"
-  },
-  {
-    "tagName": "LoadingState",
-    "timestamp": "1738133401630"
-  },
-  {
-    "tagName": "HomeScreen_Loaded",
-    "timestamp": "1738133402350"
-  }
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315422846" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315422993" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315426601" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315426708" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315435191" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315435302" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315450459" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315450528" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315463348" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315463439" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315472116" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315472164" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315478953" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315479068" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315489672" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315489773" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315502850" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315502932" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315511783" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315511876" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315533227" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315533327" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315542561" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315542687" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315563419" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315563503" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315566296" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315566397" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315589231" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315589313" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315598991" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315599048" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315623173" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315623260" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315631367" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315631427" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315651336" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315651428" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315664393" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315664483" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315680431" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315680514" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315695473" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315695539" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315712784" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315712884" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315715561" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315715660" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315724575" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315724702" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315728484" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315728618" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315737402" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315737536" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315745122" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315745231" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315755716" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315755802" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315762611" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315762713" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315782338" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315782429" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315785296" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315785373" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315794549" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315794693" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315798617" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315798738" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315814092" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315814168" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315824471" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315824594" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315841542" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315841644" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315844780" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315844850" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315856578" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315856678" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315862526" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315862628" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315882376" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315882465" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315885647" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315885723" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315905422" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315905502" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315914043" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315914154" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315925759" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315925853" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315937917" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315938009" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315951536" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315951617" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315961854" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315961928" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740315980325" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740315980409" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740315996487" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740315996554" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316014085" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316014184" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316020450" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316020516" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316033227" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316033326" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316044528" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316044610" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316081810" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316081914" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316085022" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316085146" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316126083" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316126198" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316133239" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316133340" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316175620" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316175736" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316185373" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316185434" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316194517" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316194605" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316204277" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316204367" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316212045" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316212179" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316215841" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316215941" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316224106" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316224217" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316243136" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316243237" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316260622" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316260703" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316264603" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316264673" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316272662" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316272763" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316284872" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316284950" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316291123" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316291220" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316294058" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316294160" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316321990" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316322096" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316335370" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316335459" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316346153" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316346257" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316353495" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316353560" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316370098" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316370186" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316381046" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316381113" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316395721" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316395809" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316402250" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316402329" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316412375" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316412510" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316441087" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316441218" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316462462" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316462570" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316473947" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316474017" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316488134" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316488237" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316501410" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316501505" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316519726" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316519839" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316533845" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316533925" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316549296" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316549400" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316552197" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316552294" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316562824" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316562954" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316565607" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316565674" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316583768" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316583871" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316586956" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316587036" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316603621" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316603723" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316622493" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316622604" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316637484" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316637570" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316640317" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316640388" },
+  { "tagName": "Native_Tab_Load_Start", "timestamp": "1740316665817" },
+  { "tagName": "Native_Tab_Load_End", "timestamp": "1740316665913" },
+  { "tagName": "Native_Tab_Album_Pressed", "timestamp": "1740316675158" },
+  { "tagName": "Native_Tab_Album_Loaded", "timestamp": "1740316675225" }
 ]
