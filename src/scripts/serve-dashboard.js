@@ -19,7 +19,7 @@ module.exports = function serveDashboard(port, outputPathDirs) {
   const generatedAt = new Date().toISOString();
 
   outputPathDirs.forEach((outputPathDir, index) => {
-    const logFilePath = path.resolve(appRoot, outputPathDir);
+    const logFilePath = path.resolve(appRoot, outputPathDir.path);
 
     // Copy `log.json` to `web/dist/assets`
     const destinationPath = path.join(assetsFolder, `log${index + 1}.json`);
@@ -33,7 +33,7 @@ module.exports = function serveDashboard(port, outputPathDirs) {
 
     reports.push({
       path: `assets/log${index + 1}.json`,
-      reportName: `Report ${index + 1}`,
+      reportName: outputPathDir.reportName ?? `Report ${index + 1}`,
     });
   });
 
