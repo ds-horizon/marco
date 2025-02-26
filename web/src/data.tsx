@@ -94,7 +94,7 @@ export type IComparisonBarCharConfig = {
   };
 };
 
-export const visualiseMultipleReports = (tagsPerReport: string[][]) => {
+export const visualiseMultipleReports = (tagsPerReport: string[][], selectedReportsOrder: number[]) => {
   const multipleBarChartConfig: IComparisonBarCharConfig = {};
   let maxIterationPossible = 0;
   const reportWithDataAndPattern: {
@@ -107,6 +107,9 @@ export const visualiseMultipleReports = (tagsPerReport: string[][]) => {
     color: string;
   }[] = [];
   for (let i = 0; i < data.length; i++) {
+  
+    if (!selectedReportsOrder.includes(i)) continue;
+
     const reportInfo = data[i];
     const numberOfTags = tagsPerReport[i].length;
     const tags = [tagsPerReport[i][0], tagsPerReport[i][numberOfTags - 1]];
