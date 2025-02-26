@@ -99,7 +99,7 @@ export const visualiseMultipleReports = (
   selectedReportsOrder: number[]
 ) => {
   const multipleBarChartConfig: IComparisonBarCharConfig = {};
-  let maxIterationPossible = 0;
+  let maxIterationPossible = Infinity;
   const reportWithDataAndPattern: {
     name: string;
     data: MultipleReportData[];
@@ -133,7 +133,7 @@ export const visualiseMultipleReports = (
     const max = patternValues.length
       ? Math.min(...Object.values(pattern).map((p) => p.length))
       : 0;
-    maxIterationPossible = Math.max(maxIterationPossible, max);
+    maxIterationPossible = Math.min(maxIterationPossible, max);
   }
 
   const finalData: IComparisonBarChartData = [];
