@@ -76,14 +76,15 @@ const program = new Command();
   program
     .command('visualize')
     .description('Serve the performance report dashboard')
-    .option('-p, --port <port>', 'Specify the port', '8080')
+    .option('-p, --port <port>', 'Specify the port')
     .option(
       '-d, --dataDir <dataDir...>',
       'Specify reports in "path:name" format (e.g: "report/log.json:Report Name")'
     )
     .option('--platform <platform>', 'Specify platform: android or ios')
     .action((options) => {
-      const { platform, port } = options;
+      const { platform } = options;
+      let port = options.port;
       let dataDirs = options.dataDir || []; // Use CLI input first
 
       // If a single string is provided, convert it to an array
@@ -180,10 +181,13 @@ const program = new Command();
         }
       });
 
+      if (!port && platform) {
+        port = platform === 'android' ? androidConfig?.port : iosConfig?.port;
+      }
+
       // 🏁 Final Log Before Execution
       // console.log('🚀 Launching dashboard with:', { port, reportConfigs });
 
-      // Use provided port or default
       serveDashboard(port || '8080', reportConfigs);
     });
 
