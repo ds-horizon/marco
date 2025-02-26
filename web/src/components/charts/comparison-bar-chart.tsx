@@ -1,6 +1,6 @@
 'use client';
 
-import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import {
@@ -17,6 +17,7 @@ import { Button } from '../ui/button';
 import { DataTable } from '../analytics-card/data-table';
 import { comaprisonMetricColumns, ComaprisonMetricData } from '~/utils/helpers';
 import { calculateMetrics } from '~/utils/data';
+import { useMemo } from 'react';
 
 export function ComparisonBarChart({
   chartConfig,
@@ -59,6 +60,25 @@ export function ComparisonBarChart({
     });
   });
 
+  const chartDataWithMaxKey = useMemo(
+    () =>
+      chartData.map((data) => {
+        const maxHeight = Object.entries(data).reduce(
+          (max, [key, value]) =>
+            key !== 'itr' ? Math.max(max, Number(value) || -Infinity) : max,
+          -Infinity
+        );
+
+        return {
+          ...data,
+          maxHeight,
+        };
+      }),
+    [chartData]
+  );
+
+  console.log('Comparison Chart Data ', chartDataWithMaxKey);
+
   return (
     <Card>
       <CardHeader className={cn('flex-row', 'justify-between', 'items-center')}>
@@ -72,8 +92,9 @@ export function ComparisonBarChart({
           config={chartConfig}
           className={cn('min-h-[200px]', 'h-[60vh]', 'w-full')}
         >
-          <BarChart accessibilityLayer data={chartData}>
-            <CartesianGrid vertical={false} />
+          <BarChart accessibilityLayer data={chartDataWithMaxKey}>
+            <CartesianGrid vertical horizontal />
+            <YAxis dataKey="maxHeight" />
             <XAxis
               dataKey="itr"
               tickLine={false}
