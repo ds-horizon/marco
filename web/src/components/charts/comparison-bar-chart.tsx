@@ -17,7 +17,50 @@ import { Button } from '../ui/button';
 import { DataTable } from '../analytics-card/data-table';
 import { comaprisonMetricColumns, ComaprisonMetricData } from '~/utils/helpers';
 import { calculateMetrics } from '~/utils/data';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import { Switch } from '../ui/switch';
+
+const ComparisonChartCard = ({
+  config,
+  data,
+}: {
+  config: Record<
+    string,
+    {
+      label: string;
+      color: string;
+    }
+  >;
+  data: Record<string, string | number>[];
+}) => {
+  return (
+    <CardContent>
+      <ChartContainer
+        config={config}
+        className={cn('min-h-[200px]', 'h-[40vh]', 'w-full')}
+      >
+        <BarChart accessibilityLayer data={data}>
+          <CartesianGrid vertical horizontal />
+          <YAxis dataKey="maxHeight" />
+          <XAxis
+            dataKey="type"
+            tickLine={false}
+            tickMargin={10}
+            axisLine={false}
+          />
+          <ChartTooltip
+            cursor={false}
+            content={<ChartTooltipContent indicator="dashed" />}
+          />
+          <ChartLegend content={<ChartLegendContent className="flex-wrap" />} />
+          {Object.keys(config).map((key) => {
+            return <Bar dataKey={key} fill={config[key].color} />;
+          })}
+        </BarChart>
+      </ChartContainer>
+    </CardContent>
+  );
+};
 
 export function ComparisonBarChart({
   chartConfig,
@@ -77,44 +120,57 @@ export function ComparisonBarChart({
     [chartData]
   );
 
-  console.log('Comparison Chart Data ', chartDataWithMaxKey);
+  const [shouldShowMeanChart, setShouldShowMeanChart] = useState(false);
+  const chartWithMeanData: Array<Record<string, number | string>> = [
+    {
+      type: 'Mean',
+      maxHeight: 0,
+    },
+  ];
+  const chartConfigWithMean: Record<
+    string,
+    {
+      label: string;
+      color: string;
+    }
+  > = {};
+
+  stats.forEach((item) => {
+    chartWithMeanData[0][item.report] = Number(item.mean);
+    chartWithMeanData[0]['maxHeight'] = Math.max(0, Number(item.mean));
+    chartConfigWithMean[item.report] = {
+      label: item.report,
+      color: chartConfig[item.report].color,
+    };
+  });
 
   return (
     <Card>
       <CardHeader className={cn('flex-row', 'justify-between', 'items-center')}>
         <CardTitle>{description}</CardTitle>
-        <Button onClick={hideComparisonPanel} variant={'ghost'}>
-          <X strokeWidth={2} />
-        </Button>
+        <div className="flex items-center space-x-2">
+          <Switch
+            id="airplane-mode"
+            checked={shouldShowMeanChart}
+            onCheckedChange={(v) => {
+              setShouldShowMeanChart(v);
+            }}
+          />
+          <span>Mean Data</span>
+          <Button onClick={hideComparisonPanel} variant={'ghost'}>
+            <X strokeWidth={2} />
+          </Button>
+        </div>
       </CardHeader>
-      <CardContent>
-        <ChartContainer
-          config={chartConfig}
-          className={cn('min-h-[200px]', 'h-[40vh]', 'w-full')}
-        >
-          <BarChart accessibilityLayer data={chartDataWithMaxKey}>
-            <CartesianGrid vertical horizontal />
-            <YAxis dataKey="maxHeight" />
-            <XAxis
-              dataKey="itr"
-              tickLine={false}
-              tickMargin={10}
-              axisLine={false}
-              tickFormatter={(value) => value.slice(0, 3)}
-            />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="dashed" />}
-            />
-            <ChartLegend
-              content={<ChartLegendContent className="flex-wrap" />}
-            />
-            {Object.keys(chartConfig).map((key) => {
-              return <Bar dataKey={key} fill={chartConfig[key].color} />;
-            })}
-          </BarChart>
-        </ChartContainer>
-      </CardContent>
+
+      {shouldShowMeanChart ? (
+        <ComparisonChartCard
+          data={chartWithMeanData}
+          config={chartConfigWithMean}
+        />
+      ) : (
+        <ComparisonChartCard data={chartDataWithMaxKey} config={chartConfig} />
+      )}
 
       <CardContent>
         <DataTable columns={comaprisonMetricColumns} data={stats} />
