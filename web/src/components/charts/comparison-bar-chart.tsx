@@ -42,7 +42,7 @@ export function ComparisonBarChart({
     if (index === numberOfComparison - 1) {
       description += key;
     } else {
-      description = key + ' vs ';
+      description = description + key + ' vs ';
     }
   });
 
@@ -90,7 +90,7 @@ export function ComparisonBarChart({
       <CardContent>
         <ChartContainer
           config={chartConfig}
-          className={cn('min-h-[200px]', 'h-[60vh]', 'w-full')}
+          className={cn('min-h-[200px]', 'h-[40vh]', 'w-full')}
         >
           <BarChart accessibilityLayer data={chartDataWithMaxKey}>
             <CartesianGrid vertical horizontal />

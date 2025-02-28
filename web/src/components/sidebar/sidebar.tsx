@@ -20,6 +20,7 @@ interface SideBarProps {
   setOrderOfReport: React.Dispatch<React.SetStateAction<number[]>>;
   tooltipText: string;
   handleCompare: () => void;
+  selectedReportsOrder: number[];
 }
 
 export const SideBar = ({
@@ -30,6 +31,7 @@ export const SideBar = ({
   setOrderOfReport,
   tooltipText,
   handleCompare,
+  selectedReportsOrder,
 }: SideBarProps) => {
   const [currentReportId, setCurrentReportId] = useState<number>(0);
   const [allSelectedPerReports, setAllSelectedPerReports] = useState<
@@ -156,6 +158,7 @@ export const SideBar = ({
           <div>
             <ReportPicker
               items={reports}
+              selectedReportsOrder={selectedReportsOrder}
               currentReportId={currentReportId}
               setCurrentReport={setCurrentReportId}
             />

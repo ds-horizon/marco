@@ -96,6 +96,7 @@ export function App() {
       >
         <TooltipProvider>
           <SideBar
+            selectedReportsOrder={selectedReportsOrder}
             reports={reportList}
             tagsPerReport={tagsPerReport}
             setTagsPerReport={setTagsPerReport}
