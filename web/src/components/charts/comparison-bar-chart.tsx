@@ -137,7 +137,7 @@ export function ComparisonBarChart({
 
   stats.forEach((item) => {
     chartWithMeanData[0][item.report] = Number(item.mean);
-    chartWithMeanData[0]['maxHeight'] = Math.max(0, Number(item.mean));
+    chartWithMeanData[0].maxHeight = Math.max(0, Number(item.mean));
     chartConfigWithMean[item.report] = {
       label: item.report,
       color: chartConfig[item.report].color,

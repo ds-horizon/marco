@@ -17,6 +17,7 @@ import { ReportInsightsCard } from './components/analytics-card/report-insights-
 import { motion, AnimatePresence } from 'framer-motion';
 import { ComparisonBarChart } from './components/charts/comparison-bar-chart';
 import { TooltipProvider } from './components/ui/tooltip';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs';
 
 export function App() {
   const reportEntries = useReportEntries();
@@ -53,17 +54,22 @@ export function App() {
     >;
   } | null>(null);
   const [chartConfig, setChartConfig] = useState<IComparisonBarCharConfig>({});
+  const [currentTab, setCurrentTab] = useState<'reports' | 'comparison'>(
+    'reports'
+  );
 
   const generateComparisonData = useCallback(() => {
     const { chartConfig, multipleData, metrics } = visualiseMultipleReports(
       tagsPerReport,
       selectedReportsOrder
     );
+    console.log('Compare report');
     setChartConfig(chartConfig);
     setComparisonData({
       data: multipleData,
       metrics: metrics,
     });
+    setCurrentTab('comparison');
   }, [selectedReportsOrder, tagsPerReport]);
 
   const clearComparisonData = useCallback(() => {
@@ -110,55 +116,82 @@ export function App() {
               'overflow-x-hidden',
               'overflow-y-auto',
               'py-24',
+              'items-center',
+              'justify-center',
               'px-8'
             )}
           >
             {!showEmptyPage(tagsPerReport) ? (
-              <AnimatePresence>
-                {/** Bar Chart for comparing multiple reports */}
-                {comparisonData ? (
-                  <ComparisonBarChart
-                    chartData={comparisonData.data}
-                    chartConfig={chartConfig}
-                    metrics={comparisonData.metrics}
-                    hideComparisonPanel={clearComparisonData}
-                  />
-                ) : null}
-                {selectedReportsOrder.map((order) => {
-                  return (
-                    <motion.div
-                      key={order}
-                      layout
-                      layoutId={`card-${order}`}
-                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.95 }} // Quick fade-out
-                      transition={{
-                        layout: { duration: 0.4, ease: 'easeInOut' }, // Faster repositioning
-                        opacity: { duration: 0.2 }, // Quick fade-out
-                      }}
-                      className={cn(
-                        'p-2',
-                        'rounded-xl',
-                        'bg-card',
-                        'mt-4',
-                        'w-200',
-                        'max-w-100'
-                      )}
-                    >
-                      <ReportInsightsCard
-                        reportInfo={reportList[order]}
-                        data={reportEntries[order].data}
-                        uniqueTagsWithCount={tagCountByReport[order]}
-                        tags={tagsPerReport[order]}
-                      />
-                    </motion.div>
+              <Tabs
+                defaultValue="reports"
+                className="w-full justify-center"
+                value={currentTab}
+                onValueChange={() => {
+                  setCurrentTab((prev) =>
+                    prev === 'comparison' ? 'reports' : 'comparison'
                   );
-                })}
-              </AnimatePresence>
+                }}
+              >
+                <div className="flex justify-center mt-4 mb-6">
+                  <TabsList className={'mr-40'}>
+                    <TabsTrigger value="reports">Individual Report</TabsTrigger>
+                    <TabsTrigger value="comparison">
+                      Comparison Panel
+                    </TabsTrigger>
+                  </TabsList>
+                </div>
+                <TabsContent value="reports">
+                  <AnimatePresence>
+                    {selectedReportsOrder.map((order) => {
+                      return (
+                        <motion.div
+                          key={order}
+                          layout
+                          layoutId={`card-${order}`}
+                          initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 10, scale: 0.95 }} // Quick fade-out
+                          transition={{
+                            layout: { duration: 0.4, ease: 'easeInOut' }, // Faster repositioning
+                            opacity: { duration: 0.2 }, // Quick fade-out
+                          }}
+                          className={cn(
+                            'p-2',
+                            'rounded-xl',
+                            'bg-card',
+                            'mt-4',
+                            'w-200',
+                            'max-w-100'
+                          )}
+                        >
+                          <ReportInsightsCard
+                            reportInfo={reportList[order]}
+                            data={reportEntries[order].data}
+                            uniqueTagsWithCount={tagCountByReport[order]}
+                            tags={tagsPerReport[order]}
+                          />
+                        </motion.div>
+                      );
+                    })}
+                  </AnimatePresence>
+                </TabsContent>
+                <TabsContent value="comparison" className="flex justify-center">
+                  {/** Bar Chart for comparing multiple reports */}
+                  {comparisonData ? (
+                    <ComparisonBarChart
+                      chartData={comparisonData.data}
+                      chartConfig={chartConfig}
+                      metrics={comparisonData.metrics}
+                      hideComparisonPanel={clearComparisonData}
+                    />
+                  ) : (
+                    <EmptyPage content={getTooltipMessage()} />
+                  )}
+                </TabsContent>
+              </Tabs>
             ) : (
               // Empty Page
-              <EmptyPage />
+              <EmptyPage content="Select at least two tags to compare." />
             )}
           </main>
         </TooltipProvider>

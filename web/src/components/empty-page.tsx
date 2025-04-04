@@ -1,6 +1,6 @@
 import { cn } from '~/utils/cn';
 
-export const EmptyPage = () => {
+export const EmptyPage = ({ content }: { content: string }) => {
   return (
     <div
       className={cn(
@@ -16,7 +16,7 @@ export const EmptyPage = () => {
         'text-2xl'
       )}
     >
-      Select at least two tags to compare.
+      {content}
     </div>
   );
 };

@@ -152,15 +152,14 @@ export const visualiseMultipleReports = (
       );
       if (report) {
         const diff =
-          report['pattern'][report['tags'][1]][i] -
-          report['pattern'][report['tags'][0]][i];
+          report.pattern[report.tags[1]][i] - report.pattern[report.tags[0]][i];
         markers[label] = diff.toString();
         if (metrics[label]) {
           metrics[label].diff.push(diff);
         } else {
           metrics[label] = {
             diff: [Number(diff)],
-            tags: report['tags'],
+            tags: report.tags,
           };
         }
       }
