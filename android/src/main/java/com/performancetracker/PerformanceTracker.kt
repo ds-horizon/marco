@@ -15,6 +15,7 @@ object PerformanceTracker {
      * @param meta Optional metadata related to the event.
      * @param context The Android context used for file operations.
      */
+    @JvmStatic
     fun track(
         tagName: String,
         timeStamp: Long,
