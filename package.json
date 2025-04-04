@@ -1,7 +1,7 @@
 {
   "name": "@d11/marco",
-  "version": "0.0.3",
-  "description": "Benchmark React Native View Paint Time",
+  "version": "0.0.8",
+  "description": "Track and optimize your app’s performance with ease.",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",
@@ -36,7 +36,7 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
     "release": "release-it",
-    "publish": "vite-node scripts/publish.ts"
+    "build": "bob build"
   },
   "keywords": [
     "react-native",
