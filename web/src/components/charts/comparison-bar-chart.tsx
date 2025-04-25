@@ -145,7 +145,7 @@ export function ComparisonBarChart({
   });
 
   return (
-    <Card>
+    <Card className={cn('w-full')}>
       <CardHeader className={cn('flex-row', 'justify-between', 'items-center')}>
         <CardTitle>{description}</CardTitle>
         <div className="flex items-center space-x-2">
