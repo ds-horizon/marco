@@ -1,11 +1,17 @@
+import { useCallback, useMemo, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
 import { cn } from '~/utils/cn';
 import { tagWiseCountAndColor } from '~/utils/data';
 
-import { useCallback, useMemo, useState } from 'react';
 import { Header } from './header';
-import { showEmptyPage } from './utils/helpers';
-import { SideBar } from './components/sidebar/sidebar';
 import { EmptyPage } from './components/empty-page';
+import { ReportInsightsCard } from './components/analytics-card/report-insights-cards';
+import { TooltipProvider } from './components/ui/tooltip';
+import { ComparisonBarChart } from './components/charts/comparison-bar-chart';
+import { SideBar } from './components/sidebar/sidebar';
+import { IndividualReportSidebar } from './components/sidebar/IndividualReportSidebar';
+
 import {
   IComparisonBarCharConfig,
   IComparisonBarChartData,
@@ -13,11 +19,6 @@ import {
   useReportEntries,
   visualiseMultipleReports,
 } from './data';
-import { ReportInsightsCard } from './components/analytics-card/report-insights-cards';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ComparisonBarChart } from './components/charts/comparison-bar-chart';
-import { TooltipProvider } from './components/ui/tooltip';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs';
 
 export function App() {
   const reportEntries = useReportEntries();
@@ -26,6 +27,7 @@ export function App() {
     () => reportEntries.map((report) => tagWiseCountAndColor(report.data)),
     [reportEntries]
   );
+
   const reportList: ReportType[] = useMemo(
     () =>
       reportEntries.map((report) => ({
@@ -42,6 +44,8 @@ export function App() {
   const [selectedReportsOrder, setSelectedReportsOrder] = useState<number[]>(
     []
   );
+  const [selectedIndividualReport, setSelectedIndividualReport] =
+    useState<number>(reportEntries.length > 0 ? 0 : -1);
 
   const [comparisonData, setComparisonData] = useState<{
     data: IComparisonBarChartData;
@@ -63,12 +67,8 @@ export function App() {
       tagsPerReport,
       selectedReportsOrder
     );
-    console.log('Compare report');
     setChartConfig(chartConfig);
-    setComparisonData({
-      data: multipleData,
-      metrics: metrics,
-    });
+    setComparisonData({ data: multipleData, metrics });
     setCurrentTab('comparison');
   }, [selectedReportsOrder, tagsPerReport]);
 
@@ -77,20 +77,24 @@ export function App() {
   }, []);
 
   const getTooltipMessage = useCallback(() => {
-    let text = '';
     if (selectedReportsOrder.length < 1) {
-      text = 'Select events from at least 2 reports to compare.';
+      return 'Select events from at least 2 reports to compare.';
     } else if (selectedReportsOrder.length === 1) {
-      text = 'Select events from 1 more report to compare.';
+      return 'Select events from 1 more report to compare.';
     }
-    return text;
+    return '';
   }, [selectedReportsOrder.length]);
 
   const tooltipText = useMemo(() => getTooltipMessage(), [getTooltipMessage]);
 
+  const handleIndividualReportChange = useCallback((reportIndex: number) => {
+    setSelectedIndividualReport(reportIndex);
+    setSelectedReportsOrder([reportIndex]);
+  }, []);
+
   return (
     <>
-      <Header />
+      <Header currentTab={currentTab} onTabChange={setCurrentTab} />
       <div
         className={cn(
           'grid',
@@ -101,16 +105,33 @@ export function App() {
         )}
       >
         <TooltipProvider>
-          <SideBar
-            selectedReportsOrder={selectedReportsOrder}
-            reports={reportList}
-            tagsPerReport={tagsPerReport}
-            setTagsPerReport={setTagsPerReport}
-            uniqueTagsWithCountForMultipleReport={tagCountByReport}
-            setOrderOfReport={setSelectedReportsOrder}
-            tooltipText={tooltipText}
-            handleCompare={generateComparisonData}
-          />
+          {currentTab === 'reports' ? (
+            <IndividualReportSidebar
+              reports={reportList}
+              selectedReport={selectedIndividualReport}
+              onReportChange={handleIndividualReportChange}
+              tags={tagsPerReport[selectedIndividualReport] || []}
+              setTags={(newTags) => {
+                setTagsPerReport((prev) => {
+                  const updated = [...prev];
+                  updated[selectedIndividualReport] = newTags;
+                  return updated;
+                });
+              }}
+              tagStats={tagCountByReport[selectedIndividualReport] || {}}
+            />
+          ) : (
+            <SideBar
+              selectedReportsOrder={selectedReportsOrder}
+              reports={reportList}
+              tagsPerReport={tagsPerReport}
+              setTagsPerReport={setTagsPerReport}
+              uniqueTagsWithCountForMultipleReport={tagCountByReport}
+              setOrderOfReport={setSelectedReportsOrder}
+              tooltipText={tooltipText}
+              handleCompare={generateComparisonData}
+            />
+          )}
           <main
             className={cn(
               'overflow-x-hidden',
@@ -121,77 +142,63 @@ export function App() {
               'px-8'
             )}
           >
-            {!showEmptyPage(tagsPerReport) ? (
-              <Tabs
-                defaultValue="reports"
-                className="w-full justify-center"
-                value={currentTab}
-                onValueChange={() => {
-                  setCurrentTab((prev) =>
-                    prev === 'comparison' ? 'reports' : 'comparison'
-                  );
-                }}
-              >
-                <div className="flex justify-center mt-4 mb-6">
-                  <TabsList className={'mr-40'}>
-                    <TabsTrigger value="reports">Individual Report</TabsTrigger>
-                    <TabsTrigger value="comparison">
-                      Comparison Panel
-                    </TabsTrigger>
-                  </TabsList>
-                </div>
-                <TabsContent value="reports">
-                  <AnimatePresence>
-                    {selectedReportsOrder.map((order) => {
-                      return (
-                        <motion.div
-                          key={order}
-                          layout
-                          layoutId={`card-${order}`}
-                          initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 10, scale: 0.95 }} // Quick fade-out
-                          transition={{
-                            layout: { duration: 0.4, ease: 'easeInOut' }, // Faster repositioning
-                            opacity: { duration: 0.2 }, // Quick fade-out
-                          }}
-                          className={cn(
-                            'p-2',
-                            'rounded-xl',
-                            'bg-card',
-                            'mt-4',
-                            'w-200',
-                            'max-w-100'
-                          )}
-                        >
-                          <ReportInsightsCard
-                            reportInfo={reportList[order]}
-                            data={reportEntries[order].data}
-                            uniqueTagsWithCount={tagCountByReport[order]}
-                            tags={tagsPerReport[order]}
-                          />
-                        </motion.div>
-                      );
-                    })}
-                  </AnimatePresence>
-                </TabsContent>
-                <TabsContent value="comparison" className="flex justify-center">
-                  {/** Bar Chart for comparing multiple reports */}
-                  {comparisonData ? (
-                    <ComparisonBarChart
-                      chartData={comparisonData.data}
-                      chartConfig={chartConfig}
-                      metrics={comparisonData.metrics}
-                      hideComparisonPanel={clearComparisonData}
+            {currentTab === 'reports' && selectedIndividualReport >= 0 ? (
+              tagsPerReport[selectedIndividualReport]?.length >= 2 ? (
+                <AnimatePresence>
+                  <motion.div
+                    key={selectedIndividualReport}
+                    layout
+                    layoutId={`card-${selectedIndividualReport}`}
+                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{
+                      layout: { duration: 0.4, ease: 'easeInOut' },
+                      opacity: { duration: 0.2 },
+                    }}
+                    className={cn(
+                      'p-2',
+                      'rounded-xl',
+                      'bg-card',
+                      'mt-4',
+                      'w-200',
+                      'max-w-100'
+                    )}
+                  >
+                    <ReportInsightsCard
+                      reportInfo={reportList[selectedIndividualReport]}
+                      data={reportEntries[selectedIndividualReport].data}
+                      uniqueTagsWithCount={
+                        tagCountByReport[selectedIndividualReport]
+                      }
+                      tags={tagsPerReport[selectedIndividualReport]}
                     />
-                  ) : (
-                    <EmptyPage content={getTooltipMessage()} />
-                  )}
-                </TabsContent>
-              </Tabs>
+                  </motion.div>
+                </AnimatePresence>
+              ) : (
+                <EmptyPage
+                  content={
+                    tagsPerReport[selectedIndividualReport]?.length === 0
+                      ? `Select at least two events`
+                      : `Select one more event `
+                  }
+                />
+              )
+            ) : currentTab === 'comparison' ? (
+              <div className="flex justify-center">
+                {comparisonData ? (
+                  <ComparisonBarChart
+                    chartData={comparisonData.data}
+                    chartConfig={chartConfig}
+                    metrics={comparisonData.metrics}
+                    hideComparisonPanel={clearComparisonData}
+                  />
+                ) : (
+                  <EmptyPage content={getTooltipMessage()} />
+                )}
+              </div>
             ) : (
-              // Empty Page
-              <EmptyPage content="Select at least two tags to compare." />
+              <EmptyPage content="Select a report to begin" />
             )}
           </main>
         </TooltipProvider>
