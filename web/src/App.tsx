@@ -1,6 +1,4 @@
 import { useCallback, useMemo, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-
 import { cn } from '~/utils/cn';
 import { tagWiseCountAndColor } from '~/utils/data';
 
@@ -9,8 +7,8 @@ import { EmptyPage } from './components/empty-page';
 import { ReportInsightsCard } from './components/analytics-card/report-insights-cards';
 import { TooltipProvider } from './components/ui/tooltip';
 import { ComparisonBarChart } from './components/charts/comparison-bar-chart';
-import { SideBar } from './components/sidebar/sidebar';
 import { IndividualReportSidebar } from './components/sidebar/IndividualReportSidebar';
+import { ComparisonPanelSidebar } from './components/sidebar/ComparisonPanelSidebar';
 
 import {
   IComparisonBarCharConfig,
@@ -121,68 +119,30 @@ export function App() {
               tagStats={tagCountByReport[selectedIndividualReport] || {}}
             />
           ) : (
-            <SideBar
-              selectedReportsOrder={selectedReportsOrder}
+            <ComparisonPanelSidebar
               reports={reportList}
+              selectedReportsOrder={selectedReportsOrder}
               tagsPerReport={tagsPerReport}
               setTagsPerReport={setTagsPerReport}
+              setSelectedReportsOrder={setSelectedReportsOrder}
               uniqueTagsWithCountForMultipleReport={tagCountByReport}
-              setOrderOfReport={setSelectedReportsOrder}
               tooltipText={tooltipText}
               handleCompare={generateComparisonData}
             />
           )}
-          <main
-            className={cn(
-              'overflow-x-hidden',
-              'overflow-y-auto',
-              'py-24',
-              'items-center',
-              'justify-center',
-              'px-8'
-            )}
-          >
-            {currentTab === 'reports' && selectedIndividualReport >= 0 ? (
-              tagsPerReport[selectedIndividualReport]?.length >= 2 ? (
-                <AnimatePresence>
-                  <motion.div
-                    key={selectedIndividualReport}
-                    layout
-                    layoutId={`card-${selectedIndividualReport}`}
-                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    transition={{
-                      layout: { duration: 0.4, ease: 'easeInOut' },
-                      opacity: { duration: 0.2 },
-                    }}
-                    className={cn(
-                      'p-2',
-                      'rounded-xl',
-                      'bg-card',
-                      'mt-4',
-                      'w-200',
-                      'max-w-100'
-                    )}
-                  >
-                    <ReportInsightsCard
-                      reportInfo={reportList[selectedIndividualReport]}
-                      data={reportEntries[selectedIndividualReport].data}
-                      uniqueTagsWithCount={
-                        tagCountByReport[selectedIndividualReport]
-                      }
-                      tags={tagsPerReport[selectedIndividualReport]}
-                    />
-                  </motion.div>
-                </AnimatePresence>
-              ) : (
-                <EmptyPage
-                  content={
-                    tagsPerReport[selectedIndividualReport]?.length === 0
-                      ? `Select at least two events`
-                      : `Select one more event `
+          <main className="p-6 pt-24">
+            {currentTab === 'reports' ? (
+              selectedIndividualReport >= 0 ? (
+                <ReportInsightsCard
+                  data={reportEntries[selectedIndividualReport].data}
+                  uniqueTagsWithCount={
+                    tagCountByReport[selectedIndividualReport]
                   }
+                  tags={tagsPerReport[selectedIndividualReport] || []}
+                  reportInfo={reportList[selectedIndividualReport]}
                 />
+              ) : (
+                <EmptyPage content="Select a report to begin" />
               )
             ) : currentTab === 'comparison' ? (
               <div className="flex justify-center">
