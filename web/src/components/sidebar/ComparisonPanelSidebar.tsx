@@ -109,7 +109,7 @@ export function ComparisonPanelSidebar({
       <div className="space-y-4">
         <div>
           <h2 className="text-sm font-medium mb-2">Select Report</h2>
-          <Select onValueChange={(value) => addReport(parseInt(value))}>
+          <Select onValueChange={(value) => addReport(parseInt(value, 10))}>
             <SelectTrigger className="z-50">
               <SelectValue placeholder="Add a report to compare" />
             </SelectTrigger>
