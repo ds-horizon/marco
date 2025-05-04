@@ -148,44 +148,56 @@ export const IndividualReportSidebar = ({
             {tags.length} of {Object.keys(tagStats).length} events selected
           </div>
           <div className="space-y-1">
-            {Object.entries(tagStats).map(([tag, { count, color }]) => (
-              <div
-                key={tag}
-                className={cn(
-                  'group',
-                  'px-3',
-                  'py-2',
-                  'flex',
-                  'items-center',
-                  'w-full',
-                  'cursor-pointer',
-                  'gap-3',
-                  'rounded-md',
-                  'border-l-4',
-                  'transition-all',
-                  'hover:bg-accent/50',
-                  tags.includes(tag) && 'bg-accent',
-                  tags.includes(tag) && 'hover:bg-accent/80'
-                )}
-                onClick={() => handleTagToggle(tag)}
-                style={{
-                  borderLeftColor: color,
-                }}
-              >
-                <div className={cn('w-full', 'min-w-0')}>
-                  <p
-                    className="block w-full truncate text-sm font-medium mb-2"
-                    title={tag}
+            {Object.entries(tagStats).map(
+              ([tag, { count, color }], index, arr) => {
+                const selected = tags.includes(tag);
+                const isBefore =
+                  arr.findIndex((t) => t[0] === tags.at(-1)) > index;
+                return (
+                  <div
+                    key={tag}
+                    className={cn(
+                      'group',
+                      'px-3',
+                      'py-2',
+                      'flex',
+                      'items-center',
+                      'w-full',
+                      'cursor-pointer',
+                      'gap-3',
+                      'rounded-md',
+                      'border-l-4',
+                      'transition-all',
+                      !selected && isBefore && 'opacity-20 pointer-events-none',
+                      !selected && !isBefore && 'hover:bg-accent/50',
+                      selected && 'bg-accent',
+                      selected && 'hover:bg-accent/80'
+                    )}
+                    onClick={() => handleTagToggle(tag)}
+                    style={{
+                      borderLeftColor: color,
+                    }}
                   >
-                    {tag}
-                  </p>
-                  <p className={cn('text-sm', 'text-muted-foreground')}>
-                    {count} occurrences
-                  </p>
-                </div>
-                <Checkbox checked={tags.includes(tag)} className="shrink-0" />
-              </div>
-            ))}
+                    <div className={cn('w-full', 'min-w-0')}>
+                      <p
+                        className="block w-full truncate text-sm font-medium mb-2"
+                        title={tag}
+                      >
+                        {tag}
+                      </p>
+                      <p className={cn('text-sm', 'text-muted-foreground')}>
+                        {count} occurrences
+                      </p>
+                    </div>
+                    <Checkbox
+                      checked={selected}
+                      className="shrink-0"
+                      disabled={!selected && isBefore}
+                    />
+                  </div>
+                );
+              }
+            )}
           </div>
           {Object.keys(tagStats).length === 0 && (
             <div className="text-center py-8 text-muted-foreground">

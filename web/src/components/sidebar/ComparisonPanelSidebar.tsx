@@ -167,33 +167,48 @@ export function ComparisonPanelSidebar({
               <ScrollArea className="h-[200px] pr-2">
                 {Object.entries(
                   uniqueTagsWithCountForMultipleReport[reportIndex] || {}
-                ).map(([tag, { count, color }]) => (
-                  <label
-                    key={tag}
-                    className="flex items-center gap-2 mb-2 hover:bg-accent/50 p-1 rounded justify-between"
-                  >
-                    <span
-                      className="text-sm flex items-center gap-2 min-w-0 max-w-[120px] truncate"
+                ).map(([tag, { count, color }], index, arr) => {
+                  const selected = tagsPerReport[reportIndex]?.includes(tag);
+                  const isBefore =
+                    arr.findIndex(
+                      (t) => t[0] === tagsPerReport[reportIndex]?.at(-1)
+                    ) > index;
+                  return (
+                    <label
+                      key={tag}
+                      className={cn(
+                        'flex items-center gap-2 mb-2 p-1 rounded justify-between',
+                        !selected &&
+                          isBefore &&
+                          'opacity-20 pointer-events-none',
+                        !selected && !isBefore && 'hover:bg-accent/50'
+                      )}
                       title={tag}
                     >
                       <span
-                        className="w-3 h-3 rounded-full shrink-0"
-                        style={{ backgroundColor: color }}
+                        className="text-sm flex items-center gap-2 min-w-0 max-w-[120px] truncate"
+                        title={tag}
+                      >
+                        <span
+                          className="w-3 h-3 rounded-full shrink-0"
+                          style={{ backgroundColor: color }}
+                        />
+                        <div className="flex flex-col">
+                          <span>{tag}</span>
+                          <span className="text-xs text-muted-foreground">
+                            {count} occurrences
+                          </span>
+                        </div>
+                      </span>
+                      <Checkbox
+                        checked={selected}
+                        onCheckedChange={() => toggleTag(reportIndex, tag)}
+                        className="shrink-0"
+                        disabled={!selected && isBefore}
                       />
-                      <div className="flex flex-col">
-                        <span>{tag}</span>
-                        <span className="text-xs text-muted-foreground">
-                          {count} occurrences
-                        </span>
-                      </div>
-                    </span>
-                    <Checkbox
-                      checked={tagsPerReport[reportIndex]?.includes(tag)}
-                      onCheckedChange={() => toggleTag(reportIndex, tag)}
-                      className="shrink-0"
-                    />
-                  </label>
-                ))}
+                    </label>
+                  );
+                })}
               </ScrollArea>
             </div>
           );
