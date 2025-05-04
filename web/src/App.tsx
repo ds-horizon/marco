@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { cn } from '~/utils/cn';
 import { tagWiseCountAndColor } from '~/utils/data';
 
@@ -89,6 +89,20 @@ export function App() {
     setSelectedIndividualReport(reportIndex);
     setSelectedReportsOrder([reportIndex]);
   }, []);
+
+  useEffect(() => {
+    if (
+      reportEntries.length > 0 &&
+      tagsPerReport[0]?.length === 0 &&
+      Object.keys(tagCountByReport[0] || {}).length > 0
+    ) {
+      setTagsPerReport((prev) => {
+        const updated = [...prev];
+        updated[0] = Object.keys(tagCountByReport[0]);
+        return updated;
+      });
+    }
+  }, [reportEntries, tagCountByReport, tagsPerReport]);
 
   return (
     <>
