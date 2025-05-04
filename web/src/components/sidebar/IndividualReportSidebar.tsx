@@ -79,12 +79,11 @@ export const IndividualReportSidebar = ({
       <div
         className={cn(
           'mb-4',
-          'p-3',
+          'p-2',
           'bg-background/80',
           'backdrop-blur',
           'sticky',
           'left-0',
-          'border-b',
           '-mt-16',
           '-top-4',
           'mb-12',
@@ -120,89 +119,80 @@ export const IndividualReportSidebar = ({
             </SelectContent>
           </Select>
         </div>
-
-        <div
-          className={cn(
-            'flex',
-            'items-center',
-            'justify-between',
-            'w-full',
-            'p-3',
-            'border-t',
-            'border-b'
-          )}
-        >
-          <h1 className={cn('font-bold', 'text-lg')}>Events</h1>
-          <div className={cn('flex', 'items-center', 'gap-2')}>
-            <Button
-              disabled={tags.length === 0}
-              onClick={handleClear}
-              variant="secondary"
-              size="sm"
-            >
-              Clear
-            </Button>
-            <Button
-              onClick={handleSelectAll}
-              variant="secondary"
-              size="sm"
-              className={selectAll ? 'bg-primary text-primary-foreground' : ''}
-            >
-              All
-            </Button>
-          </div>
-        </div>
       </div>
 
-      <div className="space-y-1 px-2">
-        {/* Event count summary */}
-        <div className="text-sm text-muted-foreground mb-4">
-          {tags.length} of {Object.keys(tagStats).length} events selected
-        </div>
-
-        {/* Event list */}
-        <div className="space-y-1">
-          {Object.entries(tagStats).map(([tag, { count, color }]) => (
-            <div
-              key={tag}
-              className={cn(
-                'group',
-                'px-3',
-                'py-2',
-                'flex',
-                'items-center',
-                'w-full',
-                'cursor-pointer',
-                'gap-3',
-                'rounded-md',
-                'border-l-4',
-                'transition-all',
-                'hover:bg-accent/50',
-                tags.includes(tag) && 'bg-accent',
-                tags.includes(tag) && 'hover:bg-accent/80'
-              )}
-              onClick={() => handleTagToggle(tag)}
-              style={{
-                borderLeftColor: color,
-              }}
-            >
-              <div className={cn('w-full', 'min-w-0')}>
-                <p className="block w-full truncate font-medium">{tag}</p>
-                <p className={cn('text-sm', 'text-muted-foreground')}>
-                  {count} occurrences
-                </p>
-              </div>
-              <Checkbox checked={tags.includes(tag)} className="shrink-0" />
+      <div className="px-2">
+        <div className="border rounded-lg p-4 mb-4 bg-background">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-sm font-medium">Select Event</h3>
+            <div className="flex items-center gap-2">
+              <Button
+                disabled={tags.length === 0}
+                onClick={handleClear}
+                variant="secondary"
+                size="sm"
+              >
+                Clear All
+              </Button>
+              <label className="flex items-center gap-1 cursor-pointer select-none">
+                <Checkbox
+                  checked={selectAll}
+                  onCheckedChange={handleSelectAll}
+                  className="shrink-0"
+                />
+                <span className="text-xs">All</span>
+              </label>
             </div>
-          ))}
-        </div>
-
-        {/* Show message when no events are available */}
-        {Object.keys(tagStats).length === 0 && (
-          <div className="text-center py-8 text-muted-foreground">
-            No events available in this report
           </div>
-        )}
+          <div className="text-xs text-muted-foreground mb-2">
+            {tags.length} of {Object.keys(tagStats).length} events selected
+          </div>
+          <div className="space-y-1">
+            {Object.entries(tagStats).map(([tag, { count, color }]) => (
+              <div
+                key={tag}
+                className={cn(
+                  'group',
+                  'px-3',
+                  'py-2',
+                  'flex',
+                  'items-center',
+                  'w-full',
+                  'cursor-pointer',
+                  'gap-3',
+                  'rounded-md',
+                  'border-l-4',
+                  'transition-all',
+                  'hover:bg-accent/50',
+                  tags.includes(tag) && 'bg-accent',
+                  tags.includes(tag) && 'hover:bg-accent/80'
+                )}
+                onClick={() => handleTagToggle(tag)}
+                style={{
+                  borderLeftColor: color,
+                }}
+              >
+                <div className={cn('w-full', 'min-w-0')}>
+                  <p
+                    className="block w-full truncate text-sm font-medium mb-2"
+                    title={tag}
+                  >
+                    {tag}
+                  </p>
+                  <p className={cn('text-sm', 'text-muted-foreground')}>
+                    {count} occurrences
+                  </p>
+                </div>
+                <Checkbox checked={tags.includes(tag)} className="shrink-0" />
+              </div>
+            ))}
+          </div>
+          {Object.keys(tagStats).length === 0 && (
+            <div className="text-center py-8 text-muted-foreground">
+              No events available in this report
+            </div>
+          )}
+        </div>
       </div>
     </aside>
   );
