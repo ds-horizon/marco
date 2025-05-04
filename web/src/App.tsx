@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '~/utils/cn';
 import { tagWiseCountAndColor } from '~/utils/data';
 
@@ -60,6 +60,8 @@ export function App() {
     'reports'
   );
 
+  const initialSelectionDone = useRef(false);
+
   const generateComparisonData = useCallback(() => {
     const { chartConfig, multipleData, metrics } = visualiseMultipleReports(
       tagsPerReport,
@@ -92,6 +94,7 @@ export function App() {
 
   useEffect(() => {
     if (
+      !initialSelectionDone.current &&
       reportEntries.length > 0 &&
       tagsPerReport[0]?.length === 0 &&
       Object.keys(tagCountByReport[0] || {}).length > 0
@@ -101,6 +104,7 @@ export function App() {
         updated[0] = Object.keys(tagCountByReport[0]);
         return updated;
       });
+      initialSelectionDone.current = true;
     }
   }, [reportEntries, tagCountByReport, tagsPerReport]);
 

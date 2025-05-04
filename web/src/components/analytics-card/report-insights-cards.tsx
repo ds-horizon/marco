@@ -102,7 +102,11 @@ export const ReportInsightsCard = ({
     };
   }, [data, tags]);
 
-  return (
+  return tags.length < 2 ? (
+    <div className="text-center text-muted-foreground py-8">
+      Select at least two events from the report to view insights.
+    </div>
+  ) : (
     <Card className={cn('w-200')}>
       <CardHeader>
         <CardTitle>{reportInfo.reportName}</CardTitle>
@@ -116,11 +120,9 @@ export const ReportInsightsCard = ({
           config={config}
         />
       </CardContent>
-
       <CardContent>
         <DataTable columns={metricColumns} data={metrics} />
       </CardContent>
-
       <CardContent>
         <EventTimelineAccordion formattedData={formattedData} />
       </CardContent>
