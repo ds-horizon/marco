@@ -102,7 +102,7 @@ export function ComparisonPanelSidebar({
         'z-40',
         'pt-24',
         'pb-4',
-        'px-4',
+        'px-2',
         'border-r'
       )}
     >
@@ -180,8 +180,12 @@ export function ComparisonPanelSidebar({
                         className="w-3 h-3 rounded-full shrink-0"
                         style={{ backgroundColor: color }}
                       />
-                      {tag}
-                      <span className="text-muted-foreground">({count})</span>
+                      <div className="flex flex-col">
+                        <span>{tag}</span>
+                        <span className="text-xs text-muted-foreground">
+                          {count} occurrences
+                        </span>
+                      </div>
                     </span>
                     <Checkbox
                       checked={tagsPerReport[reportIndex]?.includes(tag)}
