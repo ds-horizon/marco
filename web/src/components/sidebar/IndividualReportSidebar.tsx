@@ -166,7 +166,6 @@ export const IndividualReportSidebar = ({
                       'cursor-pointer',
                       'gap-3',
                       'rounded-md',
-                      'border-l-4',
                       'transition-all',
                       !selected && isBefore && 'opacity-20 pointer-events-none',
                       !selected && !isBefore && 'hover:bg-accent/50',
@@ -174,24 +173,22 @@ export const IndividualReportSidebar = ({
                       selected && 'hover:bg-accent/80'
                     )}
                     onClick={() => handleTagToggle(tag)}
-                    style={{
-                      borderLeftColor: color,
-                    }}
                   >
-                    <div className={cn('w-full', 'min-w-0')}>
-                      <p
-                        className="block w-full truncate text-sm font-medium mb-2"
-                        title={tag}
-                      >
-                        {tag}
-                      </p>
-                      <p className={cn('text-sm', 'text-muted-foreground')}>
-                        {count} occurrences
-                      </p>
-                    </div>
+                    <span className="text-sm flex items-center gap-2 min-w-0 max-w-[120px] truncate">
+                      <span
+                        className="w-3 h-3 rounded-full shrink-0"
+                        style={{ backgroundColor: color }}
+                      />
+                      <div className="flex flex-col min-w-0 flex-1">
+                        <span className="truncate">{tag}</span>
+                        <span className="text-xs text-muted-foreground truncate">
+                          {count} occurrences
+                        </span>
+                      </div>
+                    </span>
                     <Checkbox
                       checked={selected}
-                      className="shrink-0"
+                      className="shrink-0 ml-2"
                       disabled={!selected && isBefore}
                     />
                   </div>
