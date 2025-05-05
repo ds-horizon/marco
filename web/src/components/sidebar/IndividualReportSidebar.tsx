@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { cn } from '~/utils/cn';
-import { Button } from '../ui/button';
 import { Checkbox } from '../ui/checkbox';
 import { ReportType } from '~/data';
 import {
@@ -47,11 +46,6 @@ export const IndividualReportSidebar = ({
   const handleSelectAll = () => {
     setSelectAll(!selectAll);
     setTags(selectAll ? [] : Object.keys(tagStats));
-  };
-
-  const handleClear = () => {
-    setSelectAll(false);
-    setTags([]);
   };
 
   const handleTagToggle = (tag: string) => {
@@ -126,28 +120,20 @@ export const IndividualReportSidebar = ({
           <div className="flex items-center justify-between mb-2">
             <h3 className="text-sm font-medium">Select Event</h3>
             <div className="flex items-center gap-2">
-              <Button
-                disabled={tags.length === 0}
-                onClick={handleClear}
-                variant="secondary"
-                size="sm"
-              >
-                Clear All
-              </Button>
-              <label className="flex items-center gap-1 cursor-pointer select-none">
+              <label className="flex items-center gap-2 px-2 cursor-pointer select-none">
+                <span className="text-xs">All</span>
                 <Checkbox
                   checked={selectAll}
                   onCheckedChange={handleSelectAll}
                   className="shrink-0"
                 />
-                <span className="text-xs">All</span>
               </label>
             </div>
           </div>
           <div className="text-xs text-muted-foreground mb-2">
             {tags.length} of {Object.keys(tagStats).length} events selected
           </div>
-          <div className="space-y-1">
+          <div className="flex flex-col gap-1">
             {Object.entries(tagStats).map(
               ([tag, { count, color }], index, arr) => {
                 const selected = tags.includes(tag);
@@ -157,24 +143,15 @@ export const IndividualReportSidebar = ({
                   <div
                     key={tag}
                     className={cn(
-                      'group',
-                      'px-3',
-                      'py-2',
-                      'flex',
-                      'items-center',
-                      'w-full',
-                      'cursor-pointer',
-                      'gap-3',
-                      'rounded-md',
-                      'transition-all',
-                      !selected && isBefore && 'opacity-20 pointer-events-none',
-                      !selected && !isBefore && 'hover:bg-accent/50',
-                      selected && 'bg-accent',
-                      selected && 'hover:bg-accent/80'
+                      'flex items-center justify-between',
+                      'px-2 py-2 rounded-md cursor-pointer transition-all',
+                      'hover:bg-accent/50',
+                      selected && 'bg-accent hover:bg-accent/80',
+                      !selected && isBefore && 'opacity-20 pointer-events-none'
                     )}
                     onClick={() => handleTagToggle(tag)}
                   >
-                    <span className="text-sm flex items-center gap-2 min-w-0 max-w-[120px] truncate">
+                    <div className="flex items-center gap-2 min-w-0 max-w-[120px] truncate">
                       <span
                         className="w-3 h-3 rounded-full shrink-0"
                         style={{ backgroundColor: color }}
@@ -187,10 +164,10 @@ export const IndividualReportSidebar = ({
                           {count} occurrences
                         </span>
                       </div>
-                    </span>
+                    </div>
                     <Checkbox
                       checked={selected}
-                      className="shrink-0 ml-2"
+                      className="shrink-0"
                       disabled={!selected && isBefore}
                     />
                   </div>
