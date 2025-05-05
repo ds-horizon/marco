@@ -223,7 +223,9 @@ export function ComparisonPanelSidebar({
                             style={{ backgroundColor: color }}
                           />
                           <div className="flex flex-col min-w-0 flex-1">
-                            <span className="truncate">{tag}</span>
+                            <span className="truncate" title={tag}>
+                              {tag}
+                            </span>
                             <span className="text-xs text-muted-foreground truncate">
                               {count} occurrences
                             </span>
