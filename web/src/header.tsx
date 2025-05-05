@@ -39,7 +39,7 @@ export function Header({
               currentTab === 'reports' && 'text-primary underline'
             )}
           >
-            Individual Reports
+            Individual Report
           </button>
           <button
             onClick={() => onTabChange('comparison')}
@@ -50,7 +50,7 @@ export function Header({
               currentTab === 'comparison' && 'text-primary underline'
             )}
           >
-            Comparison Panel
+            Compare Reports
           </button>
         </div>
 
