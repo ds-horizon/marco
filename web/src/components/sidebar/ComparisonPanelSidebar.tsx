@@ -147,21 +147,41 @@ export function ComparisonPanelSidebar({
                 </Button>
               </div>
 
-              <div className="flex gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => selectAllTags(reportIndex)}
-                >
-                  Select All
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => clearTags(reportIndex)}
-                >
-                  Clear
-                </Button>
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-sm font-medium">Select Event</h3>
+                <div className="flex items-center gap-2">
+                  <Button
+                    disabled={tagsPerReport[reportIndex]?.length === 0}
+                    onClick={() => clearTags(reportIndex)}
+                    variant="secondary"
+                    size="sm"
+                  >
+                    Clear All
+                  </Button>
+                  <label className="flex items-center gap-1 cursor-pointer select-none">
+                    <Checkbox
+                      checked={
+                        Object.keys(
+                          uniqueTagsWithCountForMultipleReport[reportIndex] ||
+                            {}
+                        ).length === tagsPerReport[reportIndex]?.length
+                      }
+                      onCheckedChange={() => selectAllTags(reportIndex)}
+                      className="shrink-0"
+                    />
+                    <span className="text-xs">All</span>
+                  </label>
+                </div>
+              </div>
+
+              <div className="text-xs text-muted-foreground mb-2">
+                {tagsPerReport[reportIndex]?.length || 0} of{' '}
+                {
+                  Object.keys(
+                    uniqueTagsWithCountForMultipleReport[reportIndex] || {}
+                  ).length
+                }{' '}
+                events selected
               </div>
 
               <ScrollArea className="h-[200px] pr-2">
