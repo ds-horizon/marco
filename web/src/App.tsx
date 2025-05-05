@@ -36,9 +36,13 @@ export function App() {
     [reportEntries]
   );
 
-  const [tagsPerReport, setTagsPerReport] = useState<string[][]>(
-    new Array(reportEntries.length).fill([])
-  );
+  const [individualTagsPerReport, setIndividualTagsPerReport] = useState<
+    string[][]
+  >(new Array(reportEntries.length).fill([]));
+  const [comparisonTagsPerReport, setComparisonTagsPerReport] = useState<
+    string[][]
+  >(new Array(reportEntries.length).fill([]));
+
   const [selectedReportsOrder, setSelectedReportsOrder] = useState<number[]>(
     []
   );
@@ -47,14 +51,9 @@ export function App() {
 
   const [comparisonData, setComparisonData] = useState<{
     data: IComparisonBarChartData;
-    metrics: Record<
-      string,
-      {
-        diff: number[];
-        tags: string[];
-      }
-    >;
+    metrics: Record<string, { diff: number[]; tags: string[] }>;
   } | null>(null);
+
   const [chartConfig, setChartConfig] = useState<IComparisonBarCharConfig>({});
   const [currentTab, setCurrentTab] = useState<'reports' | 'comparison'>(
     'reports'
@@ -62,19 +61,15 @@ export function App() {
 
   const initialSelectionDone = useRef(false);
 
-  const [individualSelectedTags, setIndividualSelectedTags] = useState<
-    string[]
-  >([]);
-
   const generateComparisonData = useCallback(() => {
     const { chartConfig, multipleData, metrics } = visualiseMultipleReports(
-      tagsPerReport,
+      comparisonTagsPerReport,
       selectedReportsOrder
     );
     setChartConfig(chartConfig);
     setComparisonData({ data: multipleData, metrics });
     setCurrentTab('comparison');
-  }, [selectedReportsOrder, tagsPerReport]);
+  }, [selectedReportsOrder, comparisonTagsPerReport]);
 
   const clearComparisonData = useCallback(() => {
     setComparisonData(null);
@@ -96,17 +91,22 @@ export function App() {
     setSelectedReportsOrder([reportIndex]);
   }, []);
 
+  // Initialize individual tags with default data for the first report
   useEffect(() => {
     if (
       !initialSelectionDone.current &&
       reportEntries.length > 0 &&
-      individualSelectedTags.length === 0 &&
+      individualTagsPerReport[0]?.length === 0 &&
       Object.keys(tagCountByReport[0] || {}).length > 0
     ) {
-      setIndividualSelectedTags(Object.keys(tagCountByReport[0]));
+      setIndividualTagsPerReport((prev) => {
+        const updated = [...prev];
+        updated[0] = Object.keys(tagCountByReport[0]);
+        return updated;
+      });
       initialSelectionDone.current = true;
     }
-  }, [reportEntries, tagCountByReport, individualSelectedTags]);
+  }, [reportEntries, tagCountByReport, individualTagsPerReport]);
 
   return (
     <>
@@ -126,16 +126,22 @@ export function App() {
               reports={reportList}
               selectedReport={selectedIndividualReport}
               onReportChange={handleIndividualReportChange}
-              tags={individualSelectedTags}
-              setTags={setIndividualSelectedTags}
+              tags={individualTagsPerReport[selectedIndividualReport] || []}
+              setTags={(newTags) => {
+                setIndividualTagsPerReport((prev) => {
+                  const updated = [...prev];
+                  updated[selectedIndividualReport] = newTags;
+                  return updated;
+                });
+              }}
               tagStats={tagCountByReport[selectedIndividualReport] || {}}
             />
           ) : (
             <ComparisonPanelSidebar
               reports={reportList}
               selectedReportsOrder={selectedReportsOrder}
-              tagsPerReport={tagsPerReport}
-              setTagsPerReport={setTagsPerReport}
+              tagsPerReport={comparisonTagsPerReport}
+              setTagsPerReport={setComparisonTagsPerReport}
               setSelectedReportsOrder={setSelectedReportsOrder}
               uniqueTagsWithCountForMultipleReport={tagCountByReport}
               tooltipText={tooltipText}
@@ -150,7 +156,7 @@ export function App() {
                   uniqueTagsWithCount={
                     tagCountByReport[selectedIndividualReport]
                   }
-                  tags={individualSelectedTags}
+                  tags={individualTagsPerReport[selectedIndividualReport] || []}
                   reportInfo={reportList[selectedIndividualReport]}
                 />
               ) : (
