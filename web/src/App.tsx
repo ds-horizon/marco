@@ -88,7 +88,6 @@ export function App() {
 
   const handleIndividualReportChange = useCallback((reportIndex: number) => {
     setSelectedIndividualReport(reportIndex);
-    setSelectedReportsOrder([reportIndex]);
   }, []);
 
   // Initialize individual tags with default data for the first report
