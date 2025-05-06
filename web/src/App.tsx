@@ -76,13 +76,17 @@ export function App() {
   }, []);
 
   const getTooltipMessage = useCallback(() => {
-    if (selectedReportsOrder.length < 1) {
-      return 'Select events from at least 2 reports to compare.';
-    } else if (selectedReportsOrder.length === 1) {
-      return 'Select events from 1 more report to compare.';
+    if (selectedReportsOrder.length < 2) {
+      return 'Please select at least two reports to compare.';
+    } else if (
+      !selectedReportsOrder.every(
+        (index) => comparisonTagsPerReport[index]?.length > 0
+      )
+    ) {
+      return 'Please select at least one event in each selected report to enable comparison.';
     }
     return '';
-  }, [selectedReportsOrder.length]);
+  }, [selectedReportsOrder, comparisonTagsPerReport]);
 
   const tooltipText = useMemo(() => getTooltipMessage(), [getTooltipMessage]);
 
@@ -150,14 +154,18 @@ export function App() {
           <main className="p-6 pt-24">
             {currentTab === 'reports' ? (
               selectedIndividualReport >= 0 ? (
-                <ReportInsightsCard
-                  data={reportEntries[selectedIndividualReport].data}
-                  uniqueTagsWithCount={
-                    tagCountByReport[selectedIndividualReport]
-                  }
-                  tags={individualTagsPerReport[selectedIndividualReport] || []}
-                  reportInfo={reportList[selectedIndividualReport]}
-                />
+                <div className="overflow-y-auto max-h-[calc(100vh-150px)] p-2">
+                  <ReportInsightsCard
+                    data={reportEntries[selectedIndividualReport].data}
+                    uniqueTagsWithCount={
+                      tagCountByReport[selectedIndividualReport]
+                    }
+                    tags={
+                      individualTagsPerReport[selectedIndividualReport] || []
+                    }
+                    reportInfo={reportList[selectedIndividualReport]}
+                  />
+                </div>
               ) : (
                 <EmptyPage content="Select a report to begin" />
               )
@@ -171,7 +179,7 @@ export function App() {
                     hideComparisonPanel={clearComparisonData}
                   />
                 ) : (
-                  <EmptyPage content={getTooltipMessage()} />
+                  <EmptyPage content={tooltipText} />
                 )}
               </div>
             ) : (
