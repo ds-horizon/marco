@@ -77,13 +77,13 @@ export function ComparisonPanelSidebar({
     });
   };
 
-  const clearTags = (reportIndex: number) => {
-    setTagsPerReport((prev) => {
-      const updated = [...prev];
-      updated[reportIndex] = [];
-      return updated;
-    });
-  };
+  // const clearTags = (reportIndex: number) => {
+  //   setTagsPerReport((prev) => {
+  //     const updated = [...prev];
+  //     updated[reportIndex] = [];
+  //     return updated;
+  //   });
+  // };
 
   const canCompare =
     selectedReportsOrder.length >= 2 &&
@@ -150,14 +150,14 @@ export function ComparisonPanelSidebar({
               <div className="flex items-center justify-between mb-2">
                 <h3 className="text-sm font-medium">Select Event</h3>
                 <div className="flex items-center gap-2">
-                  <Button
-                    disabled={tagsPerReport[reportIndex]?.length === 0}
-                    onClick={() => clearTags(reportIndex)}
-                    variant="secondary"
-                    size="sm"
-                  >
-                    Clear All
-                  </Button>
+                  {/*<Button*/}
+                  {/*  disabled={tagsPerReport[reportIndex]?.length === 0}*/}
+                  {/*  onClick={() => clearTags(reportIndex)}*/}
+                  {/*  variant="secondary"*/}
+                  {/*  size="sm"*/}
+                  {/*>*/}
+                  {/*  Clear All*/}
+                  {/*</Button>*/}
                   <label className="flex items-center gap-1 cursor-pointer select-none">
                     <Checkbox
                       checked={
@@ -199,7 +199,7 @@ export function ComparisonPanelSidebar({
                         key={tag}
                         className={cn(
                           'group',
-                          'px-3',
+                          'px-2',
                           'py-2',
                           'flex',
                           'items-center',
@@ -217,7 +217,7 @@ export function ComparisonPanelSidebar({
                         )}
                         onClick={() => toggleTag(reportIndex, tag)}
                       >
-                        <span className="text-sm flex items-center gap-2 min-w-0 max-w-[120px] truncate">
+                        <span className="text-sm flex items-center gap-2 min-w-0 max-w-[140px] truncate">
                           <span
                             className="w-3 h-3 rounded-full shrink-0"
                             style={{ backgroundColor: color }}
