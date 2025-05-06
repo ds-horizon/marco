@@ -12,8 +12,6 @@ import {
 } from '../ui/chart';
 import { IComparisonBarCharConfig, IComparisonBarChartData } from '~/data';
 import { cn } from '~/utils/cn';
-import { X } from 'lucide-react';
-import { Button } from '../ui/button';
 import { DataTable } from '../analytics-card/data-table';
 import { comaprisonMetricColumns, ComaprisonMetricData } from '~/utils/helpers';
 import { calculateMetrics } from '~/utils/data';
@@ -65,7 +63,7 @@ const ComparisonChartCard = ({
 export function ComparisonBarChart({
   chartConfig,
   chartData,
-  hideComparisonPanel,
+  // hideComparisonPanel,
   metrics,
 }: {
   chartConfig: IComparisonBarCharConfig;
@@ -149,27 +147,26 @@ export function ComparisonBarChart({
       <CardHeader className={cn('flex-row', 'justify-between', 'items-center')}>
         <CardTitle>{description}</CardTitle>
         <div className="flex items-center space-x-2">
+          <span>Mean Data</span>
           <Switch
             id="airplane-mode"
             checked={shouldShowMeanChart}
-            onCheckedChange={(v) => {
-              setShouldShowMeanChart(v);
-            }}
+            onCheckedChange={setShouldShowMeanChart}
           />
-          <span>Mean Data</span>
-          <Button onClick={hideComparisonPanel} variant={'ghost'}>
-            <X strokeWidth={2} />
-          </Button>
+          <span>Iteration Data</span>
+          {/*<Button onClick={hideComparisonPanel} variant={'ghost'}>*/}
+          {/*  <X strokeWidth={2} />*/}
+          {/*</Button>*/}
         </div>
       </CardHeader>
 
       {shouldShowMeanChart ? (
+        <ComparisonChartCard data={chartDataWithMaxKey} config={chartConfig} />
+      ) : (
         <ComparisonChartCard
           data={chartWithMeanData}
           config={chartConfigWithMean}
         />
-      ) : (
-        <ComparisonChartCard data={chartDataWithMaxKey} config={chartConfig} />
       )}
 
       <CardContent>
