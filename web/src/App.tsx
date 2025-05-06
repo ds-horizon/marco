@@ -62,9 +62,17 @@ export function App() {
   const initialSelectionDone = useRef(false);
 
   const generateComparisonData = useCallback(() => {
+    // Only include reports with at least one event selected
+    const reportsWithEvents = selectedReportsOrder.filter(
+      (index) => comparisonTagsPerReport[index]?.length > 0
+    );
+    if (reportsWithEvents.length < 2) {
+      setComparisonData(null);
+      return;
+    }
     const { chartConfig, multipleData, metrics } = visualiseMultipleReports(
       comparisonTagsPerReport,
-      selectedReportsOrder
+      reportsWithEvents
     );
     setChartConfig(chartConfig);
     setComparisonData({ data: multipleData, metrics });

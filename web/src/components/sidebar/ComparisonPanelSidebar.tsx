@@ -79,9 +79,10 @@ export function ComparisonPanelSidebar({
   //   });
   // };
 
-  const canCompare =
-    selectedReportsOrder.length >= 2 &&
-    selectedReportsOrder.every((index) => tagsPerReport[index]?.length > 0);
+  const reportsWithEvents = selectedReportsOrder.filter(
+    (index) => tagsPerReport[index]?.length > 0
+  );
+  const canCompare = reportsWithEvents.length >= 2;
 
   const reportOptions = reports.map((report, index) => ({
     value: index,
