@@ -4,15 +4,9 @@ import { Checkbox } from '../ui/checkbox';
 import { ScrollArea } from '../ui/scroll-area';
 import { ReportType } from '~/data';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '../ui/select';
 import { X } from 'lucide-react';
 import React from 'react';
+import Select, { MultiValue, StylesConfig, GroupBase } from 'react-select';
 
 interface ComparisonPanelSidebarProps {
   reports: ReportType[];
@@ -40,11 +34,11 @@ export function ComparisonPanelSidebar({
   tooltipText,
   handleCompare,
 }: ComparisonPanelSidebarProps) {
-  const addReport = (index: number) => {
-    if (!selectedReportsOrder.includes(index)) {
-      setSelectedReportsOrder([...selectedReportsOrder, index]);
-    }
-  };
+  // const addReport = (index: number) => {
+  //   if (!selectedReportsOrder.includes(index)) {
+  //     setSelectedReportsOrder([...selectedReportsOrder, index]);
+  //   }
+  // };
 
   const removeReport = (index: number) => {
     setSelectedReportsOrder(selectedReportsOrder.filter((i) => i !== index));
@@ -89,6 +83,60 @@ export function ComparisonPanelSidebar({
     selectedReportsOrder.length >= 2 &&
     selectedReportsOrder.every((index) => tagsPerReport[index]?.length > 0);
 
+  const reportOptions = reports.map((report, index) => ({
+    value: index,
+    label: report.reportName,
+  }));
+
+  const customSelectStyles: StylesConfig<
+    { value: number; label: string },
+    true,
+    GroupBase<{ value: number; label: string }>
+  > = {
+    control: (provided) => ({
+      ...provided,
+      backgroundColor: '#18181b', // Tailwind's bg-background in dark
+      borderColor: '#27272a',
+      color: '#fff',
+    }),
+    menu: (provided) => ({
+      ...provided,
+      backgroundColor: '#18181b',
+      color: '#fff',
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isFocused
+        ? '#27272a'
+        : state.isSelected
+          ? '#3f3f46'
+          : '#18181b',
+      color: '#fff',
+      cursor: 'pointer',
+    }),
+    multiValue: (provided) => ({
+      ...provided,
+      backgroundColor: '#27272a',
+      color: '#fff',
+    }),
+    multiValueLabel: (provided) => ({
+      ...provided,
+      color: '#fff',
+    }),
+    input: (provided) => ({
+      ...provided,
+      color: '#fff',
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: '#fff',
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: '#a1a1aa',
+    }),
+  };
+
   return (
     <aside
       className={cn(
@@ -108,23 +156,34 @@ export function ComparisonPanelSidebar({
     >
       <div className="space-y-4">
         <div>
-          <h2 className="text-sm font-medium mb-2">Select Report</h2>
-          <Select onValueChange={(value) => addReport(parseInt(value, 10))}>
-            <SelectTrigger className="z-50">
-              <SelectValue placeholder="Add a report to compare" />
-            </SelectTrigger>
-            <SelectContent position="popper" className="z-50">
-              {reports.map((report, index) => (
-                <SelectItem
-                  key={report.reportKey}
-                  value={index.toString()}
-                  disabled={selectedReportsOrder.includes(index)}
-                >
-                  {report.reportName}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <h2 className="text-sm font-medium mb-2">Select Reports</h2>
+          <Select
+            isMulti
+            options={reportOptions}
+            value={reportOptions.filter((option) =>
+              selectedReportsOrder.includes(option.value)
+            )}
+            onChange={(
+              selectedOptions: MultiValue<{ value: number; label: string }>
+            ) => {
+              const selectedIndexes = selectedOptions.map(
+                (option) => option.value
+              );
+              setSelectedReportsOrder(selectedIndexes);
+              setTagsPerReport((prev) => {
+                const updated = [...prev];
+                reports.forEach((_, idx) => {
+                  if (!selectedIndexes.includes(idx)) {
+                    updated[idx] = [];
+                  }
+                });
+                return updated;
+              });
+            }}
+            placeholder="Select reports"
+            classNamePrefix="react-select"
+            styles={customSelectStyles}
+          />
         </div>
 
         {selectedReportsOrder.map((reportIndex) => {

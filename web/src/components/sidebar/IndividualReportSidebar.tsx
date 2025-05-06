@@ -2,13 +2,7 @@ import React, { useState } from 'react';
 import { cn } from '~/utils/cn';
 import { Checkbox } from '../ui/checkbox';
 import { ReportType } from '~/data';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '../ui/select';
+import Select, { SingleValue, StylesConfig, GroupBase } from 'react-select';
 
 interface IndividualReportSidebarProps {
   reports: ReportType[];
@@ -55,6 +49,57 @@ export const IndividualReportSidebar = ({
     setTags(newTags);
   };
 
+  const reportOptions = reports.map((report, index) => ({
+    value: index,
+    label: report.reportName,
+  }));
+
+  const customSelectStyles: StylesConfig<
+    { value: number; label: string },
+    false,
+    GroupBase<{ value: number; label: string }>
+  > = {
+    control: (provided) => ({
+      ...provided,
+      backgroundColor: '#18181b',
+      borderColor: '#27272a',
+      color: '#fff',
+      width: 240,
+      minWidth: 240,
+      maxWidth: 240,
+    }),
+    menu: (provided) => ({
+      ...provided,
+      backgroundColor: '#18181b',
+      color: '#fff',
+      width: 240,
+      minWidth: 240,
+      maxWidth: 240,
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isFocused
+        ? '#27272a'
+        : state.isSelected
+          ? '#3f3f46'
+          : '#18181b',
+      color: '#fff',
+      cursor: 'pointer',
+    }),
+    input: (provided) => ({
+      ...provided,
+      color: '#fff',
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: '#fff',
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: '#a1a1aa',
+    }),
+  };
+
   return (
     <aside
       className={cn(
@@ -89,29 +134,26 @@ export const IndividualReportSidebar = ({
           'z-40'
         )}
       >
-        <div className="w-full mb-4">
-          <h2 className="text-sm font-medium mb-2">Select Report</h2>
-          <Select
-            value={selectedReport.toString()}
-            onValueChange={(value) => onReportChange(parseInt(value))}
-          >
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select a report">
-                {reports[selectedReport]?.reportName || 'Select a report'}
-              </SelectValue>
-            </SelectTrigger>
-            <SelectContent>
-              {reports.map((report, index) => (
-                <SelectItem
-                  key={report.reportKey}
-                  value={index.toString()}
-                  className="cursor-pointer"
-                >
-                  {report.reportName}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+        <div className="space-y-4">
+          <div>
+            <h2 className="text-sm font-medium mb-2">Select Report</h2>
+            <Select
+              options={reportOptions}
+              value={reportOptions.find(
+                (option) => option.value === selectedReport
+              )}
+              onChange={(
+                selectedOption: SingleValue<{ value: number; label: string }>
+              ) => {
+                if (selectedOption) {
+                  onReportChange(selectedOption.value);
+                }
+              }}
+              placeholder="Select report"
+              classNamePrefix="react-select"
+              styles={customSelectStyles}
+            />
+          </div>
         </div>
       </div>
 
