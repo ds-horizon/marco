@@ -1,6 +1,7 @@
 import { Logo } from '~/components/logo';
 import { cn } from '~/utils/cn';
 import { PoweredBy } from './components/powered-by';
+import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs';
 
 export function Header({
   currentTab,
@@ -29,30 +30,18 @@ export function Header({
       <nav className="w-full flex items-center justify-between">
         <Logo />
 
-        <div className="flex space-x-6">
-          <button
-            onClick={() => onTabChange('reports')}
-            className={cn(
-              'font-medium',
-              'transition-colors',
-              'hover:text-primary',
-              currentTab === 'reports' && 'text-primary underline'
-            )}
-          >
-            Individual Report
-          </button>
-          <button
-            onClick={() => onTabChange('comparison')}
-            className={cn(
-              'font-medium',
-              'transition-colors',
-              'hover:text-primary',
-              currentTab === 'comparison' && 'text-primary underline'
-            )}
-          >
-            Compare Reports
-          </button>
-        </div>
+        <Tabs
+          value={currentTab}
+          onValueChange={(value) =>
+            onTabChange(value as 'reports' | 'comparison')
+          }
+          className="w-auto"
+        >
+          <TabsList>
+            <TabsTrigger value="reports">Individual Report</TabsTrigger>
+            <TabsTrigger value="comparison">Compare Reports</TabsTrigger>
+          </TabsList>
+        </Tabs>
 
         <PoweredBy repo="marco" />
       </nav>
