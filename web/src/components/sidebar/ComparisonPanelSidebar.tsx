@@ -225,7 +225,17 @@ export function ComparisonPanelSidebar({
                             {}
                         ).length === tagsPerReport[reportIndex]?.length
                       }
-                      onCheckedChange={() => selectAllTags(reportIndex)}
+                      onCheckedChange={(checked) => {
+                        if (checked) {
+                          selectAllTags(reportIndex);
+                        } else {
+                          setTagsPerReport((prev) => {
+                            const updated = [...prev];
+                            updated[reportIndex] = [];
+                            return updated;
+                          });
+                        }
+                      }}
                       className="shrink-0"
                     />
                     <span className="text-xs">All</span>
