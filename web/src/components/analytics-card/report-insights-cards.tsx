@@ -1,5 +1,4 @@
 import { ChartConfig } from '../ui/chart';
-import { cn } from '~/utils/cn';
 import {
   Card,
   CardContent,
@@ -107,7 +106,7 @@ export const ReportInsightsCard = ({
       Select at least two events from the report to view insights.
     </div>
   ) : (
-    <Card className={cn('w-200')}>
+    <Card className="w-full max-w-[1400px] mx-auto overflow-x-hidden">
       <CardHeader>
         <CardTitle>{reportInfo.reportName}</CardTitle>
         <CardDescription>{''}</CardDescription>
