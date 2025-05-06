@@ -3,6 +3,7 @@ import { cn } from '~/utils/cn';
 import { Checkbox } from '../ui/checkbox';
 import { ReportType } from '~/data';
 import Select, { SingleValue, StylesConfig, GroupBase } from 'react-select';
+import { Tooltip, TooltipTrigger, TooltipContent } from '../ui/tooltip';
 
 interface IndividualReportSidebarProps {
   reports: ReportType[];
@@ -181,7 +182,9 @@ export const IndividualReportSidebar = ({
                 const selected = tags.includes(tag);
                 const isBefore =
                   arr.findIndex((t) => t[0] === tags.at(-1)) > index;
-                return (
+                const disabled = !selected && isBefore;
+
+                const eventRow = (
                   <div
                     key={tag}
                     className={cn(
@@ -189,9 +192,10 @@ export const IndividualReportSidebar = ({
                       'px-2 py-2 rounded-md cursor-pointer transition-all',
                       'hover:bg-accent/50',
                       selected && 'bg-accent hover:bg-accent/80',
-                      !selected && isBefore && 'opacity-20 pointer-events-none'
+                      disabled && 'opacity-20'
                     )}
-                    onClick={() => handleTagToggle(tag)}
+                    onClick={() => !disabled && handleTagToggle(tag)}
+                    tabIndex={disabled ? 0 : -1}
                   >
                     <div className="flex items-center gap-2 min-w-0 max-w-[120px] truncate">
                       <span
@@ -210,9 +214,23 @@ export const IndividualReportSidebar = ({
                     <Checkbox
                       checked={selected}
                       className="shrink-0"
-                      disabled={!selected && isBefore}
+                      disabled={disabled}
                     />
                   </div>
+                );
+
+                return disabled ? (
+                  <Tooltip key={tag}>
+                    <TooltipTrigger asChild>{eventRow}</TooltipTrigger>
+                    <TooltipContent side="right" sideOffset={8}>
+                      <span>
+                        To select this event, please deselect any events that
+                        come after it in the sequence.
+                      </span>
+                    </TooltipContent>
+                  </Tooltip>
+                ) : (
+                  eventRow
                 );
               }
             )}

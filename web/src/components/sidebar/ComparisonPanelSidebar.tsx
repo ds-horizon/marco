@@ -263,7 +263,9 @@ export function ComparisonPanelSidebar({
                       arr.findIndex(
                         (t) => t[0] === tagsPerReport[reportIndex]?.at(-1)
                       ) > index;
-                    return (
+                    const disabled = !selected && isBefore;
+
+                    const eventRow = (
                       <div
                         key={tag}
                         className={cn(
@@ -277,14 +279,13 @@ export function ComparisonPanelSidebar({
                           'gap-3',
                           'rounded-md',
                           'transition-all',
-                          !selected &&
-                            isBefore &&
-                            'opacity-20 pointer-events-none',
+                          disabled && 'opacity-20',
                           !selected && !isBefore && 'hover:bg-accent/50',
                           selected && 'bg-accent',
                           selected && 'hover:bg-accent/80'
                         )}
-                        onClick={() => toggleTag(reportIndex, tag)}
+                        onClick={() => !disabled && toggleTag(reportIndex, tag)}
+                        tabIndex={disabled ? 0 : -1}
                       >
                         <span className="text-sm flex items-center gap-2 min-w-0 max-w-[140px] truncate">
                           <span
@@ -304,9 +305,23 @@ export function ComparisonPanelSidebar({
                           checked={selected}
                           onCheckedChange={() => toggleTag(reportIndex, tag)}
                           className="shrink-0 ml-2"
-                          disabled={!selected && isBefore}
+                          disabled={disabled}
                         />
                       </div>
+                    );
+
+                    return disabled ? (
+                      <Tooltip key={tag}>
+                        <TooltipTrigger asChild>{eventRow}</TooltipTrigger>
+                        <TooltipContent side="right" sideOffset={8}>
+                          <span>
+                            To select this event, please deselect any events
+                            that come after it in the sequence.
+                          </span>
+                        </TooltipContent>
+                      </Tooltip>
+                    ) : (
+                      eventRow
                     );
                   })}
                 </div>
