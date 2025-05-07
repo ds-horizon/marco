@@ -27,7 +27,7 @@ module.exports = function serveDashboard(port, outputPathDirs) {
     if (fs.existsSync(logFilePath)) {
       fs.copyFileSync(logFilePath, destinationPath);
     } else {
-      console.error(`Error: log.json not found at ${logFilePath}`);
+      console.error(`Error: File not found at ${logFilePath}`);
       return;
     }
 

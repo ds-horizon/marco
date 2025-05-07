@@ -79,7 +79,7 @@ const program = new Command();
     .option('-p, --port <port>', 'Specify the port')
     .option(
       '-d, --dataDir <dataDir...>',
-      'Specify reports in "path:name" format (e.g: "report/log.json:Report Name")'
+      'Specify reports as "path:name" (e.g., "report/log.json:My Report") — wrap in quotes if the name contains spaces'
     )
     .option('--platform <platform>', 'Specify platform: android or ios')
     .action((options) => {
