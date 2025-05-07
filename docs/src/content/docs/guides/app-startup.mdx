@@ -149,20 +149,26 @@ Create a `marco.config.js` file at the root of project with the following conten
 
     ```js
     // marco.config.js
-    module.exports = {
-      android: {
-        packageName: 'com.example.app',
-        outputPath: './app-startup-reports/android',
-        dataDir: './app-startup-reports/android/log.json',
-        port: '8080',
-      },
-      ios: {
-        packageName: 'com.example.app',
-        outputPath: './app-startup-reports/ios',
-        dataDir: './app-startup-reports/ios/log.json',
-        port: '8080',
-      },
-    };
+   module.exports = {
+   	android: {
+   		packageName: 'com.example.app',
+   		outputPath: './marco-reports/android',
+   		dataDir: [{
+   			pathName: './marco-reports/android/log.json'
+   			reportName: 'AndroidReport1'
+   		}],
+   		port: '8080',
+   	},
+   	ios: {
+   		packageName: 'com.example.app',
+   		outputPath: './marco-reports/ios',
+   		dataDir: [{
+   			pathName: './marco-reports/ios/log.json'
+   			reportName: 'iOsReport1'
+   		}],
+   		port: '8080',
+   	},
+   };
     ```
 
 ##### Step 5: Generate Data

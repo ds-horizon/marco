@@ -67,18 +67,24 @@ import { Aside } from '@astrojs/starlight/components';
     ```js collapse={4-7, 10-13}
     // marco.config.js
     module.exports = {
-      android: {
-        packageName: 'com.example.app',
-        outputPath: './marco-reports/android',
-        dataDir: './marco-reports/android/log.json',
-        port: '8080',
-      },
-      ios: {
-        packageName: 'com.example.app',
-        outputPath: './marco-reports/ios',
-        dataDir: './marco-reports/ios/log.json',
-        port: '8080',
-      },
+    	android: {
+    		packageName: 'com.example.app',
+    		outputPath: './marco-reports/android',
+    		dataDir: [{
+    			pathName: './marco-reports/android/log.json'
+    			reportName: 'AndroidReport1'
+    		}],
+    		port: '8080',
+    	},
+    	ios: {
+    		packageName: 'com.example.app',
+    		outputPath: './marco-reports/ios',
+    		dataDir: [{
+    			pathName: './marco-reports/ios/log.json'
+    			reportName: 'iOsReport1'
+    		}],
+    		port: '8080',
+    	},
     };
     ```
 
