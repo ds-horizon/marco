@@ -17,7 +17,7 @@ Serve the performance report dashboard
 
 Options:
   -p, --port <port>        Specify the port (default: "8080")
-  -d, --dataDir <dataDir>  Specify the data directory path
+  -d, --dataDir <dataDir>  Specify the data directory path and custom report name
   --platform <platform>    Specify platform: android or ios
   -h, --help               display help for command
 ```
@@ -26,7 +26,7 @@ Options:
 
 - `--platform <platform>`: Specify platform: android or ios. If want to read values from the config file, specify the platform.
 - `-p, --port <port>`: Specify the port for the dashboard (default: 8080).
-- `-d, --dataDir <dataDir>`: Specify the directory containing the performance reports (default: ./marco-reports/log.json).
+- `-d, --dataDir <dataDir>`: Specify the directory containing the performance reports (default: ./marco-reports/log.json) & custom report name.
 
 Example:
 
@@ -38,7 +38,7 @@ With data source path:
 
 This is useful when we want to visualize the data from a different directory.
 ```bash frame="none"
-yarn marco visualize --dataDir ./path/to/log.json
+yarn marco visualize --dataDir "./path/to/log.json:custome_report_name"
 ```
 
 ### Marco Dashboard
