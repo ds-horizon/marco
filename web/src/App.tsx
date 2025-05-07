@@ -54,7 +54,8 @@ export function App() {
     metrics: Record<string, { diff: number[]; tags: string[] }>;
   } | null>(null);
 
-  const [chartConfig, setChartConfig] = useState<IComparisonBarCharConfig>({});
+  const [comparisonChartConfig, setComparisonChartConfig] =
+    useState<IComparisonBarCharConfig>({});
   const [currentTab, setCurrentTab] = useState<'reports' | 'comparison'>(
     'reports'
   );
@@ -74,7 +75,7 @@ export function App() {
       comparisonTagsPerReport,
       reportsWithEvents
     );
-    setChartConfig(chartConfig);
+    setComparisonChartConfig(chartConfig);
     setComparisonData({ data: multipleData, metrics });
     setCurrentTab('comparison');
   }, [selectedReportsOrder, comparisonTagsPerReport]);
@@ -182,7 +183,7 @@ export function App() {
                 {comparisonData ? (
                   <ComparisonBarChart
                     chartData={comparisonData.data}
-                    chartConfig={chartConfig}
+                    chartConfig={comparisonChartConfig}
                     metrics={comparisonData.metrics}
                     hideComparisonPanel={clearComparisonData}
                   />
