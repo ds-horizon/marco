@@ -34,12 +34,6 @@ export function ComparisonPanelSidebar({
   tooltipText,
   handleCompare,
 }: ComparisonPanelSidebarProps) {
-  // const addReport = (index: number) => {
-  //   if (!selectedReportsOrder.includes(index)) {
-  //     setSelectedReportsOrder([...selectedReportsOrder, index]);
-  //   }
-  // };
-
   const removeReport = (index: number) => {
     setSelectedReportsOrder(selectedReportsOrder.filter((i) => i !== index));
     // Clear tags for the removed report
@@ -70,14 +64,6 @@ export function ComparisonPanelSidebar({
       return updated;
     });
   };
-
-  // const clearTags = (reportIndex: number) => {
-  //   setTagsPerReport((prev) => {
-  //     const updated = [...prev];
-  //     updated[reportIndex] = [];
-  //     return updated;
-  //   });
-  // };
 
   const reportsWithEvents = selectedReportsOrder.filter(
     (index) => tagsPerReport[index]?.length > 0
@@ -210,14 +196,6 @@ export function ComparisonPanelSidebar({
               <div className="flex items-center justify-between mb-2">
                 <h3 className="text-sm font-medium">Select Event</h3>
                 <div className="flex items-center gap-2">
-                  {/*<Button*/}
-                  {/*  disabled={tagsPerReport[reportIndex]?.length === 0}*/}
-                  {/*  onClick={() => clearTags(reportIndex)}*/}
-                  {/*  variant="secondary"*/}
-                  {/*  size="sm"*/}
-                  {/*>*/}
-                  {/*  Clear All*/}
-                  {/*</Button>*/}
                   <label className="flex items-center gap-1 cursor-pointer select-none">
                     <Checkbox
                       checked={
