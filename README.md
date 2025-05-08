@@ -31,7 +31,7 @@ All information about marco is available on our [website](https://marco.dreamspo
 - Native view wrapper for brownfield apps
 - Support for Traces and Spans
 - [OTEL](https://opentelemetry.io/) support
-- Multiple input sources support in dashboard
+- Multiple event sources support in dashboard ✅
 
 ## Community Discord
 
