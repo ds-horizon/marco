@@ -256,6 +256,7 @@ export function ComparisonPanelSidebar({
                           'w-full',
                           'cursor-pointer',
                           'gap-3',
+                          'justify-between',
                           'rounded-md',
                           'transition-all',
                           disabled && 'opacity-20',
