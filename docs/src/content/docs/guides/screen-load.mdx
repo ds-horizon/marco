@@ -126,19 +126,24 @@ Here`s an sample configuration:
     ```js
     // marco.config.js
         module.exports = {
-          android: {
-            packageName: 'com.example.app',
-            outputPath: './navigation-reports/android',
-            dataDir: './navigation-reports/android/log.json',
-            port: '8080',
-          },
-          ios: {
-            packageName: 'com.example.app',
-            outputPath: './navigation-reports/ios',
-            dataDir: './navigation-reports/ios/log.json',
-            port: '8080',
-          },
-        };
+        		android: {
+        			packageName: 'com.example.app',
+        			outputPath: './marco-reports/android',
+        			dataDir: [{
+        				path: './marco-reports/android/log.json',
+        				reportName: 'AndroidReport1'
+        			}],
+        			port: '8080',
+        		},
+        		ios: {
+        			packageName: 'com.example.app',
+        			outputPath: './marco-reports/ios',
+        			dataDir: [{
+        				path: './marco-reports/ios/log.json',
+        				reportName: 'iosReport1'
+        			}],
+        			port: '8080',
+        		};
         ```
 
 #### Step 5: Fetch the Report
