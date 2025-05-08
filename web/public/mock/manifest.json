@@ -15,10 +15,18 @@
     {
       "path": "mock/log4.json",
       "reportName": "JS Vivo(LowEnd)"
+    },
+    {
+      "path": "mock/newArch.json",
+      "reportName": "NewArchStartUp"
+    },
+    {
+      "path": "mock/oldArch.json",
+      "reportName": "OldArchStartUp"
     }
   ],
   "metadata": {
-    "totalReports": 4,
+    "totalReports": 6,
     "generatedAt": "2025-02-26T06:20:45.973Z"
   }
 }
