@@ -1,129 +1,128 @@
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '~/utils/cn';
-import {
-  calculateMetrics,
-  findPatterns,
-  tagWiseCountAndColor,
-} from '~/utils/data';
+import { tagWiseCountAndColor } from '~/utils/data';
 
-import React, { useEffect, useMemo, useState } from 'react';
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
-import { Button } from './components/ui/button';
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
-  ChartTooltip,
-  ChartTooltipContent,
-} from './components/ui/chart';
-import { Checkbox } from './components/ui/checkbox';
-import { useData } from './data';
 import { Header } from './header';
-import { MetricData, metricColumns } from './utils/helpers';
-import { DataTable } from './components/data-table';
-import { CheckedState } from '@radix-ui/react-checkbox';
+import { EmptyPage } from './components/empty-page';
+import { ReportInsightsCard } from './components/analytics-card/report-insights-cards';
+import { TooltipProvider } from './components/ui/tooltip';
+import { ComparisonBarChart } from './components/charts/comparison-bar-chart';
+import { IndividualReportSidebar } from './components/sidebar/IndividualReportSidebar';
+import { ComparisonPanelSidebar } from './components/sidebar/ComparisonPanelSidebar';
+
+import {
+  IComparisonBarCharConfig,
+  IComparisonBarChartData,
+  ReportType,
+  useReportEntries,
+  visualiseMultipleReports,
+} from './data';
 
 export function App() {
-  const data = useData();
-  const uniqueTagsWithCount = useMemo(() => tagWiseCountAndColor(data), [data]);
-  const [tags, setTags] = useState<string[]>(
-    new URL(window.location.href).searchParams.get('tags')?.split(',') || []
+  const reportEntries = useReportEntries();
+
+  const tagCountByReport = useMemo(
+    () => reportEntries.map((report) => tagWiseCountAndColor(report.data)),
+    [reportEntries]
   );
 
-  const [allSelected, setAllSelected] = useState<CheckedState>(false);
-
-  const config = useMemo<ChartConfig>(
+  const reportList: ReportType[] = useMemo(
     () =>
-      tags.reduce(
-        (acc, tag) => ({
-          ...acc,
-          [tag]: {
-            label: tag,
-          },
-        }),
-        {}
-      ),
-    [tags]
+      reportEntries.map((report) => ({
+        reportKey: report.reportKey,
+        reportName: report.reportName,
+        reportPath: report.reportPath,
+      })),
+    [reportEntries]
   );
 
-  const { formattedData, metrics } = useMemo(() => {
-    const pattern = findPatterns(data, tags);
-    const patternValues = Object.values(pattern);
-    const max = patternValues.length
-      ? Math.min(...Object.values(pattern).map((p) => p.length))
-      : 0;
+  const [individualTagsPerReport, setIndividualTagsPerReport] = useState<
+    string[][]
+  >(new Array(reportEntries.length).fill([]));
+  const [comparisonTagsPerReport, setComparisonTagsPerReport] = useState<
+    string[][]
+  >(new Array(reportEntries.length).fill([]));
 
-    const formattedData = Array.from({ length: max }).map<
-      Record<string, number> & {
-        itr: number;
-        total: number;
-      }
-    >((_, index) => ({
-      itr: index + 1,
-      ...tags.reduce(
-        (acc, tag, i) => {
-          const current =
-            i > 0 ? pattern[tag][index] - pattern[tags[i - 1]][index] : 0;
-          return {
-            ...acc,
-            [tag]: current,
-            total: acc.total + current,
-          };
-        },
-        {
-          total: 0,
-        }
-      ),
-    }));
+  const [selectedReportsOrder, setSelectedReportsOrder] = useState<number[]>(
+    []
+  );
+  const [selectedIndividualReport, setSelectedIndividualReport] =
+    useState<number>(reportEntries.length > 0 ? 0 : -1);
 
-    const metrics: MetricData<string>[] = [];
+  const [comparisonData, setComparisonData] = useState<{
+    data: IComparisonBarChartData;
+    metrics: Record<string, { diff: number[]; tags: string[] }>;
+  } | null>(null);
 
-    tags.forEach((tag, i) => {
-      if (i > 0) {
-        const d = formattedData.reduce<number[]>((acc, obj) => {
-          acc.push(obj[tag]);
-          return acc;
-        }, []);
-        const { mean, std, errorRate } = calculateMetrics(d);
-        metrics.push({
-          mean: mean.toFixed(1),
-          standard_deviation: std.toFixed(2),
-          error_rate: errorRate.toFixed(2),
-          start_event: tags[i - 1],
-          end_event: tags[i],
-        });
-      }
-    });
+  const [comparisonChartConfig, setComparisonChartConfig] =
+    useState<IComparisonBarCharConfig>({});
+  const [currentTab, setCurrentTab] = useState<'reports' | 'comparison'>(
+    'reports'
+  );
 
-    return {
-      formattedData,
-      metrics,
-    };
-  }, [data, tags]);
+  const initialSelectionDone = useRef(false);
 
-  useEffect(() => {
-    const url = new URL(window.location.href);
-
-    if (tags.length) {
-      url.searchParams.set('tags', tags.join(','));
-      window.history.pushState({}, '', url);
-    } else {
-      url.searchParams.delete('tags');
-      window.history.pushState({}, '', url);
+  const generateComparisonData = useCallback(() => {
+    // Only include reports with at least one event selected
+    const reportsWithEvents = selectedReportsOrder.filter(
+      (index) => comparisonTagsPerReport[index]?.length > 0
+    );
+    if (reportsWithEvents.length < 2) {
+      setComparisonData(null);
+      return;
     }
-  }, [tags]);
+    const { chartConfig, multipleData, metrics } = visualiseMultipleReports(
+      comparisonTagsPerReport,
+      reportsWithEvents
+    );
+    setComparisonChartConfig(chartConfig);
+    setComparisonData({ data: multipleData, metrics });
+    setCurrentTab('comparison');
+  }, [selectedReportsOrder, comparisonTagsPerReport]);
 
-  useEffect(() => {
-    if (allSelected) {
-      setTags(Object.keys(uniqueTagsWithCount));
-    } else {
-      setTags([]);
+  const clearComparisonData = useCallback(() => {
+    setComparisonData(null);
+  }, []);
+
+  const getTooltipMessage = useCallback(() => {
+    if (selectedReportsOrder.length < 2) {
+      return 'Please select at least two reports to compare.';
+    } else if (
+      !selectedReportsOrder.every(
+        (index) => comparisonTagsPerReport[index]?.length > 0
+      )
+    ) {
+      return 'Please select at least one event in each selected report to enable comparison.';
     }
-  }, [allSelected, uniqueTagsWithCount]);
+    return '';
+  }, [selectedReportsOrder, comparisonTagsPerReport]);
+
+  const tooltipText = useMemo(() => getTooltipMessage(), [getTooltipMessage]);
+
+  const handleIndividualReportChange = useCallback((reportIndex: number) => {
+    setSelectedIndividualReport(reportIndex);
+  }, []);
+
+  // Initialize individual tags with default data for the first report
+  useEffect(() => {
+    if (
+      !initialSelectionDone.current &&
+      reportEntries.length > 0 &&
+      individualTagsPerReport[0]?.length === 0 &&
+      Object.keys(tagCountByReport[0] || {}).length > 0
+    ) {
+      setIndividualTagsPerReport((prev) => {
+        const updated = [...prev];
+        updated[0] = Object.keys(tagCountByReport[0]);
+        return updated;
+      });
+      initialSelectionDone.current = true;
+    }
+  }, [reportEntries, tagCountByReport, individualTagsPerReport]);
 
   return (
     <>
-      <Header />
+      <Header currentTab={currentTab} onTabChange={setCurrentTab} />
       <div
         className={cn(
           'grid',
@@ -133,273 +132,70 @@ export function App() {
           'h-full'
         )}
       >
-        <aside
-          className={cn(
-            'w-64',
-            'h-full',
-            'overflow-x-hidden',
-            'overflow-y-auto',
-            'sticky',
-            'top-0',
-            'left-0',
-            'z-40',
-            'py-24',
-            'border-r'
-          )}
-        >
-          <div
-            className={cn(
-              'mb-4',
-              'p-3',
-              'bg-background/80',
-              'backdrop-blur',
-              'sticky',
-              'left-0',
-              'border-b',
-              '-mt-16',
-              '-top-4',
-              'mb-12',
-              'flex',
-              'items-center',
-              'justify-between',
-              'gap-2',
-              'z-40'
-            )}
-          >
-            <h1 className={cn('font-bold', 'text-lg')}>Events</h1>
-            <div
-              className={cn(
-                'grid',
-                'grid-flow-col',
-                'gap-2',
-                'items-center',
-                'shrink-0'
-              )}
-            >
-              <Button
-                disabled={!tags.length}
-                onClick={() => setTags([])}
-                variant="secondary"
-                size="sm"
-              >
-                Clear
-              </Button>
-
-              <Button asChild size="sm" variant="secondary">
-                <Checkbox
-                  checked={allSelected}
-                  onCheckedChange={setAllSelected}
-                />
-              </Button>
-            </div>
-          </div>
-          {Object.entries(uniqueTagsWithCount).map(
-            ([tag, { count, color }], index, arr) => {
-              const selected = tags.includes(tag);
-              const isBefore =
-                arr.findIndex((t) => t[0] === tags.at(-1)) > index;
-
-              return (
-                <React.Fragment key={tag}>
-                  <div
-                    className={cn(
-                      'px-3',
-                      'py-2',
-                      'flex',
-                      'items-center',
-                      'w-full',
-                      'cursor-pointer',
-                      'gap-3',
-                      'border-l-8',
-                      'border-b',
-                      'transition-all',
-                      !selected && 'hover:bg-card/50',
-                      selected && 'bg-card',
-                      selected && 'hover:bg-card/75',
-                      !selected && isBefore && 'opacity-20',
-                      !selected && isBefore && 'pointer-events-none'
-                    )}
-                    title={tag}
-                    onClick={() => {
-                      if (tags.includes(tag)) {
-                        setTags(tags.filter((t) => t !== tag));
-                      } else {
-                        setTags([...tags, tag]);
-                      }
-                    }}
-                    style={{
-                      borderLeftColor: color,
-                    }}
-                  >
-                    <div className={cn('w-full', 'min-w-0')}>
-                      <p className="block w-full mb-1 truncate">{tag}</p>
-                      <p className={cn('text-sm', 'text-muted-foreground')}>
-                        Occurrences: {count}
-                      </p>
-                    </div>
-
-                    <Checkbox
-                      checked={tags.includes(tag)}
-                      className="shrink-0"
-                    />
-                  </div>
-                </React.Fragment>
-              );
-            }
-          )}
-        </aside>
-        <main
-          className={cn(
-            'overflow-x-hidden',
-            'overflow-y-auto',
-            'py-24',
-            'px-8'
-          )}
-        >
-          {tags.length > 1 ? (
-            <>
-              <div className={cn('p-2', 'rounded-xl', 'bg-card', 'mt-4')}>
-                <ChartContainer
-                  config={config}
-                  className={cn('min-h-[200px]', 'h-[60vh]', 'w-full')}
-                >
-                  <BarChart accessibilityLayer data={formattedData}>
-                    <CartesianGrid vertical horizontal />
-                    <YAxis dataKey="total" />
-                    <XAxis dataKey="itr" />
-                    <ChartTooltip content={<ChartTooltipContent hideLabel />} />
-                    <ChartLegend
-                      content={<ChartLegendContent className="flex-wrap" />}
-                    />
-                    {tags.map((tag, index) => (
-                      <Bar
-                        key={tag}
-                        dataKey={tag}
-                        stackId={'a'}
-                        fill={uniqueTagsWithCount[tag].color}
-                        radius={
-                          !index
-                            ? [0, 0, 4, 4]
-                            : index < tags.length - 1
-                              ? [0, 0, 0, 0]
-                              : [4, 4, 0, 0]
-                        }
-                      />
-                    ))}
-                  </BarChart>
-                </ChartContainer>
-              </div>
-
-              <DataTable columns={metricColumns} data={metrics} />
-
-              <h1 className="mt-12 mb-4 text-xl font-bold">
-                <span className="px-2 py-1 rounded-full bg-card">
-                  {formattedData.length}
-                </span>{' '}
-                Total iterations
-              </h1>
-              <div
-                className={cn(
-                  'grid',
-                  'grid-flow-row',
-                  'gap-4',
-                  'grid-cols-[max-content,1fr]',
-                  'overflow-x-auto',
-                  'items-center',
-                  'py-8',
-                  'bg-card',
-                  'rounded-lg'
-                )}
-              >
-                {formattedData.map((d, index) => (
-                  <React.Fragment key={`iteration-${index}`}>
-                    <div
-                      className={cn(
-                        'bg-gradient-to-r',
-                        'from-card',
-                        'via-card',
-                        'via-70%',
-                        'to-transparent',
-                        'flex',
-                        'items-center',
-                        'gap-2',
-                        'pr-8',
-                        'sticky',
-                        'left-0',
-                        'pl-4'
-                      )}
-                    >
-                      <span className="p-4 rounded-lg bg-background/25 justify-self-center">
-                        {index + 1}
-                      </span>
-                      <div
-                        className={cn(
-                          'grid',
-                          'grid-flow-row',
-                          'gap-1',
-                          'text-xs'
-                        )}
-                      >
-                        <span className="text-muted-foreground">Total:</span>
-                        <span>{d.total.toFixed(2)}ms</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center pr-4 flex-nowrap">
-                      {Object.entries(d)
-                        .filter(([key]) => !['itr', 'total'].includes(key))
-                        .map(([key, value], index) => (
-                          <React.Fragment key={`event-itr-${index}`}>
-                            {index > 0 && (
-                              <span
-                                className={cn(
-                                  'text-sm',
-                                  'text-muted-foreground',
-                                  'px-4',
-                                  'border-b',
-                                  'border-b-muted',
-                                  'h-max'
-                                )}
-                              >
-                                {value.toFixed(2)}ms
-                              </span>
-                            )}
-                            <span
-                              className={cn(
-                                'bg-background/25',
-                                'rounded-lg',
-                                'p-4',
-                                'justify-self-center'
-                              )}
-                            >
-                              {key}
-                            </span>
-                          </React.Fragment>
-                        ))}
-                    </div>
-                  </React.Fragment>
-                ))}
-              </div>
-            </>
+        <TooltipProvider>
+          {currentTab === 'reports' ? (
+            <IndividualReportSidebar
+              reports={reportList}
+              selectedReport={selectedIndividualReport}
+              onReportChange={handleIndividualReportChange}
+              tags={individualTagsPerReport[selectedIndividualReport] || []}
+              setTags={(newTags) => {
+                setIndividualTagsPerReport((prev) => {
+                  const updated = [...prev];
+                  updated[selectedIndividualReport] = newTags;
+                  return updated;
+                });
+              }}
+              tagStats={tagCountByReport[selectedIndividualReport] || {}}
+            />
           ) : (
-            <div
-              className={cn(
-                'bg-card/20',
-                'p-4',
-                'text-center',
-                'rounded-lg',
-                'mt-4',
-                'min-h-full',
-                'flex',
-                'items-center',
-                'justify-center',
-                'text-2xl'
-              )}
-            >
-              Select at least {tags.length < 1 ? 'two tags' : 'one more tag'} to
-              compare.
-            </div>
+            <ComparisonPanelSidebar
+              reports={reportList}
+              selectedReportsOrder={selectedReportsOrder}
+              tagsPerReport={comparisonTagsPerReport}
+              setTagsPerReport={setComparisonTagsPerReport}
+              setSelectedReportsOrder={setSelectedReportsOrder}
+              uniqueTagsWithCountForMultipleReport={tagCountByReport}
+              tooltipText={tooltipText}
+              handleCompare={generateComparisonData}
+            />
           )}
-        </main>
+          <main className="p-6 pt-24">
+            {currentTab === 'reports' ? (
+              selectedIndividualReport >= 0 ? (
+                <div className="overflow-y-auto max-h-[calc(100vh-150px)] p-2">
+                  <ReportInsightsCard
+                    data={reportEntries[selectedIndividualReport].data}
+                    uniqueTagsWithCount={
+                      tagCountByReport[selectedIndividualReport]
+                    }
+                    tags={
+                      individualTagsPerReport[selectedIndividualReport] || []
+                    }
+                    reportInfo={reportList[selectedIndividualReport]}
+                  />
+                </div>
+              ) : (
+                <EmptyPage content="Select a report to begin" />
+              )
+            ) : currentTab === 'comparison' ? (
+              <div className="flex justify-center">
+                {comparisonData ? (
+                  <ComparisonBarChart
+                    chartData={comparisonData.data}
+                    chartConfig={comparisonChartConfig}
+                    metrics={comparisonData.metrics}
+                    hideComparisonPanel={clearComparisonData}
+                  />
+                ) : (
+                  <EmptyPage content={tooltipText} />
+                )}
+              </div>
+            ) : (
+              <EmptyPage content="Select a report to begin" />
+            )}
+          </main>
+        </TooltipProvider>
       </div>
     </>
   );
