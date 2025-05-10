@@ -232,7 +232,7 @@ export function ComparisonPanelSidebar({
                 events selected
               </div>
 
-              <ScrollArea className="h-[200px] pr-2">
+              <ScrollArea className="max-h-[200px] pr-2 overflow-auto">
                 <div className="space-y-1">
                   {Object.entries(
                     uniqueTagsWithCountForMultipleReport[reportIndex] || {}
