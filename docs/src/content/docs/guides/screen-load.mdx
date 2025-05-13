@@ -1,28 +1,29 @@
 ---
-title: "Screen Load Time"
+title: 'Screen Load Time Tracking'
+description: 'Learn how to track and measure screen load time in your React Native application using Marco'
 tableOfContents:
   minHeadingLevel: 2
   maxHeadingLevel: 4
 ---
 
-import {
-  Tabs,
-  TabItem,
-} from "@astrojs/starlight/components";
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
-### Tracking Screen Load Time
+## Overview
 
-In this example, we'll track the time it takes to load the **Details** screen from the **Home** screen. This includes adding markers for navigation start and screen load completion.
+This guide demonstrates how to track and measure screen load time in your React Native application using Marco. You'll learn how to:
 
----
+- Track navigation start time
+- Measure screen load completion
+- Generate and visualize performance reports
+- Automate testing with Maestro
 
+## Implementation Steps
 
-#### Step 1: Initial Code
+### 1. Setting Up the Screens
 
-Here’s the base implementation of the two screens:
+First, let's create two basic screens - Home and Details - that we'll use to demonstrate screen load tracking:
 
 ```tsx collapse={5-12, 17-21}
-
 import { View, Button } from 'react-native';
 
 // Home Screen
@@ -47,22 +48,20 @@ const DetailsScreen = () => {
 };
 ```
 
-#### Step 2: Adding marco for Performance Tracking
+### 2. Implementing Performance Tracking
 
-Let’s modify the code to include `PerformanceTracker`.
+Now, let's enhance our screens with Marco's performance tracking capabilities:
 
-- **Marker 1**: Add a marker in the `onPress` handler of the "Go to Details" button to track when navigation starts.
-- **Marker 2**: Wrap the **Details screen** with `PerformanceTracker` to track when the screen finishes loading.
-- **Persist Data**: Use `PerformanceTracker.configure({ persistToFile: true })` to save the performance data to a file on the device.
-- Handle **onTrackingEnd**: Capture the `renderTime` and `drawTime` values and optionally send them to a server.
+#### Home Screen Implementation
 
 ```tsx
 // HomeScreen.tsx
 import { PerformanceTracker } from '@d11/marco';
 
-PerformanceTracker.configure({ 
-    persistToFile: true 
-})
+// Configure Marco to persist performance data
+PerformanceTracker.configure({
+  persistToFile: true,
+});
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -70,7 +69,7 @@ const HomeScreen = ({ navigation }) => {
       <Button
         title="Go to Details"
         onPress={() => {
-          // Track navigation start
+          // Track when navigation starts
           PerformanceTracker.track('Navigation_Started', Date.now());
           navigation.navigate('Details');
         }}
@@ -80,16 +79,22 @@ const HomeScreen = ({ navigation }) => {
 };
 ```
 
+#### Details Screen Implementation
+
 ```tsx
 // DetailsScreen.tsx
 import { PerformanceTracker } from '@d11/marco';
 
 const DetailsScreen = () => {
   return (
-    <PerformanceTracker tagName="Details_Screen_Loaded" onTrackingEnd={(event) => {
-        // 'Draw Timestamp:', event.nativeEvent.drawTime
-        // 'Render Timestamp:', event.nativeEvent.renderTime
-    }}>
+    <PerformanceTracker
+      tagName="Details_Screen_Loaded"
+      onTrackingEnd={(event) => {
+        // Access performance metrics
+        console.log('Draw Time:', event.nativeEvent.drawTime);
+        console.log('Render Time:', event.nativeEvent.renderTime);
+      }}
+    >
       <View>
         <Text>Details Screen</Text>
       </View>
@@ -98,101 +103,96 @@ const DetailsScreen = () => {
 };
 ```
 
-#### Step 3: Automating the Test with Maestro
-We'll use Maestro to run a simple test to measure screen load time.
+### 3. Automated Testing with Maestro
 
-Create a test.yaml file with the following content:
+Create a Maestro test file to automate the screen load time measurement:
 
 ```yaml
-// test.yaml
+# test.yaml
+appId: com.example.app # Replace with your app's ID
 
-appId: com.example.app # Replace with app's ID
 ---
 - launchApp:
     clearState: true
 - repeat:
     times: 2
     commands:
-     - tapOn: "Go to Details"
-     - assertVisible: "Details Screen"
+      - tapOn: 'Go to Details'
+      - assertVisible: 'Details Screen'
 ```
 
-#### Step 4: Create a `marco.config.js` File
+### 4. Configuration Setup
 
-To configure the `marco` CLI, create a `marco.config.js` file at the root of project. This file specifies how marco will fetch the performance data from the device and visualize it on dashboard. You can either use CLI [commands](../../api/cli/generate-report) as well.
+Create a `marco.config.js` file in your project root to configure performance data collection:
 
-Here`s an sample configuration:
+```js
+// marco.config.js
+module.exports = {
+  android: {
+    packageName: 'com.example.app',
+    outputPath: './marco-reports/android',
+    dataDir: [
+      {
+        path: './marco-reports/android/log.json',
+        reportName: 'AndroidReport1',
+      },
+    ],
+    port: '8080',
+  },
+  ios: {
+    packageName: 'com.example.app',
+    outputPath: './marco-reports/ios',
+    dataDir: [
+      {
+        path: './marco-reports/ios/log.json',
+        reportName: 'iosReport1',
+      },
+    ],
+    port: '8080',
+  },
+};
+```
 
-    ```js
-    // marco.config.js
-        module.exports = {
-        		android: {
-        			packageName: 'com.example.app',
-        			outputPath: './marco-reports/android',
-        			dataDir: [{
-        				path: './marco-reports/android/log.json',
-        				reportName: 'AndroidReport1'
-        			}],
-        			port: '8080',
-        		},
-        		ios: {
-        			packageName: 'com.example.app',
-        			outputPath: './marco-reports/ios',
-        			dataDir: [{
-        				path: './marco-reports/ios/log.json',
-        				reportName: 'iosReport1'
-        			}],
-        			port: '8080',
-        		};
-        ```
+### 5. Generating Performance Reports
 
-#### Step 5: Fetch the Report
+Run the following command to collect performance data:
 
 ```sh frame="none"
- yarn marco generate --platform android
+yarn marco generate --platform android
 ```
 
-The command collects data saved in device to a JSON file at specified path(`./navigation-reports/android/log.json`) at the root of project.
-
-**Sample Report:**
+This will generate a JSON report at `./navigation-reports/android/log.json` with the following structure:
 
 ```json
 [
-    {
-      "tagName": "Navigation_Started",
-      "timestamp": 1733301898369
-    },
-    {
-      "tagName": "Details_Screen_Loaded",
-      "timestamp": 1733301898878
-    },
-    {
-      "tagName": "Navigation_Started",
-      "timestamp": 1733301904456
-    },
-    {
-      "tagName": "Details_Screen_Loaded",
-      "timestamp": 1733301905063
-    },
+  {
+    "tagName": "Navigation_Started",
+    "timestamp": 1733301898369
+  },
+  {
+    "tagName": "Details_Screen_Loaded",
+    "timestamp": 1733301898878
+  }
 ]
 ```
 
-#### Step 6: Visualize the Data
+### 6. Visualizing Performance Data
 
-To visualize the fetched performance data, you can use the marco visualization dashboard. This step helps you analyze the data in a more user-friendly and interactive way.
-
-
-**Run the Visualization Command**
+To view your performance data in an interactive dashboard:
 
 ```sh frame="none"
 yarn marco visualize --platform android
 ```
 
-This command starts a local server and opens the visualization dashboard in browser at http://localhost:8080 (or the custom port specified in `marco.config.js`).
+The dashboard will be available at http://localhost:8080 (or your configured port) and provides:
 
-#### Example Dashboard View
+- Timeline view of all tracked events
+- Performance metrics visualization
+- Comparison across multiple test runs
+- Detailed analysis of screen load times
 
-Once the dashboard is running, you’ll see the fetched data visualized in an intuitive format. For example:
+## Next Steps
 
-- **Timeline View:** Displays the sequence of tracked events.
-- **Comparisons**: If multiple test runs are available, you can compare trends across iterations.
+- Learn about [App Startup Performance](../guides/app-startup)
+- Explore [Multiple Events Tracking](../guides/multiple-events)
+- Check out the [API Reference](../../api/performance-tracker) for more features
