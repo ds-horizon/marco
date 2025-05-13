@@ -1,0 +1,186 @@
+---
+title: 'Draw Time Tracking'
+tableOfContents:
+  minHeadingLevel: 2
+  maxHeadingLevel: 4
+sidebar:
+  order: 1
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { Aside } from '@astrojs/starlight/components';
+import { D2 } from 'astro-d2';
+
+Marco tracks when UI components are drawn on screen by hooking into platform-specific lifecycle methods. This allows measuring the time between component creation in JavaScript and when it becomes visible to users, helping identify performance bottlenecks.
+
+## High-Level Architecture
+
+The following diagram shows the core components involved in draw time tracking:
+
+```d2 sketch pad=10 darkTheme=301
+direction: down
+
+js: {
+  label: "JavaScript Component"
+  shape: rectangle
+}
+
+native: {
+  label: "Native View Creation"
+  shape: rectangle
+}
+
+draw: {
+  label: "Draw Time Detection"
+  shape: rectangle
+}
+
+event: {
+  label: "Event Dispatch"
+  shape: rectangle
+}
+
+handler: {
+  label: "JavaScript Handler"
+  shape: rectangle
+}
+
+store: {
+  label: "Performance Store"
+  shape: rectangle
+}
+
+js -> native: "Wrapped with PerformanceTracker" {style.animated: true}
+native -> draw: "Platform-specific rendering" {style.animated: true}
+draw -> event: "Calculate render time" {style.animated: true}
+event -> handler: "onTrackingEnd callback" {style.animated: true}
+draw -> store: "Store metrics" {style.animated: true}
+
+```
+
+## Implementation Details
+
+Marco uses different approaches for Android and iOS to detect when components are drawn on screen:
+
+- **Android**: Uses the `onDraw()` method of the `PerformanceTrackerView` class
+- **iOS**: Uses the `didMoveToWindow()` method when a view is added to the window hierarchy
+
+Both implementations ensure minimal overhead by only tracking the first draw of components.
+
+## Detailed Component Interaction
+
+The following diagram shows the complete flow of draw time tracking, from JavaScript initialization to final event handling:
+
+```d2 sketch darkTheme=301
+direction: down
+
+js: {
+  label: "JavaScript Layer"
+  shape: rectangle
+  style.fill: "#f5f5f5"
+}
+
+js.init: {
+  label: "Initialize PerformanceTracker"
+  shape: rectangle
+}
+
+js.time: {
+  label: "Capture timestamp"
+  shape: rectangle
+}
+
+bridge: {
+  label: "Native Bridge"
+  shape: rectangle
+  style.fill: "#e6f7ff"
+}
+
+native: {
+  label: "Native Layer"
+  shape: rectangle
+  style.fill: "#f0f5ff"
+}
+
+native.create: {
+  label: "Create native view"
+  shape: rectangle
+}
+
+native.draw: {
+  label: "Platform draw detection"
+  shape: rectangle
+}
+
+native.android: {
+  label: "Android: onDraw()"
+  shape: rectangle
+}
+
+native.ios: {
+  label: "iOS: didMoveToWindow()"
+  shape: rectangle
+}
+
+native.time: {
+  label: "Capture draw time"
+  shape: rectangle
+}
+
+native.calc: {
+  label: "Calculate render time"
+  shape: rectangle
+}
+
+storage: {
+  label: "Storage Layer"
+  shape: rectangle
+  style.fill: "#f9f0ff"
+}
+
+storage.store: {
+  label: "Store metrics"
+  shape: rectangle
+}
+
+storage.log: {
+  label: "Optional logging"
+  shape: rectangle
+}
+
+callback: {
+  label: "Event Layer"
+  shape: rectangle
+  style.fill: "#fff7e6"
+}
+
+callback.dispatch: {
+  label: "Dispatch event"
+  shape: rectangle
+}
+
+callback.handle: {
+  label: "Handle in JavaScript"
+  shape: rectangle
+}
+
+js.init -> js.time
+js.time -> bridge
+bridge -> native.create
+native.create -> native.draw
+native.draw -> native.android
+native.draw -> native.ios
+native.android -> native.time
+native.ios -> native.time
+native.time -> native.calc
+native.calc -> storage.store
+native.calc -> storage.log
+native.calc -> callback.dispatch
+callback.dispatch -> callback.handle
+
+```
+
+<Aside type="note">
+  Both platforms follow a similar approach but use platform-specific lifecycle
+  methods to detect when a component is drawn on screen.
+</Aside>
