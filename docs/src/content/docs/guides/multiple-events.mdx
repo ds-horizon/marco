@@ -1,5 +1,6 @@
 ---
 title: 'Tracking Multiple Events'
+description: 'Learn how to track and analyze multiple performance events in your app using Marco'
 tableOfContents:
   minHeadingLevel: 2
   maxHeadingLevel: 5
@@ -8,104 +9,132 @@ tableOfContents:
 import { Tabs, TabItem, Steps } from '@astrojs/starlight/components';
 import { Aside } from '@astrojs/starlight/components';
 
-This guide is created to track multiple events and how to visualize the data. For this example, we will extend the app startup example to track multiple events.
-Checkout the [App Startup](/guides/app-startup) guide for more context.
+## Overview
 
-Let's breakdown the **Startup Time** of the app.
+This guide demonstrates how to track and analyze multiple performance events in your app using Marco. We'll extend the app startup example to track various events during the app's initialization and screen loading process.
 
-#### Tracking Multiple Events
+<Aside type="note" title="Prerequisites">
+  Before you begin, make sure you've gone through the [App
+  Startup](../guides/app-startup) guide for basic setup and context.
+</Aside>
 
-We already have one start marker **AppLaunchStart** (say `T1`) and one end marker **HomeScreen_Loaded** (say `T`). Lets add few more markers
+## Implementation Guide
 
-##### T2: Add Main Application OnCreate Marker
+### 1. Tracking App Launch Events
 
-```kotlin collapse={3-9}
+Let's add markers at key points during the app launch process to get a detailed breakdown of startup time.
+
+#### App Launch Start (T1)
+
+```kotlin
 // MainApplication.kt
-
-    override fun onCreate() {
-        // App Launch Start
-        PerformanceTracker.track(
-            "AppLaunchStart",
-            System.currentTimeMillis(),
-            null,
-            true,
-            applicationContext
-        )
-        super.onCreate()
-
-        // Application OnCreate code
-
-        PerformanceTracker.track(
-            "Application_onCreate",
-            System.currentTimeMillis(),
-            null,
-            true,
-            applicationContext
-        )
-    }
+override fun onCreate() {
+    // Track app launch start
+    PerformanceTracker.track(
+        "AppLaunchStart",
+        System.currentTimeMillis(),
+        null,
+        true,
+        applicationContext
+    )
+    super.onCreate()
+    // ... rest of onCreate
+}
 ```
 
-##### T3: Add Activity OnCreate Marker
+#### Application OnCreate (T2)
 
-Add a marker to track the start of the activity in the `onCreate` method of `MainActivity` class. This is the first method that is called when the activity is going to be created.
+```kotlin
+// MainApplication.kt
+override fun onCreate() {
+    // ... previous code ...
 
-```kotlin 
+    // Track application onCreate completion
+    PerformanceTracker.track(
+        "Application_onCreate",
+        System.currentTimeMillis(),
+        null,
+        true,
+        applicationContext
+    )
+}
+```
+
+#### Activity Creation (T3)
+
+```kotlin
 // MainActivity.kt
+override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        PerformanceTracker.track(
-            "ActivityCreated",
-            System.currentTimeMillis(),
-            null,
-            true,
-            applicationContext
-        )
-    }
+    // Track activity creation
+    PerformanceTracker.track(
+        "ActivityCreated",
+        System.currentTimeMillis(),
+        null,
+        true,
+        applicationContext
+    )
+}
 ```
+
 :::note
-    - Make sure to pass `writeLogInFile: true` to the `track` method to save the data to a file. This will help in visualizing the data.
+Make sure to set `writeLogInFile: true` for all track calls to persist the performance data.
 :::
 
-##### T4: Add a marker at the mount of HomeScreen
+### 2. Tracking Screen Events
 
-```tsx collapse={15-37, 41-58}
+Let's enhance our HomeScreen component to track various stages of screen loading:
+
+```tsx
 import { PerformanceTracker } from '@d11/marco';
+import { useState, useEffect } from 'react';
+import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 
-// enable logging to file
+// Configure Marco to persist performance data
 PerformanceTracker.configure({
   persistToFile: true,
 });
 
 function HomeScreen(): React.JSX.Element {
-    const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        PerformanceTracker.track("HomeScreen_Mounted", Date.now());
-    }, []);
+  // Track screen mount (T4)
+  useEffect(() => {
+    PerformanceTracker.track('HomeScreen_Mounted', Date.now());
+  }, []);
 
-    // Simulating Async operation
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 1000);
-    }, []);
+  // Simulate data loading
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
 
-    if (isLoading) {
-        return (
-                <View style={styles.container}>
-                    <ActivityIndicator size="large" color="#0000ff" />
-                </View>
-        );
-    }
+  if (isLoading) {
+    // Track loading state (T5)
+    return (
+      <PerformanceTracker tagName="LoadingState">
+        <View style={styles.container}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      </PerformanceTracker>
+    );
+  }
+
+  // Track screen load completion
   return (
     <SafeAreaView style={styles.outerContainer}>
-        <PerformanceTracker tagName="HomeScreen_Loaded"  style={styles.outerContainer}>
-            <View style={styles.container}>
-                <Text testID="home_screen_text" style={styles.text}>Home Screen</Text>
-            </View>
-        </PerformanceTracker>
+      <PerformanceTracker
+        tagName="HomeScreen_Loaded"
+        style={styles.outerContainer}
+      >
+        <View style={styles.container}>
+          <Text testID="home_screen_text" style={styles.text}>
+            Home Screen
+          </Text>
+        </View>
+      </PerformanceTracker>
     </SafeAreaView>
   );
 }
@@ -132,106 +161,73 @@ const styles = StyleSheet.create({
 });
 ```
 
-##### T5: Add a marker on display of LoadingState
+### 3. Running Performance Tests
 
-```tsx collapse={4-6, 9-20, 32-38, 43-60}
-import { PerformanceTracker } from '@d11/marco';
+Use an instrumentation tool like [Maestro](https://maestro.mobile.dev/platform-support/react-native) to run automated tests and collect performance data.
 
-// enable logging to file
-PerformanceTracker.configure({
-  persistToFile: true,
-});
+### 4. Configuration
 
-function HomeScreen(): React.JSX.Element {
-    const [isLoading, setIsLoading] = useState(true);
+Create a `marco.config.js` file in your project root:
 
-    useEffect(() => {
-        PerformanceTracker.track("HomeScreen_Mounted", Date.now());
-    }, []);
-
-    // Simulating Async operation
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 1000);
-    }, []);
-
-    if (isLoading) {
-        return (
-            <PerformanceTracker tagName="LoadingState">
-                <View style={styles.container}>
-                    <ActivityIndicator size="large" color="#0000ff" />
-                </View>
-            </PerformanceTracker>
-        );
-    }
-  return (
-    <SafeAreaView style={styles.outerContainer}>
-        <PerformanceTracker tagName="HomeScreen_Loaded"  style={styles.outerContainer}>
-            <View style={styles.container}>
-                <Text testID="home_screen_text" style={styles.text}>Home Screen</Text>
-            </View>
-        </PerformanceTracker>
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f0f0f0',
-    borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 10,
-    padding: 10,
+```js
+// marco.config.js
+module.exports = {
+  android: {
+    packageName: 'com.example.app',
+    outputPath: './marco-reports/android',
+    dataDir: [
+      {
+        path: './marco-reports/android/log.json',
+        reportName: 'AndroidReport1',
+      },
+    ],
+    port: '8080',
   },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
+  ios: {
+    packageName: 'com.example.app',
+    outputPath: './marco-reports/ios',
+    dataDir: [
+      {
+        path: './marco-reports/ios/log.json',
+        reportName: 'iosReport1',
+      },
+    ],
+    port: '8080',
   },
-  outerContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+};
 ```
 
+### 5. Generating Performance Reports
 
-
-##### Instrumentation
-
-Again perform the same steps as in [App Startup](/guides/app-startup) guide to run the iteration.
-
-##### Generate Data
-
-Use the same marco config file as in [App Startup](/guides/app-startup) guide.
-
-Run `generate` command to generate the data.
+Run the following command to collect performance data:
 
 ```sh frame="none"
 yarn marco generate --platform android
 ```
 
-##### Visualize Data
+### 6. Visualizing Performance Data
 
-Run `visualize` command to visualize the data.
+To view your performance data in an interactive dashboard:
 
 ```sh frame="none"
 yarn marco visualize --platform android
 ```
 
-- Below I had attached the screenshot of the dashboard .
-  - At left side, we can see all the markers with there occurrence.
-  - Bar chart shows that between which 2 events most of the time is spent.
-  - Correctness of the data is predicted using mean, standard deviation, error rate.
-  - And at last we can see the difference between any 2 events iteration wise.
+The dashboard will be available at http://localhost:8080 and provides:
 
-![Multiple Events Iteration](../../../assets/multiple-events-timeline.png)
+- Timeline view of all tracked events
+- Performance metrics visualization
+- Comparison across multiple test runs
+- Detailed analysis of time between events
+
+![Multiple Events Timeline](../../../assets/multiple-events-timeline.png)
 
 ![Multiple Events Metrics](../../../assets/multiple-events-metrics.png)
 
 ![Multiple Events Raw](../../../assets/multiple-events-raw.png)
 
-👉 Code reference: [Example](https://github.com/dream-sports-labs/marco/tree/main/example)
+## Next Steps
+
+- Learn about [App Startup Performance](../guides/app-startup)
+- Explore [Screen Load Time Tracking](../guides/screen-load)
+- Check out the [API Reference](../../api/performance-tracker) for more features
