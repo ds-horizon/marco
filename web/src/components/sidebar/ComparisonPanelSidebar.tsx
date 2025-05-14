@@ -181,7 +181,7 @@ export function ComparisonPanelSidebar({
               className="border rounded-lg p-4 space-y-3"
             >
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium mb-2">
+                <h3 className="text-sm font-medium mb-2 truncate">
                   {report.reportName}
                 </h3>
                 <Button
@@ -195,8 +195,9 @@ export function ComparisonPanelSidebar({
 
               <div className="flex items-center justify-between mb-2">
                 <h3 className="text-sm font-medium">Select Event</h3>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 pr-3">
                   <label className="flex items-center gap-1 cursor-pointer select-none">
+                    <span className="text-xs">All</span>
                     <Checkbox
                       checked={
                         Object.keys(
@@ -217,7 +218,6 @@ export function ComparisonPanelSidebar({
                       }}
                       className="shrink-0"
                     />
-                    <span className="text-xs">All</span>
                   </label>
                 </div>
               </div>
@@ -232,7 +232,7 @@ export function ComparisonPanelSidebar({
                 events selected
               </div>
 
-              <ScrollArea className="h-[200px] pr-2">
+              <ScrollArea className="max-h-[200px] pr-1 overflow-auto">
                 <div className="space-y-1">
                   {Object.entries(
                     uniqueTagsWithCountForMultipleReport[reportIndex] || {}
