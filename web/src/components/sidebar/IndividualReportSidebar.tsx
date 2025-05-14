@@ -197,7 +197,7 @@ export const IndividualReportSidebar = ({
                     onClick={() => !disabled && handleTagToggle(tag)}
                     tabIndex={disabled ? 0 : -1}
                   >
-                    <div className="flex items-center gap-2 min-w-0 max-w-[120px] truncate">
+                    <span className="text-sm flex items-center gap-2 min-w-0 max-w-[140px] truncate">
                       <span
                         className="w-3 h-3 rounded-full shrink-0"
                         style={{ backgroundColor: color }}
@@ -210,7 +210,7 @@ export const IndividualReportSidebar = ({
                           {count} occurrences
                         </span>
                       </div>
-                    </div>
+                    </span>
                     <Checkbox
                       checked={selected}
                       className="shrink-0"

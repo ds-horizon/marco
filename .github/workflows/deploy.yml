@@ -34,7 +34,7 @@ jobs:
       - name: Install D2
         run: |
           curl -fsSL https://d2lang.com/install.sh | sh -s --
-
+          
       - name: Install, build, and upload your site
         uses: withastro/action@v3
         with:
