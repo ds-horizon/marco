@@ -181,7 +181,10 @@ export function ComparisonPanelSidebar({
               className="border rounded-lg p-4 space-y-3"
             >
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium mb-2 truncate">
+                <h3
+                  className="text-sm font-medium mb-2 truncate hover:bg-accent/80"
+                  title={report.reportName}
+                >
                   {report.reportName}
                 </h3>
                 <Button
