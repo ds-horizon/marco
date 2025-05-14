@@ -6,6 +6,8 @@
 [![npm version](https://img.shields.io/npm/v/@d11/marco?style=for-the-badge)](https://www.npmjs.org/package/@d11/marco)
 [![npm downloads](https://img.shields.io/npm/dt/@d11/marco.svg?style=for-the-badge)](https://www.npmjs.org/package/@d11/marco)
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/dream-sports-labs/marco)
+
 </div>
 
 A powerful React Native library to track and log performance metrics for screens and components. It leverages the new architecture with **TurboModules** and **Fabric** for improved efficiency. The library provides insights into render times, draw times, and helps identify performance bottlenecks in your app.
@@ -17,6 +19,7 @@ All information about marco is available on our [website](https://marco.dreamspo
 - [Installation](https://marco.dreamsportslabs.com/project/quick-start/)
 - [Guides](https://marco.dreamsportslabs.com/guides/app-startup/)
 - [API References](https://marco.dreamsportslabs.com/api/methods/)
+- [Internal Architecture](https://marco.dreamsportslabs.com/architecture/draw-time-tracking/)
 
 ## Roadmap
 

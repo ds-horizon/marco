@@ -2068,6 +2068,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"astro-d2@npm:^0.7.0":
+  version: 0.7.0
+  resolution: "astro-d2@npm:0.7.0"
+  dependencies:
+    hast-util-from-html: "npm:^2.0.3"
+    hast-util-to-html: "npm:^9.0.4"
+    unist-util-visit: "npm:^5.0.0"
+  peerDependencies:
+    astro: ">=5.0.0"
+  checksum: 10/fa5cf5f3cb6bc5d51ccdde9133afc73372296b20df3fc351092a76ab4f918492f6ba90b8af2abf26c5f26876844355383b94e77c69d90496b7ab87006b001d38
+  languageName: node
+  linkType: hard
+
 "astro-expressive-code@npm:^0.38.3":
   version: 0.38.3
   resolution: "astro-expressive-code@npm:0.38.3"
@@ -2798,6 +2811,7 @@ __metadata:
     "@types/react": "npm:^19.0.2"
     "@types/react-dom": "npm:^19.0.2"
     astro: "npm:^5.0.2"
+    astro-d2: "npm:^0.7.0"
     react: "npm:^19.0.0"
     react-dom: "npm:^19.0.0"
     sharp: "npm:^0.32.5"
