@@ -54,7 +54,9 @@ import { Aside } from '@astrojs/starlight/components';
           // Wrap screen with PerformanceTracker to measure draw time
           <PerformanceTracker tagName="Screen_Loaded">
             {/* Screen content goes here */}
-            <button onClick={handleOnPress}>Click Me</button>
+            <TouchableOpacity onPress={handleOnPress}>
+              <Text>Click Me</Text>
+            </TouchableOpacity>
           </PerformanceTracker>
         );
       };
