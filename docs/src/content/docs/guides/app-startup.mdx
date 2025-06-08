@@ -1,5 +1,6 @@
 ---
-title: 'App Startup'
+title: 'App Startup Performance Tracking'
+description: 'Learn how to measure and optimize your app startup time using Marco'
 tableOfContents:
   minHeadingLevel: 2
   maxHeadingLevel: 5
@@ -8,98 +9,113 @@ tableOfContents:
 import { Tabs, TabItem, Steps } from '@astrojs/starlight/components';
 import { Aside } from '@astrojs/starlight/components';
 
-This guide demonstrates how to leverage Marco to track app startup performance. By adding markers at key points during the app’s lifecycle, one can gain insights into how long various parts of the startup process take.
-Additionally, we can fetch data using Marco's `generate` command, and `visualize` the results for better analysis.
+## Overview
+
+This guide shows you how to track and optimize your app's startup performance using Marco. You'll learn how to:
+
+- Track app launch start time
+- Measure initial screen load time
+- Generate performance reports
+- Visualize startup metrics
 
 <Aside type="note" title="Prerequisites">
-  Ensure Marco is integrated into your Android and iOS apps. Refer to [Marco
-  Quick Start](../../project/quick-start) for setup instructions.
+  Before you begin, ensure Marco is integrated into your Android and iOS apps.
+  Refer to [Marco Quick Start](../../project/quick-start) for setup
+  instructions.
 </Aside>
 
-#### Tracking App Startup Performance
+## Implementation Guide
 
-##### Step 1: Add Start Marker
+### 1. Tracking App Launch Start
 
-For App Startup, we will add a start marker at the beginning of the app's lifecycle.
+Add a marker at the beginning of your app's lifecycle to track when the app starts launching.
 
-- **For Android**, add a marker to track the start of the app in the `onCreate` method of `MainApplication` class. This is the first method that is called when the app is launched.
-- **For iOS**, add a marker to track the start of the app in the `application` method of AppDelegate.m.
-
-    <Tabs syncKey="package-manager">
-  <TabItem label="MainApplication.kt" icon="seti:kotlin">
-    ```kotlin frame="none"
+<Tabs syncKey="platform">
+  <TabItem label="Android" icon="seti:kotlin">
+    ```kotlin
     import com.performancetracker.PerformanceTracker;
 
     override fun onCreate() {
         super.onCreate()
 
+        // Track app launch start time
         PerformanceTracker.track(
-            "AppLaunchStart", 
-            System.currentTimeMillis(), 
+            "AppLaunchStart",
+            System.currentTimeMillis(),
             null,
-            true, // writeLogInFile is true to save the data to a file
-            applicationContext // applicationContext is the context of the app to write the data to a file
-             )
-        // other code
+            true, // Enable file logging
+            applicationContext
+        )
+        // Continue with other initialization
     }
-        ```
-      </TabItem>
-      <TabItem label="AppDelegate.m" icon="seti:cpp">
-        ```objc frame=none
-        - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-            {
+    ```
 
-            [[PerformanceTracker sharedInstance] track:@"AppLaunchStart"
-                                                    timestamp:(long long) [[NSDate date] timeIntervalSince1970] * 1000
-                                                    meta: nil
-                                                    writeLogInFile:YES];
-            return [super application:application didFinishLaunchingWithOptions:launchOptions];
-            }
-        ```
-      </TabItem>
+  </TabItem>
+  <TabItem label="iOS" icon="seti:cpp">
+    ```objc
+    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+    {
+        // Track app launch start time
+        [[PerformanceTracker sharedInstance] track:@"AppLaunchStart"
+                                          timestamp:(long long) [[NSDate date] timeIntervalSince1970] * 1000
+                                          meta: nil
+                                          writeLogInFile:YES];
+        return [super application:application didFinishLaunchingWithOptions:launchOptions];
+    }
+    ```
+  </TabItem>
+</Tabs>
 
-    </Tabs>
 :::note
-    - Make sure to pass `writeLogInFile: true` to the `track` method to save the data to a file. This will help in visualizing the data.
+Make sure to set `writeLogInFile: true` to persist the performance data for later analysis.
 :::
 
-##### Step 2: Add End Marker
+### 2. Tracking Initial Screen Load
 
-Firstly let's add a sample screen to track the end marker. Here we will simulate a real world scenarios using `setTimeout` to delay the screen loading(Assuming this is a network call or some heavy operation).
+Let's create a sample home screen that demonstrates tracking the initial screen load time:
 
-```tsx collapse={38-55, 29-31, 20-22, 11-15}
+```tsx
 import { PerformanceTracker } from '@d11/marco';
+import { useState, useEffect } from 'react';
+import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 
-// enable logging to file
+// Configure Marco to persist performance data
 PerformanceTracker.configure({
   persistToFile: true,
 });
 
 function HomeScreen(): React.JSX.Element {
-    const [isLoading, setIsLoading] = useState(true);
-    // Simulating Async operation
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 1000);
-    }, []);
+  const [isLoading, setIsLoading] = useState(true);
 
-    if (isLoading) {
-        return (
-            <PerformanceTracker tagName="LoadingState"  style={styles.outerContainer}>
-                <View style={styles.container}>
-                    <ActivityIndicator size="large" color="#0000ff" />
-                </View>
-            </PerformanceTracker>
-        );
-    }
+  // Simulate initial data loading
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <PerformanceTracker tagName="LoadingState" style={styles.outerContainer}>
+        <View style={styles.container}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      </PerformanceTracker>
+    );
+  }
+
   return (
     <SafeAreaView style={styles.outerContainer}>
-        <PerformanceTracker tagName="HomeScreen_Loaded"  style={styles.outerContainer}>
-            <View style={styles.container}>
-                <Text testID="home_screen_text" style={styles.text}>Home Screen</Text>
-            </View>
-        </PerformanceTracker>
+      <PerformanceTracker
+        tagName="HomeScreen_Loaded"
+        style={styles.outerContainer}
+      >
+        <View style={styles.container}>
+          <Text testID="home_screen_text" style={styles.text}>
+            Home Screen
+          </Text>
+        </View>
+      </PerformanceTracker>
     </SafeAreaView>
   );
 }
@@ -126,151 +142,86 @@ const styles = StyleSheet.create({
 });
 ```
 
-- For end marker, add a marker when the screen is fully drawn. This gives a sense of how long it takes for the app to be ready to interact with the user.
-For this just wrap the screen or any component with `PerformanceTracker` and provide a tag name.
-
-This will track the time it took to draw the PerformanceTracker component entirely.
 :::tip
- We can also wrap Loading screen with  `PerformanceTracker` but it will not give us the exact time it took to draw the usable screen.
+While you can track the loading state, it's more meaningful to track when the actual screen is ready for user interaction.
 :::
 
-    :::note
-    - Make sure to pass `persistToFile: true` to the `Performance.configure` method to save the data to a file. This will help in visualizing the data.
-    :::
+### 3. Running Performance Tests
 
-##### Step 3: Instrumentation
+Use an instrumentation tool like [Maestro](https://maestro.mobile.dev/platform-support/react-native) to run automated tests and collect performance data.
 
-Use any instrumentation tool to run the iteration. For example: [maestro](https://maestro.mobile.dev/platform-support/react-native).
-After running the iteration, it will save the data in device itself.
+### 4. Configuration
 
-##### Step 4: Create a `marco.config.js`
+Create a `marco.config.js` file in your project root:
 
-Create a `marco.config.js` file at the root of project with the following content.
+```js
+// marco.config.js
+module.exports = {
+  android: {
+    packageName: 'com.example.app',
+    outputPath: './marco-reports/android',
+    dataDir: [
+      {
+        path: './marco-reports/android/log.json',
+        reportName: 'AndroidReport1',
+      },
+    ],
+    port: '8080',
+  },
+  ios: {
+    packageName: 'com.example.app',
+    outputPath: './marco-reports/ios',
+    dataDir: [
+      {
+        path: './marco-reports/ios/log.json',
+        reportName: 'iosReport1',
+      },
+    ],
+    port: '8080',
+  },
+};
+```
 
-    ```js
-    // marco.config.js
-    module.exports = {
-    		android: {
-    			packageName: 'com.example.app',
-    			outputPath: './marco-reports/android',
-    			dataDir: [{
-    				path: './marco-reports/android/log.json',
-    				reportName: 'AndroidReport1'
-    			}],
-    			port: '8080',
-    		},
-    		ios: {
-    			packageName: 'com.example.app',
-    			outputPath: './marco-reports/ios',
-    			dataDir: [{
-    				path: './marco-reports/ios/log.json',
-    				reportName: 'iosReport1'
-    			}],
-    			port: '8080',
-    		};
-    ```
+### 5. Generating Performance Reports
 
-##### Step 5: Generate Data
-
-Use `generate` command to generate the data.
+Run the following command to collect performance data:
 
 ```sh frame="none"
 yarn marco generate --platform android
 ```
-- It will save the data in specified path (./app-startup-reports/android/log.json).
 
-Here is the sample report generated:
+This will generate a JSON report with the following structure:
 
-```json collapse={10-65}
+```json
 [
-    {
-        "tagName": "AppLaunchStart",
-        "timestamp": "1738089908375"
-    },
-    {
-        "tagName": "HomeScreen_Loaded",
-        "timestamp": "1738089908973"
-    },
-    {
-        "tagName": "AppLaunchStart",
-        "timestamp": "1738089914779"
-    },
-    {
-        "tagName": "HomeScreen_Loaded",
-        "timestamp": "1738089915349"
-    },
-    {
-        "tagName": "AppLaunchStart",
-        "timestamp": "1738089918248"
-    },
-    {
-        "tagName": "HomeScreen_Loaded",
-        "timestamp": "1738089918816"
-    },
-    {
-        "tagName": "AppLaunchStart",
-        "timestamp": "1738089921612"
-    },
-    {
-        "tagName": "HomeScreen_Loaded",
-        "timestamp": "1738089922182"
-    },
-    {
-        "tagName": "AppLaunchStart",
-        "timestamp": "1738089926458"
-    },
-    {
-        "tagName": "HomeScreen_Loaded",
-        "timestamp": "1738089927022"
-    },
-    {
-        "tagName": "AppLaunchStart",
-        "timestamp": "1738089944241"
-    },
-    {
-        "tagName": "HomeScreen_Loaded",
-        "timestamp": "1738089944833"
-    },
-    {
-        "tagName": "AppLaunchStart",
-        "timestamp": "1738089949008"
-    },
-    {
-        "tagName": "HomeScreen_Loaded",
-        "timestamp": "1738089949583"
-    },
-    {
-        "tagName": "AppLaunchStart",
-        "timestamp": "1738089954020"
-    },
-    {
-        "tagName": "HomeScreen_Loaded",
-        "timestamp": "1738089954616"
-    }
+  {
+    "tagName": "AppLaunchStart",
+    "timestamp": "1738089908375"
+  },
+  {
+    "tagName": "HomeScreen_Loaded",
+    "timestamp": "1738089908973"
+  }
 ]
 ```
 
-##### Step 6: Visualize Data
+### 6. Visualizing Performance Data
 
-Use `visualize` command to visualize the data.
+To view your performance data in an interactive dashboard:
 
 ```sh frame="none"
 yarn marco visualize --platform android
 ```
 
-- It will open the dashboard in the browser.
-- Below I had attached the screenshot of the dashboard.
-  - At left side, it will show all the markers with there occurrence.
-  - Iteration wise data is shown in bar chart.
-  - Raw data are processed and shown in timeline.
-  - Also have access to other metrics like mean, standard deviation, error rate to predict the correctness of the data.
+The dashboard will be available at http://localhost:8080 and provides:
 
-![App Startup Iteration](../../../assets/app-startup-timeline.png)
+- Timeline view of app startup events
+- Performance metrics visualization
+- Comparison across multiple test runs
+- Detailed analysis of startup times
 
-![App Startup Timeline](../../../assets/app-startup-raw.png)
+## Next Steps
 
-👉 Code reference: [Example](https://github.com/dream-sports-labs/marco/tree/main/example)
-
-:::note
-If we need to track events at more granular level and investigate the breakdown. Checkout [Multiple Event Logging](../multiple-events)
-:::
+- Learn about [Screen Load Time Tracking](../guides/screen-load)
+- Explore [Multiple Events Tracking](../guides/multiple-events)
+- Check out the [API Reference](../../api/performance-tracker) for more features

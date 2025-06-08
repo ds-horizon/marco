@@ -30,6 +30,11 @@ jobs:
       - name: Set up Yarn 4.6.0
         run: corepack prepare yarn@4.6.0 --activate
 
+      # Install D2 (diagram tool required by astro-d2)
+      - name: Install D2
+        run: |
+          curl -fsSL https://d2lang.com/install.sh | sh -s --
+          
       - name: Install, build, and upload your site
         uses: withastro/action@v3
         with:
