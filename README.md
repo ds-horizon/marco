@@ -29,7 +29,7 @@ All information about marco is available on our [website](https://marco.dreamspo
 - Realtime monitoring of events
 - Navigation tracking support
 - App Start time tracking ✅
-- Support for multiple events selection in dashbaord ✅
+- Support for multiple events selection in dashboard ✅
 - Native Event logging mechanism ✅
 - Native view wrapper for brownfield apps
 - Support for Traces and Spans
