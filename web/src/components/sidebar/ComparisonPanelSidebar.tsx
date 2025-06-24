@@ -138,7 +138,8 @@ export function ComparisonPanelSidebar({
         'pt-24',
         'pb-4',
         'px-2',
-        'border-r'
+        'border-r',
+        'hidden md:block'
       )}
     >
       <div className="space-y-4">

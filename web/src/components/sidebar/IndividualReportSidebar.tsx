@@ -112,8 +112,9 @@ export const IndividualReportSidebar = ({
         'top-0',
         'left-0',
         'z-40',
-        'py-24',
-        'border-r'
+        'py-28',
+        'border-r',
+        'hidden md:block'
       )}
     >
       <div
