@@ -1,6 +1,13 @@
 'use client';
 
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+} from 'recharts';
 
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import {
@@ -37,24 +44,28 @@ const ComparisonChartCard = ({
         config={config}
         className={cn('min-h-[200px]', 'h-[40vh]', 'w-full')}
       >
-        <BarChart accessibilityLayer data={data}>
-          <CartesianGrid vertical horizontal />
-          <YAxis dataKey="maxHeight" />
-          <XAxis
-            dataKey="type"
-            tickLine={false}
-            tickMargin={10}
-            axisLine={false}
-          />
-          <ChartTooltip
-            cursor={false}
-            content={<ChartTooltipContent indicator="dashed" />}
-          />
-          <ChartLegend content={<ChartLegendContent className="flex-wrap" />} />
-          {Object.keys(config).map((key) => {
-            return <Bar dataKey={key} fill={config[key].color} />;
-          })}
-        </BarChart>
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart accessibilityLayer data={data}>
+            <CartesianGrid vertical horizontal />
+            <YAxis dataKey="maxHeight" tick={{ fontSize: 12 }} />
+            <XAxis
+              dataKey="type"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+            />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent indicator="dashed" />}
+            />
+            <ChartLegend
+              content={<ChartLegendContent className="flex-wrap" />}
+            />
+            {Object.keys(config).map((key) => {
+              return <Bar dataKey={key} fill={config[key].color} />;
+            })}
+          </BarChart>
+        </ResponsiveContainer>
       </ChartContainer>
     </CardContent>
   );
@@ -153,7 +164,7 @@ export function ComparisonBarChart({
             checked={shouldShowMeanChart}
             onCheckedChange={setShouldShowMeanChart}
           />
-          <span className="text-xs md:text-base">Iteration Data</span>
+          <span className="text-sm md:text-base">Iteration Data</span>
           {/*<Button onClick={hideComparisonPanel} variant={'ghost'}>*/}
           {/*  <X strokeWidth={2} />*/}
           {/*</Button>*/}
@@ -161,7 +172,12 @@ export function ComparisonBarChart({
       </CardHeader>
 
       {shouldShowMeanChart ? (
-        <ComparisonChartCard data={chartDataWithMaxKey} config={chartConfig} />
+        <div className={'border-2'}>
+          <ComparisonChartCard
+            data={chartDataWithMaxKey}
+            config={chartConfig}
+          />
+        </div>
       ) : (
         <ComparisonChartCard
           data={chartWithMeanData}

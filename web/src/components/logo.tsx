@@ -7,7 +7,7 @@ export function Logo({ size = 24 }: LogoProps) {
   const width = (407 / 91) * size;
 
   return (
-    <a href="/">
+    <a href="https://marco.dreamsportslabs.com/guides/app-startup/">
       <svg
         width={width}
         height={height}

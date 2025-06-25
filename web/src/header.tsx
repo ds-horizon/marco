@@ -2,18 +2,22 @@ import { Logo } from '~/components/logo';
 import { cn } from '~/utils/cn';
 import { PoweredBy } from './components/powered-by';
 import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs';
+import Icon from '~/components/icon.tsx';
+import favicon from '../src/assets/dream11-logo.svg';
 
 export function Header({
   currentTab,
   onTabChange,
+  isMobile,
 }: {
   currentTab: 'reports' | 'comparison';
   onTabChange: (tab: 'reports' | 'comparison') => void;
+  isMobile?: boolean;
 }) {
   return (
     <header
       className={cn(
-        'p-6',
+        'p-4 md:p-6',
         'backdrop-blur',
         'bg-background/80',
         'fixed',
@@ -27,8 +31,8 @@ export function Header({
         'items-center'
       )}
     >
-      <nav className="w-full flex items-center justify-between">
-        <Logo />
+      <nav className="w-full flex items-center justify-between pl-12 md:pl-0">
+        {isMobile ? <Icon /> : <Logo />}
 
         <Tabs
           value={currentTab}
@@ -37,13 +41,28 @@ export function Header({
           }
           className="w-auto"
         >
-          <TabsList>
-            <TabsTrigger value="reports">Individual Report</TabsTrigger>
-            <TabsTrigger value="comparison">Compare Reports</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="reports" className="text-xs md:text-sm">
+              <span className="hidden sm:inline">Individual Report</span>
+              <span className="sm:hidden">Reports</span>
+            </TabsTrigger>
+            <TabsTrigger value="comparison" className="text-xs md:text-sm">
+              <span className="hidden sm:inline">Compare Reports</span>
+              <span className="sm:hidden">Compare</span>
+            </TabsTrigger>
           </TabsList>
         </Tabs>
 
-        <PoweredBy repo="marco" />
+        {isMobile ? (
+          <a
+            href={`https://github.com/dream-sports-labs/marco`}
+            target="_blank"
+          >
+            <img src={favicon} alt={'Dream11 Logo'} width={24} height={24} />
+          </a>
+        ) : (
+          <PoweredBy repo="marco" />
+        )}
       </nav>
     </header>
   );

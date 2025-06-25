@@ -128,6 +128,7 @@ export function App() {
   return (
     <>
       <Header
+        isMobile={isMobile}
         currentTab={currentTab}
         onTabChange={(tab) => {
           setCurrentTab(tab);
@@ -258,16 +259,6 @@ export function App() {
 
           <main className="p-4 pt-24">
             <div className="w-full">
-              {/* Mobile message */}
-              {isMobile && (
-                <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg">
-                  <p className="text-sm text-blue-800 dark:text-blue-200">
-                    Tap the menu button (☰) in the top-left corner to access
-                    report selection and configuration options.
-                  </p>
-                </div>
-              )}
-
               {currentTab === 'reports' ? (
                 selectedIndividualReport >= 0 ? (
                   <div className="overflow-y-auto max-h-[calc(100vh-150px)] p-2 md:p-2 w-full">
