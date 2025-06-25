@@ -61,7 +61,7 @@ export function Header({
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="reports" className="text-xs md:text-sm">
               <span className="hidden sm:inline">Individual Report</span>
-              <span className="sm:hidden">Single Report</span>
+              <span className="sm:hidden">Individual</span>
             </TabsTrigger>
             <TabsTrigger value="comparison" className="text-xs md:text-sm">
               <span className="hidden sm:inline">Compare Reports</span>

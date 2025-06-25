@@ -179,10 +179,12 @@ export function ComparisonBarChart({
           />
         </div>
       ) : (
-        <ComparisonChartCard
-          data={chartWithMeanData}
-          config={chartConfigWithMean}
-        />
+        <div className={'border-2'}>
+          <ComparisonChartCard
+            data={chartWithMeanData}
+            config={chartConfigWithMean}
+          />
+        </div>
       )}
 
       <CardContent>
