@@ -4,20 +4,24 @@ import { PoweredBy } from './components/powered-by';
 import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs';
 import Icon from '~/components/icon.tsx';
 import favicon from '../src/assets/dream11-logo.svg';
+import { Button } from './components/ui/button';
+import { Menu } from 'lucide-react';
 
 export function Header({
   currentTab,
   onTabChange,
   isMobile,
+  onOpenSidebar,
 }: {
   currentTab: 'reports' | 'comparison';
   onTabChange: (tab: 'reports' | 'comparison') => void;
   isMobile?: boolean;
+  onOpenSidebar?: () => void; // ⬅️ optional handler for menu
 }) {
   return (
     <header
       className={cn(
-        'p-4 md:p-6',
+        'p-2 md:p-6',
         'backdrop-blur',
         'bg-background/80',
         'fixed',
@@ -31,9 +35,22 @@ export function Header({
         'items-center'
       )}
     >
-      <nav className="w-full flex items-center justify-between pl-12 md:pl-0">
-        {isMobile ? <Icon /> : <Logo />}
-
+      <nav className="w-full flex items-center justify-between md:pl-0">
+        {isMobile ? (
+          <div className="flex items-center gap-2 ml-4">
+            <Button
+              onClick={onOpenSidebar}
+              className="shadow"
+              size="icon"
+              variant="outline"
+            >
+              <Menu className="h-4 w-4" />
+            </Button>
+            <Icon />
+          </div>
+        ) : (
+          <Logo />
+        )}
         <Tabs
           value={currentTab}
           onValueChange={(value) =>
@@ -44,7 +61,7 @@ export function Header({
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="reports" className="text-xs md:text-sm">
               <span className="hidden sm:inline">Individual Report</span>
-              <span className="sm:hidden">Reports</span>
+              <span className="sm:hidden">Single Report</span>
             </TabsTrigger>
             <TabsTrigger value="comparison" className="text-xs md:text-sm">
               <span className="hidden sm:inline">Compare Reports</span>

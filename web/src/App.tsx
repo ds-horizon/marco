@@ -10,7 +10,7 @@ import { ComparisonBarChart } from './components/charts/comparison-bar-chart';
 import { IndividualReportSidebar } from './components/sidebar/IndividualReportSidebar';
 import { ComparisonPanelSidebar } from './components/sidebar/ComparisonPanelSidebar';
 import { Button } from './components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { useIsMobile } from './hooks/useMobile';
 
 import {
@@ -134,6 +134,7 @@ export function App() {
           setCurrentTab(tab);
           setIsMobileSidebarOpen(false);
         }}
+        onOpenSidebar={() => setIsMobileSidebarOpen(true)}
       />
       <div
         className={cn(
@@ -172,18 +173,6 @@ export function App() {
               tooltipText={tooltipText}
               handleCompare={generateComparisonData}
             />
-          )}
-
-          {/* Mobile hamburger button */}
-          {isMobile && (
-            <Button
-              onClick={() => setIsMobileSidebarOpen(true)}
-              className="fixed top-6 left-4 z-50 md:hidden shadow-lg"
-              size="sm"
-              variant="outline"
-            >
-              <Menu className="h-4 w-4" />
-            </Button>
           )}
 
           {/* Mobile sidebar overlay */}
