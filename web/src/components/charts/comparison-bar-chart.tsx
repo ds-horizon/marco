@@ -155,19 +155,18 @@ export function ComparisonBarChart({
 
   return (
     <Card className={cn('w-full')}>
-      <CardHeader className="flex flex-row justify-between items-center flex-wrap gap-y-2">
-        <CardTitle className="text-xs md:text-base">{description}</CardTitle>
-        <div className="flex items-center space-x-2">
+      <CardHeader className="flex flex-col md:flex-row justify-center md:justify-between items-center text-center gap-y-2">
+        <CardTitle className="text-xs md:text-base text-center">
+          {description}
+        </CardTitle>
+        <div className="flex items-center space-x-2 justify-center">
           <span className="text-xs md:text-base">Mean Data</span>
           <Switch
             id="airplane-mode"
             checked={shouldShowMeanChart}
             onCheckedChange={setShouldShowMeanChart}
           />
-          <span className="text-sm md:text-base">Iteration Data</span>
-          {/*<Button onClick={hideComparisonPanel} variant={'ghost'}>*/}
-          {/*  <X strokeWidth={2} />*/}
-          {/*</Button>*/}
+          <span className="text-xs md:text-base">Iteration Data</span>
         </div>
       </CardHeader>
 
