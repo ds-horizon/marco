@@ -28,6 +28,7 @@ import { Switch } from '../ui/switch';
 const ComparisonChartCard = ({
   config,
   data,
+  shouldShowMeanChart,
 }: {
   config: Record<
     string,
@@ -37,6 +38,7 @@ const ComparisonChartCard = ({
     }
   >;
   data: Record<string, string | number>[];
+  shouldShowMeanChart: boolean;
 }) => {
   return (
     <CardContent>
@@ -47,7 +49,11 @@ const ComparisonChartCard = ({
         <ResponsiveContainer width="100%" height="100%">
           <BarChart accessibilityLayer data={data}>
             <CartesianGrid vertical horizontal />
-            <YAxis dataKey="maxHeight" tick={{ fontSize: 12 }} />
+            {shouldShowMeanChart ? (
+              <YAxis dataKey="maxHeight" tick={{ fontSize: 12 }} />
+            ) : (
+              <YAxis tick={{ fontSize: 12 }} />
+            )}
             <XAxis
               dataKey="type"
               tickLine={false}
@@ -173,6 +179,7 @@ export function ComparisonBarChart({
       {shouldShowMeanChart ? (
         <div className={'border-2'}>
           <ComparisonChartCard
+            shouldShowMeanChart={shouldShowMeanChart}
             data={chartDataWithMaxKey}
             config={chartConfig}
           />
@@ -180,6 +187,7 @@ export function ComparisonBarChart({
       ) : (
         <div className={'border-2'}>
           <ComparisonChartCard
+            shouldShowMeanChart={shouldShowMeanChart}
             data={chartWithMeanData}
             config={chartConfigWithMean}
           />

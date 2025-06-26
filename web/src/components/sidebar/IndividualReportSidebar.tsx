@@ -65,17 +65,13 @@ export const IndividualReportSidebar = ({
       backgroundColor: '#18181b',
       borderColor: '#27272a',
       color: '#fff',
-      width: 240,
-      minWidth: 240,
-      maxWidth: 240,
+      width: '100%',
     }),
     menu: (provided) => ({
       ...provided,
       backgroundColor: '#18181b',
       color: '#fff',
-      width: 240,
-      minWidth: 240,
-      maxWidth: 240,
+      width: '100%', // updated
     }),
     option: (provided, state) => ({
       ...provided,
@@ -130,33 +126,28 @@ export const IndividualReportSidebar = ({
           'mb-12',
           'flex',
           'flex-col',
-          'items-center',
           'justify-between',
           'gap-2',
           'z-40'
         )}
       >
-        <div className="space-y-4">
-          <div>
-            <h2 className="text-sm font-medium mb-2">Select Report</h2>
-            <Select
-              options={reportOptions}
-              value={reportOptions.find(
-                (option) => option.value === selectedReport
-              )}
-              onChange={(
-                selectedOption: SingleValue<{ value: number; label: string }>
-              ) => {
-                if (selectedOption) {
-                  onReportChange(selectedOption.value);
-                }
-              }}
-              placeholder="Select report"
-              classNamePrefix="react-select"
-              styles={customSelectStyles}
-            />
-          </div>
-        </div>
+        <h2 className="text-sm font-medium mb-2">Select Report</h2>
+        <Select
+          options={reportOptions}
+          value={reportOptions.find(
+            (option) => option.value === selectedReport
+          )}
+          onChange={(
+            selectedOption: SingleValue<{ value: number; label: string }>
+          ) => {
+            if (selectedOption) {
+              onReportChange(selectedOption.value);
+            }
+          }}
+          placeholder="Select report"
+          classNamePrefix="react-select"
+          styles={customSelectStyles}
+        />
       </div>
 
       <div className="px-2">
