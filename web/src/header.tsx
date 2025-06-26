@@ -22,6 +22,7 @@ export function Header({
     <header
       className={cn(
         'p-2 md:p-6',
+        'px-4',
         'backdrop-blur',
         'bg-background/80',
         'fixed',
@@ -30,14 +31,15 @@ export function Header({
         'left-0',
         'z-50',
         'border-b',
-        'h-20',
+        'h-auto',
         'flex',
-        'items-center'
+        'flex-col',
+        'gap-2'
       )}
     >
-      <nav className="w-full flex items-center justify-between md:pl-0">
-        {isMobile ? (
-          <div className="flex items-center gap-2 ml-4">
+      {isMobile ? (
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <Button
               onClick={onOpenSidebar}
               className="shadow"
@@ -48,39 +50,51 @@ export function Header({
             </Button>
             <Icon />
           </div>
-        ) : (
+          <a href="https://github.com/dream-sports-labs/marco" target="_blank">
+            <img src={favicon} alt="Dream11 Logo" width={24} height={24} />
+          </a>
+        </div>
+      ) : (
+        <div className="w-full flex items-center justify-between">
           <Logo />
-        )}
+          <Tabs
+            value={currentTab}
+            onValueChange={(value) =>
+              onTabChange(value as 'reports' | 'comparison')
+            }
+            className="w-auto"
+          >
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="reports" className="text-xs md:text-sm">
+                Individual Report
+              </TabsTrigger>
+              <TabsTrigger value="comparison" className="text-xs md:text-sm">
+                Compare Reports
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+          <PoweredBy repo="marco" />
+        </div>
+      )}
+
+      {isMobile && (
         <Tabs
           value={currentTab}
           onValueChange={(value) =>
             onTabChange(value as 'reports' | 'comparison')
           }
-          className="w-auto"
+          className="w-full"
         >
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="reports" className="text-xs md:text-sm">
-              <span className="hidden sm:inline">Individual Report</span>
-              <span className="sm:hidden">Individual</span>
+          <TabsList className="grid grid-cols-2 w-full">
+            <TabsTrigger value="reports" className="text-s">
+              Individual Report
             </TabsTrigger>
-            <TabsTrigger value="comparison" className="text-xs md:text-sm">
-              <span className="hidden sm:inline">Compare Reports</span>
-              <span className="sm:hidden">Compare</span>
+            <TabsTrigger value="comparison" className="text-s">
+              Compare Report
             </TabsTrigger>
           </TabsList>
         </Tabs>
-
-        {isMobile ? (
-          <a
-            href={`https://github.com/dream-sports-labs/marco`}
-            target="_blank"
-          >
-            <img src={favicon} alt={'Dream11 Logo'} width={24} height={24} />
-          </a>
-        ) : (
-          <PoweredBy repo="marco" />
-        )}
-      </nav>
+      )}
     </header>
   );
 }

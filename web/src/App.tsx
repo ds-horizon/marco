@@ -247,10 +247,10 @@ export function App() {
           )}
 
           <main className="p-4 pt-24">
-            <div className="w-full">
+            <div className="w-full py-2">
               {currentTab === 'reports' ? (
                 selectedIndividualReport >= 0 ? (
-                  <div className="overflow-y-auto max-h-[calc(100vh-150px)] p-2 md:p-2 w-full">
+                  <div className="overflow-y-auto max-h-[calc(100vh-150px)] w-full">
                     <ReportInsightsCard
                       data={reportEntries[selectedIndividualReport].data}
                       uniqueTagsWithCount={

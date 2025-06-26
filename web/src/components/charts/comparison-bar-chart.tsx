@@ -177,7 +177,7 @@ export function ComparisonBarChart({
       </CardHeader>
 
       {shouldShowMeanChart ? (
-        <div className={'border-2'}>
+        <div>
           <ComparisonChartCard
             shouldShowMeanChart={shouldShowMeanChart}
             data={chartDataWithMaxKey}
@@ -185,7 +185,7 @@ export function ComparisonBarChart({
           />
         </div>
       ) : (
-        <div className={'border-2'}>
+        <div>
           <ComparisonChartCard
             shouldShowMeanChart={shouldShowMeanChart}
             data={chartWithMeanData}
