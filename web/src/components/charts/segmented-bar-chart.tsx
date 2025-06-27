@@ -30,15 +30,15 @@ export const SegmentedBarChart = ({
   uniqueTagsWithCount,
   config,
 }: SegmentedBarChartProps) => {
-  function roundToNiceMax(value: number): number {
-    if (value <= 1000) return Math.ceil(value / 100) * 100;
-    if (value <= 5000) return Math.ceil(value / 500) * 500;
-    if (value <= 10000) return Math.ceil(value / 1000) * 1000;
-    if (value <= 50000) return Math.ceil(value / 5000) * 5000;
-    return Math.ceil(value / 10000) * 10000;
-  }
-  const maxValue = Math.max(...formattedData.map((d) => d.total));
-  const roundedMax = roundToNiceMax(maxValue);
+  // function roundToNiceMax(value: number): number {
+  //   if (value <= 1000) return Math.ceil(value / 100) * 100;
+  //   if (value <= 5000) return Math.ceil(value / 500) * 500;
+  //   if (value <= 10000) return Math.ceil(value / 1000) * 1000;
+  //   if (value <= 50000) return Math.ceil(value / 5000) * 5000;
+  //   return Math.ceil(value / 10000) * 10000;
+  // }
+  // const maxValue = Math.max(...formattedData.map((d) => d.total));
+  // const roundedMax = roundToNiceMax(maxValue);
   return (
     <ChartContainer
       config={config}
@@ -46,7 +46,7 @@ export const SegmentedBarChart = ({
     >
       <BarChart accessibilityLayer data={formattedData}>
         <CartesianGrid vertical horizontal />
-        <YAxis dataKey="total" domain={[0, roundedMax]} />
+        <YAxis dataKey="total" />
         <XAxis dataKey="itr" />
         <ChartTooltip content={<ChartTooltipContent hideLabel />} />
         <ChartLegend content={<ChartLegendContent className="flex-wrap" />} />
