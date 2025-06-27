@@ -1,122 +1,121 @@
-[
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739885853280" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739885853581" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739885856360" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739885856658" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739885862692" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739885862970" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739885866606" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739885867039" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739885874189" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739885874510" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739885877227" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739885877513" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739885884406" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739885884681" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739885888053" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739885888358" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739885902700" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739885903007" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739885906787" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739885907203" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739885915366" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739885915658" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739885919417" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739885919690" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739885927579" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739885927882" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739885930915" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739885931281" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739885939761" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739885940083" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739885942945" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739885943191" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739885952263" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739885952552" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739885955677" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739885955947" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739885964053" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739885964396" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739885967723" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739885968136" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739885976271" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739885976558" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739885980258" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739885980610" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739885987790" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739885988061" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739885991590" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739885991862" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739885999019" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739885999278" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739886003989" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739886004399" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739886011587" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739886011876" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739886016014" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739886016449" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739886023178" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739886023465" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739886026133" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739886026492" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739886034365" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739886034668" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739886037544" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739886037795" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739886052134" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739886052393" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739886056141" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739886056376" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739886063827" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739886064094" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739886067259" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739886067670" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739886075423" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739886075683" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739886079323" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739886079667" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739886086568" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739886086832" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739886090105" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739886090466" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739886098459" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739886098745" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739886101703" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739886101975" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739886217700" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739886217971" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739886221298" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739886221682" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739886228631" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739886228887" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739886231865" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739886232244" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739886239433" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739886239705" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739886243076" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739886243456" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739886250525" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739886250792" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739886254141" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739886254551" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739886263174" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739886263486" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739886266708" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739886267084" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739886275354" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739886275697" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739886278893" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739886279237" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739886286494" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739886286763" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739886289653" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739886289918" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739886297218" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739886297495" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739886301983" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739886302390" },
-  { "tagName": "JS_Tab_Load_Start", "timestamp": "1739886311083" },
-  { "tagName": "JS_Tab_Load_End", "timestamp": "1739886311356" },
-  { "tagName": "JS_Tab_Album_Pressed", "timestamp": "1739886315131" },
-  { "tagName": "JS_Tab_Album_Loaded", "timestamp": "1739886315498" }
-]
+[{
+  "tagName": "AppLaunchStart",
+  "timestamp": "1748581387085"
+}, {
+  "tagName": "Load_Time",
+  "timestamp": "1748581387445"
+}, {
+  "tagName": "AppLaunchStart",
+  "timestamp": "1748581389622"
+}, {
+  "tagName": "Load_Time",
+  "timestamp": "1748581389994"
+}, {
+  "tagName": "AppLaunchStart",
+  "timestamp": "1748581392988"
+}, {
+  "tagName": "Load_Time",
+  "timestamp": "1748581393332"
+}, {
+  "tagName": "AppLaunchStart",
+  "timestamp": "1748581395509"
+}, {
+  "tagName": "Load_Time",
+  "timestamp": "1748581395844"
+}, {
+  "tagName": "AppLaunchStart",
+  "timestamp": "1748581397951"
+}, {
+  "tagName": "Load_Time",
+  "timestamp": "1748581398278"
+}, {
+  "tagName": "AppLaunchStart",
+  "timestamp": "1748581400547"
+}, {
+  "tagName": "Load_Time",
+  "timestamp": "1748581400889"
+}, {
+  "tagName": "AppLaunchStart",
+  "timestamp": "1748581403015"
+}, {
+  "tagName": "Load_Time",
+  "timestamp": "1748581403369"
+}, {
+  "tagName": "AppLaunchStart",
+  "timestamp": "1748581405477"
+}, {
+  "tagName": "Load_Time",
+  "timestamp": "1748581405809"
+}, {
+  "tagName": "AppLaunchStart",
+  "timestamp": "1748581407840"
+}, {
+  "tagName": "Load_Time",
+  "timestamp": "1748581408170"
+}, {
+  "tagName": "AppLaunchStart",
+  "timestamp": "1748581410483"
+}, {
+  "tagName": "Load_Time",
+  "timestamp": "1748581410814"
+}, {
+  "tagName": "AppLaunchStart",
+  "timestamp": "1748581413056"
+}, {
+  "tagName": "Load_Time",
+  "timestamp": "1748581413390"
+}, {
+  "tagName": "AppLaunchStart",
+  "timestamp": "1748581415574"
+}, {
+  "tagName": "Load_Time",
+  "timestamp": "1748581415922"
+}, {
+  "tagName": "AppLaunchStart",
+  "timestamp": "1748581418195"
+}, {
+  "tagName": "Load_Time",
+  "timestamp": "1748581418525"
+}, {
+  "tagName": "AppLaunchStart",
+  "timestamp": "1748581420866"
+}, {
+  "tagName": "Load_Time",
+  "timestamp": "1748581421203"
+}, {
+  "tagName": "AppLaunchStart",
+  "timestamp": "1748581423307"
+}, {
+  "tagName": "Load_Time",
+  "timestamp": "1748581423637"
+}, {
+  "tagName": "AppLaunchStart",
+  "timestamp": "1748581426015"
+}, {
+  "tagName": "Load_Time",
+  "timestamp": "1748581426348"
+}, {
+  "tagName": "AppLaunchStart",
+  "timestamp": "1748581428693"
+}, {
+  "tagName": "Load_Time",
+  "timestamp": "1748581429033"
+}, {
+  "tagName": "AppLaunchStart",
+  "timestamp": "1748581431156"
+}, {
+  "tagName": "Load_Time",
+  "timestamp": "1748581431492"
+}, {
+  "tagName": "AppLaunchStart",
+  "timestamp": "1748581433721"
+}, {
+  "tagName": "Load_Time",
+  "timestamp": "1748581434070"
+}, {
+  "tagName": "AppLaunchStart",
+  "timestamp": "1748581436355"
+}, {
+  "tagName": "Load_Time",
+  "timestamp": "1748581436686"
+}]

@@ -2,19 +2,19 @@
   "reports": [
     {
       "path": "mock/log1.json",
-      "reportName": "Native OnePlus(HighEnd)"
+      "reportName": "Report_1"
     },
     {
       "path": "mock/log2.json",
-      "reportName": "JS OnePlus(HighEnd)"
+      "reportName": "Report_2"
     },
     {
       "path": "mock/log3.json",
-      "reportName": "Native Vivo(LowEnd)"
+      "reportName": "Report_3"
     },
     {
       "path": "mock/log4.json",
-      "reportName": "JS Vivo(LowEnd)"
+      "reportName": "Report_4"
     },
     {
       "path": "mock/newArch.json",
