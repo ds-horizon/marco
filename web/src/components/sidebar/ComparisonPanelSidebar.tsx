@@ -170,7 +170,13 @@ export function ComparisonPanelSidebar({
             }}
             placeholder="Select reports"
             classNamePrefix="react-select"
-            styles={customSelectStyles}
+            styles={{
+              ...customSelectStyles,
+              menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+            }}
+            menuPortalTarget={
+              typeof window !== 'undefined' ? document.body : null
+            }
           />
         </div>
 
