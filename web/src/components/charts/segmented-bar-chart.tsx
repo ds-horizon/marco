@@ -30,6 +30,7 @@ export const SegmentedBarChart = ({
   uniqueTagsWithCount,
   config,
 }: SegmentedBarChartProps) => {
+  // To Do: round off logic for y axis
   // function roundToNiceMax(value: number): number {
   //   if (value <= 1000) return Math.ceil(value / 100) * 100;
   //   if (value <= 5000) return Math.ceil(value / 500) * 500;
