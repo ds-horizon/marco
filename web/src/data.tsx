@@ -23,7 +23,7 @@ const data: MultipleReportData[] = [];
 const manifestPath =
   process.env.NODE_ENV === 'development'
     ? '/mock/manifest.json' // Dev mode (served by dev server)
-    : '/assets/manifest.json'; // Prod mode (bundled into `dist`)
+    : './assets/manifest.json'; // Prod mode (bundled into `dist`)
 
 export const fetchDataFromSource = async (
   path: string
