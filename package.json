@@ -1,7 +1,7 @@
 {
   "name": "@d11/marco",
-  "version": "0.0.9",
-  "description": "Track and optimize your app's performance with ease.",
+  "version": "0.0.12",
+  "description": "Track and optimize your app’s performance with ease.",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",
