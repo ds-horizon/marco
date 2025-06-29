@@ -138,7 +138,8 @@ export function ComparisonPanelSidebar({
         'pt-24',
         'pb-4',
         'px-2',
-        'border-r'
+        'border-r',
+        'hidden md:block'
       )}
     >
       <div className="space-y-4">
@@ -169,7 +170,13 @@ export function ComparisonPanelSidebar({
             }}
             placeholder="Select reports"
             classNamePrefix="react-select"
-            styles={customSelectStyles}
+            styles={{
+              ...customSelectStyles,
+              menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+            }}
+            menuPortalTarget={
+              typeof window !== 'undefined' ? document.body : null
+            }
           />
         </div>
 

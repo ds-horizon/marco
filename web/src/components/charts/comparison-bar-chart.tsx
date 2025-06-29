@@ -1,6 +1,13 @@
 'use client';
 
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+} from 'recharts';
 
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import {
@@ -21,6 +28,7 @@ import { Switch } from '../ui/switch';
 const ComparisonChartCard = ({
   config,
   data,
+  shouldShowMeanChart,
 }: {
   config: Record<
     string,
@@ -30,6 +38,7 @@ const ComparisonChartCard = ({
     }
   >;
   data: Record<string, string | number>[];
+  shouldShowMeanChart: boolean;
 }) => {
   return (
     <CardContent>
@@ -37,24 +46,32 @@ const ComparisonChartCard = ({
         config={config}
         className={cn('min-h-[200px]', 'h-[40vh]', 'w-full')}
       >
-        <BarChart accessibilityLayer data={data}>
-          <CartesianGrid vertical horizontal />
-          <YAxis dataKey="maxHeight" />
-          <XAxis
-            dataKey="type"
-            tickLine={false}
-            tickMargin={10}
-            axisLine={false}
-          />
-          <ChartTooltip
-            cursor={false}
-            content={<ChartTooltipContent indicator="dashed" />}
-          />
-          <ChartLegend content={<ChartLegendContent className="flex-wrap" />} />
-          {Object.keys(config).map((key) => {
-            return <Bar dataKey={key} fill={config[key].color} />;
-          })}
-        </BarChart>
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart accessibilityLayer data={data}>
+            <CartesianGrid vertical horizontal />
+            {shouldShowMeanChart ? (
+              <YAxis dataKey="maxHeight" tick={{ fontSize: 12 }} />
+            ) : (
+              <YAxis tick={{ fontSize: 12 }} />
+            )}
+            <XAxis
+              dataKey="type"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+            />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent indicator="dashed" />}
+            />
+            <ChartLegend
+              content={<ChartLegendContent className="flex-wrap" />}
+            />
+            {Object.keys(config).map((key) => {
+              return <Bar dataKey={key} fill={config[key].color} />;
+            })}
+          </BarChart>
+        </ResponsiveContainer>
       </ChartContainer>
     </CardContent>
   );
@@ -144,29 +161,37 @@ export function ComparisonBarChart({
 
   return (
     <Card className={cn('w-full')}>
-      <CardHeader className={cn('flex-row', 'justify-between', 'items-center')}>
-        <CardTitle>{description}</CardTitle>
-        <div className="flex items-center space-x-2">
-          <span>Mean Data</span>
+      <CardHeader className="flex flex-col md:flex-row justify-center md:justify-between items-center text-center gap-y-2">
+        <CardTitle className="text-xs md:text-base text-center">
+          {description}
+        </CardTitle>
+        <div className="flex items-center space-x-2 justify-center">
+          <span className="text-xs md:text-base">Mean Data</span>
           <Switch
             id="airplane-mode"
             checked={shouldShowMeanChart}
             onCheckedChange={setShouldShowMeanChart}
           />
-          <span>Iteration Data</span>
-          {/*<Button onClick={hideComparisonPanel} variant={'ghost'}>*/}
-          {/*  <X strokeWidth={2} />*/}
-          {/*</Button>*/}
+          <span className="text-xs md:text-base">Iteration Data</span>
         </div>
       </CardHeader>
 
       {shouldShowMeanChart ? (
-        <ComparisonChartCard data={chartDataWithMaxKey} config={chartConfig} />
+        <div>
+          <ComparisonChartCard
+            shouldShowMeanChart={shouldShowMeanChart}
+            data={chartDataWithMaxKey}
+            config={chartConfig}
+          />
+        </div>
       ) : (
-        <ComparisonChartCard
-          data={chartWithMeanData}
-          config={chartConfigWithMean}
-        />
+        <div>
+          <ComparisonChartCard
+            shouldShowMeanChart={shouldShowMeanChart}
+            data={chartWithMeanData}
+            config={chartConfigWithMean}
+          />
+        </div>
       )}
 
       <CardContent>

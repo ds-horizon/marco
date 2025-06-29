@@ -13,7 +13,8 @@ export const EmptyPage = ({ content }: { content: string }) => {
         'flex',
         'items-center',
         'justify-center',
-        'text-2xl'
+        'md:text-2xl',
+        'text-sm'
       )}
     >
       {content}
