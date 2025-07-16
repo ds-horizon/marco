@@ -11,6 +11,10 @@ class PerformanceTrackerViewImpl {
         view.isTrackingEnabled = value
     }
 
+    fun setLogAll(view: PerformanceTrackerView, value: Boolean) {
+            view.logAll = value
+        }
+
     fun setTagName(view: PerformanceTrackerView, value: String?) {
         view.tagName = value ?: ""
     }

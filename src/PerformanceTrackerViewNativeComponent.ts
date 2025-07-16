@@ -5,7 +5,7 @@ import type {
   Double,
 } from 'react-native/Libraries/Types/CodegenTypes';
 
-interface FinishEventType {
+export interface FinishEventType {
   tagName: string;
   drawTime: Double;
   renderTime: Double;
@@ -17,6 +17,7 @@ export interface NativeProps extends ViewProps {
   eventTimeStamp?: Double;
   meta?: ReadonlyArray<Readonly<{ name: string; value: string }>>;
   onTrackingEnd?: DirectEventHandler<FinishEventType>;
+  logAll?: boolean;
 }
 
 export default codegenNativeComponent<NativeProps>('PerformanceTrackerView');

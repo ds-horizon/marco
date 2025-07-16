@@ -13,11 +13,12 @@ class PerformanceTrackerView(context: Context) : ReactViewGroup(context) {
     var isTrackingEnabled = true;
     var flag = true
     var meta: ReadableMap? = null;
+    var logAll = false
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        if (isTrackingEnabled && flag) {
+        if (isTrackingEnabled && (flag||logAll)) {
             flag = false
             val reactContext: ReactContext = context as ReactContext
             val reactTag: Int = id

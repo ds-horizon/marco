@@ -25,6 +25,11 @@ class PerformanceTrackerViewManager : ViewGroupManager<PerformanceTrackerView>()
         performanceTrackerViewImpl.setIsEnabled(view, value)
     }
 
+    @ReactProp(name = "logAll")
+    fun setLogAll(view: PerformanceTrackerView, value: Boolean) {
+        performanceTrackerViewImpl.setLogAll(view, value)
+    }
+
     @ReactProp(name = "tagName")
     fun setTagName(view: PerformanceTrackerView, value: String?) {
         performanceTrackerViewImpl.setTagName(view, value)
