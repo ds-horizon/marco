@@ -35,6 +35,13 @@ class PerformanceTrackerViewManager :
         }
     }
 
+    @ReactProp(name = "logAll")
+    override fun setLogAll(view: PerformanceTrackerView?, value: Boolean) {
+            if (view != null) {
+                performanceTrackerViewImpl.setLogAll(view, value)
+            }
+        }
+
     @ReactProp(name = "tagName")
     override fun setTagName(view: PerformanceTrackerView?, value: String?) {
         if (view != null && value != null) {
