@@ -209,8 +209,9 @@ object PerformanceTrackerWriter {
         return null
     }
 
-    private fun convertReadableMapToJson(readableMap: ReadableMap): JSONObject {
+    private fun convertReadableMapToJson(readableMap: ReadableMap?): JSONObject {
         val jsonObject = JSONObject()
+        if(readableMap == null ) return JSONObject()
         val iterator = readableMap.keySetIterator()
         while (iterator.hasNextKey()) {
             val key = iterator.nextKey()
@@ -241,8 +242,9 @@ object PerformanceTrackerWriter {
         return jsonObject
     }
 
-    private fun convertReadableArrayToJson(readableArray: ReadableArray): JSONArray {
+    private fun convertReadableArrayToJson(readableArray: ReadableArray?): JSONArray {
         val jsonArray = JSONArray()
+        if(readableArray == null) return JSONArray()
         for (i in 0 until readableArray.size()) {
             val value = readableArray.getDynamic(i)
             when (value.type) {

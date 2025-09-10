@@ -193,6 +193,11 @@
     },
     "android": {
       "javaPackageName": "com.performancetracker"
+    },
+    "ios": {
+      "componentProvider": {
+        "PerformanceTrackerView": "PerformanceTrackerView"
+      }
     }
   },
   "create-react-native-library": {
