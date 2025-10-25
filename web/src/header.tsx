@@ -50,7 +50,7 @@ export function Header({
             </Button>
             <Icon />
           </div>
-          <a href="https://github.com/dream-sports-labs/marco" target="_blank">
+          <a href="https://github.com/ds-horizon/marco" target="_blank">
             <img src={favicon} alt="Dream11 Logo" width={24} height={24} />
           </a>
         </div>

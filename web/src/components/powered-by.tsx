@@ -8,7 +8,7 @@ export function PoweredBy({ size = 32, repo }: PoweredByProps) {
   const width = (570 / 99) * size;
 
   return (
-    <a href={`https://github.com/dream-sports-labs/${repo}`} target="_blank">
+    <a href={`https://github.com/ds-horizon/${repo}`} target="_blank">
       <svg
         width={width}
         height={height}

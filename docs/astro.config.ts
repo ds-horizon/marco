@@ -26,7 +26,7 @@ export default defineConfig({
       replacesTitle: true,
     },
     social: {
-      github: 'https://github.com/dream-sports-labs/marco',
+      github: 'https://github.com/ds-horizon/marco',
       discord: 'https://discord.gg/xYP8EZ9U',
     },
     sidebar: [
