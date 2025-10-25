@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.authors      = package["author"]
 
   s.platforms    = { :ios => min_ios_version_supported }
-  s.source       = { :git => "https://github.com/dream-sports-labs/react-native-performance-tracker.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/ds-horizon/react-native-performance-tracker.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,mm,cpp}"
   s.module_name = "PerformanceTracker"

@@ -45,12 +45,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dream-sports-labs/marco.git"
+    "url": "git+https://github.com/ds-horizon/marco.git"
   },
-  "author": "Dream Sports Labs <dreamsportslabs@dream11.com> (https://github.com/dream-sports-labs)",
+  "author": "Dream Sports Labs <dreamsportslabs@dream11.com> (https://github.com/ds-horizon)",
   "license": "(MIT AND Apache-2.0)",
   "bugs": {
-    "url": "https://github.com/dream-sports-labs/marco/issues"
+    "url": "https://github.com/ds-horizon/marco/issues"
   },
   "homepage": "https://marco.dreamsportslabs.com",
   "publishConfig": {
