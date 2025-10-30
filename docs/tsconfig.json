@@ -1,22 +1,8 @@
 {
-  "extends": ["astro/tsconfigs/strict"],
-  "include": ["**/*.ts", "**/*.tsx", ".astro/types.d.ts"],
-  "exclude": ["node_modules", "dist", ".astro"],
-  "files": ["astro.config.ts", "global.d.ts"],
+  // This file is not used in compilation. It is here just for a nice editor experience.
+  "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
-    "strict": true,
-    "skipDefaultLibCheck": true,
-    "skipLibCheck": true,
-    "noEmit": true,
-    "composite": false,
-    "target": "ESNext",
-    "moduleResolution": "bundler",
-    "jsx": "react-jsx",
-    "jsxImportSource": "react",
-    "baseUrl": ".",
-    "rootDir": ".",
-    "paths": {
-      "~/*": ["src/*"]
-    }
-  }
+    "baseUrl": "."
+  },
+  "exclude": [".docusaurus", "build"]
 }

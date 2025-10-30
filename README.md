@@ -1,4 +1,4 @@
-<img src="docs/public/banner.png" width="100%" alt="Marco banner" />
+<img src="docs/static/img/banner.png" width="100%" alt="Marco banner" />
 
 <div align="center">
 
