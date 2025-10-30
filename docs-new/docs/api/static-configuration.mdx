@@ -1,0 +1,36 @@
+---
+title: 'Static Configuration'
+sidebar_position: 0
+---
+
+Static configuration is done using `configure` function.
+
+#### **`configure`**
+
+The `configure` functions accepts a single argument an object with the following property:
+
+- `persistToFile`: Enable this option to save performance logs to a file on the device or simulator.
+
+  - For **android** logs are saved at `/sdcard/Documents/PerformanceTracker/log.json`.
+
+  - For **iOS** logs are saved at `Documents/PerformanceTracker/log.json`.
+
+For example:
+
+```tsx
+import { PerformanceTracker } from '@d11/marco';
+
+PerformanceTracker.configure({
+  persistToFile: true, // Logs will persist to a file.
+});
+```
+
+:::tip
+Enable `persistToFile` to save logs for better visualization in our [web panel](/api/cli/visualization).
+:::
+
+:::note
+
+- `persistToFile` is by default set to `false`.
+- This will not change the logging behaviour of [Native Event Logging](/api/native-event) methods.
+  :::

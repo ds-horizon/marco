@@ -1,0 +1,113 @@
+---
+title: 'Draw Time Tracking'
+sidebar_position: 0
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Marco tracks when UI components are drawn on screen by hooking into platform-specific lifecycle methods. This allows measuring the time between component creation in JavaScript and when it becomes visible to users, helping identify performance bottlenecks.
+
+## High-Level Architecture
+
+The following diagram shows the core components involved in draw time tracking:
+
+```mermaid
+graph TD
+    A[JavaScript Component] --> B[Native View Creation]
+    B --> C[Draw Time Detection]
+    C --> D[Event Dispatch]
+    D --> E[JavaScript Handler]
+    C --> F[Performance Store]
+
+    style A fill:#f5f5f5
+    style B fill:#e6f7ff
+    style C fill:#f0f5ff
+    style D fill:#fff7e6
+    style E fill:#f9f0ff
+    style F fill:#f9f0ff
+```
+
+**Flow Description:**
+
+1. **JavaScript Component** - Wrapped with PerformanceTracker
+2. **Native View Creation** - Platform-specific rendering begins
+3. **Draw Time Detection** - Calculate render time
+4. **Event Dispatch** - onTrackingEnd callback triggered
+5. **Performance Store** - Store metrics
+
+## Implementation Details
+
+Marco uses different approaches for Android and iOS to detect when components are drawn on screen:
+
+- **Android**: Uses the `onDraw()` method of the `PerformanceTrackerView` class
+- **iOS**: Uses the `didMoveToWindow()` method when a view is added to the window hierarchy
+
+Both implementations ensure minimal overhead by only tracking the first draw of components.
+
+## Detailed Component Interaction
+
+The following shows the complete flow of draw time tracking, from JavaScript initialization to final event handling:
+
+```mermaid
+graph TB
+    subgraph "JavaScript Layer"
+        A[Initialize PerformanceTracker] --> B[Capture timestamp]
+    end
+
+    subgraph "Native Bridge"
+        C[Bridge Communication]
+    end
+
+    subgraph "Native Layer"
+        D[Create native view] --> E[Platform draw detection]
+        E --> F[Android: onDraw]
+        E --> G[iOS: didMoveToWindow]
+        F --> H[Capture draw time]
+        G --> H
+        H --> I[Calculate render time]
+    end
+
+    subgraph "Storage Layer"
+        J[Store metrics]
+        K[Optional logging]
+    end
+
+    subgraph "Event Layer"
+        L[Dispatch event]
+        M[Handle in JavaScript]
+    end
+
+    B --> C
+    C --> D
+    I --> J
+    I --> K
+    I --> L
+    L --> M
+
+    style A fill:#f5f5f5
+    style B fill:#f5f5f5
+    style C fill:#e6f7ff
+    style D fill:#f0f5ff
+    style E fill:#f0f5ff
+    style F fill:#f0f5ff
+    style G fill:#f0f5ff
+    style H fill:#f0f5ff
+    style I fill:#f0f5ff
+    style J fill:#f9f0ff
+    style K fill:#f9f0ff
+    style L fill:#fff7e6
+    style M fill:#fff7e6
+```
+
+:::note
+Both platforms follow a similar approach but use platform-specific lifecycle methods to detect when a component is drawn on screen.
+:::
+
+### Key Points
+
+1. **JavaScript Initialization**: The PerformanceTracker component captures the initial timestamp when the component is created
+2. **Native Bridge**: Communication passes through React Native's bridge to native code
+3. **Platform Detection**: Each platform uses its native lifecycle methods to detect when drawing occurs
+4. **Metrics Storage**: Performance data is stored for later retrieval and analysis
+5. **Event Callback**: Optional callback allows real-time handling of performance metrics in JavaScript

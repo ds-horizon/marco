@@ -1,0 +1,82 @@
+---
+title: 'Performance Tracker'
+sidebar_position: 1
+---
+
+To track screen rendering and draw times, wrap the desired screen or component with `PerformanceTracker`. This will automatically capture render and draw times.
+
+For example:
+
+```tsx
+import { PerformanceTracker } from '@d11/marco';
+
+const MyScreen = () => {
+  return (
+    <PerformanceTracker
+      tagName="MyScreen"
+      onTrackingEnd={(event) => {
+        // 'Draw Timestamp:', event.nativeEvent.drawTime
+        // 'Render Timestamp:', event.nativeEvent.renderTime
+      }}
+    >
+      {/* Screen content */}
+    </PerformanceTracker>
+  );
+};
+```
+
+##### Key Parameters
+
+- `tagName`: A unique identifier for the screen or component..
+- `isEnabled`: Enable or disable performance tracking.
+- `onTrackingEnd`: A callback function that provides draw and render times.
+
+### **Props**
+
+#### **Required Props**
+
+##### `tagName`
+
+A unique identifier for the screen or component being tracked.
+
+- **Type**: `string`
+
+---
+
+#### **Optional Props**
+
+##### `isEnabled`
+
+Enables or disables performance tracking.
+
+- **Type**: `boolean`
+- **Default**: `true`
+
+##### `eventTimeStamp`
+
+The timestamp for when the event is triggered.
+
+- **Type**: `number`
+- **Default**: `Date.now()`
+
+##### `onTrackingEnd`
+
+Callback triggered after the screen has finished rendering. The callback receives an object with the following properties:
+
+- `tagName`: The tag name of the tracked component.
+- `drawTime`: Timestamp when the component is drawn.
+- `renderTime`: The time taken to render the component.
+
+##### `meta`
+
+Additional data to pass to the tracker for customization.
+
+- **Type**: `Record<string, string>`
+
+##### `logAll` <span style={{fontSize: '0.75rem', background: '#d1fae5', color: '#065f46', padding: '0.25rem 0.5rem', borderRadius: '0.375rem', fontWeight: 500}}>Android Only</span>
+
+When `true`, logs every draw call.
+When `false`, logs only the first draw.
+
+- **Type**: `boolean`
+- **Default**: `false`
