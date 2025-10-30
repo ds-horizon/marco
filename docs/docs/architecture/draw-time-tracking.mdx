@@ -3,9 +3,6 @@ title: 'Draw Time Tracking'
 sidebar_position: 0
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 Marco tracks when UI components are drawn on screen by hooking into platform-specific lifecycle methods. This allows measuring the time between component creation in JavaScript and when it becomes visible to users, helping identify performance bottlenecks.
 
 ## High-Level Architecture
@@ -13,6 +10,7 @@ Marco tracks when UI components are drawn on screen by hooking into platform-spe
 The following diagram shows the core components involved in draw time tracking:
 
 ```mermaid
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontSize': '14px', 'primaryColor': '#e5e7eb', 'primaryTextColor': '#111827', 'lineColor': '#6b7280', 'tertiaryColor': '#f9fafb' } }}%%
 graph TD
     A[JavaScript Component] --> B[Native View Creation]
     B --> C[Draw Time Detection]
@@ -50,6 +48,7 @@ Both implementations ensure minimal overhead by only tracking the first draw of 
 The following shows the complete flow of draw time tracking, from JavaScript initialization to final event handling:
 
 ```mermaid
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontSize': '14px', 'primaryColor': '#e5e7eb', 'primaryTextColor': '#111827', 'lineColor': '#6b7280', 'tertiaryColor': '#f9fafb' } }}%%
 graph TB
     subgraph "JavaScript Layer"
         A[Initialize PerformanceTracker] --> B[Capture timestamp]

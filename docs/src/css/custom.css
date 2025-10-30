@@ -31,6 +31,38 @@ article,
   color: #e8e8e8 !important;
 }
 
+/* Mermaid diagram polish for readability */
+.mermaid svg {
+  max-width: 100%;
+}
+.mermaid .node rect,
+.mermaid .node polygon,
+.mermaid .node path {
+  rx: 10px;
+  ry: 10px;
+  stroke: rgba(255, 255, 255, 0.25) !important;
+  stroke-width: 1.25px !important;
+}
+.mermaid .label foreignObject {
+  color: #e8e8e8 !important;
+}
+.mermaid .edgePath path {
+  stroke: rgba(255, 255, 255, 0.3) !important;
+  stroke-width: 1.25px !important;
+}
+.mermaid .cluster rect {
+  stroke: rgba(255, 255, 255, 0.2) !important;
+  fill: rgba(255, 255, 255, 0.03) !important;
+  rx: 12px;
+  ry: 12px;
+}
+.mermaid .marker {
+  fill: rgba(255, 255, 255, 0.3) !important;
+}
+.mermaid .edgeLabel foreignObject {
+  background: transparent !important;
+}
+
 /* Dark mode only theme - Black with Green accents */
 :root,
 [data-theme='dark'] {
