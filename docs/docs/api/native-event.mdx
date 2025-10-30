@@ -1,0 +1,60 @@
+---
+title: 'Native Event Logging'
+sidebar_position: 3
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+The Native Event Logging allows you to track custom events directly from your **Android** and **iOS** apps using `PerformanceTracker`.
+This capability enables you to capture native event data, including timestamps and optional metadata, and log it for analysis. It works seamlessly across both platforms, providing flexibility in how you track performance and critical app events.
+
+#### Android
+
+```kotlin
+import com.performancetracker.PerformanceTracker
+
+// Basic usage: This will track the event with the name "EVENT_NAME" and the current timestamp.
+PerformanceTracker.track("EVENT_NAME", System.currentTimeMillis())
+
+// With metadata: This will track the event with the name "EVENT_NAME" and the current timestamp and metadata.
+PerformanceTracker.track("EVENT_NAME", System.currentTimeMillis(), meta)
+
+// With writeLogInFile: This will track the event with the name "EVENT_NAME" and the current timestamp and write the log to a file.
+// To write logs to a file, application context is required.
+PerformanceTracker.track("EVENT_NAME", System.currentTimeMillis(), meta, true, applicationContext)
+```
+
+**Arguments**
+
+- `tagName`: The identifier/tag for the event you want to track.
+- `timeStamp`: The timestamp of the event, represented in milliseconds.
+- `meta` (Optional): Additional metadata related to the event in ReadableMap format.
+- `writeLogInFile` (Optional): A boolean flag to determine if the log should be written to a file (true by default).
+- `context` (Optional): The Android context used when writing logs to a file.
+
+:::tip
+Enable `writeLogInFile` to save logs for better visualization in our [web panel](/api/cli/visualization).
+:::
+
+#### iOS
+
+```cpp
+#import "PerformanceTracker.h"
+
+[[PerformanceTracker sharedInstance] track:@"App_Startup"
+                            timestamp:(long long) [[NSDate date] timeIntervalSince1970] * 1000
+                            meta:@{@"key1": @"value1", @"key2": @"value2"}
+                            writeLogInFile:YES];
+```
+
+**Arguments**
+
+- `tagName`: The identifier/tag for the event you want to track.
+- `timestamp`: The timestamp of the event, represented in milliseconds since epoch.
+- `meta` (Optional): Additional metadata related to the event in NSDictionary format.
+- `writeLogInFile` (Optional): A boolean flag to determine if the log should be written to a file (YES by default).
+
+:::tip
+Enable `writeLogInFile` to save logs for better visualization in our [web panel](/api/cli/visualization).
+:::

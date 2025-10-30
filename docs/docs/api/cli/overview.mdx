@@ -1,0 +1,107 @@
+---
+title: 'Overview'
+sidebar_position: 0
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+The `marco` CLI tool facilitates the generation of performance reports and visualization of performance data for `Android` and `iOS` applications. It provides both command-line options and a configuration file, offering flexibility in managing and analyzing application performance.
+
+---
+
+## **Configuration File**
+
+To configure default values for the CLI tool, create a `marco.config.js` file in the root directory of project:
+
+```js
+// marco.config.js
+module.exports = {
+  android: {
+    packageName: 'com.example.app',
+    outputPath: './marco-reports/android',
+    dataDir: [
+      {
+        path: './marco-reports/android/log.json',
+        reportName: 'AndroidReport1',
+      },
+    ],
+    port: '8080',
+  },
+  ios: {
+    packageName: 'com.example.app',
+    outputPath: './marco-reports/ios',
+    dataDir: [
+      {
+        path: './marco-reports/ios/log.json',
+        reportName: 'iosReport1',
+      },
+    ],
+    port: '8080',
+  },
+};
+```
+
+:::tip Defaults
+
+- `outputPath` is `./marco-reports`
+- `dataDir` is `./marco-reports/log.json`
+  :::
+
+After creating the config file, one can run below commands to generate and visualize the performance data.
+
+Generate report:
+
+<Tabs groupId="package-manager">
+  <TabItem value="yarn" label="yarn">
+    ```sh
+    yarn marco generate --platform android
+
+    // ios
+    yarn marco generate --platform ios
+    ```
+
+  </TabItem>
+  <TabItem value="npm" label="npm">
+    ```sh
+    npm marco generate --platform android
+
+    // ios
+    npm marco generate --platform ios
+    ```
+
+  </TabItem>
+</Tabs>
+
+Visualize report:
+
+<Tabs groupId="package-manager">
+  <TabItem value="yarn" label="yarn">
+    ```sh
+    yarn marco visualize --platform android
+
+    // ios
+    yarn marco visualize --platform ios
+    ```
+
+  </TabItem>
+  <TabItem value="npm" label="npm">
+    ```sh
+    npm marco visualize --platform android
+
+    // ios
+    npm marco visualize --platform ios
+    ```
+
+  </TabItem>
+</Tabs>
+
+We can even run visualize with some other report file, without specifying the platform.
+
+```sh
+yarn marco visualize --dataDir ./my-report/log.json
+```
+
+:::note
+For more details on available commands and how to override config file values, see the [generate-report](/api/cli/generate-report) and [visualization](/api/cli/visualization) documentation.
+:::

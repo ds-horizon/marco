@@ -22,25 +22,33 @@ jobs:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
 
-      # Enable Corepack
-      - name: Enable Corepack
-        run: corepack enable
-
-      # Set up Yarn 4.6.0
-      - name: Set up Yarn 4.6.0
-        run: corepack prepare yarn@4.6.0 --activate
-
-      # Install D2 (diagram tool required by astro-d2)
-      - name: Install D2
+      # Enable Corepack and pin Yarn 4.6.0 first
+      - name: Enable Corepack and pin Yarn 4.6.0
         run: |
-          curl -fsSL https://d2lang.com/install.sh | sh -s --
-          
-      - name: Install, build, and upload your site
-        uses: withastro/action@v3
+          corepack enable
+          corepack prepare yarn@4.6.0 --activate
+
+      - name: Use Node.js from docs/.nvmrc
+        uses: actions/setup-node@v4
         with:
-          path: docs # The root location of your Astro project inside the repository
+          node-version-file: docs/.nvmrc
+          cache: yarn
+          cache-dependency-path: docs/yarn.lock
+
+      - name: Install dependencies
+        working-directory: docs
+        run: yarn install --immutable
+
+      - name: Build Docusaurus site
+        working-directory: docs
+        run: yarn build
         env:
           GOOGLE_ANALYTICS_TOKEN: ${{ secrets.GOOGLE_ANALYTICS_TOKEN }}
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/build
 
   deploy:
     needs: build
@@ -49,6 +57,8 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

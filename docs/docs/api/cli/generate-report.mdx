@@ -1,0 +1,34 @@
+---
+title: 'Generate Report'
+sidebar_position: 1
+---
+
+This command is needed when we want to use CLI to generate performance reports for `Android` or `iOS` applications, or to override the values in the config file.
+
+```bash
+yarn marco generate --help
+```
+
+```bash
+Usage: marco generate [options]
+
+Generate performance reports
+
+Options:
+  --platform <platform>    Specify platform: android or ios
+  --packageName <package>      Specify the package name (required)
+  -o, --outputPath <path>  Specify the output path for reports
+  -h, --help               display help for command
+```
+
+### Options
+
+- `--platform <platform>`: Specifies the platform to generate reports for (android or ios).
+- `--packageName <package>`: Specify the package name (required).
+- `-o, --outputPath <path>`: Defines where the generated performance reports will be saved (default: ./marco-reports).
+
+Example:
+
+```bash
+yarn marco generate --platform android --packageName com.example.app --outputPath ./custom-reports
+```
