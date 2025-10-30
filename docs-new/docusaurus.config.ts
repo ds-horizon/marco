@@ -75,7 +75,7 @@ const config: Config = {
       respectPrefersColorScheme: false,
     },
     navbar: {
-      title: 'Marco',
+      title: '',
       logo: {
         alt: 'Marco Logo',
         src: 'img/logo-dark.svg',
