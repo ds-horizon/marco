@@ -42,6 +42,11 @@ const sidebars: SidebarsConfig = {
       label: 'Architecture',
       items: ['architecture/draw-time-tracking'],
     },
+    {
+      type: 'category',
+      label: 'Showcase',
+      items: ['showcase/built-with-marco'],
+    },
   ],
 };
 
