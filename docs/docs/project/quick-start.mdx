@@ -1,0 +1,138 @@
+---
+title: 'Quick Start'
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import { Steps } from '@site/src/components/Steps';
+
+### Installation
+
+<Steps>
+
+<li>
+
+Add `marco` to project.
+
+<Tabs groupId="package-manager">
+  <TabItem value="yarn" label="yarn">
+    ```sh yarn add @d11/marco ```
+  </TabItem>
+  <TabItem value="npm" label="npm">
+    ```sh npm install @d11/marco ```
+  </TabItem>
+</Tabs>
+
+</li>
+
+<li>
+
+Wrap screen with `PerformanceTracker` to track the draw time of the screen, and use `track` to send custom markers.
+
+```tsx
+// Import the PerformanceTracker component
+import { PerformanceTracker } from '@d11/marco';
+
+// Configure PerformanceTracker to persist data on the device
+PerformanceTracker.configure({ persistToFile: true });
+
+const MyScreen = () => {
+  // Track specific actions
+  useEffect(() => {
+    PerformanceTracker.track('Screen_Mounted', Date.now());
+  }, []);
+
+  return (
+    // Wrap screen with PerformanceTracker to measure draw time
+    <PerformanceTracker tagName="Screen_Loaded">
+      {/* Screen content goes here */}
+      <TouchableOpacity onPress={handleOnPress}>
+        <Text>Click Me</Text>
+      </TouchableOpacity>
+    </PerformanceTracker>
+  );
+};
+```
+
+</li>
+
+<li>
+
+For instrumentation, you can choose [maestro](https://maestro.mobile.dev/platform-support/react-native) or [detox](https://wix.github.io/Detox/), or use any pre-configured instrumentation tool to run the iteration.
+
+</li>
+
+<li>
+
+Create a `marco.config.js` file at the root of project with the following sample config.
+
+```js
+// marco.config.js
+module.exports = {
+  android: {
+    packageName: 'com.example.app',
+    outputPath: './marco-reports/android',
+    dataDir: [
+      {
+        path: './marco-reports/android/log.json',
+        reportName: 'AndroidReport1',
+      },
+    ],
+    port: '8080',
+  },
+  ios: {
+    packageName: 'com.example.app',
+    outputPath: './marco-reports/ios',
+    dataDir: [
+      {
+        path: './marco-reports/ios/log.json',
+        reportName: 'iosReport1',
+      },
+    ],
+    port: '8080',
+  },
+};
+```
+
+:::note Defaults
+
+- `outputPath` is `./marco-reports`
+- `dataDir` is `./marco-reports/log.json`
+  :::
+
+</li>
+
+<li>
+
+Run the following command from the CLI to fetch data from the device.
+
+<Tabs groupId="package-manager">
+  <TabItem value="yarn" label="yarn">
+    ```sh yarn marco generate --platform android ```
+  </TabItem>
+  <TabItem value="npm" label="npm">
+    ```sh npm marco generate --platform android ```
+  </TabItem>
+</Tabs>
+
+</li>
+
+<li>
+
+To visualize the data on a dashboard, run the following command. This will open a dashboard on localhost at the desired port.
+
+<Tabs groupId="package-manager">
+  <TabItem value="yarn" label="yarn">
+    ```sh yarn marco visualize --platform android ```
+  </TabItem>
+  <TabItem value="npm" label="npm">
+    ```sh npm marco visualize --platform android ```
+  </TabItem>
+</Tabs>
+
+</li>
+
+</Steps>
+
+🎉 Yeah! First marker is tracked. Now leverage the marco panel to track the performance of your app.
