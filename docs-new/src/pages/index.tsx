@@ -196,6 +196,141 @@ PerformanceTracker.track(
   );
 }
 
+function Showcase() {
+  return (
+    <section className="showcase-section">
+      <div className="container">
+        <div className="section-header">
+          <h2 className="section-title">
+            <span className="gradient-text">Built with Marco</span>
+          </h2>
+          <p className="section-subtitle">
+            See how developers are using Marco to benchmark and optimize their
+            apps
+          </p>
+        </div>
+
+        <div className="showcase-projects">
+          {/* Project 1: RN Tabs Benchmarks */}
+          <div className="showcase-content-wrapper">
+            <div className="showcase-info">
+              <div className="showcase-icon">📊</div>
+              <h3 className="showcase-project-title">
+                React Native Tabs Benchmarks
+              </h3>
+              <p className="showcase-project-description">
+                Comprehensive performance comparison of popular React Native tab
+                navigation libraries, powered by Marco's precise tracking.
+              </p>
+              <div className="showcase-tags">
+                <span className="showcase-tag">Benchmarking</span>
+                <span className="showcase-tag">Tab Navigation</span>
+                <span className="showcase-tag">Performance</span>
+              </div>
+              <a
+                href="https://ds-horizon.github.io/rn-tabs-benchmarks/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="showcase-external-link"
+              >
+                Open in New Tab →
+              </a>
+            </div>
+
+            <div className="showcase-iframe-container">
+              <div className="iframe-window">
+                <div className="iframe-header">
+                  <div className="iframe-dots">
+                    <span className="dot dot-red" />
+                    <span className="dot dot-yellow" />
+                    <span className="dot dot-green" />
+                  </div>
+                  <div className="iframe-title">
+                    ds-horizon.github.io/rn-tabs-benchmarks
+                  </div>
+                  <a
+                    href="https://ds-horizon.github.io/rn-tabs-benchmarks/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="iframe-expand"
+                    title="Open in new tab"
+                  >
+                    ↗
+                  </a>
+                </div>
+                <div className="iframe-content">
+                  <iframe
+                    src="https://ds-horizon.github.io/rn-tabs-benchmarks/"
+                    title="React Native Tabs Benchmarks"
+                    className="showcase-iframe"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Project 2: React Native Benchmark */}
+          <div className="showcase-content-wrapper">
+            <div className="showcase-info">
+              <div className="showcase-icon">⚡</div>
+              <h3 className="showcase-project-title">React Native Benchmark</h3>
+              <p className="showcase-project-description">
+                Community-driven benchmarking platform for React Native
+                libraries and components, utilizing Marco for accurate
+                performance measurements.
+              </p>
+              <div className="showcase-tags">
+                <span className="showcase-tag">Community</span>
+                <span className="showcase-tag">Libraries</span>
+                <span className="showcase-tag">Benchmarks</span>
+              </div>
+              <a
+                href="https://reactnativebenchmark.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="showcase-external-link"
+              >
+                Open in New Tab →
+              </a>
+            </div>
+
+            <div className="showcase-iframe-container">
+              <div className="iframe-window">
+                <div className="iframe-header">
+                  <div className="iframe-dots">
+                    <span className="dot dot-red" />
+                    <span className="dot dot-yellow" />
+                    <span className="dot dot-green" />
+                  </div>
+                  <div className="iframe-title">reactnativebenchmark.dev</div>
+                  <a
+                    href="https://reactnativebenchmark.dev"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="iframe-expand"
+                    title="Open in new tab"
+                  >
+                    ↗
+                  </a>
+                </div>
+                <div className="iframe-content">
+                  <iframe
+                    src="https://reactnativebenchmark.dev"
+                    title="React Native Benchmark"
+                    className="showcase-iframe"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ToolInAction() {
   return (
     <section className="tool-action-section">
@@ -287,6 +422,7 @@ export default function Home(): JSX.Element {
           <ToolInAction />
           <HomepageFeatures />
           <CodeShowcase />
+          <Showcase />
         </main>
       </div>
     </Layout>
