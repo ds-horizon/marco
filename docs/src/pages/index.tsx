@@ -3,6 +3,7 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import { Card, CardGrid } from '@site/src/components/Card';
+import BuiltWithMarco from '@site/src/components/BuiltWithMarco';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-typescript';
 import 'prismjs/themes/prism-tomorrow.css';
@@ -287,6 +288,7 @@ export default function Home(): JSX.Element {
           <ToolInAction />
           <HomepageFeatures />
           <CodeShowcase />
+          <BuiltWithMarco />
         </main>
       </div>
     </Layout>

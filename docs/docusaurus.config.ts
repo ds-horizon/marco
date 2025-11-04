@@ -139,6 +139,10 @@ const config: Config = {
               label: 'Guides',
               to: '/guides/app-startup',
             },
+            {
+              label: 'Showcase',
+              to: '/showcase/built-with-marco',
+            },
           ],
         },
       ],
