@@ -47,7 +47,7 @@ const config: Config = {
         theme: {
           customCss: './src/css/custom.css',
         },
-        googleAnalytics: {
+        gtag: {
           trackingID: 'G-P61N0RKY4H',
           anonymizeIP: true,
         },
